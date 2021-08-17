@@ -27,7 +27,7 @@ const DetailsView: React.FC<DetailsViewProps> = ({
     <ModalInner mb="0">
       <Text as="p" mb="24px" fontSize="14px" color="textSubtle">
         {t(
-          'Your voting power is determined by the amount of CAKE you held at the block detailed below. CAKE held in other places does not contribute to your voting power.',
+          'Your voting power is determined by the amount of GLIDE you held at the block detailed below. GLIDE held in other places does not contribute to your voting power.',
         )}
       </Text>
       <Text color="secondary" textTransform="uppercase" mb="4px" bold fontSize="14px">
@@ -50,13 +50,13 @@ const DetailsView: React.FC<DetailsViewProps> = ({
       </Flex>
       <Flex alignItems="center" justifyContent="space-between" mb="4px">
         <Text color="textSubtle" fontSize="16px">
-          {t('Manual CAKE Pool')}
+          {t('Manual GLIDE Pool')}
         </Text>
         <Text textAlign="right">{cakePoolBalance.toFormat(3)}</Text>
       </Flex>
       <Flex alignItems="center" justifyContent="space-between" mb="4px">
         <Text color="textSubtle" fontSize="16px">
-          {t('Auto CAKE Pool')}
+          {t('Auto GLIDE Pool')}
         </Text>
         <Text textAlign="right">{cakeVaultBalance.toFormat(3)}</Text>
       </Flex>

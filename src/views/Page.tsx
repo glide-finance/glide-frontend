@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Flex } from '@glide-finance/uikit'
-import Footer from 'components/Menu/Footer'
+// import Footer from 'components/Menu/Footer'
 import SubNav from 'components/Menu/SubNav'
 
 const StyledPage = styled.div`
@@ -35,7 +35,7 @@ const Page: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({ children, ...pro
       <SubNav />
       {children}
       <Flex flexGrow={1} />
-      <Footer />
+      {/* <Footer /> */}
     </StyledPage>
   )
 }

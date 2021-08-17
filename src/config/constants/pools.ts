@@ -4,12 +4,12 @@ import { PoolConfig, PoolCategory } from './types'
 const pools: PoolConfig[] = [
   {
     sousId: 0,
-    stakingToken: tokens.cake,
-    earningToken: tokens.cake,
+    stakingToken: tokens.glide,
+    earningToken: tokens.glide,
     contractAddress: {
       97: '0xd3af5fe61dbaf8f73149bfcfa9fb653ff096029a',
       56: '0x73feaa1eE314F8c655E354234017bE2193C9E24E',
-      20: '0x74734ad255a131803fa6dfb3baec7d31eaf5aac0'
+      20: '0x111ABd0d647e19550D713d08eb7804Ae2a77f857'
     },
     poolCategory: PoolCategory.CORE,
     harvest: true,

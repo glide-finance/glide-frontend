@@ -1,38 +1,38 @@
 {
-  "name": "PancakeSwap Default List",
+  "name": "Glide Default List",
   "timestamp": "2021-05-06T00:00:00Z",
   "version": {
-    "major": 3,
+    "major": 1,
     "minor": 0,
     "patch": 0
   },
   "tags": {},
-  "logoURI": "https://pancakeswap.finance/logo.png",
-  "keywords": ["pancake", "default"],
+  "logoURI": "",
+  "keywords": ["glide", "default"],
   "tokens": [
     {
-      "name": "WBNB Token",
-      "symbol": "WBNB",
+      "name": "Wrapped Elastos",
+      "symbol": "WELA",
       "address": "0x517E9e5d46C1EA8aB6f78677d6114Ef47F71f6c4",
       "chainId": 20,
       "decimals": 18,
-      "logoURI": "https://pancakeswap.finance/images/tokens/0xbb4cdb9cbd36b01bd1cbaebf2de08d9173bc095c.png"
+      "logoURI": ""
     },
     {
-      "name": "BUSD Token",
-      "symbol": "BUSD",
+      "name": "Heco-Peg HUSD Token",
+      "symbol": "HUSD",
       "address": "0xf9ca2ea3b1024c0db31adb224b407441becc18bb",
       "chainId": 20,
       "decimals": 18,
-      "logoURI": "https://pancakeswap.finance/images/tokens/0xe9e7cea3dedca5984780bafc599bd69add087d56.png"
+      "logoURI": ""
     },
     {
-      "name": "PancakeSwap Token",
-      "symbol": "CAKE",
+      "name": "Glide Token",
+      "symbol": "GLIDE",
       "address": "0x74734ad255a131803fa6dfb3baec7d31eaf5aac0",
       "chainId": 20,
       "decimals": 18,
-      "logoURI": "https://pancakeswap.finance/images/tokens/0x0e09fabb73bd3ade0a17ecc321fd13a19e81ce82.png"
+      "logoURI": ""
     }
   ]
 }

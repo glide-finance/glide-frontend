@@ -64,8 +64,8 @@ const tokens = {
     symbol: 'BNB',
     projectLink: 'https://www.binance.com/',
   },
-  cake: {
-    symbol: 'CAKE',
+  glide: {
+    symbol: 'GLIDE',
     address: {
       56: '0x0E09FaBB73Bd3Ade0a17ECC321fD13a19e81cE82',
       97: '0xa35062141Fa33BCA92Ce69FeD37D0E8908868AAe',
@@ -84,8 +84,8 @@ const tokens = {
     decimals: 18,
     projectLink: 'https://pancakeswap.finance/',
   },
-  syrup: {
-    symbol: 'SYRUP',
+  sugar: {
+    symbol: 'SUGAR',
     address: {
       56: '0x009cF7bC57584b7998236eff51b98A168DceA9B0',
       97: '0xfE1e507CeB712BDe086f3579d2c03248b2dB77f9',
