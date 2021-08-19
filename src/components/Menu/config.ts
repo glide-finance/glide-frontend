@@ -27,6 +27,11 @@ const config: (t: ContextApi['t']) => MenuEntry[] = (t) => [
     icon: 'PoolIcon',
     href: '/pools',
   },
+  {
+    label: t('Bridge'),
+    icon: 'TradeIcon',
+    href: '/bridge',
+  },
   // {
   //   label: t('Prediction (BETA)'),
   //   icon: 'PredictionsIcon',
@@ -79,25 +84,21 @@ const config: (t: ContextApi['t']) => MenuEntry[] = (t) => [
     label: t('More'),
     icon: 'MoreIcon',
     items: [
-      {
-        label: t('Contact'),
-        href: 'https://docs.pancakeswap.finance/contact-us',
-      },
       // {
       //   label: t('Voting'),
       //   href: '/voting',
       // },
       {
         label: t('Github'),
-        href: 'https://github.com/pancakeswap',
+        href: 'https://github.com/glide-finance',
       },
       {
         label: t('Docs'),
-        href: 'https://docs.pancakeswap.finance',
+        href: 'https://docs.glidefinance.io/',
       },
       {
         label: t('Blog'),
-        href: 'https://pancakeswap.medium.com',
+        href: 'https://medium.com/glide-finance',
       },
       // {
       //   label: t('Merch'),

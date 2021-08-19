@@ -62,9 +62,9 @@ const Home: React.FC = () => {
             <UserBanner />
           </UserBannerWrapper>
         )}
-        <Hero />
+        {/* <Hero /> */}
       </StyledHeroSection>
-      <PageSection
+      {/* <PageSection
         innerProps={{ style: { margin: '0', width: '100%' } }}
         background={
           theme.isDark
@@ -75,8 +75,8 @@ const Home: React.FC = () => {
         hasCurvedDivider={false}
       >
         <MetricsSection />
-      </PageSection>
-      <PageSection
+      </PageSection> */}
+      {/* <PageSection
         innerProps={{ style: HomeSectionContainerStyles }}
         background={theme.colors.background}
         index={2}
@@ -88,8 +88,8 @@ const Home: React.FC = () => {
           </InnerWedgeWrapper>
         </OuterWedgeWrapper>
         <SalesSection {...swapSectionData} />
-      </PageSection>
-      <PageSection
+      </PageSection> */}
+      {/* <PageSection
         innerProps={{ style: HomeSectionContainerStyles }}
         background={theme.colors.gradients.cardHeader}
         index={2}
@@ -102,8 +102,8 @@ const Home: React.FC = () => {
         </OuterWedgeWrapper>
         <SalesSection {...earnSectionData} />
         <FarmsPoolsRow />
-      </PageSection>
-      <PageSection
+      </PageSection> */}
+      {/* <PageSection
         innerProps={{ style: HomeSectionContainerStyles }}
         background={
           theme.isDark
@@ -114,24 +114,24 @@ const Home: React.FC = () => {
         hasCurvedDivider={false}
       >
         <WinSection />
-      </PageSection>
+      </PageSection> */}
       <PageSection
         innerProps={{ style: HomeSectionContainerStyles }}
         background={theme.colors.background}
         index={2}
         hasCurvedDivider={false}
       >
-        <SalesSection {...cakeSectionData} />
+        {/* <SalesSection {...cakeSectionData} /> */}
         <CakeDataRow />
       </PageSection>
-      <PageSection
+      {/* <PageSection
         innerProps={{ style: HomeSectionContainerStyles }}
         background="linear-gradient(180deg, #7645D9 0%, #5121B1 100%)"
         index={2}
         hasCurvedDivider={false}
       >
-        {/* <Footer /> */}
-      </PageSection>
+        <Footer />
+      </PageSection> */}
     </>
   )
 }

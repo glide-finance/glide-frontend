@@ -15,7 +15,8 @@ const getActiveIndex = (pathname: string): number => {
     pathname.includes('/add') ||
     pathname.includes('/remove') ||
     pathname.includes('/find') ||
-    pathname.includes('/liquidity')
+    pathname.includes('/liquidity') ||
+    pathname.includes('/bridge')
   ) {
     return 1
   }
