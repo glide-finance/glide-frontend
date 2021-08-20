@@ -13,7 +13,7 @@ const injected = new InjectedConnector({ supportedChainIds: [chainId] })
 
 const walletconnect = new WalletConnectConnector({
   rpc: { [chainId]: rpcUrl },
-  bridge: 'https://walletconnect.elastos.net/v2/',
+  bridge: 'https://walletconnect.elastos.net/v2',
   qrcode: true,
   pollingInterval: POLLING_INTERVAL,
 })
