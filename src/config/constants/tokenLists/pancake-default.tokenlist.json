@@ -23,15 +23,31 @@
       "symbol": "HUSD",
       "address": "0xf9ca2ea3b1024c0db31adb224b407441becc18bb",
       "chainId": 20,
-      "decimals": 18,
+      "decimals": 8,
       "logoURI": ""
     },
     {
       "name": "Glide Token",
       "symbol": "GLIDE",
-      "address": "0x74734ad255a131803fa6dfb3baec7d31eaf5aac0",
+      "address": "0x9c425fa88d84d40ee7ec48391d1d00b07d53636b",
       "chainId": 20,
       "decimals": 18,
+      "logoURI": ""
+    },
+    {
+      "name": "USD Coin",
+      "symbol": "USDC",
+      "address": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+      "chainId": 1,
+      "decimals": 6,
+      "logoURI": ""
+    },
+    {
+      "name": "Heco-Peg HUSD Token",
+      "symbol": "HUSD",
+      "address": "0x0298c2b32eae4da002a15f36fdf7615bea3da047",
+      "chainId": 128,
+      "decimals": 8,
       "logoURI": ""
     }
   ]

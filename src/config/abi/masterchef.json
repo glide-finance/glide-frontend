@@ -352,7 +352,7 @@
         "type": "address"
       }
     ],
-    "name": "pendingCake",
+    "name": "pendingGlide",
     "outputs": [
       {
         "internalType": "uint256",

@@ -21,7 +21,7 @@ const StyledCell = styled(BaseCell)`
 const AprCell: React.FC<AprCellProps> = ({ pool, performanceFee }) => {
   const { t } = useTranslation()
   const { isXs, isSm } = useMatchBreakpoints()
-  const { isAutoVault } = pool
+  const { isAutoVault, isDividendPool } = pool
   return (
     <StyledCell role="cell">
       <CellContent>

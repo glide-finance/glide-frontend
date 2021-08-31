@@ -26,6 +26,7 @@ const HarvestAction: React.FunctionComponent<HarvestActionProps> = ({
   userData,
   userDataLoaded,
   isAutoVault,
+  isDividendPool,
   earningTokenPrice,
 }) => {
   const { t } = useTranslation()
@@ -43,13 +44,13 @@ const HarvestAction: React.FunctionComponent<HarvestActionProps> = ({
 
   // Auto CAKE vault calculations
   const {
-    userData: { cakeAtLastUserAction, userShares },
+    userData: { glideAtLastUserAction, userShares },
     pricePerFullShare,
     fees: { performanceFee },
   } = useCakeVault()
   const { hasAutoEarnings, autoCakeToDisplay, autoUsdToDisplay } = getCakeVaultEarnings(
     account,
-    cakeAtLastUserAction,
+    glideAtLastUserAction,
     userShares,
     pricePerFullShare,
     earningTokenPrice,

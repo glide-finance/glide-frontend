@@ -1,5 +1,5 @@
 import { Currency, ETHER, Token } from '@glide-finance/sdk'
-import { BinanceIcon } from '@glide-finance/uikit'
+import { BinanceIcon, ElastosIcon, EthereumIcon, HecoIcon } from '@glide-finance/uikit'
 import React, { useMemo } from 'react'
 import styled from 'styled-components'
 import useHttpLocations from '../../hooks/useHttpLocations'
@@ -16,11 +16,14 @@ export default function CurrencyLogo({
   currency,
   size = '24px',
   style,
+  chain
 }: {
   currency?: Currency
   size?: string
   style?: React.CSSProperties
+  chain?: number
 }) {
+  // console.log(currency)
   const uriLocations = useHttpLocations(currency instanceof WrappedTokenInfo ? currency.logoURI : undefined)
 
   const srcs: string[] = useMemo(() => {
@@ -36,7 +39,16 @@ export default function CurrencyLogo({
   }, [currency, uriLocations])
 
   if (currency === ETHER) {
-    return <BinanceIcon width={size} style={style} />
+    if (chain) {
+    switch (chain) {
+      case 1: return <EthereumIcon width={size} style={style} />
+      case 20: return <ElastosIcon width={size} style={style} />
+      case 128: return <HecoIcon width={size} style={style} />
+      default: return <ElastosIcon width={size} style={style} />
+    }
+    } else {
+      return <ElastosIcon width={size} style={style} />
+    }
   }
 
   return <StyledLogo size={size} srcs={srcs} alt={`${currency?.symbol ?? 'token'} logo`} style={style} />

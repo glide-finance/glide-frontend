@@ -12,6 +12,8 @@ import {
   fetchCakeVaultUserData,
   fetchCakeVaultFees,
   fetchPoolsStakingLimitsAsync,
+  fetchDividendPoolPublicData,
+  fetchDividendPoolUserData
 } from '.'
 import { State, Pool } from '../types'
 import { transformPool } from './helpers'
@@ -76,7 +78,7 @@ export const useCakeVault = () => {
     userData: {
       isLoading,
       userShares: userSharesAsString,
-      cakeAtLastUserAction: cakeAtLastUserActionAsString,
+      glideAtLastUserAction: glideAtLastUserActionAsString,
       lastDepositedTime,
       lastUserActionTime,
     },
@@ -106,9 +108,9 @@ export const useCakeVault = () => {
     return new BigNumber(userSharesAsString)
   }, [userSharesAsString])
 
-  const cakeAtLastUserAction = useMemo(() => {
-    return new BigNumber(cakeAtLastUserActionAsString)
-  }, [cakeAtLastUserActionAsString])
+  const glideAtLastUserAction = useMemo(() => {
+    return new BigNumber(glideAtLastUserActionAsString)
+  }, [glideAtLastUserActionAsString])
 
   return {
     totalShares,
@@ -125,7 +127,81 @@ export const useCakeVault = () => {
     userData: {
       isLoading,
       userShares,
-      cakeAtLastUserAction,
+      glideAtLastUserAction,
+      lastDepositedTime,
+      lastUserActionTime,
+    },
+  }
+}
+
+export const useFetchDividendPool = () => {
+  const { account } = useWeb3React()
+  const { fastRefresh } = useRefresh()
+  const dispatch = useAppDispatch()
+
+  useEffect(() => {
+    dispatch(fetchDividendPoolPublicData())
+  }, [dispatch, fastRefresh])
+
+  useEffect(() => {
+    dispatch(fetchDividendPoolUserData({ account }))
+  }, [dispatch, fastRefresh, account])
+}
+
+export const useDividendPool = () => {
+  const {
+    totalShares: totalSharesAsString,
+    pricePerFullShare: pricePerFullShareAsString,
+    totalCakeInVault: totalCakeInVaultAsString,
+    estimatedCakeBountyReward: estimatedCakeBountyRewardAsString,
+    totalPendingCakeHarvest: totalPendingCakeHarvestAsString,
+    userData: {
+      isLoading,
+      userShares: userSharesAsString,
+      glideAtLastUserAction: glideAtLastUserActionAsString,
+      lastDepositedTime,
+      lastUserActionTime,
+    },
+  } = useSelector((state: State) => state.pools.cakeVault)
+
+  const estimatedCakeBountyReward = useMemo(() => {
+    return new BigNumber(estimatedCakeBountyRewardAsString)
+  }, [estimatedCakeBountyRewardAsString])
+
+  const totalPendingCakeHarvest = useMemo(() => {
+    return new BigNumber(totalPendingCakeHarvestAsString)
+  }, [totalPendingCakeHarvestAsString])
+
+  const totalShares = useMemo(() => {
+    return new BigNumber(totalSharesAsString)
+  }, [totalSharesAsString])
+
+  const pricePerFullShare = useMemo(() => {
+    return new BigNumber(pricePerFullShareAsString)
+  }, [pricePerFullShareAsString])
+
+  const totalCakeInVault = useMemo(() => {
+    return new BigNumber(totalCakeInVaultAsString)
+  }, [totalCakeInVaultAsString])
+
+  const userShares = useMemo(() => {
+    return new BigNumber(userSharesAsString)
+  }, [userSharesAsString])
+
+  const glideAtLastUserAction = useMemo(() => {
+    return new BigNumber(glideAtLastUserActionAsString)
+  }, [glideAtLastUserActionAsString])
+
+  return {
+    totalShares,
+    pricePerFullShare,
+    totalCakeInVault,
+    estimatedCakeBountyReward,
+    totalPendingCakeHarvest,
+    userData: {
+      isLoading,
+      userShares,
+      glideAtLastUserAction,
       lastDepositedTime,
       lastUserActionTime,
     },

@@ -10,6 +10,7 @@ import {
   useUnsupportedTokenList,
   useCombinedActiveList,
   useCombinedInactiveList,
+  useBridgeableTokenList
 } from '../state/lists/hooks'
 
 import { NEVER_RELOAD, useSingleCallResult } from '../state/multicall/hooks'
@@ -61,6 +62,11 @@ export function useDefaultTokens(): { [address: string]: Token } {
 export function useAllTokens(): { [address: string]: Token } {
   const allTokens = useCombinedActiveList()
   return useTokensFromMap(allTokens, true)
+}
+
+export function useBridgeableTokens(): { [address: string]: Token } {
+  const bridgableTokens = useBridgeableTokenList()
+  return useTokensFromMap(bridgableTokens, true)
 }
 
 export function useAllInactiveTokens(): { [address: string]: Token } {

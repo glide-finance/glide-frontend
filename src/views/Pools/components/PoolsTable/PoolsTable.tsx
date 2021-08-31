@@ -42,12 +42,14 @@ const PoolsTable: React.FC<PoolsTableProps> = ({ pools, userDataLoaded, account 
       behavior: 'smooth',
     })
   }
+
+  console.log(pools)
   return (
     <StyledTableBorder>
       <StyledTable role="table" ref={tableWrapperEl}>
         {pools.map((pool) => (
           <PoolRow
-            key={pool.isAutoVault ? 'auto-cake' : pool.sousId}
+            key={pool.isDividendPool ? 'dividend-pool' : pool.isAutoVault ? 'auto-cake' : pool.sousId}
             pool={pool}
             account={account}
             userDataLoaded={userDataLoaded}

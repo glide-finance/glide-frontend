@@ -5,7 +5,7 @@ import styled from 'styled-components'
 import { useTranslation } from 'contexts/Localization'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { useCurrencyBalance } from '../../../state/wallet/hooks'
-import CurrencySearchModal from '../../../components/SearchModal/CurrencySearchModal'
+import CurrencySearchModal from './SearchModal/CurrencySearchModal'
 import { CurrencyLogo, DoubleCurrencyLogo } from '../../../components/Logo'
 
 import { RowBetween } from '../../../components/Layout/Row'
@@ -78,6 +78,7 @@ export default function CurrencyInputPanel({
   const selectedCurrencyBalance = useCurrencyBalance(account ?? undefined, currency ?? undefined)
   const { t } = useTranslation()
   const translatedLabel = label || t('Input')
+  const { chainId } = useActiveWeb3React()
 
   const [onPresentCurrencyModal] = useModal(
     <CurrencySearchModal
@@ -134,7 +135,7 @@ export default function CurrencyInputPanel({
               {pair ? (
                 <DoubleCurrencyLogo currency0={pair.token0} currency1={pair.token1} size={16} margin />
               ) : currency ? (
-                <CurrencyLogo currency={currency} size="24px" style={{ marginRight: '8px' }} />
+                <CurrencyLogo currency={currency} size="24px" style={{ marginRight: '8px' }} chain={chainId} />
               ) : null}
               {pair ? (
                 <Text id="pair">
@@ -142,12 +143,19 @@ export default function CurrencyInputPanel({
                 </Text>
               ) : (
                 <Text id="pair">
-                  {(currency && currency.symbol && currency.symbol.length > 20
+                  {/* {chainId === 1 ? `ETH` : chainId === 128 ? `HT` : (currency && currency.symbol && currency.symbol.length > 20
                     ? `${currency.symbol.slice(0, 4)}...${currency.symbol.slice(
                         currency.symbol.length - 5,
                         currency.symbol.length,
                       )}`
-                    : currency?.symbol) || t('Select a currency')}
+                    : currency?.symbol) || t('Select a currency')} */}
+                  {currency && currency.symbol
+                    ? chainId === 1 && currency.symbol === 'ELA'
+                      ? 'ETH'
+                      : chainId === 128 && currency.symbol === 'ELA'
+                      ? 'HT'
+                      : currency.symbol
+                    : t('Select a currency')}
                 </Text>
               )}
               {!disableCurrencySelect && <ChevronDownIcon />}

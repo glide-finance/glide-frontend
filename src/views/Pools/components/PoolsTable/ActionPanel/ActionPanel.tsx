@@ -120,6 +120,7 @@ const ActionPanel: React.FC<ActionPanelProps> = ({ account, pool, userDataLoaded
     stakingLimit,
     contractAddress,
     isAutoVault,
+    isDividendPool
   } = pool
   const { t } = useTranslation()
   const poolContractAddress = getAddress(contractAddress)
@@ -146,6 +147,9 @@ const ActionPanel: React.FC<ActionPanelProps> = ({ account, pool, userDataLoaded
     if (isAutoVault) {
       return getBalanceNumber(totalCakeInVault, stakingToken.decimals)
     }
+    if (isDividendPool) {
+      return getBalanceNumber(totalCakeInVault, stakingToken.decimals)
+    }
     if (isManualCakePool) {
       const manualCakeTotalMinusAutoVault = new BigNumber(totalStaked).minus(totalCakeInVault)
       return getBalanceNumber(manualCakeTotalMinusAutoVault, stakingToken.decimals)
@@ -170,7 +174,7 @@ const ActionPanel: React.FC<ActionPanelProps> = ({ account, pool, userDataLoaded
     targetRef: tagTargetRef,
     tooltip: tagTooltip,
     tooltipVisible: tagTooltipVisible,
-  } = useTooltip(isAutoVault ? autoTooltipText : manualTooltipText, {
+  } = useTooltip(isDividendPool ? autoTooltipText : isAutoVault ? autoTooltipText : manualTooltipText, {
     placement: 'bottom-start',
   })
 
@@ -265,7 +269,7 @@ const ActionPanel: React.FC<ActionPanelProps> = ({ account, pool, userDataLoaded
             </Button>
           </Flex>
         )}
-        {isAutoVault ? <CompoundingPoolTag /> : <ManualPoolTag />}
+        {isDividendPool ? <CompoundingPoolTag/> : isAutoVault ? <CompoundingPoolTag /> : <ManualPoolTag />}
         {tagTooltipVisible && tagTooltip}
         <span ref={tagTargetRef}>
           <HelpIcon ml="4px" width="20px" height="20px" color="textSubtle" />

@@ -1,7 +1,7 @@
 import { ChainId, JSBI, Percent, Token, WETH } from '@glide-finance/sdk'
 import { BUSD, CAKE, WBNB } from './tokens'
 
-export const ROUTER_ADDRESS = '0x845C92C84CD23b5839a5f23010a806F6E9432F3e'
+export const ROUTER_ADDRESS = '0x9606cdcB1193137DEb44e9a55C33AD8BD1d6aC96'
 
 // a list of tokens by chain
 type ChainTokenList = {
@@ -12,6 +12,8 @@ type ChainTokenList = {
 export const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
   [ChainId.MAINNET]: [WETH[ChainId.MAINNET], CAKE[ChainId.MAINNET], BUSD[ChainId.MAINNET]],
   [ChainId.TESTNET]: [WETH[ChainId.TESTNET], CAKE[ChainId.TESTNET], BUSD[ChainId.TESTNET]],
+  [ChainId.HECO]: [],
+  [ChainId.ETHEREUM]: []
 }
 
 /**
@@ -35,12 +37,16 @@ export const CUSTOM_BASES: { [chainId in ChainId]?: { [tokenAddress: string]: To
 export const SUGGESTED_BASES: ChainTokenList = {
   [ChainId.MAINNET]: [BUSD[ChainId.MAINNET], CAKE[ChainId.MAINNET]],
   [ChainId.TESTNET]: [WETH[ChainId.TESTNET], CAKE[ChainId.TESTNET], BUSD[ChainId.TESTNET]],
+  [ChainId.HECO]: [],
+  [ChainId.ETHEREUM]: []
 }
 
 // used to construct the list of all pairs we consider by default in the frontend
 export const BASES_TO_TRACK_LIQUIDITY_FOR: ChainTokenList = {
   [ChainId.MAINNET]: [WETH[ChainId.MAINNET], BUSD[ChainId.MAINNET]],
   [ChainId.TESTNET]: [WETH[ChainId.TESTNET], CAKE[ChainId.TESTNET], BUSD[ChainId.TESTNET]],
+  [ChainId.HECO]: [],
+  [ChainId.ETHEREUM]: []
 }
 
 export const PINNED_PAIRS: { readonly [chainId in ChainId]?: [Token, Token][] } = {

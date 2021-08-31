@@ -26,10 +26,12 @@ const useAuth = () => {
   const login = useCallback(
     (connectorID: ConnectorNames) => {
       const connector = connectorsByName[connectorID]
+      console.log('login triggered', connector)
       if (connector) {
         activate(connector, async (error: Error) => {
           if (error instanceof UnsupportedChainIdError) {
-            const hasSetup = await setupNetwork()
+            console.log(error)
+            const hasSetup = await setupNetwork(20) // specify network to switch to
             if (hasSetup) {
               activate(connector)
             }

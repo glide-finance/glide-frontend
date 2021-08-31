@@ -1,0 +1,38 @@
+{
+  "name": "Glide Bridge List",
+  "timestamp": "2021-09-09T00:00:00Z",
+  "version": {
+    "major": 1,
+    "minor": 0,
+    "patch": 0
+  },
+  "tags": {},
+  "logoURI": "",
+  "keywords": ["glide", "bridge"],
+  "tokens": [
+    {
+      "name": "Heco-Peg HUSD Token",
+      "symbol": "HUSD",
+      "address": "0xf9ca2ea3b1024c0db31adb224b407441becc18bb",
+      "chainId": 20,
+      "decimals": 8,
+      "logoURI": ""
+    },
+    {
+      "name": "USD Coin",
+      "symbol": "USDC",
+      "address": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+      "chainId": 1,
+      "decimals": 6,
+      "logoURI": ""
+    },
+    {
+      "name": "Heco-Peg HUSD Token",
+      "symbol": "HUSD",
+      "address": "0x0298c2b32eae4da002a15f36fdf7615bea3da047",
+      "chainId": 128,
+      "decimals": 8,
+      "logoURI": ""
+    }
+  ]
+}

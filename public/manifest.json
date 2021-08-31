@@ -1,8 +1,8 @@
 {
-  "short_name": "PancakeSwap",
-  "name": "PancakeSwap",
-  "description": "Farm CAKE with Pancake LP Tokens",
-  "homepage_url": "https://pancakeswap.finance",
+  "short_name": "Glide Finance",
+  "name": "Glide",
+  "description": "Farm GLIDE with Glide LP Tokens",
+  "homepage_url": "https://glidefinance.io",
   "start_url": ".",
   "display": "standalone",
   "theme_color": "#1FC7D4",

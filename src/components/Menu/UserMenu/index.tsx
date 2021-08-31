@@ -35,7 +35,7 @@ const UserMenu = () => {
 
   return (
     // <UIKitUserMenu account={account} avatarSrc={avatarSrc}>
-    <UIKitUserMenu account={account} >
+    <UIKitUserMenu account={account}>
       <WalletUserMenuItem hasLowBnbBalance={hasLowBnbBalance} onPresentWalletModal={onPresentWalletModal} />
       <UserMenuItem as="button" onClick={onPresentTransactionModal}>
         {t('Transactions')}

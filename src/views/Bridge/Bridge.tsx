@@ -3,12 +3,14 @@ import { RouteComponentProps } from 'react-router-dom'
 
 import styled from 'styled-components'
 import { CurrencyAmount, JSBI, Token, Trade } from '@glide-finance/sdk'
-import { Button, Text, ArrowForwardIcon, ArrowLastIcon, Box, useModal, Heading } from '@glide-finance/uikit'
+import { Button, Text, ArrowForwardIcon, ArrowLastIcon, Box, useModal, Heading, connectorLocalStorageKey, ConnectorNames } from '@glide-finance/uikit'
 import PageHeader from 'components/PageHeader'
 import { useTranslation } from 'contexts/Localization'
 import UnsupportedCurrencyFooter from 'components/UnsupportedCurrencyFooter'
 import SwapWarningTokens from 'config/constants/swapWarningTokens'
 import { getAddress } from 'utils/addressHelpers'
+import { setupNetwork } from 'utils/wallet'
+import useAuth from 'hooks/useAuth'
 
 import ConnectWalletButton from '../../components/ConnectWalletButton'
 import useActiveWeb3React from '../../hooks/useActiveWeb3React'
@@ -52,9 +54,6 @@ import { useExpertModeManager, useUserSlippageTolerance, useUserSingleHopOnly } 
 import { maxAmountSpend } from '../../utils/maxAmountSpend'
 import { computeTradePriceBreakdown, warningSeverity } from '../../utils/prices'
 import CircleLoader from '../../components/Loader/CircleLoader'
-// import Ethereum from './components/Ethereum'
-// import Elastos from './components/Elastos'
-
 import SwapWarningModal from './components/SwapWarningModal'
 
 const ChainContainer = styled.div`
@@ -83,6 +82,7 @@ const ArrowContainer = styled.div`
   padding: 0.25rem;
   margin-bottom: 1.5rem;
 `
+// move to config
 const IndexMap = {
   0: 'Elastos',
   1: 'Ethereum',
@@ -91,24 +91,31 @@ const IndexMap = {
 
 const Bridge: React.FC = () => {
   const { t } = useTranslation()
-  const [originIndex, setOriginIndex] = useState(2)
-  const [destinationIndex, setDestinationIndex] = useState(0)
+  const [originIndex, setOriginIndex] = useState(0)
+  const [destinationIndex, setDestinationIndex] = useState(2)
   const { account } = useActiveWeb3React()
   const correctChain = true
+  const { login } = useAuth()
 
   const handleOriginChange = (option: OptionProps): void => {
+    const connectorId = window.localStorage.getItem(connectorLocalStorageKey) as ConnectorNames
+
     switch (option.value) {
       case 'elastos':
         setOriginIndex(0)
         setDestinationIndex(2)
+        setupNetwork(20)
         break
       case 'ethereum':
         setOriginIndex(1)
         setDestinationIndex(0)
+        // Unable to switch the default network to metamask
         break
       case 'heco':
         setOriginIndex(2)
         setDestinationIndex(0)
+        setupNetwork(128)
+        // login(connectorId)
         break
       default:
         setOriginIndex(2)
@@ -488,9 +495,7 @@ const Bridge: React.FC = () => {
                 </ChainContainer>
               </AutoColumn>
             </AutoRow>
-            <AutoRow>
-              <AutoColumn gap="md">
-                Token select
+            <AutoColumn gap="md">
                 <BridgeInputPanel
                   label={t('Select token to bridge')}
                   value={formattedAmounts[Field.INPUT]}
@@ -502,16 +507,15 @@ const Bridge: React.FC = () => {
                   otherCurrency={currencies[Field.OUTPUT]}
                   id="swap-currency-input"
                 />
-              </AutoColumn>
-            </AutoRow>
-            <AutoRow justify="center">
+            </AutoColumn>
+            <AutoColumn gap="md" justify="center" style={{padding: '1rem 0 0 0'}}>
               {!correctChain && (
                 <Text color="textSubtle" mb="4px">
                   {t('Please connect your wallet to the chain you wish to bridge from!')}
                 </Text>
               )}
-              {!account ? <ConnectWalletButton width="100%" /> : <Button>Bridge Token</Button>}
-            </AutoRow>
+              {!account ? <ConnectWalletButton width="100%" /> : <Button width="100%">Bridge Token</Button>}
+            </AutoColumn>
           </Wrapper>
         </Body>
       </Page>

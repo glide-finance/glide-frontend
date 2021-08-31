@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 import BigNumber from 'bignumber.js'
 import poolsConfig from 'config/constants/pools'
 import { BIG_ZERO } from 'utils/bigNumber'
-import { PoolsState, Pool, CakeVault, VaultFees, VaultUser, AppThunk } from 'state/types'
+import { PoolsState, Pool, CakeVault, VaultFees, VaultUser, AppThunk, DividendUser, DividendPool } from 'state/types'
 import { getPoolApr } from 'utils/apr'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { getAddress } from 'utils/addressHelpers'
@@ -14,7 +14,9 @@ import {
   fetchUserPendingRewards,
 } from './fetchPoolsUser'
 import { fetchPublicVaultData, fetchVaultFees } from './fetchVaultPublic'
+import { fetchDividendPoolData } from './fetchDividendPoolPublic'
 import fetchVaultUser from './fetchVaultUser'
+import fetchDividendPoolUser from './fetchDividendPoolUser'
 import { getTokenPricesFromFarm } from './helpers'
 
 const initialState: PoolsState = {
@@ -35,7 +37,21 @@ const initialState: PoolsState = {
     userData: {
       isLoading: true,
       userShares: null,
-      cakeAtLastUserAction: null,
+      glideAtLastUserAction: null,
+      lastDepositedTime: null,
+      lastUserActionTime: null,
+    },
+  },
+  dividendPool: {
+    totalShares: null,
+    pricePerFullShare: null,
+    totalCakeInVault: null,
+    estimatedCakeBountyReward: null,
+    totalPendingCakeHarvest: null,
+    userData: {
+      isLoading: true,
+      userShares: null,
+      glideAtLastUserAction: null,
       lastDepositedTime: null,
       lastUserActionTime: null,
     },
@@ -155,6 +171,11 @@ export const fetchCakeVaultPublicData = createAsyncThunk<CakeVault>('cakeVault/f
   return publicVaultInfo
 })
 
+export const fetchDividendPoolPublicData = createAsyncThunk<CakeVault>('dividendPool/fetchPublicData', async () => {
+  const publicDividendPoolInfo = await fetchDividendPoolData()
+  return publicDividendPoolInfo
+})
+
 export const fetchCakeVaultFees = createAsyncThunk<VaultFees>('cakeVault/fetchFees', async () => {
   const vaultFees = await fetchVaultFees()
   return vaultFees
@@ -164,6 +185,14 @@ export const fetchCakeVaultUserData = createAsyncThunk<VaultUser, { account: str
   'cakeVault/fetchUser',
   async ({ account }) => {
     const userData = await fetchVaultUser(account)
+    return userData
+  },
+)
+
+export const fetchDividendPoolUserData = createAsyncThunk<VaultUser, { account: string }>(
+  'dividendPool/fetchUser',
+  async ({ account }) => {
+    const userData = await fetchDividendPoolUser(account)
     return userData
   },
 )

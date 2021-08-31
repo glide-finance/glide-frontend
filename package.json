@@ -1,5 +1,5 @@
 {
-  "name": "pancake-frontend",
+  "name": "glide-frontend",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -34,8 +34,8 @@
   "dependencies": {
     "@binance-chain/bsc-connector": "^1.0.0",
     "@ethersproject/experimental": "^5.0.1",
-    "@glide-finance/sdk": "^1.0.3",
-    "@glide-finance/uikit": "^1.0.3",
+    "@glide-finance/sdk": "^1.0.6",
+    "@glide-finance/uikit": "^1.0.10",
     "@reduxjs/toolkit": "^1.5.0",
     "@types/multicodec": "^1.0.0",
     "@types/node": "^13.13.5",

@@ -111,8 +111,8 @@ export default function RemoveLiquidity({
       { name: 'chainId', type: 'uint256' },
       { name: 'verifyingContract', type: 'address' },
     ]
-    const domain = {
-      name: 'Pancake LPs',
+    const domain = { // popsicle
+      name: 'GlideSwap LPs',
       version: '1',
       chainId,
       verifyingContract: pair.liquidityToken.address,

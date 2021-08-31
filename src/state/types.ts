@@ -48,6 +48,7 @@ export interface Pool extends PoolConfig {
   stakingTokenPrice?: number
   earningTokenPrice?: number
   isAutoVault?: boolean
+  isDividendPool?: boolean
   userData?: {
     allowance: BigNumber
     stakingTokenBalance: BigNumber
@@ -87,11 +88,30 @@ export interface VaultFees {
 export interface VaultUser {
   isLoading: boolean
   userShares: string
-  cakeAtLastUserAction: string
+  glideAtLastUserAction: string
   lastDepositedTime: string
   lastUserActionTime: string
 }
+
+export interface DividendUser {
+  isLoading: boolean
+  userShares: string
+  glideAtLastUserAction: string
+  lastDepositedTime: string
+  lastUserActionTime: string
+}
+
 export interface CakeVault {
+  totalShares?: string
+  pricePerFullShare?: string
+  totalCakeInVault?: string
+  estimatedCakeBountyReward?: string
+  totalPendingCakeHarvest?: string
+  fees?: VaultFees
+  userData?: VaultUser
+}
+
+export interface DividendPool {
   totalShares?: string
   pricePerFullShare?: string
   totalCakeInVault?: string
@@ -104,6 +124,7 @@ export interface CakeVault {
 export interface PoolsState {
   data: Pool[]
   cakeVault: CakeVault
+  dividendPool: DividendPool
   userDataLoaded: boolean
 }
 
