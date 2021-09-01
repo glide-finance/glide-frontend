@@ -43,17 +43,17 @@ const initialState: PoolsState = {
     },
   },
   dividendPool: {
-    totalShares: null,
-    pricePerFullShare: null,
-    totalCakeInVault: null,
-    estimatedCakeBountyReward: null,
-    totalPendingCakeHarvest: null,
+    totalStaked: null,
+    startBlock: null,
+    apr: null,
+    stakingTokenPrice: null,
+    earningTokenPrice: null,
     userData: {
       isLoading: true,
-      userShares: null,
-      glideAtLastUserAction: null,
-      lastDepositedTime: null,
-      lastUserActionTime: null,
+      allowance: null,
+      stakingTokenBalance: null,
+      stakedBalance: null,
+      pendingReward: null
     },
   },
 }
@@ -171,7 +171,7 @@ export const fetchCakeVaultPublicData = createAsyncThunk<CakeVault>('cakeVault/f
   return publicVaultInfo
 })
 
-export const fetchDividendPoolPublicData = createAsyncThunk<CakeVault>('dividendPool/fetchPublicData', async () => {
+export const fetchDividendPoolPublicData = createAsyncThunk<DividendPool>('dividendPool/fetchPublicData', async () => {
   const publicDividendPoolInfo = await fetchDividendPoolData()
   return publicDividendPoolInfo
 })
@@ -189,7 +189,7 @@ export const fetchCakeVaultUserData = createAsyncThunk<VaultUser, { account: str
   },
 )
 
-export const fetchDividendPoolUserData = createAsyncThunk<VaultUser, { account: string }>(
+export const fetchDividendPoolUserData = createAsyncThunk<DividendUser, { account: string }>(
   'dividendPool/fetchUser',
   async ({ account }) => {
     const userData = await fetchDividendPoolUser(account)
@@ -240,6 +240,16 @@ export const PoolsSlice = createSlice({
       const userData = action.payload
       userData.isLoading = false
       state.cakeVault = { ...state.cakeVault, userData }
+    })
+    // Dividend pool public data that updates frequently
+    builder.addCase(fetchDividendPoolPublicData.fulfilled, (state, action: PayloadAction<DividendPool>) => {
+      state.dividendPool = { ...state.dividendPool, ...action.payload }
+    })
+    // Dividend pool user data
+    builder.addCase(fetchDividendPoolUserData.fulfilled, (state, action: PayloadAction<DividendUser>) => {
+      const userData = action.payload
+      userData.isLoading = false
+      state.dividendPool = { ...state.dividendPool, userData }
     })
   },
 })

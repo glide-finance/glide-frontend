@@ -5,14 +5,15 @@ import { useTranslation } from 'contexts/Localization'
 import { useWeb3React } from '@web3-react/core'
 import ConnectWalletButton from 'components/ConnectWalletButton'
 import tokens from 'config/constants/tokens'
-import { useCakeVault } from 'state/pools/hooks'
+import { useDividendPool } from 'state/pools/hooks'
 import { Pool } from 'state/types'
 import AprRow from '../PoolCard/AprRow'
 import { StyledCard } from '../PoolCard/StyledCard'
 import CardFooter from '../PoolCard/CardFooter'
 import StyledCardHeader from '../PoolCard/StyledCardHeader'
-import VaultCardActions from './VaultCardActions'
-import UnstakingFeeCountdownRow from './UnstakingFeeCountdownRow'
+// import VaultCardActions from './VaultCardActions'
+import CardActions from '../PoolCard/CardActions'
+// import UnstakingFeeCountdownRow from './UnstakingFeeCountdownRow'
 import RecentCakeProfitRow from './RecentCakeProfitRow'
 
 const StyledCardBody = styled(CardBody)<{ isLoading: boolean }>`
@@ -28,14 +29,17 @@ const DividendPoolCard: React.FC<DividendPoolProps> = ({ pool, showStakedOnly })
   const { t } = useTranslation()
   const { account } = useWeb3React()
   const {
-    userData: { userShares, isLoading: isVaultUserDataLoading },
-    fees: { performanceFee },
-  } = useCakeVault()
+    userData: { isLoading, allowance, stakingTokenBalance, stakedBalance, pendingReward },
+    apr,
+  } = useDividendPool()
 
-  const accountHasSharesStaked = userShares && userShares.gt(0)
-  const isLoading = !pool.userData || isVaultUserDataLoading
-  const performanceFeeAsDecimal = performanceFee && performanceFee / 100
+  const dividendPool = {
+    ...pool,
+    userData: { isLoading, allowance, stakingTokenBalance, stakedBalance, pendingReward },
+    apr,
+  }
 
+  const accountHasSharesStaked = stakedBalance && stakedBalance.gt(0)
   if (showStakedOnly && !accountHasSharesStaked) {
     return null
   }
@@ -44,21 +48,16 @@ const DividendPoolCard: React.FC<DividendPoolProps> = ({ pool, showStakedOnly })
     <StyledCard isActive>
       <StyledCardHeader
         isStaking={accountHasSharesStaked}
-        isAutoVault
-        earningToken={tokens.glide}
+        isDividendPool
+        earningToken={tokens.ela}
         stakingToken={tokens.glide}
       />
       <StyledCardBody isLoading={isLoading}>
-        <AprRow pool={pool} performanceFee={performanceFeeAsDecimal} />
-        <Box mt="24px">
-          <RecentCakeProfitRow />
-        </Box>
-        <Box mt="8px">
-          <UnstakingFeeCountdownRow />
-        </Box>
-        <Flex mt="32px" flexDirection="column">
+        <AprRow pool={dividendPool} />
+        <Flex mt="24px" flexDirection="column">
           {account ? (
-            <VaultCardActions pool={pool} accountHasSharesStaked={accountHasSharesStaked} isLoading={isLoading} />
+            // <VaultCardActions pool={pool} accountHasSharesStaked={accountHasSharesStaked} isLoading={isLoading} />
+            <CardActions pool={dividendPool} stakedBalance={stakedBalance} />
           ) : (
             <>
               <Text mb="10px" textTransform="uppercase" fontSize="12px" color="textSubtle" bold>
@@ -69,7 +68,7 @@ const DividendPoolCard: React.FC<DividendPoolProps> = ({ pool, showStakedOnly })
           )}
         </Flex>
       </StyledCardBody>
-      <CardFooter pool={pool} account={account} />
+      <CardFooter pool={dividendPool} account={account} />
     </StyledCard>
   )
 }

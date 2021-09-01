@@ -95,10 +95,10 @@ export interface VaultUser {
 
 export interface DividendUser {
   isLoading: boolean
-  userShares: string
-  glideAtLastUserAction: string
-  lastDepositedTime: string
-  lastUserActionTime: string
+  allowance: BigNumber
+  stakingTokenBalance: BigNumber
+  stakedBalance: BigNumber
+  pendingReward: BigNumber
 }
 
 export interface CakeVault {
@@ -112,13 +112,16 @@ export interface CakeVault {
 }
 
 export interface DividendPool {
-  totalShares?: string
-  pricePerFullShare?: string
-  totalCakeInVault?: string
-  estimatedCakeBountyReward?: string
-  totalPendingCakeHarvest?: string
-  fees?: VaultFees
-  userData?: VaultUser
+  totalStaked?: BigNumber
+  stakingLimit?: BigNumber
+  startBlock?: number
+  endBlock?: number
+  apr?: number
+  stakingTokenPrice?: number
+  earningTokenPrice?: number
+  isAutoVault?: boolean
+  isDividendPool?: boolean
+  userData?: DividendUser
 }
 
 export interface PoolsState {

@@ -150,60 +150,60 @@ export const useFetchDividendPool = () => {
 
 export const useDividendPool = () => {
   const {
-    totalShares: totalSharesAsString,
-    pricePerFullShare: pricePerFullShareAsString,
-    totalCakeInVault: totalCakeInVaultAsString,
-    estimatedCakeBountyReward: estimatedCakeBountyRewardAsString,
-    totalPendingCakeHarvest: totalPendingCakeHarvestAsString,
+    totalStaked: totalStakedAsString,
+    startBlock,
+    apr,
+    stakingTokenPrice,
+    earningTokenPrice,
     userData: {
       isLoading,
-      userShares: userSharesAsString,
-      glideAtLastUserAction: glideAtLastUserActionAsString,
-      lastDepositedTime,
-      lastUserActionTime,
+      allowance: allowanceAsString,
+      stakingTokenBalance: stakingTokenBalanceAsString,
+      stakedBalance: stakedBalanceAsString,
+      pendingReward: pendingRewardAsString
     },
-  } = useSelector((state: State) => state.pools.cakeVault)
+  } = useSelector((state: State) => state.pools.dividendPool)
 
-  const estimatedCakeBountyReward = useMemo(() => {
-    return new BigNumber(estimatedCakeBountyRewardAsString)
-  }, [estimatedCakeBountyRewardAsString])
+  const totalStaked = useMemo(() => {
+    return new BigNumber(totalStakedAsString)
+  }, [totalStakedAsString])
 
-  const totalPendingCakeHarvest = useMemo(() => {
-    return new BigNumber(totalPendingCakeHarvestAsString)
-  }, [totalPendingCakeHarvestAsString])
+  const allowance = useMemo(() => {
+    return new BigNumber(allowanceAsString)
+  }, [allowanceAsString])
 
-  const totalShares = useMemo(() => {
-    return new BigNumber(totalSharesAsString)
-  }, [totalSharesAsString])
+  const stakingTokenBalance = useMemo(() => {
+    return new BigNumber(stakingTokenBalanceAsString)
+  }, [stakingTokenBalanceAsString])
 
-  const pricePerFullShare = useMemo(() => {
-    return new BigNumber(pricePerFullShareAsString)
-  }, [pricePerFullShareAsString])
+  const stakedBalance = useMemo(() => {
+    return new BigNumber(stakedBalanceAsString)
+  }, [stakedBalanceAsString])
 
-  const totalCakeInVault = useMemo(() => {
-    return new BigNumber(totalCakeInVaultAsString)
-  }, [totalCakeInVaultAsString])
+  const pendingReward = useMemo(() => {
+    return new BigNumber(pendingRewardAsString)
+  }, [pendingRewardAsString])
 
-  const userShares = useMemo(() => {
-    return new BigNumber(userSharesAsString)
-  }, [userSharesAsString])
+  // const userShares = useMemo(() => {
+  //   return new BigNumber(userSharesAsString)
+  // }, [userSharesAsString])
 
-  const glideAtLastUserAction = useMemo(() => {
-    return new BigNumber(glideAtLastUserActionAsString)
-  }, [glideAtLastUserActionAsString])
-
+  // const glideAtLastUserAction = useMemo(() => {
+  //   return new BigNumber(glideAtLastUserActionAsString)
+  // }, [glideAtLastUserActionAsString])
+//
   return {
-    totalShares,
-    pricePerFullShare,
-    totalCakeInVault,
-    estimatedCakeBountyReward,
-    totalPendingCakeHarvest,
+    totalStaked,
+    startBlock,
+    apr,
+    stakingTokenPrice,
+    earningTokenPrice,
     userData: {
       isLoading,
-      userShares,
-      glideAtLastUserAction,
-      lastDepositedTime,
-      lastUserActionTime,
+      allowance,
+      stakingTokenBalance,
+      stakedBalance,
+      pendingReward
     },
   }
 }

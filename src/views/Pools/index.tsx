@@ -8,7 +8,15 @@ import orderBy from 'lodash/orderBy'
 import partition from 'lodash/partition'
 import { useTranslation } from 'contexts/Localization'
 import usePersistState from 'hooks/usePersistState'
-import { useFetchPublicPoolsData, usePools, useFetchCakeVault, useCakeVault } from 'state/pools/hooks'
+import {
+  useFetchPublicPoolsData,
+  usePools,
+  useFetchCakeVault,
+  useFetchDividendPool,
+  useCakeVault,
+  useDividendPool,
+} from 'state/pools/hooks'
+import tokens from 'config/constants/tokens'
 import { usePollFarmsData } from 'state/farms/hooks'
 import { latinise } from 'utils/latinise'
 import FlexLayout from 'components/Layout/Flex'
@@ -73,7 +81,6 @@ const ControlStretch = styled(Flex)`
     flex: 1;
   }
 `
-
 const NUMBER_OF_POOLS_VISIBLE = 12
 
 const Pools: React.FC = () => {
@@ -95,15 +102,19 @@ const Pools: React.FC = () => {
     pricePerFullShare,
     totalCakeInVault,
   } = useCakeVault()
+  const {
+    userData: { allowance, stakingTokenBalance, stakedBalance, pendingReward },
+  } = useDividendPool()
+
   const accountHasVaultShares = userShares && userShares.gt(0)
-  const accountHasDividendPoolShares = userShares && userShares.gt(0)
+  const accountHasDividendPoolStake = stakedBalance && stakedBalance.gt(0)
   const performanceFeeAsDecimal = performanceFee && performanceFee / 100
 
   const pools = useMemo(() => {
     const cakePool = poolsWithoutAutoVault.find((pool) => pool.sousId === 0)
     const cakeAutoVault = { ...cakePool, isAutoVault: true }
-    const cakeDividendPool = { ...cakePool, isDividendPool: true }
-    return [cakeAutoVault, cakeDividendPool, ...poolsWithoutAutoVault]
+    const cakeDividendPool = { ...cakePool, isDividendPool: true, earningToken: tokens.ela }
+    return [cakeDividendPool, cakeAutoVault, ...poolsWithoutAutoVault]
   }, [poolsWithoutAutoVault])
 
   // TODO aren't arrays in dep array checked just by reference, i.e. it will rerender every time reference changes?
@@ -115,11 +126,11 @@ const Pools: React.FC = () => {
           return accountHasVaultShares
         }
         if (pool.isDividendPool) {
-          return accountHasDividendPoolShares
+          return accountHasDividendPoolStake
         }
         return pool.userData && new BigNumber(pool.userData.stakedBalance).isGreaterThan(0)
       }),
-    [finishedPools, accountHasVaultShares, accountHasDividendPoolShares],
+    [finishedPools, accountHasVaultShares, accountHasDividendPoolStake],
   )
   const stakedOnlyOpenPools = useMemo(
     () =>
@@ -128,15 +139,16 @@ const Pools: React.FC = () => {
           return accountHasVaultShares
         }
         if (pool.isDividendPool) {
-          return accountHasDividendPoolShares
+          return accountHasDividendPoolStake
         }
         return pool.userData && new BigNumber(pool.userData.stakedBalance).isGreaterThan(0)
       }),
-    [openPools, accountHasVaultShares, accountHasDividendPoolShares],
+    [openPools, accountHasVaultShares, accountHasDividendPoolStake],
   )
   const hasStakeInFinishedPools = stakedOnlyFinishedPools.length > 0
 
   usePollFarmsData()
+  useFetchDividendPool()
   useFetchCakeVault()
   useFetchPublicPoolsData()
 
@@ -233,9 +245,8 @@ const Pools: React.FC = () => {
     <CardLayout>
       {chosenPools.map((pool) =>
         pool.isDividendPool ? (
-          <CakeVaultCard key="dividend-pool" pool={pool} showStakedOnly={stakedOnly} />
-        ) :
-        pool.isAutoVault ? (
+          <DividendPoolCard key="dividend-pool" pool={pool} showStakedOnly={stakedOnly} />
+        ) : pool.isAutoVault ? (
           <CakeVaultCard key="auto-cake" pool={pool} showStakedOnly={stakedOnly} />
         ) : (
           <PoolCard key={pool.sousId} pool={pool} account={account} />

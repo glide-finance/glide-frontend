@@ -16,6 +16,7 @@ const StyledCardHeader: React.FC<{
   earningToken: Token
   stakingToken: Token
   isAutoVault?: boolean
+  isDividendPool?: boolean
   isFinished?: boolean
   isStaking?: boolean
 }> = ({ earningToken, stakingToken, isFinished = false, isAutoVault = false, isStaking = false }) => {

@@ -18,6 +18,7 @@ import {
   getTradingCompetitionAddress,
   getEasterNftAddress,
   getCakeVaultAddress,
+  getDividendPoolAddress,
   getPredictionsAddress,
   getChainlinkOracleAddress,
   getMulticallAddress,
@@ -47,6 +48,7 @@ import claimRefundAbi from 'config/abi/claimRefund.json'
 import tradingCompetitionAbi from 'config/abi/tradingCompetition.json'
 import easterNftAbi from 'config/abi/easterNft.json'
 import cakeVaultAbi from 'config/abi/cakeVault.json'
+import dividendPoolAbi from 'config/abi/dividendPool.json'
 import predictionsAbi from 'config/abi/predictions.json'
 import chainlinkOracleAbi from 'config/abi/chainlinkOracle.json'
 import MultiCallAbi from 'config/abi/Multicall.json'
@@ -120,11 +122,12 @@ export const getEasterNftContract = (signer?: ethers.Signer | ethers.providers.P
 export const getCakeVaultContract = (signer?: ethers.Signer | ethers.providers.Provider) => {
   return getContract(cakeVaultAbi, getCakeVaultAddress(), signer)
 }
-
+export const getDividendPoolContract = (signer?: ethers.Signer | ethers.providers.Provider) => {
+  return getContract(dividendPoolAbi, getDividendPoolAddress(), signer)
+}
 export const getPredictionsContract = (signer?: ethers.Signer | ethers.providers.Provider) => {
   return getContract(predictionsAbi, getPredictionsAddress(), signer) as PredictionsContract
 }
-
 export const getChainlinkOracleContract = (signer?: ethers.Signer | ethers.providers.Provider) => {
   return getContract(chainlinkOracleAbi, getChainlinkOracleAddress(), signer) as ChainLinkOracleContract
 }

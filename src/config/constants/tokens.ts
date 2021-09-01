@@ -84,6 +84,16 @@ const tokens = {
     decimals: 18,
     projectLink: 'https://pancakeswap.finance/',
   },
+  ela: {
+    symbol: 'ELA',
+    address: {
+      56: '0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c',
+      97: '0xae13d989dac2f0debff460ac112a837c89baa7cd',
+      20: '0x517E9e5d46C1EA8aB6f78677d6114Ef47F71f6c4'
+    },
+    decimals: 18,
+    projectLink: 'https://pancakeswap.finance/',
+  },
   sugar: {
     symbol: 'SUGAR',
     address: {

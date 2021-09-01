@@ -17,7 +17,7 @@ import { fetchCakeVaultUserData } from 'state/pools'
 import { Pool } from 'state/types'
 import { getAddress } from 'utils/addressHelpers'
 import { convertCakeToShares } from '../../helpers'
-import FeeSummary from './FeeSummary'
+// import FeeSummary from './FeeSummary'
 
 interface VaultStakeModalProps {
   pool: Pool
@@ -199,9 +199,6 @@ const VaultStakeModal: React.FC<VaultStakeModalProps> = ({ pool, stakingMax, isR
           {t('Max')}
         </StyledButton>
       </Flex>
-      {isRemovingStake && hasUnstakingFee && (
-        <FeeSummary stakingTokenSymbol={stakingToken.symbol} stakeAmount={stakeAmount} />
-      )}
       <Button
         isLoading={pendingTx}
         endIcon={pendingTx ? <AutoRenewIcon spin color="currentColor" /> : null}
