@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux'
 import { useAppDispatch } from 'state'
 import { simpleRpcProvider } from 'utils/providers'
 import useRefresh from 'hooks/useRefresh'
+import { getDividendPoolContract, getCakeContract } from 'utils/contractHelpers'
 import {
   fetchPoolsPublicDataAsync,
   fetchPoolsUserDataAsync,
@@ -16,7 +17,7 @@ import {
   fetchDividendPoolUserData
 } from '.'
 import { State, Pool } from '../types'
-import { transformPool } from './helpers'
+import { transformPool, getTokenPricesFromFarm } from './helpers'
 
 export const useFetchPublicPoolsData = () => {
   const dispatch = useAppDispatch()
@@ -134,19 +135,48 @@ export const useCakeVault = () => {
   }
 }
 
+
+
+
+
 export const useFetchDividendPool = () => {
   const { account } = useWeb3React()
   const { fastRefresh } = useRefresh()
   const dispatch = useAppDispatch()
 
+  const { farms } = useSelector((state: State) => ({
+    farms: state.farms.data,
+  }))
+
   useEffect(() => {
-    dispatch(fetchDividendPoolPublicData())
-  }, [dispatch, fastRefresh])
+    dispatch(fetchDividendPoolPublicData({ farms }))
+  }, [dispatch, fastRefresh, farms])
 
   useEffect(() => {
     dispatch(fetchDividendPoolUserData({ account }))
   }, [dispatch, fastRefresh, account])
 }
+
+// export const fetchDividendPoolData = async () => {
+//   const glideContract = getCakeContract()
+//   const dividendPoolContract = getDividendPoolContract()
+//   // const blockLimits = await fetchPoolsBlockLimits()
+//   const totalStaked = (await dividendPoolContract.poolInfo(0)).currentDepositAmount.toString()
+//   const startBlock = (await dividendPoolContract.startBlock()).toString()
+
+//   const prices = getTokenPricesFromFarm(getState().farms.data)
+
+//   const apr = 222
+//   const stakingTokenPrice = 0.1
+//   const earningTokenPrice = 3
+//   return {
+//     totalStaked,
+//     startBlock,
+//     apr,
+//     stakingTokenPrice,
+//     earningTokenPrice
+//   }
+// }
 
 export const useDividendPool = () => {
   const {

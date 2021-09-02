@@ -1,17 +1,21 @@
 import React from 'react'
 import { Button, AutoRenewIcon, Skeleton } from '@glide-finance/uikit'
 import { useTranslation } from 'contexts/Localization'
-import { useVaultApprove } from '../../../hooks/useApprove'
+import { useERC20 } from 'hooks/useContract'
+import { getAddress, getDividendPoolAddress } from 'utils/addressHelpers'
+import { Pool } from 'state/types'
+import { useApprovePool } from '../../../hooks/useApprove'
 
 interface ApprovalActionProps {
-  setLastUpdated: () => void
+  pool: Pool
   isLoading?: boolean
 }
 
-const VaultApprovalAction: React.FC<ApprovalActionProps> = ({ isLoading = false, setLastUpdated }) => {
+const ApprovalAction: React.FC<ApprovalActionProps> = ({ pool, isLoading = false }) => {
+  const { sousId, stakingToken, earningToken } = pool
   const { t } = useTranslation()
-
-  const { handleApprove, requestedApproval } = useVaultApprove(setLastUpdated)
+  const stakingTokenContract = useERC20(stakingToken.address ? getAddress(stakingToken.address) : '')
+  const { handleApprove, requestedApproval } = useApprovePool(stakingTokenContract, sousId, earningToken.symbol)
 
   return (
     <>
@@ -32,4 +36,4 @@ const VaultApprovalAction: React.FC<ApprovalActionProps> = ({ isLoading = false,
   )
 }
 
-export default VaultApprovalAction
+export default ApprovalAction

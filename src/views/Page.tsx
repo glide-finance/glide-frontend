@@ -11,7 +11,7 @@ const StyledPage = styled.div`
   width: 100%;
   padding: 16px;
   padding-bottom: 0;
-  min-height: calc(100vh - 64px);
+  min-height: 100vh;
   background: ${({ theme }) => theme.colors.gradients.bubblegum};
 
   ${({ theme }) => theme.mediaQueries.xs} {
@@ -24,8 +24,8 @@ const StyledPage = styled.div`
   }
 
   ${({ theme }) => theme.mediaQueries.lg} {
-    padding-top: 32px;
-    min-height: calc(100vh - 64px);
+    padding-top: 15vh;
+    min-height: 100vh;
   }
 `
 

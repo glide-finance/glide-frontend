@@ -119,6 +119,7 @@ export interface DividendPool {
   apr?: number
   stakingTokenPrice?: number
   earningTokenPrice?: number
+  remainingReward?: BigNumber
   isAutoVault?: boolean
   isDividendPool?: boolean
   userData?: DividendUser

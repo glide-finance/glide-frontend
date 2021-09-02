@@ -12,9 +12,9 @@ import { StyledCard } from '../PoolCard/StyledCard'
 import CardFooter from '../PoolCard/CardFooter'
 import StyledCardHeader from '../PoolCard/StyledCardHeader'
 // import VaultCardActions from './VaultCardActions'
-import CardActions from '../PoolCard/CardActions'
+import DividendCardActions from './DividendCardActions'
 // import UnstakingFeeCountdownRow from './UnstakingFeeCountdownRow'
-import RecentCakeProfitRow from './RecentCakeProfitRow'
+// import RecentCakeProfitRow from './RecentCakeProfitRow'
 
 const StyledCardBody = styled(CardBody)<{ isLoading: boolean }>`
   min-height: ${({ isLoading }) => (isLoading ? '0' : '254px')};
@@ -35,7 +35,7 @@ const DividendPoolCard: React.FC<DividendPoolProps> = ({ pool, showStakedOnly })
 
   const dividendPool = {
     ...pool,
-    userData: { isLoading, allowance, stakingTokenBalance, stakedBalance, pendingReward },
+    userData: { allowance, stakingTokenBalance, stakedBalance, pendingReward },
     apr,
   }
 
@@ -57,7 +57,7 @@ const DividendPoolCard: React.FC<DividendPoolProps> = ({ pool, showStakedOnly })
         <Flex mt="24px" flexDirection="column">
           {account ? (
             // <VaultCardActions pool={pool} accountHasSharesStaked={accountHasSharesStaked} isLoading={isLoading} />
-            <CardActions pool={dividendPool} stakedBalance={stakedBalance} />
+            <DividendCardActions pool={dividendPool} stakedBalance={stakedBalance} />
           ) : (
             <>
               <Text mb="10px" textTransform="uppercase" fontSize="12px" color="textSubtle" bold>

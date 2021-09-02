@@ -112,9 +112,10 @@ const Pools: React.FC = () => {
 
   const pools = useMemo(() => {
     const cakePool = poolsWithoutAutoVault.find((pool) => pool.sousId === 0)
+    const dividendPool = poolsWithoutAutoVault.find((pool) => pool.sousId === 1)
     const cakeAutoVault = { ...cakePool, isAutoVault: true }
-    const cakeDividendPool = { ...cakePool, isDividendPool: true, earningToken: tokens.ela }
-    return [cakeDividendPool, cakeAutoVault, ...poolsWithoutAutoVault]
+    const cakeDividendPool = { ...dividendPool, isDividendPool: true }
+    return [cakeDividendPool, cakeAutoVault, ...poolsWithoutAutoVault.filter((pool) => pool.sousId !== 1)]
   }, [poolsWithoutAutoVault])
 
   // TODO aren't arrays in dep array checked just by reference, i.e. it will rerender every time reference changes?

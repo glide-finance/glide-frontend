@@ -16,7 +16,7 @@ export const BRIDGE_NETWORKS = {
               symbol: 'ela',
               decimals: 18,
             },
-            rpcUrls: ['https://escrpc.elaphant.app/', 'https://api.elastos.io/eth', 'https://escrpc.elaphant.app/'],
+            rpcUrls: ['https://escrpc.elaphant.app/', 'https://api.elastos.io/eth', 'https://api.trinity-tech.cn/eth'],
             blockExplorerUrls: ['https://eth.elastos.io'],
   },
   1: {

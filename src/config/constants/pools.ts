@@ -17,21 +17,21 @@ const pools: PoolConfig[] = [
     sortOrder: 1,
     isFinished: false,
   },
-  // {
-  //   sousId: 1,
-  //   stakingToken: tokens.glide,
-  //   earningToken: tokens.ela,
-  //   contractAddress: {
-  //     97: '0xd3af5fe61dbaf8f73149bfcfa9fb653ff096029a',
-  //     56: '0x73feaa1eE314F8c655E354234017bE2193C9E24E',
-  //     20: '0x616E9f52Aa480Fc2ac5d45f75dbA77553cD002c1' // 0xBE4A328373Cc59656B339D1222c6E97757091b92'
-  //   },
-  //   poolCategory: PoolCategory.CORE,
-  //   harvest: true,
-  //   tokenPerBlock: '10',
-  //   sortOrder: 999,
-  //   isFinished: false,
-  // },
+  {
+    sousId: 1,
+    stakingToken: tokens.glide,
+    earningToken: tokens.ela,
+    contractAddress: {
+      97: '0xd3af5fe61dbaf8f73149bfcfa9fb653ff096029a',
+      56: '0x73feaa1eE314F8c655E354234017bE2193C9E24E',
+      20: '0xBE4A328373Cc59656B339D1222c6E97757091b92'
+    },
+    poolCategory: PoolCategory.CORE,
+    harvest: true,
+    tokenPerBlock: '10',
+    sortOrder: 999,
+    isFinished: false,
+  },
   // {
   //   sousId: 211,
   //   stakingToken: tokens.cake,
