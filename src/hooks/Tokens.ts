@@ -64,8 +64,8 @@ export function useAllTokens(): { [address: string]: Token } {
   return useTokensFromMap(allTokens, true)
 }
 
-export function useBridgeableTokens(): { [address: string]: Token } {
-  const bridgableTokens = useBridgeableTokenList()
+export function useBridgeableTokens(origin, destination): { [address: string]: Token } {
+  const bridgableTokens = useBridgeableTokenList(origin, destination)
   return useTokensFromMap(bridgableTokens, true)
 }
 

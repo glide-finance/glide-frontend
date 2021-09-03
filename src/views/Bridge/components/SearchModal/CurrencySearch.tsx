@@ -18,6 +18,8 @@ import useTokenComparator from './sorting'
 import ImportRow from './ImportRow'
 
 interface CurrencySearchProps {
+  origin: number
+  destination: number
   selectedCurrency?: Currency | null
   onCurrencySelect: (currency: Currency) => void
   otherSelectedCurrency?: Currency | null
@@ -29,6 +31,8 @@ interface CurrencySearchProps {
 const swapSound = new Audio('swap.mp3')
 
 function CurrencySearch({
+  origin,
+  destination,
   selectedCurrency,
   onCurrencySelect,
   otherSelectedCurrency,
@@ -47,7 +51,10 @@ function CurrencySearch({
 
   const [invertSearchOrder] = useState<boolean>(false)
 
-  const allTokens = useBridgeableTokens()
+  const allTokens = useBridgeableTokens(origin, destination)
+  console.log(allTokens)
+  console.log(origin, destination)
+  // const matchedTokens = allTokens.filter(matched => matched.tokenInfo.origin === origin)
 
   // if they input an address, use it
   const searchToken = useToken(debouncedQuery)

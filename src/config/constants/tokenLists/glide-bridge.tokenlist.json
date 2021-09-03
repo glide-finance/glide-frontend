@@ -11,12 +11,58 @@
   "keywords": ["glide", "bridge"],
   "tokens": [
     {
-      "name": "Heco-Peg HUSD Token",
+      "name": "ETH on Elastos",
+      "symbol": "ETH",
+      "address": "0x802c3e839E4fDb10aF583E3E759239ec7703501e",
+      "chainId": 20,
+      "decimals": 18,
+      "logoURI": "",
+      "origin": 1
+    },
+    {
+      "name": "HT on Elastos",
+      "symbol": "HT",
+      "address": "0xeceefc50f9aacf0795586ed90a8b9e24f55ce3f3",
+      "chainId": 20,
+      "decimals": 18,
+      "logoURI": "",
+      "origin": 128
+    },
+    {
+      "name": "ELA on Ethereum",
+      "symbol": "ELA",
+      "address": "0xe6fd75ff38Adca4B97FBCD938c86b98772431867",
+      "chainId": 1,
+      "decimals": 18,
+      "logoURI": "",
+      "origin": 20
+    },
+    {
+      "name": "ELA on Heco",
+      "symbol": "ELA",
+      "address": "0xa1ecfc2bec06e4b43ddd423b94fef84d0dbc8f5c",
+      "chainId": 128,
+      "decimals": 18,
+      "logoURI": "",
+      "origin": 20
+    },
+    {
+      "name": "HUSD on Elastos",
       "symbol": "HUSD",
       "address": "0xf9ca2ea3b1024c0db31adb224b407441becc18bb",
       "chainId": 20,
       "decimals": 8,
-      "logoURI": ""
+      "logoURI": "",
+      "origin": 128
+    },
+    {
+      "name": "Heco-Peg HUSD",
+      "symbol": "HUSD",
+      "address": "0x0298c2b32eae4da002a15f36fdf7615bea3da047",
+      "chainId": 128,
+      "decimals": 8,
+      "logoURI": "",
+      "origin": 128
     },
     {
       "name": "USD Coin",
@@ -24,15 +70,17 @@
       "address": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
       "chainId": 1,
       "decimals": 6,
-      "logoURI": ""
+      "logoURI": "",
+      "origin": 1
     },
     {
-      "name": "Heco-Peg HUSD Token",
-      "symbol": "HUSD",
-      "address": "0x0298c2b32eae4da002a15f36fdf7615bea3da047",
-      "chainId": 128,
-      "decimals": 8,
-      "logoURI": ""
+      "name": "USDC on Elastos",
+      "symbol": "USDC",
+      "address": "0xA06be0F5950781cE28D965E5EFc6996e88a8C141",
+      "chainId": 20,
+      "decimals": 6,
+      "logoURI": "",
+      "origin": 1
     }
   ]
 }

@@ -172,9 +172,11 @@ export function useDefaultTokenList(): TokenAddressMap {
   return listToTokenMap(DEFAULT_TOKEN_LIST)
 }
 
-export function useBridgeableTokenList(): TokenAddressMap {
-  // console.log(ChainId)
+export function useBridgeableTokenList(origin, destination): TokenAddressMap {
+  const bridgeableSet = BRIDGE_TOKEN_LIST.tokens.filter(token => token.origin === destination || token.origin === origin)
+  BRIDGE_TOKEN_LIST.tokens = bridgeableSet
   return listToTokenMap(BRIDGE_TOKEN_LIST)
+  // return listToTokenMap(BRIDGEABLE_SET)
 }
 
 // list of tokens not supported on interface, used to show warnings and prevent swaps and adds

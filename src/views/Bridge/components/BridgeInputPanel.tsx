@@ -44,6 +44,8 @@ const Container = styled.div<{ hideInput: boolean }>`
 `
 interface CurrencyInputPanelProps {
   value: string
+  origin: number
+  destination: number
   onUserInput: (value: string) => void
   onMax?: () => void
   showMaxButton: boolean
@@ -60,6 +62,8 @@ interface CurrencyInputPanelProps {
 }
 export default function CurrencyInputPanel({
   value,
+  origin,
+  destination,
   onUserInput,
   onMax,
   showMaxButton,
@@ -79,9 +83,12 @@ export default function CurrencyInputPanel({
   const { t } = useTranslation()
   const translatedLabel = label || t('Input')
   const { chainId } = useActiveWeb3React()
+  const token = currency ? Object.prototype.hasOwnProperty.call(currency, "address") : undefined
 
   const [onPresentCurrencyModal] = useModal(
     <CurrencySearchModal
+      origin={origin}
+      destination={destination}
       onCurrencySelect={onCurrencySelect}
       selectedCurrency={currency}
       otherSelectedCurrency={otherCurrency}
@@ -150,7 +157,8 @@ export default function CurrencyInputPanel({
                       )}`
                     : currency?.symbol) || t('Select a currency')} */}
                   {currency && currency.symbol
-                    ? chainId === 1 && currency.symbol === 'ELA'
+                    ? token ? currency.symbol :
+                    chainId === 1 && currency.symbol === 'ELA'
                       ? 'ETH'
                       : chainId === 128 && currency.symbol === 'ELA'
                       ? 'HT'
