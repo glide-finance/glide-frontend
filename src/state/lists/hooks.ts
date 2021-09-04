@@ -173,9 +173,12 @@ export function useDefaultTokenList(): TokenAddressMap {
 }
 
 export function useBridgeableTokenList(origin, destination): TokenAddressMap {
-  const bridgeableSet = BRIDGE_TOKEN_LIST.tokens.filter(token => token.origin === destination || token.origin === origin)
-  BRIDGE_TOKEN_LIST.tokens = bridgeableSet
-  return listToTokenMap(BRIDGE_TOKEN_LIST)
+  const allTokens = {...BRIDGE_TOKEN_LIST}
+  const bridgeableSet = allTokens.tokens.filter(token => token.chainId === origin)
+  const destinationMatch = bridgeableSet.filter(token => token.origin === destination)
+  allTokens.tokens = destinationMatch
+  const bridgeableTokens = allTokens
+  return listToTokenMap(bridgeableTokens)
   // return listToTokenMap(BRIDGEABLE_SET)
 }
 

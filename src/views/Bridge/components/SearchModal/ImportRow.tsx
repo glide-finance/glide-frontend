@@ -51,9 +51,7 @@ export default function ImportRow({
   showImportView: () => void
   setImportToken: (token: Token) => void
 }) {
-  // gloabls
   const { chainId } = useActiveWeb3React()
-
   const { t } = useTranslation()
 
   // check if token comes from list

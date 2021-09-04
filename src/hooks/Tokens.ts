@@ -54,6 +54,19 @@ function useTokensFromMap(tokenMap: TokenAddressMap, includeUserAdded: boolean):
   }, [chainId, userAddedTokens, tokenMap, includeUserAdded])
 }
 
+// reduce token map into standard address <-> Token mapping, optionally include user added tokens
+function useBridgeTokenMap(tokenMap: TokenAddressMap, origin: number): { [address: string]: Token } {
+  return useMemo(() => {
+    // reduce to just tokens
+    const mapWithoutUrls = Object.keys(tokenMap[origin]).reduce<{ [address: string]: Token }>((newMap, address) => {
+      newMap[address] = tokenMap[origin][address].token
+      return newMap
+    }, {})
+
+    return mapWithoutUrls
+  }, [tokenMap, origin])
+}
+
 export function useDefaultTokens(): { [address: string]: Token } {
   const defaultList = useDefaultTokenList()
   return useTokensFromMap(defaultList, false)
@@ -66,7 +79,7 @@ export function useAllTokens(): { [address: string]: Token } {
 
 export function useBridgeableTokens(origin, destination): { [address: string]: Token } {
   const bridgableTokens = useBridgeableTokenList(origin, destination)
-  return useTokensFromMap(bridgableTokens, true)
+  return useBridgeTokenMap(bridgableTokens, origin)
 }
 
 export function useAllInactiveTokens(): { [address: string]: Token } {

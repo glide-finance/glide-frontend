@@ -52,8 +52,8 @@ function CurrencySearch({
   const [invertSearchOrder] = useState<boolean>(false)
 
   const allTokens = useBridgeableTokens(origin, destination)
-  console.log(allTokens)
-  console.log(origin, destination)
+  // console.log(allTokens)
+
   // const matchedTokens = allTokens.filter(matched => matched.tokenInfo.origin === origin)
 
   // if they input an address, use it
@@ -133,7 +133,7 @@ function CurrencySearch({
           <Row>
             <Input
               id="token-search-input"
-              placeholder={t('Search name or paste address')}
+              placeholder={t('Search by name')}
               scale="lg"
               autoComplete="off"
               value={searchQuery}
@@ -154,6 +154,7 @@ function CurrencySearch({
           <Box margin="24px -24px">
             <CurrencyList
               height={390}
+              origin={origin}
               showETH={showETH}
               currencies={
                 filteredInactiveTokens ? filteredSortedTokens.concat(filteredInactiveTokens) : filteredSortedTokens

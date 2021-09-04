@@ -56,12 +56,14 @@ const MenuItem = styled(RowBetween)<{ disabled: boolean; selected: boolean }>`
 `
 
 function CurrencyRow({
+  origin,
   currency,
   onSelect,
   isSelected,
   otherSelected,
   style,
 }: {
+  origin: number
   currency: Currency
   onSelect: () => void
   isSelected: boolean
@@ -85,11 +87,15 @@ function CurrencyRow({
       disabled={isSelected}
       selected={otherSelected}
     >
-      <CurrencyLogo currency={currency} size="24px" style={{ marginRight: '8px' }} chain={chainId} />
+      <CurrencyLogo currency={currency} size="24px" style={{ marginRight: '8px' }} chain={origin} />
       <Column>
-        <Text bold>{token ? currency.symbol : currency.symbol === 'ELA' && chainId === 1 ? 'ETH' : currency.symbol === 'ELA' && chainId === 128 ? 'HT' : currency.symbol}</Text>
-        <Text color="textSubtle" small ellipsis maxWidth="200px">
+        {/* <Text bold>{token ? currency.symbol : currency.symbol === 'ELA' && chainId === 1 ? 'ETH' : currency.symbol === 'ELA' && chainId === 128 ? 'HT' : currency.symbol}</Text> */}
+        <Text bold>{token ? currency.symbol : origin === 20 ? 'ELA' : origin === 1 ? 'ETH' : origin === 128 && 'HT'}</Text>
+        {/* <Text color="textSubtle" small ellipsis maxWidth="200px">
           {!isOnSelectedList && customAdded && 'Added by user •'} {token ? currency.name : currency.symbol === 'ELA' && chainId === 1 ? 'Ethereum' : currency.symbol === 'ELA' && chainId === 128 ? 'Huobi Token' : currency.symbol === 'ELA' && chainId === 20 ? 'Elastos' : currency.name }
+        </Text> */}
+         <Text color="textSubtle" small ellipsis maxWidth="200px">
+          {!isOnSelectedList && customAdded && 'Added by user •'} {token ? currency.name : origin === 20 ? 'Elastos' : origin === 1 ? 'Ethereum' : origin === 128 && 'Huobi Token' }
         </Text>
       </Column>
       <RowFixed style={{ justifySelf: 'flex-end' }}>
@@ -100,6 +106,7 @@ function CurrencyRow({
 }
 
 export default function CurrencyList({
+  origin,
   height,
   currencies,
   selectedCurrency,
@@ -111,6 +118,7 @@ export default function CurrencyList({
   setImportToken,
   breakIndex,
 }: {
+  origin: number
   height: number
   currencies: Currency[]
   selectedCurrency?: Currency | null
@@ -174,6 +182,7 @@ export default function CurrencyList({
       }
       return (
         <CurrencyRow
+          origin={origin}
           style={style}
           currency={currency}
           isSelected={isSelected}
@@ -183,6 +192,7 @@ export default function CurrencyList({
       )
     },
     [
+      origin,
       chainId,
       inactiveTokens,
       onCurrencySelect,
