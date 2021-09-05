@@ -1,13 +1,15 @@
 import React, { useEffect, useCallback, useState } from 'react'
 import styled from 'styled-components'
 import { Currency, CurrencyAmount, currencyEquals, ETHER, Token } from '@glide-finance/sdk'
-import { Flex, Button, Text, ArrowForwardIcon, useModal, Heading } from '@glide-finance/uikit'
+import { Flex, Button, Text, ArrowForwardIcon, useModal, Heading, AutoRenewIcon } from '@glide-finance/uikit'
 import PageHeader from 'components/PageHeader'
 import { useTranslation } from 'contexts/Localization'
 import SwapWarningTokens from 'config/constants/swapWarningTokens'
 import { getAddress } from 'utils/addressHelpers'
 import { setupNetwork } from 'utils/wallet'
 import BRIDGES from 'config/constants/bridges'
+import { useCheckMediatorApprovalStatus, useApproveMediator } from './hooks/useApprove'
+import { useBridgeMediator } from './hooks/useBridgeMediator'
 import ConnectWalletButton from '../../components/ConnectWalletButton'
 import useActiveWeb3React from '../../hooks/useActiveWeb3React'
 import useTokenBalance, { useGetBnbBalance } from '../../hooks/useTokenBalance'
@@ -30,6 +32,7 @@ import { useUserSlippageTolerance } from '../../state/user/hooks'
 import { maxAmountSpend } from '../../utils/maxAmountSpend'
 // import CircleLoader from '../../components/Loader/CircleLoader'
 import SwapWarningModal from './components/SwapWarningModal'
+
 
 const ChainContainer = styled.div`
   align-items: center;
@@ -84,8 +87,9 @@ const Bridge: React.FC = () => {
   const { t } = useTranslation()
   const [originIndex, setOriginIndex] = useState(0)
   const [destinationIndex, setDestinationIndex] = useState(2)
-  const { account, chainId } = useActiveWeb3React()
+  const { account, chainId, library } = useActiveWeb3React()
   const correctChain = ChainMap[originIndex] === chainId
+  // const [requestedApproval, setRequestedApproval] = useState<boolean>(false)
 
   const handleOriginChange = (option: OptionProps): void => {
     clearInput()
@@ -241,14 +245,20 @@ const Bridge: React.FC = () => {
   }, [onUserInput, onCurrencySelection])
 
   const tokenToBridge = currencies[Field.INPUT]
-  const amountToBridge = parseFloat(formattedAmounts[Field.INPUT])
+  const amountToBridge = parseFloat(formattedAmounts[Field.INPUT]) >= 0 ? parseFloat(formattedAmounts[Field.INPUT]) : 0
   const symbol = currencyKey(tokenToBridge) === "ETHER" ? SymbolMap[chainId] : tokenToBridge ? tokenToBridge.symbol : undefined
   const bridgeSelected = `${ChainMap[originIndex]}_${ChainMap[destinationIndex]}`
   const bridgeType = tokenToBridge ? (tokenToBridge.symbol === 'ELA' || tokenToBridge.symbol === 'ETH' || tokenToBridge.symbol === 'HT' ? 'native' : 'token') : undefined // popsicle
   const bridgeParams = bridgeType && chainId === ChainMap[originIndex] ? BRIDGES[bridgeSelected][bridgeType][chainId] : undefined
   const correctParams = bridgeParams !== undefined
-  const isBridgeable = bridgeParams !== undefined && amountToBridge >= bridgeParams.minTx && amountToBridge <= bridgeParams.maxTx
-  const feeAmount = (bridgeParams !== undefined && amountToBridge > 0) ? ((parseFloat(bridgeParams.fee)/100)*amountToBridge).toPrecision(3) : 0
+  const isBridgeable = correctParams && amountToBridge >= bridgeParams.minTx && amountToBridge <= bridgeParams.maxTx && !exceedsMax
+  const feeAmount = (correctParams && amountToBridge > 0) ? ((parseFloat(bridgeParams.fee)/100)*amountToBridge).toPrecision(3) : 0
+
+  const needsApproval = useCheckMediatorApprovalStatus(tokenToBridge, bridgeParams, amountToBridge)
+
+  // console.log(needsApproval)
+  const { handleApprove, requestedApproval } = useApproveMediator(tokenToBridge, bridgeParams, amountToBridge)
+  const { handleBridgeTransfer, requestedBridgeTransfer } = useBridgeMediator(tokenToBridge, bridgeParams, amountToBridge)
 
   return (
     <>
@@ -397,7 +407,13 @@ const Bridge: React.FC = () => {
                   </Text>
                 </Warning>
               )}
-              {!account ? <ConnectWalletButton width="100%"/> : <Button width="100%" disabled={!isBridgeable}>{t("Bridge Token")}</Button>}
+              {!account ? <ConnectWalletButton width="100%"/> : needsApproval ? (
+                <Button width="100%" onClick={handleApprove} disabled={!isBridgeable} isLoading={requestedApproval} endIcon={requestedApproval ? <AutoRenewIcon color="currentColor" spin /> : null}>{ requestedApproval ? t("Approving") : t("Enable") }
+                </Button>
+              ) : (
+                <Button width="100%" onClick={handleBridgeTransfer} disabled={!isBridgeable} isLoading={requestedBridgeTransfer} endIcon={requestedBridgeTransfer ? <AutoRenewIcon color="currentColor" spin /> : null}>{ requestedBridgeTransfer ? t("Bridging") : t("Bridge Token") }
+                </Button>
+              )}
             </AutoColumn>
           </Wrapper>
         </Body>

@@ -82,6 +82,10 @@ export interface PoolConfig {
   enableEmergencyWithdraw?: boolean
 }
 
+export interface BridgeConfig {
+  mediator: string
+}
+
 export type Images = {
   lg: string
   md: string

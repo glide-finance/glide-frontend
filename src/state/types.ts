@@ -2,7 +2,7 @@ import { ThunkAction } from 'redux-thunk'
 import { AnyAction } from '@reduxjs/toolkit'
 import BigNumber from 'bignumber.js'
 import { ethers } from 'ethers'
-import { CampaignType, FarmConfig, LotteryStatus, LotteryTicket, Nft, PoolConfig, Team } from 'config/constants/types'
+import { CampaignType, FarmConfig, BridgeConfig, LotteryStatus, LotteryTicket, Nft, PoolConfig, Team } from 'config/constants/types'
 
 export type AppThunk<ReturnType = void> = ThunkAction<ReturnType, State, unknown, AnyAction>
 
@@ -57,6 +57,12 @@ export interface Pool extends PoolConfig {
   }
 }
 
+export interface Bridge extends BridgeConfig {
+  userData?: {
+    allowance: string
+  }
+}
+
 export interface Profile {
   userId: number
   points: number
@@ -75,6 +81,12 @@ export interface Profile {
 export interface FarmsState {
   data: Farm[]
   loadArchivedFarmsData: boolean
+  userDataLoaded: boolean
+}
+
+export interface BridgeState {
+  data: Bridge[]
+  loadArchivedBridgeData: boolean
   userDataLoaded: boolean
 }
 

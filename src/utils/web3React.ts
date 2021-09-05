@@ -11,7 +11,7 @@ const chainId = parseInt(process.env.REACT_APP_CHAIN_ID, 10)
 
 const injected = new InjectedConnector({ supportedChainIds: [1, 20, 128] })
 
-console.log(injected)
+// console.log(injected)
 
 const walletconnect = new WalletConnectConnector({
   rpc: { [chainId]: rpcUrl },
