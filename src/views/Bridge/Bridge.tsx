@@ -244,21 +244,28 @@ const Bridge: React.FC = () => {
       onCurrencySelection(Field.INPUT, undefined)
   }, [onUserInput, onCurrencySelection])
 
-  const tokenToBridge = currencies[Field.INPUT]
-  const amountToBridge = parseFloat(formattedAmounts[Field.INPUT]) >= 0 ? parseFloat(formattedAmounts[Field.INPUT]) : 0
-  const symbol = currencyKey(tokenToBridge) === "ETHER" ? SymbolMap[chainId] : tokenToBridge ? tokenToBridge.symbol : undefined
-  const bridgeSelected = `${ChainMap[originIndex]}_${ChainMap[destinationIndex]}`
-  const bridgeType = tokenToBridge ? (tokenToBridge.symbol === 'ELA' || tokenToBridge.symbol === 'ETH' || tokenToBridge.symbol === 'HT' ? 'native' : 'token') : undefined // popsicle
-  const bridgeParams = bridgeType && chainId === ChainMap[originIndex] ? BRIDGES[bridgeSelected][bridgeType][chainId] : undefined
-  const correctParams = bridgeParams !== undefined
-  const isBridgeable = correctParams && amountToBridge >= bridgeParams.minTx && amountToBridge <= bridgeParams.maxTx && !exceedsMax
-  const feeAmount = (correctParams && amountToBridge > 0) ? ((parseFloat(bridgeParams.fee)/100)*amountToBridge).toPrecision(3) : 0
+  const tokenToBridge = currencies[Field.INPUT];
+  const amountToBridge = parseFloat(formattedAmounts[Field.INPUT]) >= 0 ? parseFloat(formattedAmounts[Field.INPUT]) : 0;
+  const symbol = currencyKey(tokenToBridge) === "ETHER" ? SymbolMap[chainId] : tokenToBridge ? tokenToBridge.symbol : undefined;
+  const bridgeSelected = `${ChainMap[originIndex]}_${ChainMap[destinationIndex]}`;
+  const bridgeDestinationSelected = `${ChainMap[destinationIndex]}_${ChainMap[originIndex]}`;
+  const bridgeType = tokenToBridge ? (tokenToBridge.symbol === 'ELA' || tokenToBridge.symbol === 'ETH' || tokenToBridge.symbol === 'HT' ? 'native' : 'token') : undefined; // popsicle
+  const bridgeParams = bridgeType && chainId === ChainMap[originIndex] ? BRIDGES[bridgeSelected][bridgeType][chainId] : undefined;
+  const bridgeParamsOtherSide = bridgeType && chainId === ChainMap[originIndex] ? BRIDGES[bridgeSelected][bridgeType][ChainMap[destinationIndex]] : undefined;
+  const reverseBridgeParams = bridgeType && chainId === ChainMap[originIndex] ? BRIDGES[bridgeDestinationSelected][bridgeType][chainId] : undefined;
+  const reverseBridgeParamsOtherSide = bridgeType && chainId === ChainMap[originIndex] ? BRIDGES[bridgeDestinationSelected][bridgeType][ChainMap[destinationIndex]] : undefined;
+  const correctParams = bridgeParams !== undefined;
+  const isBridgeable = correctParams && amountToBridge >= bridgeParams.minTx && amountToBridge <= bridgeParams.maxTx && !exceedsMax;
+  const feeAmount = (correctParams && amountToBridge > 0) ? ((parseFloat(bridgeParams.fee)/100)*amountToBridge).toPrecision(3) : 0;
 
-  const needsApproval = useCheckMediatorApprovalStatus(tokenToBridge, bridgeParams, amountToBridge)
+  const needsApproval = useCheckMediatorApprovalStatus(tokenToBridge, bridgeParams, amountToBridge);
 
   // console.log(needsApproval)
-  const { handleApprove, requestedApproval } = useApproveMediator(tokenToBridge, bridgeParams, amountToBridge)
-  const { handleBridgeTransfer, requestedBridgeTransfer } = useBridgeMediator(tokenToBridge, bridgeParams, amountToBridge)
+  const { handleApprove, requestedApproval } = useApproveMediator(tokenToBridge, bridgeParams, amountToBridge);
+  const { handleBridgeTransfer, requestedBridgeTransfer } = useBridgeMediator(tokenToBridge, amountToBridge, bridgeType,
+    bridgeParams, bridgeParamsOtherSide,
+    reverseBridgeParams, reverseBridgeParamsOtherSide,
+    ChainMap[originIndex], ChainMap[destinationIndex]);
 
   return (
     <>

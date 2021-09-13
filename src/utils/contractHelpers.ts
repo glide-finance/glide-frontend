@@ -38,6 +38,9 @@ import lpTokenAbi from 'config/abi/lpToken.json'
 import cakeAbi from 'config/abi/cake.json'
 import ifoV1Abi from 'config/abi/ifoV1.json'
 import ifoV2Abi from 'config/abi/ifoV2.json'
+import AMB_NATIVE_ERC_ABI from 'config/abi/AMB_NATIVE_ERC_ABI.json';
+import MULTI_AMB_ERC_ERC_ABI from 'config/abi/MULTI_AMB_ERC_ERC_ABI.json';
+import ERC677_ABI from 'config/abi/ERC677_ABI.json';
 import pointCenterIfo from 'config/abi/pointCenterIfo.json'
 import lotteryV2Abi from 'config/abi/lotteryV2.json'
 import masterChef from 'config/abi/masterchef.json'
@@ -76,6 +79,15 @@ export const getIfoV1Contract = (address: string, signer?: ethers.Signer | ether
 }
 export const getIfoV2Contract = (address: string, signer?: ethers.Signer | ethers.providers.Provider) => {
   return getContract(ifoV2Abi, address, signer)
+}
+export const getNativeSourceMediator = (address: string, signer?: ethers.Signer | ethers.providers.Provider) => {
+  return getContract(AMB_NATIVE_ERC_ABI, address, signer);
+}
+export const getTokenSourceMediator = (address: string, signer?: ethers.Signer | ethers.providers.Provider) => {
+  return getContract(MULTI_AMB_ERC_ERC_ABI, address, signer);
+}
+export const getErc677Contract = (address: string, signer?: ethers.Signer | ethers.providers.Provider) => {
+  return getContract(ERC677_ABI, address, signer);
 }
 export const getSouschefContract = (id: number, signer?: ethers.Signer | ethers.providers.Provider) => {
   const config = poolsConfig.find((pool) => pool.sousId === id)

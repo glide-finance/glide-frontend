@@ -11,9 +11,25 @@
   "keywords": ["glide", "default"],
   "tokens": [
     {
-      "name": "Wrapped Elastos",
-      "symbol": "WELA",
-      "address": "0x517E9e5d46C1EA8aB6f78677d6114Ef47F71f6c4",
+      "name": "ELA on HuobiChain",
+      "symbol": "ELA",
+      "address": "0xa1ecFc2beC06E4b43dDd423b94Fef84d0dBc8F5c",
+      "chainId": 128,
+      "decimals": 18,
+      "logoURI": ""
+    },
+    {
+      "name": "Glide Token",
+      "symbol": "GLIDE",
+      "address": "0x9c425fa88d84d40ee7ec48391d1d00b07d53636b",
+      "chainId": 20,
+      "decimals": 18,
+      "logoURI": ""
+    },
+    {
+      "name": "HT on Elastos",
+      "symbol": "HT",
+      "address": "0xeceefC50f9aAcF0795586Ed90a8b9E24f55Ce3F3",
       "chainId": 20,
       "decimals": 18,
       "logoURI": ""
@@ -27,11 +43,11 @@
       "logoURI": ""
     },
     {
-      "name": "Glide Token",
-      "symbol": "GLIDE",
-      "address": "0x9c425fa88d84d40ee7ec48391d1d00b07d53636b",
-      "chainId": 20,
-      "decimals": 18,
+      "name": "Heco-Peg HUSD Token",
+      "symbol": "HUSD",
+      "address": "0x0298c2b32eae4da002a15f36fdf7615bea3da047",
+      "chainId": 128,
+      "decimals": 8,
       "logoURI": ""
     },
     {
@@ -43,11 +59,19 @@
       "logoURI": ""
     },
     {
-      "name": "Heco-Peg HUSD Token",
-      "symbol": "HUSD",
-      "address": "0x0298c2b32eae4da002a15f36fdf7615bea3da047",
-      "chainId": 128,
-      "decimals": 8,
+      "name": "USDC on Elastos",
+      "symbol": "USDC",
+      "address": "0xA06be0F5950781cE28D965E5EFc6996e88a8C141",
+      "chainId": 20,
+      "decimals": 6,
+      "logoURI": ""
+    },
+    {
+      "name": "Wrapped Elastos",
+      "symbol": "WELA",
+      "address": "0x517E9e5d46C1EA8aB6f78677d6114Ef47F71f6c4",
+      "chainId": 20,
+      "decimals": 18,
       "logoURI": ""
     }
   ]
