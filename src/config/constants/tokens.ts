@@ -87,9 +87,22 @@ const tokens = {
   ela: {
     symbol: 'ELA',
     address: {
+      1: '0xe6fd75ff38Adca4B97FBCD938c86b98772431867',
       56: '0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c',
       97: '0xae13d989dac2f0debff460ac112a837c89baa7cd',
-      20: '0x517E9e5d46C1EA8aB6f78677d6114Ef47F71f6c4'
+      20: '0x517E9e5d46C1EA8aB6f78677d6114Ef47F71f6c4',
+      128: '0xa1ecFc2beC06E4b43dDd423b94Fef84d0dBc8F5c'
+    },
+    decimals: 18,
+    projectLink: 'https://pancakeswap.finance/',
+  },
+  ht: {
+    symbol: 'HT',
+    address: {
+      56: '',
+      97: '',
+      20: '0xeceefC50f9aAcF0795586Ed90a8b9E24f55Ce3F3',
+      128: '0x5545153ccfca01fbd7dd11c0b23ba694d9509a6f'
     },
     decimals: 18,
     projectLink: 'https://pancakeswap.finance/',

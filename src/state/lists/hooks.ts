@@ -108,8 +108,8 @@ function combineMaps(map1: TokenAddressMap, map2: TokenAddressMap): TokenAddress
   return {
     [ChainId.MAINNET]: { ...map1[ChainId.MAINNET], ...map2[ChainId.MAINNET] },
     [ChainId.TESTNET]: { ...map1[ChainId.TESTNET], ...map2[ChainId.TESTNET] },
-    [ChainId.HECO]: {},
-    [ChainId.ETHEREUM]: {},
+    [ChainId.HECO]: { ...map1[ChainId.HECO], ...map2[ChainId.HECO] },
+    [ChainId.ETHEREUM]: { ...map1[ChainId.ETHEREUM], ...map2[ChainId.ETHEREUM] },
   }
 }
 
