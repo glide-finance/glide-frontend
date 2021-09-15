@@ -52,9 +52,6 @@ function CurrencySearch({
   const [invertSearchOrder] = useState<boolean>(false)
 
   const allTokens = useBridgeableTokens(origin, destination)
-  // console.log(allTokens)
-
-  // const matchedTokens = allTokens.filter(matched => matched.tokenInfo.origin === origin)
 
   // if they input an address, use it
   const searchToken = useToken(debouncedQuery)
