@@ -10,7 +10,7 @@ import { useTranslation } from 'contexts/Localization'
 import  networksUrl from 'config/constants/networks'
 import useToast from 'hooks/useToast'
 import { VALIDATOR_TIMEOUT } from 'config/constants'
-import { BRIDGE_FAUCET_API}  from 'config/constants/endpoints';
+import { BRIDGE_FAUCET_API }  from 'config/constants/endpoints';
 import { parseValue, fetchGasPrice } from "../utils/txUtils";
 
 
@@ -148,6 +148,8 @@ const callBridgeFaucet = async (txID: string, isToken: boolean, chainID: number,
     try {
         // check is user whit address = destAddress already used faucet
         const responseGet = await fetch(`${BRIDGE_FAUCET_API}/faucet/${destAddress}`);
+
+        console.log(responseGet)
 
         if (responseGet.ok) {
             const dataSuccessGet = await responseGet.json();

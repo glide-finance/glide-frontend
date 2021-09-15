@@ -76,7 +76,8 @@ function CurrencyRow({
   const isOnSelectedList = isTokenOnList(selectedTokenList, currency)
   const customAdded = useIsUserAddedToken(currency)
   const balance = useCurrencyBalance(account ?? undefined, currency)
-  const token = currency ? Object.prototype.hasOwnProperty.call(currency, "address") : undefined
+
+  const token = currency ? Object.prototype.hasOwnProperty.call(currency, 'address') : undefined
 
   // only show add or remove buttons if not on selected list
   return (
@@ -90,12 +91,21 @@ function CurrencyRow({
       <CurrencyLogo currency={currency} size="24px" style={{ marginRight: '8px' }} chain={origin} />
       <Column>
         {/* <Text bold>{token ? currency.symbol : currency.symbol === 'ELA' && chainId === 1 ? 'ETH' : currency.symbol === 'ELA' && chainId === 128 ? 'HT' : currency.symbol}</Text> */}
-        <Text bold>{token ? currency.symbol : origin === 20 ? 'ELA' : origin === 1 ? 'ETH' : origin === 128 && 'HT'}</Text>
+        <Text bold>
+          {token ? currency.symbol : origin === 20 ? 'ELA' : origin === 1 ? 'ETH' : origin === 128 && 'HT'}
+        </Text>
         {/* <Text color="textSubtle" small ellipsis maxWidth="200px">
           {!isOnSelectedList && customAdded && 'Added by user •'} {token ? currency.name : currency.symbol === 'ELA' && chainId === 1 ? 'Ethereum' : currency.symbol === 'ELA' && chainId === 128 ? 'Huobi Token' : currency.symbol === 'ELA' && chainId === 20 ? 'Elastos' : currency.name }
         </Text> */}
-         <Text color="textSubtle" small ellipsis maxWidth="200px">
-          {!isOnSelectedList && customAdded && 'Added by user •'} {token ? currency.name : origin === 20 ? 'Elastos' : origin === 1 ? 'Ethereum' : origin === 128 && 'Huobi Token' }
+        <Text color="textSubtle" small ellipsis maxWidth="200px">
+          {!isOnSelectedList && customAdded && 'Added by user •'}{' '}
+          {token
+            ? currency.name
+            : origin === 20
+            ? 'Elastos'
+            : origin === 1
+            ? 'Ethereum'
+            : origin === 128 && 'Huobi Token'}
         </Text>
       </Column>
       <RowFixed style={{ justifySelf: 'flex-end' }}>

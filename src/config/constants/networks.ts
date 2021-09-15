@@ -3,7 +3,7 @@ import { ChainId } from '@glide-finance/sdk'
 const NETWORK_URLS: { [chainId in ChainId]: string } = {
   [ChainId.MAINNET]: 'https://api.elastos.io/eth',
   [ChainId.TESTNET]: 'https://api-testnet.elastos.io/eth',
-  [ChainId.HECO]: 'https://http-mainnet-node.huobichain.com',
+  [ChainId.HECO]: 'https://http-mainnet.hecochain.com',
   [ChainId.ETHEREUM]: `https://mainnet.infura.io/v3/${process.env.REACT_APP_INFURA_KEY}`
 }
 
@@ -38,7 +38,7 @@ export const BRIDGE_NETWORKS = {
               symbol: 'ht',
               decimals: 18,
             },
-            rpcUrls: ['https://http-mainnet-node.huobichain.com'],
+            rpcUrls: ['https://http-mainnet.hecochain.com', 'https://http-mainnet-node.huobichain.com'],
             blockExplorerUrls: ['https://hecoinfo.com'],
   }
 }
