@@ -18,7 +18,7 @@ export const getMulticallAddress = () => {
   return getAddress(addresses.multiCall)
 }
 export const getWbnbAddress = () => {
-  return getAddress(tokens.wbnb.address)
+  return getAddress(tokens.wela.address)
 }
 export const getLotteryV2Address = () => {
   return getAddress(addresses.lotteryV2)

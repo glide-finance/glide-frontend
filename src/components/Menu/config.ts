@@ -12,13 +12,13 @@ const config: (t: ContextApi['t']) => MenuEntry[] = (t) => [
     icon: 'TradeIcon',
     href: '/swap',
   },
+  // {
+  //   label: t('Liquidity'),
+  //   icon: 'TradeIcon',
+  //   href: '/pool',
+  // },
   {
-    label: t('Liquidity'),
-    icon: 'TradeIcon',
-    href: '/pool',
-  },
-  {
-    label: t('Yield'), // Farms
+    label: t('Farm'), // Farms
     icon: 'FarmIcon',
     href: '/farms',
   },
@@ -80,32 +80,32 @@ const config: (t: ContextApi['t']) => MenuEntry[] = (t) => [
   //   icon: 'IfoIcon',
   //   href: '/ifo',
   // },
-  {
-    label: t('More'),
-    icon: 'MoreIcon',
-    items: [
-      // {
-      //   label: t('Voting'),
-      //   href: '/voting',
-      // },
-      {
-        label: t('Github'),
-        href: 'https://github.com/glide-finance',
-      },
-      {
-        label: t('Docs'),
-        href: 'https://docs.glidefinance.io/',
-      },
-      {
-        label: t('Blog'),
-        href: 'https://medium.com/glide-finance',
-      },
-      // {
-      //   label: t('Merch'),
-      //   href: 'https://pancakeswap.creator-spring.com/',
-      // },
-    ],
-  },
+  // {
+  //   label: t('More'),
+  //   icon: 'MoreIcon',
+  //   items: [
+  //     // {
+  //     //   label: t('Voting'),
+  //     //   href: '/voting',
+  //     // },
+  //     {
+  //       label: t('Github'),
+  //       href: 'https://github.com/glide-finance',
+  //     },
+  //     {
+  //       label: t('Docs'),
+  //       href: 'https://docs.glidefinance.io/',
+  //     },
+  //     {
+  //       label: t('Blog'),
+  //       href: 'https://medium.com/glide-finance',
+  //     },
+  //     // {
+  //     //   label: t('Merch'),
+  //     //   href: 'https://pancakeswap.creator-spring.com/',
+  //     // },
+  //   ],
+  // },
 ]
 
 export default config

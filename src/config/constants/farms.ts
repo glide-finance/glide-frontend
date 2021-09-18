@@ -14,7 +14,7 @@ const farms: FarmConfig[] = [
       20: '0x9c425FA88d84D40eE7Ec48391d1d00B07D53636B'
     },
     token: tokens.sugar,
-    quoteToken: tokens.wbnb,
+    quoteToken: tokens.wela,
   },
   {
     pid: 1,
@@ -25,7 +25,7 @@ const farms: FarmConfig[] = [
       20: '0xb1C2EcCb9cA5b9a7c77dd2E71ED6f05298677fA2'
     },
     token: tokens.glide,
-    quoteToken: tokens.wbnb,
+    quoteToken: tokens.wela,
   },
   {
     pid: 2,
@@ -36,7 +36,7 @@ const farms: FarmConfig[] = [
       20: '0x74f9dE892dEb1209BBb715F7bad6718cfE11F77e'
     },
     token: tokens.busd,
-    quoteToken: tokens.wbnb,
+    quoteToken: tokens.wela,
   },
   /**
    * V3 by order of release (some may be out of PID order due to multiplier boost)

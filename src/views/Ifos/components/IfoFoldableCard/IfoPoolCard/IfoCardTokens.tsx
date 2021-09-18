@@ -58,7 +58,7 @@ const TokenSection: React.FC<TokenSectionProps> = ({ primaryToken, secondaryToke
 }
 
 const CakeBnbTokenSection: React.FC<TokenSectionProps> = (props) => {
-  return <TokenSection primaryToken={tokens.glide} secondaryToken={tokens.wbnb} {...props} />
+  return <TokenSection primaryToken={tokens.glide} secondaryToken={tokens.wela} {...props} />
 }
 
 const Label = (props) => <Text bold fontSize="12px" color="secondary" textTransform="uppercase" {...props} />

@@ -1,5 +1,5 @@
 import { ChainId, JSBI, Percent, Token, WETH } from '@glide-finance/sdk'
-import { BUSD, CAKE, WBNB } from './tokens'
+import { BUSD, CAKE, WELA } from './tokens'
 
 export const ROUTER_ADDRESS = '0x9606cdcB1193137DEb44e9a55C33AD8BD1d6aC96'
 
@@ -51,7 +51,7 @@ export const BASES_TO_TRACK_LIQUIDITY_FOR: ChainTokenList = {
 
 export const PINNED_PAIRS: { readonly [chainId in ChainId]?: [Token, Token][] } = {
   [ChainId.MAINNET]: [
-    [CAKE[ChainId.MAINNET], WBNB],
+    [CAKE[ChainId.MAINNET], WELA],
   ],
 }
 
