@@ -55,9 +55,9 @@ BigNumber.config({
 })
 
 const App: React.FC = () => {
-  usePollBlockNumber()
   useEagerConnect()
   // useFetchProfile()
+  usePollBlockNumber()
   usePollCoreFarmData()
 
   return (

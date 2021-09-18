@@ -2,10 +2,12 @@ import { Contract } from '@ethersproject/contracts'
 import { useEffect, useMemo, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
+import { simpleRpcProvider } from 'utils/providers'
 import { useMulticallContract } from '../../hooks/useContract'
 import useDebounce from '../../hooks/useDebounce'
 import { CancelledError, retry, RetryableError } from './retry'
 import { useBlockNumber } from '../application/hooks'
+import { usePollBlockNumber } from '../block/hooks'
 import { AppDispatch, AppState } from '../index'
 import {
   Call,
@@ -115,12 +117,13 @@ export function outdatedListeningKeys(
 }
 
 export default function Updater(): null {
+  // usePollBlockNumber()
   const dispatch = useDispatch<AppDispatch>()
   const state = useSelector<AppState, AppState['multicall']>((s) => s.multicall)
+  const { library, chainId } = useActiveWeb3React()
   // wait for listeners to settle before triggering updates
   const debouncedListeners = useDebounce(state.callListeners, 100)
   const latestBlockNumber = useBlockNumber()
-  const { chainId } = useActiveWeb3React()
   const multicallContract = useMulticallContract()
   const cancellations = useRef<{ blockNumber: number; cancellations: (() => void)[] }>()
 

@@ -10,7 +10,7 @@
    viewBox="0 0 16 16"
    version="1.1"
    id="svg985"
-   sodipodi:docname="0x517E9e5d46C1EA8aB6f78677d6114Ef47F71f6c4.svg"
+   sodipodi:docname="0xa1ecFc2beC06E4b43dDd423b94Fef84d0dBc8F5c.svg"
    inkscape:version="0.92.3 (2405546, 2018-03-11)"
    width="16"
    height="16"
@@ -44,9 +44,9 @@
      inkscape:window-height="1025"
      id="namedview987"
      showgrid="false"
-     inkscape:zoom="21.577014"
-     inkscape:cx="-0.60557152"
-     inkscape:cy="5.2556892"
+     inkscape:zoom="43.154028"
+     inkscape:cx="5.4798731"
+     inkscape:cy="8.77701"
      inkscape:window-x="67"
      inkscape:window-y="27"
      inkscape:window-maximized="1"
@@ -62,21 +62,15 @@
      id="path2886"
      cx="8"
      cy="8"
-     r="8"
-     inkscape:export-xdpi="960"
-     inkscape:export-ydpi="960" />
+     r="8" />
   <path
      inkscape:connector-curvature="0"
      style="fill:#000000;stroke:none;stroke-width:0.09100804;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;fill-opacity:1"
      d="M 5.2904604,3.811526 2.580921,5.3759996 5.2904604,6.9496837 7.9999999,8.5138286 10.709539,6.9496837 13.419079,5.3759996 10.709539,3.811526 7.9999999,5.3759996 Z"
-     id="polygon961"
-     inkscape:export-xdpi="960"
-     inkscape:export-ydpi="960" />
+     id="polygon961" />
   <path
      inkscape:connector-curvature="0"
      style="fill:#000000;stroke:none;stroke-width:0.09100804;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
      d="M 5.2904604,8.1263284 2.580921,9.6908022 5.2904604,11.264157 7.9999999,12.828631 10.709539,11.264157 13.419079,9.6908022 10.709539,8.1263284 7.9999999,9.6908022 Z"
-     id="polygon973"
-     inkscape:export-xdpi="960"
-     inkscape:export-ydpi="960" />
+     id="polygon973" />
 </svg>

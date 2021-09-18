@@ -10,7 +10,7 @@ import { useTranslation } from 'contexts/Localization'
 import  networksUrl from 'config/constants/networks'
 import useToast from 'hooks/useToast'
 import { VALIDATOR_TIMEOUT } from 'config/constants'
-import { BRIDGE_FAUCET_API }  from 'config/constants/endpoints';
+import { callBridgeFaucet } from "./useFaucet";
 import { parseValue, fetchGasPrice } from "../utils/txUtils";
 
 
@@ -57,9 +57,32 @@ export const coinTransfer = async function(currency: any, request: any, amount: 
     const from = account;
     const recipient = account;
     const value = ethers.BigNumber.from(String(parseValue(amount, currency.decimals))).toString();
+
+    console.log(currency)
     
     // if token, then call erc677Contract, otherwise nativeSourceMediator
-    if (isToken) {
+    if (bridgeType === "token" && isToken) {
+        console.log('is token')
+        const tokenSourceMediator = getNativeSourceMediator(request.contract, library.getSigner(account) );
+        const gasPrice = await fetchGasPrice(library.getSigner(account));
+
+        const receiptToken = await tokenSourceMediator["relayTokens(address,address,uint256)"](currency.address, recipient, value, {
+            from: from,
+            gasPrice: gasPrice,
+        });
+
+        await receiptToken.wait(2);
+        if (destNetwork === 20) {
+            callBridgeFaucet(receiptToken.hash, isToken, sourceNetwork, recipient, toastSuccess, toastError, t);
+        }
+        toastSuccess(t('Bridging in process. Awaiting relay from mediator.'));
+
+        await detectExchangeFinished(account, bridgeType, sourceNetwork, destNetwork, destinationParamsOtherSide.contract, destinationParamsOtherSide,
+            receiptToken.hash, isToken,
+            toastSuccess, toastError, t);
+
+    } else if (bridgeType === "native" && isToken) {
+        console.log('is native token')
         const tokenSourceMediator = getErc677Contract(currency.address, library.getSigner(account), );
         const gasPrice = await fetchGasPrice(library.getSigner(account));
 
@@ -67,25 +90,28 @@ export const coinTransfer = async function(currency: any, request: any, amount: 
             from: from,
             gasPrice: gasPrice.toString()
         });
-
         receiptErc677.wait(2);
-
-        toastSuccess(t('Two or more confirmations are on source side. Wait for detect that transfer is finished.'));
+        if (destNetwork === 20) {
+            callBridgeFaucet(receiptErc677.hash, isToken, sourceNetwork, recipient, toastSuccess, toastError, t);
+        }
+        toastSuccess(t('Bridging in process. Awaiting relay from mediator.'));
 
         await detectExchangeFinished(account, bridgeType, sourceNetwork, destNetwork, reverseBridgeParamsOtherSide.contract, destinationParamsOtherSide,
             receiptErc677.hash, isToken,
             toastSuccess, toastError, t);
     } else {
+        console.log('native')
         const nativeSourceMediator = getNativeSourceMediator(request.contract, library.getSigner(account));
         
         const receiptNative = await nativeSourceMediator["relayTokens(address)"](recipient, {
             from: from,
             value: value
         });
-        
         await receiptNative.wait(2);
-
-        toastSuccess(t('Two or more confirmations are on source side. Wait for detect that transfer is finished.'));
+        if (destNetwork === 20) {
+            callBridgeFaucet(receiptNative.hash, isToken, sourceNetwork, recipient, toastSuccess, toastError, t);
+        }
+        toastSuccess(t('Bridging in process. Awaiting relay from mediator.'));
 
         await detectExchangeFinished(account, bridgeType, sourceNetwork, destNetwork, destinationParamsOtherSide.contract, destinationParamsOtherSide,
             receiptNative.hash, isToken,
@@ -105,7 +131,11 @@ export const detectExchangeFinished = async function(recipient: any, bridgeType:
     
     let sourceMediator;
     let tokensBridgedEvent;
-    if (bridgeType === "native") {
+
+    if (bridgeType === "token" && isToken) {
+        sourceMediator = getNativeSourceMediator(sourceMediatorContract, destProvider, );
+        tokensBridgedEvent = ethers.utils.id("TokensBridged(address,uint256,bytes32)");
+    } else if (bridgeType === "native" && isToken) {
         sourceMediator = getNativeSourceMediator(sourceMediatorContract, destProvider, );
         tokensBridgedEvent = ethers.utils.id("TokensBridged(address,uint256,bytes32)");
     } else {
@@ -125,63 +155,18 @@ export const detectExchangeFinished = async function(recipient: any, bridgeType:
         const confirmationEvent = logsNew.filter(event => event.args[0] === recipient);
 
         if (confirmationEvent.length > 0) {
-            if (destNetwork === 20) {
-                await callBridgeFaucet(txID, isToken, sourceNetwork, recipient,
-                    toastSuccess, toastError, t);
-            }
-            toastSuccess(t('Bridge transfer is finished. You could work with amount that you bridge on source side.'));
+            // if (destNetwork === 20) {
+            //     await callBridgeFaucet(txID, isToken, sourceNetwork, recipient,
+            //         toastSuccess, toastError, t);
+            // }
+            toastSuccess(t('Transfer complete! You can now use your assets on the destination network.'));
             return;
         }
         
-        await wait(12000);
+        await wait(6000);
     }
 
     if (Date.now() > stopTime) {
-        toastError("Mediator contract TokensBridged timeout. Over 5 minutes has elapsed.");
+        toastError("Bridge completion event not received within 5 minutes.");
     }
 }
-
-// call bridge faucet
-const callBridgeFaucet = async (txID: string, isToken: boolean, chainID: number, destAddress: string,
-    toastSuccess: any, toastError: any, t: any) => {
-    
-    try {
-        // check is user whit address = destAddress already used faucet
-        const responseGet = await fetch(`${BRIDGE_FAUCET_API}/faucet/${destAddress}`);
-
-        console.log(responseGet)
-
-        if (responseGet.ok) {
-            const dataSuccessGet = await responseGet.json();
-                
-            if (dataSuccessGet.has_use_faucet === false) {
-                const response = await fetch(`${BRIDGE_FAUCET_API}/faucet`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        txID: txID,
-                        chainID: chainID,
-                        address: destAddress,
-                        isToken: isToken
-                    }),
-                });
-
-                if (response.ok) {
-                    const dataSuccess = await response.json();
-                    toastSuccess(
-                        t('Success'), dataSuccess?.success?.message
-                    );
-                } else {
-                    const dataError = await response.json();
-                    toastError(
-                        t('Error'), dataError?.error?.message
-                    );
-                }
-            }
-        }
-    } catch (error) {
-      toastError(JSON.stringify(error))
-    } 
-  }

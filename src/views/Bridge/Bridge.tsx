@@ -8,7 +8,9 @@ import SwapWarningTokens from 'config/constants/swapWarningTokens'
 import { getAddress } from 'utils/addressHelpers'
 import { setupNetwork } from 'utils/wallet'
 import BRIDGES from 'config/constants/bridges'
+import { usePollBlockNumber } from 'state/block/hooks'
 import { useCheckMediatorApprovalStatus, useApproveMediator } from './hooks/useApprove'
+import { useCheckFaucetStatus } from './hooks/useFaucet'
 import { useBridgeMediator } from './hooks/useBridgeMediator'
 import ConnectWalletButton from '../../components/ConnectWalletButton'
 import useActiveWeb3React from '../../hooks/useActiveWeb3React'
@@ -23,16 +25,11 @@ import Body from './components/Body'
 import { ApprovalState, useApproveCallbackFromTrade } from '../../hooks/useApproveCallback'
 import useWrapCallback, { WrapType } from '../../hooks/useWrapCallback'
 import { Field } from '../../state/swap/actions'
-import {
-  useDerivedSwapInfo,
-  useSwapActionHandlers,
-  useSwapState,
-} from '../../state/swap/hooks'
+import { useDerivedSwapInfo, useSwapActionHandlers, useSwapState } from '../../state/swap/hooks'
 import { useUserSlippageTolerance } from '../../state/user/hooks'
 import { maxAmountSpend } from '../../utils/maxAmountSpend'
 // import CircleLoader from '../../components/Loader/CircleLoader'
 import SwapWarningModal from './components/SwapWarningModal'
-
 
 const ChainContainer = styled.div`
   align-items: center;
@@ -40,6 +37,14 @@ const ChainContainer = styled.div`
 const Warning = styled.div`
   text-align: center;
 `
+const Emphasize = styled.div`
+  text-align: center;
+  background: ${({ theme }) => theme.colors.gradients.bubblegum};
+  border-radius: 14px;
+  padding: 8px;
+  box-shadow: ${({ theme }) => theme.card.boxShadow};
+`
+
 const LabelWrapper = styled.div`
   > ${Text} {
     font-size: 12px;
@@ -76,7 +81,7 @@ const ChainMap = {
 const SymbolMap = {
   20: 'ELA',
   1: 'ETH',
-  128: 'HT'
+  128: 'HT',
 }
 
 function currencyKey(currency: Currency): string {
@@ -89,6 +94,8 @@ const Bridge: React.FC = () => {
   const [destinationIndex, setDestinationIndex] = useState(2)
   const { account, chainId, library } = useActiveWeb3React()
   const correctChain = ChainMap[originIndex] === chainId
+  usePollBlockNumber()
+
   // const [requestedApproval, setRequestedApproval] = useState<boolean>(false)
 
   const handleOriginChange = (option: OptionProps): void => {
@@ -155,9 +162,7 @@ const Bridge: React.FC = () => {
   // swap state
   const { independentField, typedValue } = useSwapState()
   const { v2Trade, currencyBalances, parsedAmount, currencies } = useDerivedSwapInfo()
-  const {
-    wrapType
-  } = useWrapCallback(currencies[Field.INPUT], currencies[Field.OUTPUT], typedValue)
+  const { wrapType } = useWrapCallback(currencies[Field.INPUT], currencies[Field.OUTPUT], typedValue)
   const showWrap: boolean = wrapType !== WrapType.NOT_APPLICABLE
   const trade = showWrap ? undefined : v2Trade
 
@@ -220,7 +225,7 @@ const Bridge: React.FC = () => {
 
   const handleInputSelect = useCallback(
     (inputCurrency) => {
-      onUserInput(Field.INPUT, "")
+      onUserInput(Field.INPUT, '')
       setApprovalSubmitted(false) // reset 2 step UI for approvals
       onCurrencySelection(Field.INPUT, inputCurrency)
       const showSwapWarning = shouldShowSwapWarning(inputCurrency)
@@ -240,32 +245,59 @@ const Bridge: React.FC = () => {
   }, [maxAmountInput, onUserInput])
 
   const clearInput = useCallback(() => {
-      onUserInput(Field.INPUT, "")
-      onCurrencySelection(Field.INPUT, undefined)
+    onUserInput(Field.INPUT, '')
+    onCurrencySelection(Field.INPUT, undefined)
   }, [onUserInput, onCurrencySelection])
 
-  const tokenToBridge = currencies[Field.INPUT];
-  const amountToBridge = parseFloat(formattedAmounts[Field.INPUT]) >= 0 ? parseFloat(formattedAmounts[Field.INPUT]) : 0;
-  const symbol = currencyKey(tokenToBridge) === "ETHER" ? SymbolMap[chainId] : tokenToBridge ? tokenToBridge.symbol : undefined;
-  const bridgeSelected = `${ChainMap[originIndex]}_${ChainMap[destinationIndex]}`;
-  const bridgeDestinationSelected = `${ChainMap[destinationIndex]}_${ChainMap[originIndex]}`;
-  const bridgeType = tokenToBridge ? (tokenToBridge.symbol === 'ELA' || tokenToBridge.symbol === 'ETH' || tokenToBridge.symbol === 'HT' ? 'native' : 'token') : undefined; // popsicle
-  const bridgeParams = bridgeType && chainId === ChainMap[originIndex] ? BRIDGES[bridgeSelected][bridgeType][chainId] : undefined;
-  const bridgeParamsOtherSide = bridgeType && chainId === ChainMap[originIndex] ? BRIDGES[bridgeSelected][bridgeType][ChainMap[destinationIndex]] : undefined;
-  const reverseBridgeParams = bridgeType && chainId === ChainMap[originIndex] ? BRIDGES[bridgeDestinationSelected][bridgeType][chainId] : undefined;
-  const reverseBridgeParamsOtherSide = bridgeType && chainId === ChainMap[originIndex] ? BRIDGES[bridgeDestinationSelected][bridgeType][ChainMap[destinationIndex]] : undefined;
-  const correctParams = bridgeParams !== undefined;
-  const isBridgeable = correctParams && amountToBridge >= bridgeParams.minTx && amountToBridge <= bridgeParams.maxTx && !exceedsMax;
-  const feeAmount = (correctParams && amountToBridge > 0) ? ((parseFloat(bridgeParams.fee)/100)*amountToBridge).toPrecision(3) : 0;
+  const tokenToBridge = currencies[Field.INPUT]
+  const amountToBridge = parseFloat(formattedAmounts[Field.INPUT]) >= 0 ? parseFloat(formattedAmounts[Field.INPUT]) : 0
+  const symbol =
+    currencyKey(tokenToBridge) === 'ETHER' ? SymbolMap[chainId] : tokenToBridge ? tokenToBridge.symbol : undefined
+  const bridgeSelected = `${ChainMap[originIndex]}_${ChainMap[destinationIndex]}`
+  const bridgeDestinationSelected = `${ChainMap[destinationIndex]}_${ChainMap[originIndex]}`
+  const bridgeType = tokenToBridge
+    ? tokenToBridge.symbol === 'ELA' || tokenToBridge.symbol === 'ETH' || tokenToBridge.symbol === 'HT'
+      ? 'native'
+      : 'token'
+    : undefined // popsicle
+  const bridgeParams =
+    bridgeType && chainId === ChainMap[originIndex] ? BRIDGES[bridgeSelected][bridgeType][chainId] : undefined
+  const bridgeParamsOtherSide =
+    bridgeType && chainId === ChainMap[originIndex]
+      ? BRIDGES[bridgeSelected][bridgeType][ChainMap[destinationIndex]]
+      : undefined
+  const reverseBridgeParams =
+    bridgeType && chainId === ChainMap[originIndex]
+      ? BRIDGES[bridgeDestinationSelected][bridgeType][chainId]
+      : undefined
+  const reverseBridgeParamsOtherSide =
+    bridgeType && chainId === ChainMap[originIndex]
+      ? BRIDGES[bridgeDestinationSelected][bridgeType][ChainMap[destinationIndex]]
+      : undefined
+  const correctParams = bridgeParams !== undefined
+  const isBridgeable =
+    correctParams && amountToBridge >= bridgeParams.minTx && amountToBridge <= bridgeParams.maxTx && !exceedsMax
+  const feeAmount =
+    correctParams && amountToBridge > 0 ? ((parseFloat(bridgeParams.fee) / 100) * amountToBridge).toPrecision(3) : 0
 
-  const needsApproval = useCheckMediatorApprovalStatus(tokenToBridge, bridgeParams, amountToBridge);
-
-  // console.log(needsApproval)
-  const { handleApprove, requestedApproval } = useApproveMediator(tokenToBridge, bridgeParams, amountToBridge);
-  const { handleBridgeTransfer, requestedBridgeTransfer } = useBridgeMediator(tokenToBridge, amountToBridge, bridgeType,
-    bridgeParams, bridgeParamsOtherSide,
-    reverseBridgeParams, reverseBridgeParamsOtherSide,
-    ChainMap[originIndex], ChainMap[destinationIndex]);
+  const needsApproval = useCheckMediatorApprovalStatus(tokenToBridge, bridgeParams, amountToBridge)
+  const faucetAvailable = useCheckFaucetStatus(tokenToBridge, correctParams, ChainMap[destinationIndex])
+  const { handleApprove, requestedApproval, approvalComplete } = useApproveMediator(
+    tokenToBridge,
+    bridgeParams,
+    amountToBridge,
+  )
+  const { handleBridgeTransfer, requestedBridgeTransfer } = useBridgeMediator(
+    tokenToBridge,
+    amountToBridge,
+    bridgeType,
+    bridgeParams,
+    bridgeParamsOtherSide,
+    reverseBridgeParams,
+    reverseBridgeParamsOtherSide,
+    ChainMap[originIndex],
+    ChainMap[destinationIndex],
+  )
 
   return (
     <>
@@ -284,7 +316,7 @@ const Bridge: React.FC = () => {
               <AutoColumn gap="md" style={{ padding: '1rem 0' }}>
                 <ChainContainer>
                   <AutoRow justify="center">
-                    <Text color="textSubtle">{t("From Chain")}</Text>
+                    <Text color="textSubtle">{t('From Chain')}</Text>
                   </AutoRow>
                   <AutoRow justify="center" style={{ padding: '0.5rem' }}>
                     <img src={`images/networks/${IndexMap[originIndex]}.png`} alt={IndexMap[originIndex]} width={75} />
@@ -325,7 +357,7 @@ const Bridge: React.FC = () => {
               <AutoColumn gap="md" style={{ padding: '1rem 0' }}>
                 <ChainContainer>
                   <AutoRow justify="center">
-                    <Text color="textSubtle">{t("To Chain")}</Text>
+                    <Text color="textSubtle">{t('To Chain')}</Text>
                   </AutoRow>
                   <AutoRow justify="center" style={{ padding: '0.5rem' }}>
                     <img
@@ -362,66 +394,104 @@ const Bridge: React.FC = () => {
               </AutoColumn>
             </AutoRow>
             <AutoColumn gap="md">
-                <BridgeInputPanel
-                  label={t('Select token to bridge')}
-                  origin={ChainMap[originIndex]}
-                  destination={ChainMap[destinationIndex]}
-                  value={formattedAmounts[Field.INPUT]}
-                  showMaxButton={!atMaxAmountInput}
-                  currency={currencies[Field.INPUT]}
-                  onUserInput={handleTypeInput}
-                  onMax={handleMaxInput}
-                  onCurrencySelect={handleInputSelect}
-                  otherCurrency={currencies[Field.OUTPUT]}
-                  id="swap-currency-input"
-                />
+              <BridgeInputPanel
+                label={t('Select token to bridge')}
+                origin={ChainMap[originIndex]}
+                destination={ChainMap[destinationIndex]}
+                value={formattedAmounts[Field.INPUT]}
+                showMaxButton={!atMaxAmountInput}
+                currency={currencies[Field.INPUT]}
+                onUserInput={handleTypeInput}
+                onMax={handleMaxInput}
+                onCurrencySelect={handleInputSelect}
+                otherCurrency={currencies[Field.OUTPUT]}
+                id="swap-currency-input"
+              />
             </AutoColumn>
             {correctParams && (
-              <AutoColumn style={{padding: '0.5rem 0.5rem 0 0.5rem'}}>
+              <AutoColumn style={{ padding: '0.5rem 0.5rem 0 0.5rem' }}>
                 <Flex alignItems="center" justifyContent="space-between">
-                    <Text color="textSubtle">{t("Min Bridge Amount")}</Text>
-                    <Text color="textSubtle">{bridgeParams.minTx.toLocaleString()} {symbol}</Text>
+                  <Text color="textSubtle">{t('Min Bridge Amount')}</Text>
+                  <Text color="textSubtle">
+                    {bridgeParams.minTx.toLocaleString()} {symbol}
+                  </Text>
                 </Flex>
                 <Flex alignItems="center" justifyContent="space-between">
-                    <Text color="textSubtle">{t("Max Bridge Amount")}</Text>
-                    <Text color="textSubtle">{bridgeParams.maxTx.toLocaleString()} {symbol}</Text>
+                  <Text color="textSubtle">{t('Max Bridge Amount')}</Text>
+                  <Text color="textSubtle">
+                    {bridgeParams.maxTx.toLocaleString()} {symbol}
+                  </Text>
                 </Flex>
                 <Flex alignItems="center" justifyContent="space-between">
-                    <Text color="textSubtle">{t("Fee")} ({bridgeParams.fee}%)</Text>
-                    <Text color="textSubtle">{feeAmount > 0 ? feeAmount.toLocaleString() : 0} {symbol}</Text>
+                  <Text color="textSubtle">
+                    {t('Fee')} ({bridgeParams.fee}%)
+                  </Text>
+                  <Text color="textSubtle">
+                    {feeAmount > 0 ? feeAmount.toLocaleString() : 0} {symbol}
+                  </Text>
                 </Flex>
               </AutoColumn>
             )}
-            <AutoColumn gap="md" justify="center" style={{padding: '1rem 0 0 0'}}>
+            <AutoColumn gap="md" justify="center" style={{ padding: '1rem 0 0 0' }}>
               {!correctChain && (
                 <Warning>
                   <Text color="failure" mb="4px">
-                    {t('• Please connect your wallet to the chain you wish to bridge from!')}{"  "}
-                    <Button scale="xs" variant="danger" onClick={() => switchNetwork(ChainMap[originIndex])}>{t("Click Here to Switch")}</Button>
+                    {t('• Please connect your wallet to the chain you wish to bridge from!')}
+                    {'  '}
+                    <Button scale="xs" variant="danger" onClick={() => switchNetwork(ChainMap[originIndex])}>
+                      {t('Click Here to Switch')}
+                    </Button>
                   </Text>
                 </Warning>
               )}
               {correctParams && amountToBridge < bridgeParams.minTx ? (
-               <Warning>
+                <Warning>
                   <Text color="failure" mb="4px">
                     {t('• Below minimum bridge amount')}
                   </Text>
                 </Warning>
-              ) : exceedsMax && (
-                <Warning>
-                  <Text color="failure" mb="4px">
-                    {t('• Insufficient balance')}
-                  </Text>
-                </Warning>
+              ) : (
+                exceedsMax && (
+                  <Warning>
+                    <Text color="failure" mb="4px">
+                      {t('• Insufficient balance')}
+                    </Text>
+                  </Warning>
+                )
               )}
-              {!account ? <ConnectWalletButton width="100%"/> : needsApproval ? (
-                <Button width="100%" onClick={handleApprove} disabled={!isBridgeable} isLoading={requestedApproval} endIcon={requestedApproval ? <AutoRenewIcon color="currentColor" spin /> : null}>{ requestedApproval ? t("Approving") : t("Enable") }
+              {!account ? (
+                <ConnectWalletButton width="100%" />
+              ) : needsApproval && !approvalComplete ? (
+                <Button
+                  width="100%"
+                  onClick={handleApprove}
+                  disabled={!isBridgeable}
+                  isLoading={requestedApproval}
+                  endIcon={requestedApproval ? <AutoRenewIcon color="currentColor" spin /> : null}
+                >
+                  {requestedApproval ? t('Approving') : t('Enable')}
                 </Button>
               ) : (
-                <Button width="100%" onClick={handleBridgeTransfer} disabled={!isBridgeable} isLoading={requestedBridgeTransfer} endIcon={requestedBridgeTransfer ? <AutoRenewIcon color="currentColor" spin /> : null}>{ requestedBridgeTransfer ? t("Bridging") : t("Bridge Token") }
+                <Button
+                  width="100%"
+                  onClick={handleBridgeTransfer}
+                  disabled={!isBridgeable}
+                  isLoading={requestedBridgeTransfer}
+                  endIcon={requestedBridgeTransfer ? <AutoRenewIcon color="currentColor" spin /> : null}
+                >
+                  {requestedBridgeTransfer ? t('Bridging') : t('Bridge Token')}
                 </Button>
               )}
             </AutoColumn>
+            {isBridgeable && faucetAvailable && (
+              <AutoColumn gap="md" justify="center" style={{ padding: '1rem 0 0 0' }}>
+                <Emphasize>
+                  <Text mb="4px">
+                    {t('Faucet available! As part of this transaction you will receive 0.01 ELA for use as gas on ESC')}
+                  </Text>
+                </Emphasize>
+              </AutoColumn>
+            )}
           </Wrapper>
         </Body>
       </Page>

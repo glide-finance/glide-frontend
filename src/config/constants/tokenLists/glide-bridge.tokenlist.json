@@ -22,7 +22,7 @@
     {
       "name": "HT on Elastos",
       "symbol": "HT",
-      "address": "0xeceefc50f9aacf0795586ed90a8b9e24f55ce3f3",
+      "address": "0xeceefC50f9aAcF0795586Ed90a8b9E24f55Ce3F3",
       "chainId": 20,
       "decimals": 18,
       "logoURI": "",
@@ -49,7 +49,7 @@
     {
       "name": "HUSD on Elastos",
       "symbol": "HUSD",
-      "address": "0xf9ca2ea3b1024c0db31adb224b407441becc18bb",
+      "address": "0xF9Ca2eA3b1024c0DB31adB224B407441bECC18BB",
       "chainId": 20,
       "decimals": 8,
       "logoURI": "",
@@ -58,7 +58,7 @@
     {
       "name": "Heco-Peg HUSD",
       "symbol": "HUSD",
-      "address": "0x0298c2b32eae4da002a15f36fdf7615bea3da047",
+      "address": "0x0298c2b32eaE4da002a15f36fdf7615BEa3DA047",
       "chainId": 128,
       "decimals": 8,
       "logoURI": "",
@@ -67,7 +67,7 @@
     {
       "name": "USD Coin",
       "symbol": "USDC",
-      "address": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+      "address": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
       "chainId": 1,
       "decimals": 6,
       "logoURI": "",

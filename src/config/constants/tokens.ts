@@ -19,7 +19,7 @@ export const CAKE: { [chainId: number]: Token } = {
 export const BUSD: { [chainId: number]: Token } = {
   [ChainId.MAINNET]: new Token(
     ChainId.MAINNET,
-    '0xf9ca2ea3b1024c0db31adb224b407441becc18bb',
+    '0xF9Ca2eA3b1024c0DB31adB224B407441bECC18BB',
     18,
     'HUSD',
     'Huobi USD',
@@ -102,7 +102,7 @@ const tokens = {
       56: '',
       97: '',
       20: '0xeceefC50f9aAcF0795586Ed90a8b9E24f55Ce3F3',
-      128: '0x5545153ccfca01fbd7dd11c0b23ba694d9509a6f'
+      128: '0x5545153CCFcA01fbd7Dd11C0b23ba694D9509A6F'
     },
     decimals: 18,
     projectLink: 'https://pancakeswap.finance/',

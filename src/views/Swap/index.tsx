@@ -8,6 +8,7 @@ import { RouteComponentProps } from 'react-router-dom'
 import { useTranslation } from 'contexts/Localization'
 import SwapWarningTokens from 'config/constants/swapWarningTokens'
 import { getAddress } from 'utils/addressHelpers'
+import { setupNetwork } from 'utils/wallet'
 import AddressInputPanel from './components/AddressInputPanel'
 import { GreyCard } from '../../components/Card'
 import Column, { AutoColumn } from '../../components/Layout/Column'
@@ -72,7 +73,7 @@ export default function Swap({ history }: RouteComponentProps) {
       return !(token.address in defaultTokens)
     })
 
-  const { account } = useActiveWeb3React()
+  const { account, chainId } = useActiveWeb3React()
 
   // for expert mode
   const [isExpertMode] = useExpertModeManager()
@@ -387,7 +388,9 @@ export default function Swap({ history }: RouteComponentProps) {
             )}
           </AutoColumn>
           <Box mt="1rem">
-            {swapIsUnsupported ? (
+            {chainId !== 20 ? (
+              <Button width="100%" onClick={()=>{setupNetwork(20)}}>{t('Please connect to Elastos to begin')}</Button>
+            ) : swapIsUnsupported ? (
               <Button width="100%" disabled mb="4px">
                 {t('Unsupported Asset')}
               </Button>

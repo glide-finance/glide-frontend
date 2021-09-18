@@ -23,7 +23,8 @@ export default function Updater(): null {
           if (typeof prev.blockNumber !== 'number') return { chainId, blockNumber }
           return { chainId, blockNumber: Math.max(blockNumber, prev.blockNumber) }
         }
-        return prev
+        // return prev
+        return { chainId, blockNumber }
       })
     },
     [chainId, setState],
@@ -37,7 +38,7 @@ export default function Updater(): null {
 
     library
       .getBlockNumber()
-      .then(blockNumberCallback)
+      // .then(blockNumberCallback)
       .catch((error) => console.error(`Failed to get block number for chainId: ${chainId}`, error))
 
     library.on('block', blockNumberCallback)
@@ -50,7 +51,6 @@ export default function Updater(): null {
 
   useEffect(() => {
     if (!debouncedState.chainId || !debouncedState.blockNumber || !windowVisible) return
-    // console.log('debounce', debouncedState.blockNumber)
     dispatch(updateBlockNumber({ chainId: debouncedState.chainId, blockNumber: debouncedState.blockNumber }))
   }, [windowVisible, dispatch, debouncedState.blockNumber, debouncedState.chainId])
 

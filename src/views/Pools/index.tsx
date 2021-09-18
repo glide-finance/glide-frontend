@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom'
 import styled from 'styled-components'
 import BigNumber from 'bignumber.js'
 import { useWeb3React } from '@web3-react/core'
-import { Heading, Flex, Image, Text } from '@glide-finance/uikit'
+import { Heading, Flex, Image, Text, Button } from '@glide-finance/uikit'
 import orderBy from 'lodash/orderBy'
 import partition from 'lodash/partition'
 import { useTranslation } from 'contexts/Localization'
@@ -19,6 +19,7 @@ import {
 import tokens from 'config/constants/tokens'
 import { usePollFarmsData } from 'state/farms/hooks'
 import { latinise } from 'utils/latinise'
+import { setupNetwork } from 'utils/wallet'
 import FlexLayout from 'components/Layout/Flex'
 import Page from 'components/Layout/Page'
 import PageHeader from 'components/PageHeader'
@@ -81,12 +82,16 @@ const ControlStretch = styled(Flex)`
     flex: 1;
   }
 `
+const ConnectContainer = styled(Flex)`
+  margin-bottom: 15px;
+`
+
 const NUMBER_OF_POOLS_VISIBLE = 12
 
 const Pools: React.FC = () => {
   const location = useLocation()
   const { t } = useTranslation()
-  const { account } = useWeb3React()
+  const { account, chainId } = useWeb3React()
   const { pools: poolsWithoutAutoVault, userDataLoaded } = usePools(account)
   const [stakedOnly, setStakedOnly] = usePersistState(false, { localStorageKey: 'pancake_pool_staked' })
   const [numberOfPoolsVisible, setNumberOfPoolsVisible] = useState(NUMBER_OF_POOLS_VISIBLE)
@@ -275,7 +280,7 @@ const Pools: React.FC = () => {
             </Heading> */}
           </Flex>
           <Flex flex="1" height="fit-content" justifyContent="center" alignItems="center" mt={['24px', null, '0']}>
-            <HelpButton />
+            {/* <HelpButton /> */}
             <BountyCard />
           </Flex>
         </Flex>
@@ -336,7 +341,13 @@ const Pools: React.FC = () => {
             <Loading />
           </Flex>
         )}
-        {viewMode === ViewMode.CARD ? cardLayout : tableLayout}
+        {chainId !== 20 &&
+          <ConnectContainer justifyContent="center">
+            <Button onClick={()=>{setupNetwork(20)}}>{t('Please connect to Elastos to begin')}</Button>
+          </ConnectContainer>
+        } 
+        {/* {viewMode === ViewMode.CARD ? cardLayout : tableLayout} */}
+        {cardLayout}
         <div ref={loadMoreRef} />
         {/* <Image
           mx="auto"
