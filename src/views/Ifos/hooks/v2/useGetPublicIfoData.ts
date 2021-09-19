@@ -1,6 +1,6 @@
 import { useEffect, useState, useCallback } from 'react'
 import BigNumber from 'bignumber.js'
-import { BSC_BLOCK_TIME } from 'config'
+import { ESC_BLOCK_TIME } from 'config'
 import { Ifo, IfoStatus } from 'config/constants/types'
 import { useBlock } from 'state/block/hooks'
 import { useLpTokenPrice } from 'state/farms/hooks'
@@ -115,8 +115,8 @@ const useGetPublicIfoData = (ifo: Ifo): PublicIfoData => {
 
     setState((prev) => ({
       ...prev,
-      secondsUntilEnd: blocksRemaining * BSC_BLOCK_TIME,
-      secondsUntilStart: (startBlockNum - currentBlock) * BSC_BLOCK_TIME,
+      secondsUntilEnd: blocksRemaining * ESC_BLOCK_TIME,
+      secondsUntilStart: (startBlockNum - currentBlock) * ESC_BLOCK_TIME,
       poolBasic: { ...poolBasicFormatted, taxRate: 0 },
       poolUnlimited: { ...poolUnlimitedFormatted, taxRate: taxRateNum },
       status,

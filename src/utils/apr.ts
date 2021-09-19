@@ -1,5 +1,5 @@
 import BigNumber from 'bignumber.js'
-import { BLOCKS_PER_YEAR, CAKE_PER_YEAR } from 'config'
+import { BLOCKS_PER_YEAR, GLIDE_PER_YEAR } from 'config'
 import lpAprs from 'config/constants/lpAprs.json'
 
 /**
@@ -25,24 +25,25 @@ export const getPoolApr = (
 /**
  * Get farm APR value in %
  * @param poolWeight allocationPoint / totalAllocationPoint
- * @param cakePriceUsd Cake price in USD
+ * @param glidePriceUsd Glide price in USD
  * @param poolLiquidityUsd Total pool liquidity in USD
  * @returns
  */
 export const getFarmApr = (
   poolWeight: BigNumber,
-  cakePriceUsd: BigNumber,
+  glidePriceUsd: BigNumber,
   poolLiquidityUsd: BigNumber,
   farmAddress: string,
-): { cakeRewardsApr: number; lpRewardsApr: number } => {
-  const yearlyCakeRewardAllocation = CAKE_PER_YEAR.times(poolWeight)
-  const cakeRewardsApr = yearlyCakeRewardAllocation.times(cakePriceUsd).div(poolLiquidityUsd).times(100)
-  let cakeRewardsAprAsNumber = null
-  if (!cakeRewardsApr.isNaN() && cakeRewardsApr.isFinite()) {
-    cakeRewardsAprAsNumber = cakeRewardsApr.toNumber()
+): { glideRewardsApr: number; lpRewardsApr: number } => {
+  const yearlyGlideRewardAllocation = GLIDE_PER_YEAR.times(poolWeight)
+  // glidePriceUsd = 0.00000027, for test purpose
+  const glideRewardsApr = yearlyGlideRewardAllocation.times(glidePriceUsd).div(poolLiquidityUsd).times(100)
+  let glideRewardsAprAsNumber = null
+  if (!glideRewardsApr.isNaN() && glideRewardsApr.isFinite()) {
+    glideRewardsAprAsNumber = glideRewardsApr.toNumber()
   }
   const lpRewardsApr = lpAprs[farmAddress?.toLocaleLowerCase()] ?? 0
-  return { cakeRewardsApr: cakeRewardsAprAsNumber, lpRewardsApr }
+  return { glideRewardsApr: glideRewardsAprAsNumber, lpRewardsApr }
 }
 
 export default null
