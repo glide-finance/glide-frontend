@@ -3,7 +3,7 @@ import { Menu as UikitMenu } from '@glide-finance/uikit'
 import { languageList } from 'config/localization/languages'
 import { useTranslation } from 'contexts/Localization'
 import useTheme from 'hooks/useTheme'
-import { usePriceCakeBusd } from 'state/farms/hooks'
+import { usePriceCakeBusd, usePriceBnbBusd } from 'state/farms/hooks'
 // import { useProfile } from 'state/profile/hooks'
 import config from './config'
 import UserMenu from './UserMenu'
@@ -11,7 +11,8 @@ import GlobalSettings from './GlobalSettings'
 
 const Menu = (props) => {
   const { isDark, toggleTheme } = useTheme()
-  const cakePriceUsd = usePriceCakeBusd()
+  const glidePriceUsd = usePriceCakeBusd()
+  const elaPriceUsd = usePriceBnbBusd()
   // const { profile } = useProfile()
   const { currentLanguage, setLanguage, t } = useTranslation()
 
@@ -24,7 +25,8 @@ const Menu = (props) => {
       currentLang={currentLanguage.code}
       langs={languageList}
       setLang={setLanguage}
-      cakePriceUsd={cakePriceUsd.toNumber()}
+      glidePriceUsd={glidePriceUsd.toNumber()}
+      elaPriceUsd={elaPriceUsd.toNumber()}
       links={config(t)}
       // profile={{
       //   username: profile?.username,

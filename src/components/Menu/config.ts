@@ -29,7 +29,7 @@ const config: (t: ContextApi['t']) => MenuEntry[] = (t) => [
   },
   {
     label: t('Bridge'),
-    icon: 'TradeIcon',
+    icon: 'BridgeIcon',
     href: '/bridge',
   },
   // {
