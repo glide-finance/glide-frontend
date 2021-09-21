@@ -1,7 +1,7 @@
 import BigNumber from 'bignumber.js'
-import { BLOCKS_PER_YEAR, GLIDE_PER_YEAR } from 'config'
+import { BLOCKS_PER_YEAR } from 'config'
 import lpAprs from 'config/constants/lpAprs.json'
-
+import {getGlidesPerYear} from 'utils/calls'
 /**
  * Get the APR value in %
  * @param stakingTokenPrice Token price in the same quote currency
@@ -34,8 +34,11 @@ export const getFarmApr = (
   glidePriceUsd: BigNumber,
   poolLiquidityUsd: BigNumber,
   farmAddress: string,
+  currentBlock: number,
 ): { glideRewardsApr: number; lpRewardsApr: number } => {
-  const yearlyGlideRewardAllocation = GLIDE_PER_YEAR.times(poolWeight)
+  if (currentBlock > 0) {
+  const glidesPerYear = getGlidesPerYear(new BigNumber(currentBlock));
+  const yearlyGlideRewardAllocation = glidesPerYear.times(poolWeight)
   // glidePriceUsd = 0.00000027, for test purpose
   const glideRewardsApr = yearlyGlideRewardAllocation.times(glidePriceUsd).div(poolLiquidityUsd).times(100)
   let glideRewardsAprAsNumber = null
@@ -44,6 +47,7 @@ export const getFarmApr = (
   }
   const lpRewardsApr = lpAprs[farmAddress?.toLocaleLowerCase()] ?? 0
   return { glideRewardsApr: glideRewardsAprAsNumber, lpRewardsApr }
+  } return { glideRewardsApr: 0, lpRewardsApr: 0 }
 }
 
 export default null

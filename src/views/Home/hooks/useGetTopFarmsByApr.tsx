@@ -8,6 +8,7 @@ import BigNumber from 'bignumber.js'
 import { orderBy } from 'lodash'
 import { FarmWithStakedValue } from 'views/Farms/components/FarmCard/FarmCard'
 import { Farm } from 'state/types'
+import { useBlock } from 'state/block/hooks'
 
 enum FetchStatus {
   NOT_FETCHED = 'not-fetched',
@@ -22,6 +23,8 @@ const useGetTopFarmsByApr = (isIntersecting: boolean) => {
   const [fetchStatus, setFetchStatus] = useState(FetchStatus.NOT_FETCHED)
   const [topFarms, setTopFarms] = useState<FarmWithStakedValue[]>([null, null, null, null, null])
   const cakePriceBusd = usePriceCakeBusd()
+
+  const { currentBlock } = useBlock()
 
   useEffect(() => {
     const fetchFarmData = async () => {
@@ -51,6 +54,7 @@ const useGetTopFarmsByApr = (isIntersecting: boolean) => {
           cakePriceBusd,
           totalLiquidity,
           farm.lpAddresses[ChainId.MAINNET],
+          currentBlock
         )
         return { ...farm, apr: glideRewardsApr, lpRewardsApr }
       })
@@ -62,7 +66,7 @@ const useGetTopFarmsByApr = (isIntersecting: boolean) => {
     if (fetchStatus === FetchStatus.SUCCESS && !topFarms[0]) {
       getTopFarmsByApr(farms)
     }
-  }, [setTopFarms, farms, fetchStatus, cakePriceBusd, topFarms])
+  }, [setTopFarms, farms, fetchStatus, cakePriceBusd, topFarms, currentBlock])
 
   return { topFarms }
 }
