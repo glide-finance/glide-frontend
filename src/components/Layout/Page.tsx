@@ -7,18 +7,31 @@ import { DEFAULT_META, getCustomMeta } from 'config/constants/meta'
 import { usePriceCakeBusd } from 'state/farms/hooks'
 import Container from './Container'
 
+// const StyledPage = styled(Container)`
+//   min-height: 100vh;
+//   padding-top: 16px;
+//   padding-bottom: 16px;
+
+//   ${({ theme }) => theme.mediaQueries.sm} {
+//     padding-top: 24px;
+//     padding-bottom: 24px;
+//   }
+
+//   ${({ theme }) => theme.mediaQueries.lg} {
+//     padding-top: 32px;
+//     padding-bottom: 32px;
+//   }
+// `
+
 const StyledPage = styled(Container)`
   min-height: 100vh;
-  padding-top: 16px;
   padding-bottom: 16px;
 
   ${({ theme }) => theme.mediaQueries.sm} {
-    padding-top: 24px;
     padding-bottom: 24px;
   }
 
   ${({ theme }) => theme.mediaQueries.lg} {
-    padding-top: 32px;
     padding-bottom: 32px;
   }
 `

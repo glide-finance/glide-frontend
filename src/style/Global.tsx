@@ -7,12 +7,36 @@ declare module 'styled-components' {
   export interface DefaultTheme extends PancakeTheme {}
 }
 
+// background-color: ${({ theme }) => theme.colors.background};
+
+// const GlobalStyle = createGlobalStyle`
+//   * {
+//     font-family: 'Kanit', sans-serif;
+//   }
+//   body {
+//     position: fixed;
+//     inset: 0px;
+//     background-size: cover;
+//     background-repeat: no-repeat;
+//     background-image: url('/images/background-dark-1.png');
+
+//     img {
+//       height: auto;
+//       max-width: 100%;
+//     }
+//   }
+// `
+
 const GlobalStyle = createGlobalStyle`
   * {
     font-family: 'Kanit', sans-serif;
   }
   body {
-    background-color: ${({ theme }) => theme.colors.background};
+    position: fixed;
+    inset: 0px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: url('/images/background-dark.png');
 
     img {
       height: auto;

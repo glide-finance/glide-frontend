@@ -390,13 +390,14 @@ const Farms: React.FC = () => {
 
   return (
     <>
-      <PageHeader>
-        <Heading as="h1" scale="xxl" color="secondary" mb="24px">
-          {t('Farms')}
-        </Heading>
-        <Heading scale="lg" color="text">
-          {t('Stake LP tokens to earn.')}
-        </Heading>
+      <Page>
+        <PageHeader>
+          <Heading as="h1" scale="xxl" color="secondary" mb="24px">
+            {t('Farms')}
+          </Heading>
+          <Heading scale="lg" color="text">
+            {t('Stake LP tokens to earn.')}
+          </Heading>
         {/* <NavLink exact activeClassName="active" to="/farms/auction" id="lottery-pot-banner">
           <Button p="0" variant="text">
             <Text color="primary" bold fontSize="16px" mr="4px">
@@ -405,8 +406,7 @@ const Farms: React.FC = () => {
             <ArrowForwardIcon color="primary" />
           </Button>
         </NavLink> */}
-      </PageHeader>
-      <Page>
+        </PageHeader>
         <ControlContainer>
           <ViewControls>
             {/* <ToggleView viewMode={viewMode} onToggle={(mode: ViewMode) => setViewMode(mode)} /> */}

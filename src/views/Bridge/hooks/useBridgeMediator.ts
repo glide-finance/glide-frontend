@@ -90,7 +90,7 @@ export const coinTransfer = async function(currency: any, request: any, amount: 
             from: from,
             gasPrice: gasPrice.toString()
         });
-        receiptErc677.wait(2);
+        await receiptErc677.wait(2);
         if (destNetwork === 20) {
             callBridgeFaucet(receiptErc677.hash, isToken, sourceNetwork, recipient, toastSuccess, toastError, t);
         }
@@ -167,6 +167,6 @@ export const detectExchangeFinished = async function(recipient: any, bridgeType:
     }
 
     if (Date.now() > stopTime) {
-        toastError("Bridge completion event not received within 5 minutes.");
+        toastError("Bridge completion event not detected within 5 minutes. Please monitor explorer.");
     }
 }
