@@ -20,7 +20,7 @@ import Select, { OptionProps } from './components/Select'
 import { AutoColumn } from '../../components/Layout/Column'
 import BridgeInputPanel from './components/BridgeInputPanel'
 import { AutoRow } from '../../components/Layout/Row'
-import Page from './components/Page'
+import Page from '../../components/Layout/Page'
 import Body from './components/Body'
 import { ApprovalState, useApproveCallbackFromTrade } from '../../hooks/useApproveCallback'
 import useWrapCallback, { WrapType } from '../../hooks/useWrapCallback'
@@ -301,15 +301,15 @@ const Bridge: React.FC = () => {
 
   return (
     <>
-      <PageHeader>
-        <Heading as="h1" scale="xxl" color="secondary" mb="24px">
-          {t('Bridge')}
-        </Heading>
-        <Heading scale="lg" color="text">
-          {t('Map assets to and from Elastos')}
-        </Heading>
-      </PageHeader>
       <Page>
+        <PageHeader>
+          <Heading as="h1" scale="xxl" color="secondary" mb="24px">
+            {t('Bridge')}
+          </Heading>
+          <Heading scale="lg" color="text">
+            {t('Map assets to and from Elastos')}
+          </Heading>
+        </PageHeader>
         <Body>
           <Wrapper id="bridge-page">
             <AutoRow justify="center" style={{ padding: '0.5rem 0' }}>

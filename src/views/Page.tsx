@@ -12,7 +12,6 @@ const StyledPage = styled.div`
   padding: 16px;
   padding-bottom: 0;
   min-height: 100vh;
-  background: ${({ theme }) => theme.colors.gradients.bubblegum};
 
   ${({ theme }) => theme.mediaQueries.xs} {
     background-size: auto;
