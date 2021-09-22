@@ -7,6 +7,8 @@ import { useTranslation } from 'contexts/Localization'
 import useToast from 'hooks/useToast'
 import { BRIDGE_FAUCET_API }  from 'config/constants/endpoints';
 
+const wait = (time: number) => new Promise(resolve => setTimeout(resolve, time));
+
 export const useCheckFaucetStatus = (currency, valid, destination) => {
   const [isFaucetAvailable, setIsFaucetAvailable] = useState(false)
   const { account } = useWeb3React();
@@ -61,9 +63,11 @@ export const callBridgeFaucet = async (txID: string, isToken: boolean, chainID: 
 
                 if (response.ok) {
                     const dataSuccess = await response.json();
+                    await wait(3000);
                     toastSuccess(t('0.01 ELA received from gas faucet!')); // dataSuccess?.success?.message
                 } else {
                     const dataError = await response.json();
+                    await wait(3000);
                     toastError(t('Error receiving faucet distribution')); // dataError?.error?.message
                 }
             }
