@@ -133,14 +133,10 @@ export const detectExchangeFinished = async function(recipient: any, bridgeType:
         sourceMediator = getNativeSourceMediator(sourceMediatorContract, destProvider, );
         tokensBridgedEvent = ethers.utils.id("TokensBridged(address,uint256,bytes32)");
         eventAddressArgument = 0;
-    } else if (bridgeType === "token" && isToken) {
+    } else {
         sourceMediator = getTokenSourceMediator(sourceMediatorContract, destProvider, );
         tokensBridgedEvent = ethers.utils.id("TokensBridged(address,address,uint256,bytes32)");
         eventAddressArgument = 1;
-    } else {
-        sourceMediator = getNativeSourceMediator(sourceMediatorContract, destProvider, );
-        tokensBridgedEvent = ethers.utils.id("TokensBridged(address,uint256,bytes32)");
-        eventAddressArgument = 0;
     }
 
     // get when transfer is finished 
