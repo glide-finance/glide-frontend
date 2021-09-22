@@ -54,6 +54,8 @@ export const coinTransfer = async function(currency: any, request: any, amount: 
     sourceNetwork: number, destNetwork: number, destinationParamsOtherSide: any,
     toastSuccess: any, toastError: any, t: any) {
 
+    const destProvider = new ethers.providers.JsonRpcProvider(networksUrl[destNetwork]);
+    const fromDestBlock = await destProvider.getBlockNumber();
     const from = account;
     const recipient = account;
     const value = ethers.BigNumber.from(String(parseValue(amount, currency.decimals))).toString();
@@ -79,7 +81,7 @@ export const coinTransfer = async function(currency: any, request: any, amount: 
 
         await detectExchangeFinished(account, bridgeType, sourceNetwork, destNetwork, destinationParamsOtherSide.contract, destinationParamsOtherSide,
             receiptToken.hash, isToken,
-            toastSuccess, toastError, t);
+            toastSuccess, toastError, t, fromDestBlock);
 
     } else if (bridgeType === "native" && isToken) {
         console.log('is native token')
@@ -98,7 +100,7 @@ export const coinTransfer = async function(currency: any, request: any, amount: 
 
         await detectExchangeFinished(account, bridgeType, sourceNetwork, destNetwork, reverseBridgeParamsOtherSide.contract, destinationParamsOtherSide,
             receiptErc677.hash, isToken,
-            toastSuccess, toastError, t);
+            toastSuccess, toastError, t, fromDestBlock);
     } else {
         console.log('native')
         const nativeSourceMediator = getNativeSourceMediator(request.contract, library.getSigner(account));
@@ -115,7 +117,7 @@ export const coinTransfer = async function(currency: any, request: any, amount: 
 
         await detectExchangeFinished(account, bridgeType, sourceNetwork, destNetwork, destinationParamsOtherSide.contract, destinationParamsOtherSide,
             receiptNative.hash, isToken,
-            toastSuccess, toastError, t);
+            toastSuccess, toastError, t, fromDestBlock);
     }
 };
 
@@ -125,13 +127,15 @@ export const detectExchangeFinished = async function(recipient: any, bridgeType:
     sourceMediatorContract: string,
     destinationParamsOtherSide: any, 
     txID: string, isToken: boolean,
-    toastSuccess: any, toastError: any, t: any) {
+    toastSuccess: any, toastError: any, t: any, fromBlock: number) {
     
     const destProvider = new ethers.providers.JsonRpcProvider(networksUrl[destNetwork]);
     
     let sourceMediator;
     let tokensBridgedEvent;
+    let eventAddressArgument;
 
+    /* Old
     if (bridgeType === "token" && isToken) {
         sourceMediator = getNativeSourceMediator(sourceMediatorContract, destProvider, );
         tokensBridgedEvent = ethers.utils.id("TokensBridged(address,uint256,bytes32)");
@@ -142,9 +146,22 @@ export const detectExchangeFinished = async function(recipient: any, bridgeType:
         sourceMediator = getTokenSourceMediator(sourceMediatorContract, destProvider, );
         tokensBridgedEvent = ethers.utils.id("TokensBridged(address,address,uint256,bytes32)");
     }
+    */
+    if (bridgeType === "native") {
+        sourceMediator = getNativeSourceMediator(sourceMediatorContract, destProvider, );
+        tokensBridgedEvent = ethers.utils.id("TokensBridged(address,uint256,bytes32)");
+        eventAddressArgument = 0;
+    } else if (bridgeType === "token" && isToken) {
+        sourceMediator = getTokenSourceMediator(sourceMediatorContract, destProvider, );
+        tokensBridgedEvent = ethers.utils.id("TokensBridged(address,address,uint256,bytes32)");
+        eventAddressArgument = 1;
+    } else {
+        sourceMediator = getNativeSourceMediator(sourceMediatorContract, destProvider, );
+        tokensBridgedEvent = ethers.utils.id("TokensBridged(address,uint256,bytes32)");
+        eventAddressArgument = 0;
+    }
 
     // get when transfer is finished 
-    const fromBlock = await destProvider.getBlockNumber();
     const stopTime = Date.now() + VALIDATOR_TIMEOUT
     while (Date.now() <= stopTime) {
         const currentBlock = await destProvider.getBlockNumber();
@@ -152,7 +169,7 @@ export const detectExchangeFinished = async function(recipient: any, bridgeType:
         const logsNew = await sourceMediator.queryFilter({address: destinationParamsOtherSide.contract,
             topics: [tokensBridgedEvent]} , fromBlock , currentBlock);
 
-        const confirmationEvent = logsNew.filter(event => event.args[0] === recipient);
+        const confirmationEvent = logsNew.filter(event => event.args[eventAddressArgument] === recipient);
 
         if (confirmationEvent.length > 0) {
             // if (destNetwork === 20) {
