@@ -122,30 +122,13 @@ export const detectExchangeFinished = async function(recipient: any, bridgeType:
     sourceMediatorContract: string,
     destinationParamsOtherSide: any, 
     txID: string, isToken: boolean,
-<<<<<<< HEAD
     toastSuccess: any, toastError: any, t: any, fromBlock: number) {
     
-=======
-    toastSuccess: any, toastError: any, t: any) {
-
->>>>>>> dbc8223eaf5a2ab9d0a4b989a0fa588895283228
     const destProvider = new ethers.providers.JsonRpcProvider(networksUrl[destNetwork]);
     let sourceMediator;
     let tokensBridgedEvent;
     let eventAddressArgument;
 
-    /* Old
-    if (bridgeType === "token" && isToken) {
-        sourceMediator = getNativeSourceMediator(sourceMediatorContract, destProvider );
-        tokensBridgedEvent = ethers.utils.id("TokensBridged(address,uint256,bytes32)");
-    } else if (bridgeType === "native" && isToken) {
-        sourceMediator = getNativeSourceMediator(sourceMediatorContract, destProvider );
-        tokensBridgedEvent = ethers.utils.id("TokensBridged(address,uint256,bytes32)");
-    } else {
-        sourceMediator = getTokenSourceMediator(sourceMediatorContract, destProvider );
-        tokensBridgedEvent = ethers.utils.id("TokensBridged(address,address,uint256,bytes32)");
-    }
-    */
     if (bridgeType === "native") {
         sourceMediator = getNativeSourceMediator(sourceMediatorContract, destProvider, );
         tokensBridgedEvent = ethers.utils.id("TokensBridged(address,uint256,bytes32)");
@@ -161,31 +144,16 @@ export const detectExchangeFinished = async function(recipient: any, bridgeType:
     }
 
     // get when transfer is finished 
-<<<<<<< HEAD
-=======
-    const fromBlock = (await destProvider.getBlockNumber()) - 20; // in case it confirmed before reaching this stage
->>>>>>> dbc8223eaf5a2ab9d0a4b989a0fa588895283228
     const stopTime = Date.now() + VALIDATOR_TIMEOUT
     while (Date.now() <= stopTime) {
         const currentBlock = await destProvider.getBlockNumber();
-        // const logsNew = await sourceMediator.queryFilter({address: destinationParamsOtherSide.contract,
-        //     topics: [tokensBridgedEvent]} , fromBlock , currentBlock);
 
-<<<<<<< HEAD
         const logsNew = await sourceMediator.queryFilter({address: destinationParamsOtherSide.contract,
             topics: [tokensBridgedEvent]} , fromBlock , currentBlock);
 
         const confirmationEvent = logsNew.filter(event => event.args[eventAddressArgument] === recipient);
 
-=======
-        const logsNew = await sourceMediator.queryFilter({topics: [tokensBridgedEvent]}, fromBlock, currentBlock);
-        const confirmationEvent = logsNew.filter(event => event.args[0] === recipient);
->>>>>>> dbc8223eaf5a2ab9d0a4b989a0fa588895283228
         if (confirmationEvent.length > 0) {
-            // if (destNetwork === 20) {
-            //     await callBridgeFaucet(txID, isToken, sourceNetwork, recipient,
-            //         toastSuccess, toastError, t);
-            // }
             toastSuccess(t('Transfer complete! You can now use your assets on the destination network.'));
             return;
         }
