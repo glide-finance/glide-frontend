@@ -1,7 +1,7 @@
 import { ChainId } from '@glide-finance/sdk'
 
 const NETWORK_URLS: { [chainId in ChainId]: string } = {
-  [ChainId.MAINNET]: 'https://api.elastos.io/eth',
+  [ChainId.MAINNET]: 'https://escrpc.elaphant.app/', // https://api.elastos.io/eth
   [ChainId.TESTNET]: 'https://api-testnet.elastos.io/eth',
   [ChainId.HECO]: 'https://http-mainnet.hecochain.com',
   [ChainId.ETHEREUM]: `https://mainnet.infura.io/v3/${process.env.REACT_APP_INFURA_KEY}`
