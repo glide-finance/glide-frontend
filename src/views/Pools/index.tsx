@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom'
 import styled from 'styled-components'
 import BigNumber from 'bignumber.js'
 import { useWeb3React } from '@web3-react/core'
-import { Heading, Flex, Image, Text, Button } from '@glide-finance/uikit'
+import { Heading, GradientHeading, Flex, Image, Text, Button } from '@glide-finance/uikit'
 import orderBy from 'lodash/orderBy'
 import partition from 'lodash/partition'
 import { useTranslation } from 'contexts/Localization'
@@ -269,10 +269,10 @@ const Pools: React.FC = () => {
         <PageHeader>
           <Flex justifyContent="space-between" flexDirection={['column', null, null, 'row']}>
             <Flex flex="1" flexDirection="column" mr={['8px', 0]}>
-              <Heading as="h1" scale="xxl" color="secondary" mb="24px">
+              <GradientHeading as="h1" scale="xxl" color="glide" mb="24px">
                 {t('Sugar Pools')}
                 {/* translate */}
-              </Heading>
+              </GradientHeading>
               <Heading scale="md" color="text">
                 {t('Stake tokens to earn.')}
               </Heading>

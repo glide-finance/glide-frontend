@@ -49,11 +49,11 @@ const Home: React.FC = () => {
     <>
       <StyledHeroSection
         innerProps={{ style: { margin: '0', width: '100%' } }}
-        background={
-          theme.isDark
-            ? 'radial-gradient(103.12% 50% at 50% 50%, #21193A 0%, #191326 100%)'
-            : 'linear-gradient(139.73deg, #E6FDFF 0%, #F3EFFF 100%)'
-        }
+        // background={
+        //   theme.isDark
+        //     ? 'radial-gradient(103.12% 50% at 50% 50%, #21193A 0%, #191326 100%)'
+        //     : 'linear-gradient(139.73deg, #E6FDFF 0%, #F3EFFF 100%)'
+        // }
         index={2}
         hasCurvedDivider={false}
       >
@@ -117,7 +117,7 @@ const Home: React.FC = () => {
       </PageSection> */}
       <PageSection
         innerProps={{ style: HomeSectionContainerStyles }}
-        background={theme.colors.background}
+        // background={theme.colors.background}
         index={2}
         hasCurvedDivider={false}
       >

@@ -1,7 +1,7 @@
 import React, { useEffect, useCallback, useState } from 'react'
 import styled from 'styled-components'
 import { Currency, CurrencyAmount, currencyEquals, ETHER, Token } from '@glide-finance/sdk'
-import { Flex, Button, Text, ArrowForwardIcon, useModal, Heading, AutoRenewIcon } from '@glide-finance/uikit'
+import { Flex, Button, Text, ArrowForwardIcon, useModal, Heading, GradientHeading, AutoRenewIcon } from '@glide-finance/uikit'
 import PageHeader from 'components/PageHeader'
 import { useTranslation } from 'contexts/Localization'
 import SwapWarningTokens from 'config/constants/swapWarningTokens'
@@ -303,9 +303,9 @@ const Bridge: React.FC = () => {
     <>
       <Page>
         <PageHeader>
-          <Heading as="h1" scale="xxl" color="secondary" mb="24px">
+          <GradientHeading as="h1" scale="xxl" color="glide" mb="24px">
             {t('Bridge')}
-          </Heading>
+          </GradientHeading>
           <Heading scale="lg" color="text">
             {t('Map assets to and from Elastos')}
           </Heading>

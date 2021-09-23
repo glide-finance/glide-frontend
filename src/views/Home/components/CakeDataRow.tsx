@@ -55,25 +55,33 @@ const CakeDataRow = () => {
   return (
     <Grid>
       <Flex flexDirection="column">
-        <Text color="textSubtle">{t('Total supply')}</Text>
-        {cakeSupply ? (
-          <Balance decimals={0} lineHeight="1.1" fontSize="24px" bold value={cakeSupply} />
+        <Text color="textSubtle">{t('Total Value Locked')}</Text>
+        {burnedBalance ? (
+          <Balance decimals={0} lineHeight="1.1" fontSize="24px" bold value={burnedBalance} />
         ) : (
           <Skeleton height={24} width={126} my="4px" />
         )}
       </Flex>
-      <StyledColumn>
+      {/* <StyledColumn>
         <Text color="textSubtle">{t('Burned to date')}</Text>
         {burnedBalance ? (
           <Balance decimals={0} lineHeight="1.1" fontSize="24px" bold value={burnedBalance} />
         ) : (
           <Skeleton height={24} width={126} my="4px" />
         )}
-      </StyledColumn>
+      </StyledColumn> */}
       <StyledColumn noMobileBorder>
         <Text color="textSubtle">{t('Market cap')}</Text>
         {mcap?.gt(0) && mcapString ? (
           <Heading scale="lg">{t('$%marketCap%', { marketCap: mcapString })}</Heading>
+        ) : (
+          <Skeleton height={24} width={126} my="4px" />
+        )}
+      </StyledColumn>
+      <StyledColumn>
+        <Text color="textSubtle">{t('Circulating supply')}</Text>
+        {cakeSupply ? (
+          <Balance decimals={0} lineHeight="1.1" fontSize="24px" bold value={cakeSupply} />
         ) : (
           <Skeleton height={24} width={126} my="4px" />
         )}
