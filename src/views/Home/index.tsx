@@ -12,7 +12,7 @@ import WinSection from './components/WinSection'
 import FarmsPoolsRow from './components/FarmsPoolsRow'
 // import Footer from './components/Footer'
 import CakeDataRow from './components/CakeDataRow'
-import Safe_AR_HTML from './components/GlideAR'
+import SafeARHTML from './components/GlideAR'
 import { WedgeTopLeft, InnerWedgeWrapper, OuterWedgeWrapper, WedgeTopRight } from './components/WedgeSvgs'
 import UserBanner from './components/UserBanner'
 

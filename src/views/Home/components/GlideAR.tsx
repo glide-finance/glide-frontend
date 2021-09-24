@@ -37,7 +37,7 @@ const Grid = styled.div`
   }
 `
 
-const AR_HTML = `
+const ARHTML = `
 <!-- include A-Frame -->
 <script src="https://aframe.io/releases/0.6.0/aframe.min.js"></script>
 <!-- include ar.js for A-Frame -->
@@ -66,4 +66,4 @@ const AR_HTML = `
 
 const mySafeHTML = DOMPurify.sanitize(AR_HTML);
 
-const App = () => <div dangerouslySetInnerHTML={{ __html: mySafeHTML }} />;
+const SafeARHTML = () => <div dangerouslySetInnerHTML={{ __html: mySafeHTML }} />;
