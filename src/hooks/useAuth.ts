@@ -57,7 +57,7 @@ const useAuth = () => {
         toastError(t('Unable to find connector'), t('The connector config is wrong'))
       }
     },
-    [t, activate, toastError],
+    [t, activate, library, toastError],
   )
 
   const logout = useCallback(() => {
