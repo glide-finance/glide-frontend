@@ -27,30 +27,16 @@ declare module 'styled-components' {
 //   }
 // `
 
-const GlobalStyle = createGlobalStyle`
-  * {
-    font-family: 'Kanit', sans-serif;
-  }
-  body {
-    position: fixed;
-    inset: 0px;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-image: url('/images/background-dark.png');
-
-    img {
-      height: auto;
-      max-width: 100%;
-    }
-  }
-`
-
 // const GlobalStyle = createGlobalStyle`
 //   * {
 //     font-family: 'Kanit', sans-serif;
 //   }
 //   body {
-//     background-color: #000;
+//     position: fixed;
+//     inset: 0px;
+//     background-size: cover;
+//     background-repeat: no-repeat;
+//     background-image: url('/images/background-dark.png');
 
 //     img {
 //       height: auto;
@@ -58,5 +44,19 @@ const GlobalStyle = createGlobalStyle`
 //     }
 //   }
 // `
+
+const GlobalStyle = createGlobalStyle`
+  * {
+    font-family: 'Kanit', sans-serif;
+  }
+  body {
+    background-color: #000;
+
+    img {
+      height: auto;
+      max-width: 100%;
+    }
+  }
+`
 
 export default GlobalStyle

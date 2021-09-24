@@ -20,7 +20,7 @@ import { useTranslation } from 'contexts/Localization'
 const useAuth = () => {
   const { t } = useTranslation()
   const dispatch = useAppDispatch()
-  const { activate, deactivate } = useWeb3React()
+  const { activate, deactivate, library } = useWeb3React()
   const { toastError } = useToast()
 
   const login = useCallback(
@@ -31,7 +31,7 @@ const useAuth = () => {
         activate(connector, async (error: Error) => {
           if (error instanceof UnsupportedChainIdError) {
             console.log(error)
-            const hasSetup = await setupNetwork(20) // specify network to switch to
+            const hasSetup = await setupNetwork(20, library) // specify network to switch to
             if (hasSetup) {
               activate(connector)
             }

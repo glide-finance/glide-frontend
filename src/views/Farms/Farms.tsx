@@ -132,7 +132,7 @@ const Farms: React.FC = () => {
   const cakePrice = usePriceCakeBusd()
   const [query, setQuery] = useState('')
   const [viewMode, setViewMode] = usePersistState(ViewMode.TABLE, { localStorageKey: 'pancake_farm_view' })
-  const { account, chainId } = useWeb3React()
+  const { account, chainId, library } = useWeb3React()
   const [sortOption, setSortOption] = useState('hot')
   const chosenFarmsLength = useRef(0)
 
@@ -457,7 +457,7 @@ const Farms: React.FC = () => {
         </ControlContainer>
         {chainId !== 20 &&
           <ConnectContainer justifyContent="center">
-            <Button onClick={()=>{setupNetwork(20)}}>{t('Please connect to Elastos to begin')}</Button>
+            <Button onClick={()=>{setupNetwork(20, library)}}>{t('Please connect to Elastos to begin')}</Button>
           </ConnectContainer>
         } 
         {renderContent()}

@@ -79,7 +79,7 @@ const CakeDataRow = () => {
         )}
       </StyledColumn>
       <StyledColumn>
-        <Text color="textSubtle">{t('Circulating supply')}</Text>
+        <Text color="textSubtle">{t('Circulating GLIDE')}</Text>
         {cakeSupply ? (
           <Balance decimals={0} lineHeight="1.1" fontSize="24px" bold value={cakeSupply} />
         ) : (
@@ -87,7 +87,7 @@ const CakeDataRow = () => {
         )}
       </StyledColumn>
       <StyledColumn>
-        <Text color="textSubtle">{t('Current emissions')}</Text>
+        <Text color="textSubtle">{t('Emission rate')}</Text>
 
         <Heading scale="lg">{t('%cakeEmissions%/block', { cakeEmissions: emissionsPerBlock })}</Heading>
       </StyledColumn>

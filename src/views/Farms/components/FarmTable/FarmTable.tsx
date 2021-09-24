@@ -12,11 +12,17 @@ export interface ITableProps {
   sortColumn?: string
 }
 
+// const Container = styled.div`
+//   filter: ${({ theme }) => theme.card.dropShadow};
+//   width: 100%;
+//   background: ${({ theme }) => theme.card.background};
+//   border-radius: 16px;
+//   margin: 16px 0px;
+// `
+
 const Container = styled.div`
   filter: ${({ theme }) => theme.card.dropShadow};
   width: 100%;
-  background: ${({ theme }) => theme.card.background};
-  border-radius: 16px;
   margin: 16px 0px;
 `
 
@@ -28,8 +34,18 @@ const TableWrapper = styled.div`
   }
 `
 
+// const StyledTable = styled.table`
+//   border-collapse: collapse;
+//   font-size: 14px;
+//   border-radius: 4px;
+//   margin-left: auto;
+//   margin-right: auto;
+//   width: 100%;
+// `
+
 const StyledTable = styled.table`
-  border-collapse: collapse;
+  border-collapse: separate; 
+  border-spacing: 0 1em;
   font-size: 14px;
   border-radius: 4px;
   margin-left: auto;
@@ -42,6 +58,16 @@ const TableBody = styled.tbody`
     td {
       font-size: 16px;
       vertical-align: middle;
+    }
+    td:first-child {
+      border-left-style: solid;
+      border-top-left-radius: 10px; 
+      border-bottom-left-radius: 10px;
+    }
+    td:last-child {
+      border-right-style: solid;
+      border-bottom-right-radius: 10px; 
+      border-top-right-radius: 10px; 
     }
   }
 `

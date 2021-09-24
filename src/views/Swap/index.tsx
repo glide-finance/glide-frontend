@@ -52,7 +52,7 @@ const Label = styled(Text)`
 
 export default function Swap({ history }: RouteComponentProps) {
   const loadedUrlParams = useDefaultsFromURLSearch()
-
+  const { account, chainId, library } = useActiveWeb3React()
   const { t } = useTranslation()
 
   // token warning stuff
@@ -73,7 +73,6 @@ export default function Swap({ history }: RouteComponentProps) {
       return !(token.address in defaultTokens)
     })
 
-  const { account, chainId } = useActiveWeb3React()
 
   // for expert mode
   const [isExpertMode] = useExpertModeManager()
@@ -389,7 +388,7 @@ export default function Swap({ history }: RouteComponentProps) {
           </AutoColumn>
           <Box mt="1rem">
             {chainId !== 20 ? (
-              <Button width="100%" onClick={()=>{setupNetwork(20)}}>{t('Please connect to Elastos to begin')}</Button>
+              <Button width="100%" onClick={()=>{setupNetwork(20, library)}}>{t('Please connect to Elastos to begin')}</Button>
             ) : swapIsUnsupported ? (
               <Button width="100%" disabled mb="4px">
                 {t('Unsupported Asset')}

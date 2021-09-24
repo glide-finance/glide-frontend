@@ -104,17 +104,17 @@ const Bridge: React.FC = () => {
       case 'elastos':
         setOriginIndex(0)
         setDestinationIndex(2)
-        setupNetwork(20)
+        setupNetwork(20, library)
         break
       case 'ethereum':
         setOriginIndex(1)
         setDestinationIndex(0)
-        setupNetwork(1)
+        setupNetwork(1, library)
         break
       case 'heco':
         setOriginIndex(2)
         setDestinationIndex(0)
-        setupNetwork(128)
+        setupNetwork(128, library)
         break
       default:
         setOriginIndex(2)
@@ -154,7 +154,7 @@ const Bridge: React.FC = () => {
   }
 
   const switchNetwork = (id) => {
-    setupNetwork(id)
+    setupNetwork(id, library)
     clearInput()
   }
 

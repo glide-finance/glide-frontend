@@ -1930,10 +1930,10 @@
     tiny-warning "^1.0.3"
     toformat "^2.0.0"
 
-"@glide-finance/uikit@^1.1.12":
-  version "1.1.12"
-  resolved "https://registry.yarnpkg.com/@glide-finance/uikit/-/uikit-1.1.12.tgz#e8d28299d156f177f501f750d431bcb8c86f6035"
-  integrity sha512-M8UgaMVjvtZBPa8o5/VX3zI453EWm71ZHTZSflBP+wqdNiu7O7Qcl3Sa9/fhKrYUjDjwrNdMW7G5FscMi0s0cA==
+"@glide-finance/uikit@^1.1.13":
+  version "1.1.13"
+  resolved "https://registry.yarnpkg.com/@glide-finance/uikit/-/uikit-1.1.13.tgz#eaf23b46dd71e783aacfba80b164ffe9940b674d"
+  integrity sha512-GR+6VIv+CQfG53s5Qr0/c9yOCVujnwe5gkSibbOifhvPe5bO2NEK6qp7+6E7iQgpM8Sakjh4nPA/3xEGD2rPuA==
   dependencies:
     "@popperjs/core" "^2.9.2"
     "@types/lodash" "^4.14.168"

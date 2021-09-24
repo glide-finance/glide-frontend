@@ -91,7 +91,7 @@ const NUMBER_OF_POOLS_VISIBLE = 12
 const Pools: React.FC = () => {
   const location = useLocation()
   const { t } = useTranslation()
-  const { account, chainId } = useWeb3React()
+  const { account, chainId, library } = useWeb3React()
   const { pools: poolsWithoutAutoVault, userDataLoaded } = usePools(account)
   const [stakedOnly, setStakedOnly] = usePersistState(false, { localStorageKey: 'pancake_pool_staked' })
   const [numberOfPoolsVisible, setNumberOfPoolsVisible] = useState(NUMBER_OF_POOLS_VISIBLE)
@@ -343,7 +343,7 @@ const Pools: React.FC = () => {
         )}
         {chainId !== 20 &&
           <ConnectContainer justifyContent="center">
-            <Button onClick={()=>{setupNetwork(20)}}>{t('Please connect to Elastos to begin')}</Button>
+            <Button onClick={()=>{setupNetwork(20, library)}}>{t('Please connect to Elastos to begin')}</Button>
           </ConnectContainer>
         } 
         {/* {viewMode === ViewMode.CARD ? cardLayout : tableLayout} */}
