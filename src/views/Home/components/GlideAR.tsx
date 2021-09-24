@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { Flex, Text, Heading, Skeleton } from '@glide-finance/uikit'
 import { useTranslation } from 'contexts/Localization'
-import DOMPurify from 'components/dompurify'
+import DOMPurify from 'dompurify'
 
 const StyledColumn = styled(Flex)<{ noMobileBorder?: boolean }>`
   flex-direction: column;
