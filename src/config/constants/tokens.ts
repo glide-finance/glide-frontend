@@ -72,7 +72,7 @@ const tokens = {
       20: '0x9c425FA88d84D40eE7Ec48391d1d00B07D53636B'
     },
     decimals: 18,
-    projectLink: 'https://pancakeswap.finance/',
+    projectLink: 'https://glidefinance.io/',
   },
   wela: {
     symbol: 'wELA',
@@ -105,7 +105,7 @@ const tokens = {
       128: '0x5545153CCFcA01fbd7Dd11C0b23ba694D9509A6F'
     },
     decimals: 18,
-    projectLink: 'https://pancakeswap.finance/',
+    projectLink: 'https://www.huobi.com/',
   },
   sugar: {
     symbol: 'SUGAR',
@@ -115,7 +115,7 @@ const tokens = {
       20: '0x3793F5e5B952b751097E1C833E647a77Ae6E51D3'
     },
     decimals: 18,
-    projectLink: 'https://pancakeswap.finance/',
+    projectLink: 'https://glidefinance.io/',
   },
   busd: {
     symbol: 'BUSD',
@@ -125,7 +125,7 @@ const tokens = {
       20: '0xF9Ca2eA3b1024c0DB31adB224B407441bECC18BB'
     },
     decimals: 8,
-    projectLink: 'https://www.paxos.com/busd/',
+    projectLink: 'https://www.hecochain.com/',
   }
 }
 

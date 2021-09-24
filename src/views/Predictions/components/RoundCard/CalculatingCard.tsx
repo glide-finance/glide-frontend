@@ -1,5 +1,5 @@
 import React from 'react'
-import { Card, CardBody, Flex, Spinner, WaitIcon, TooltipText, useTooltip, InfoIcon } from '@glide-finance/uikit'
+import { Card, CardBody, Flex, ButterflyLoader, WaitIcon, TooltipText, useTooltip, InfoIcon } from '@glide-finance/uikit'
 import { useTranslation } from 'contexts/Localization'
 import { NodeRound, BetPosition } from 'state/types'
 import { useGetTotalIntervalBlocks } from 'state/predictions/hooks'
@@ -36,7 +36,7 @@ const CalculatingCard: React.FC<CalculatingCardProps> = ({ round }) => {
           <MultiplierArrow isDisabled />
           <RoundResultBox>
             <Flex alignItems="center" justifyContent="center" flexDirection="column">
-              <Spinner size={96} />
+              <ButterflyLoader size={96} />
               <Flex mt="8px" ref={targetRef}>
                 <TooltipText>{t('Calculating')}</TooltipText>
                 <InfoIcon ml="4px" />

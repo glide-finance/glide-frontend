@@ -59,7 +59,7 @@ const ApyCalculatorModal: React.FC<ApyCalculatorModalProps> = ({
   displayApr,
   linkLabel,
   linkHref,
-  earningTokenSymbol = 'CAKE',
+  earningTokenSymbol = 'GLIDE',
   roundingDecimals = 2,
   compoundFrequency = 1,
   performanceFee = 0,

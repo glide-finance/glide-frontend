@@ -7,7 +7,7 @@ import {
   CardHeader,
   CardBody,
   Flex,
-  Spinner,
+  ButterflyLoader,
   Skeleton,
   Tag,
   Button,
@@ -51,7 +51,7 @@ const AuctionDetails: React.FC<AuctionDetailsProps> = ({ auction, conncetedBidde
         </CardHeader>
         <CardBody>
           <Flex justifyContent="center" alignItems="center" height="100%">
-            <Spinner />
+            <ButterflyLoader />
           </Flex>
         </CardBody>
       </AuctionDetailsCard>

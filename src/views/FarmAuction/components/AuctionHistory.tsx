@@ -11,7 +11,7 @@ import {
   ArrowLastIcon,
   IconButton,
   BunnyPlaceholderIcon,
-  Spinner,
+  ButterflyLoader,
   useMatchBreakpoints,
 } from '@glide-finance/uikit'
 import { useTranslation } from 'contexts/Localization'
@@ -57,7 +57,7 @@ const AuctionHistory: React.FC<AuctionHistoryProps> = ({ mostRecentClosedAuction
     <AuctionLeaderboardTable bidders={selectedAuction.bidders} noBidsText="No bids were placed in this auction" />
   ) : (
     <Flex justifyContent="center" alignItems="center" p="24px" height="250px">
-      <Spinner />
+      <ButterflyLoader />
     </Flex>
   )
 
