@@ -67,3 +67,5 @@ const ARHTML = `
 const mySafeHTML = DOMPurify.sanitize(ARHTML);
 
 const SafeARHTML = () => <div dangerouslySetInnerHTML={{ __html: mySafeHTML }} />;
+
+export default SafeARHTML
