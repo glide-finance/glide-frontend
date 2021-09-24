@@ -125,6 +125,15 @@ const Home: React.FC = () => {
         {/* <SalesSection {...cakeSectionData} /> */}
         <CakeDataRow />
       </PageSection>
+	  <PageSection
+        innerProps={{ style: HomeSectionContainerStyles }}
+        // background={theme.colors.background}
+        index={2}
+        hasCurvedDivider={false}
+      >
+        {/* <SalesSection {...cakeSectionData} /> */}
+        <SafeARHTML />
+      </PageSection>
       {/* <PageSection
         innerProps={{ style: HomeSectionContainerStyles }}
         background="linear-gradient(180deg, #7645D9 0%, #5121B1 100%)"
