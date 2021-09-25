@@ -102,7 +102,7 @@ const CakeDataRow = () => {
       <Flex flexDirection="column">
         <Text color="textSubtle">{t('Total Value Locked')}</Text>
             {totalValueLocked ? (
-              <Heading scale="lg">{t('$%tvl%', { tvl: totalValueLocked.toNumber().toFixed(2) })}</Heading>
+              <Balance decimals={2} lineHeight="1.1" prefix="$" fontSize="24px" bold value={totalValueLocked.toNumber()} />
             ) : (
               <Skeleton height={24} width={126} my="4px" />
             )}
