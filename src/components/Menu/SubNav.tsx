@@ -5,7 +5,7 @@ import { ButtonMenu, ButtonMenuItem } from '@glide-finance/uikit'
 import { useTranslation } from 'contexts/Localization'
 
 const StyledNav = styled.nav`
-  margin-bottom: 40px;
+  margin-bottom: 20px;
 `
 
 const getActiveIndex = (pathname: string): number => {

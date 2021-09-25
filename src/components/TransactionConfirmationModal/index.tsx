@@ -10,7 +10,7 @@ import {
   Flex,
   Box,
   Link,
-  Spinner,
+  ButterflyLoader,
   Modal,
   InjectedModalProps,
 } from '@glide-finance/uikit'
@@ -38,7 +38,7 @@ function ConfirmationPendingContent({ pendingText }: { pendingText: string }) {
   return (
     <Wrapper>
       <ConfirmedIcon>
-        <Spinner />
+        <ButterflyLoader />
       </ConfirmedIcon>
       <AutoColumn gap="12px" justify="center">
         <Text fontSize="20px">{t('Waiting For Confirmation')}</Text>

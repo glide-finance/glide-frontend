@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom'
 import styled from 'styled-components'
 import BigNumber from 'bignumber.js'
 import { useWeb3React } from '@web3-react/core'
-import { Heading, Flex, Image, Text, Button } from '@glide-finance/uikit'
+import { Heading, GradientHeading, Flex, Image, Text, Button } from '@glide-finance/uikit'
 import orderBy from 'lodash/orderBy'
 import partition from 'lodash/partition'
 import { useTranslation } from 'contexts/Localization'
@@ -91,7 +91,7 @@ const NUMBER_OF_POOLS_VISIBLE = 12
 const Pools: React.FC = () => {
   const location = useLocation()
   const { t } = useTranslation()
-  const { account, chainId } = useWeb3React()
+  const { account, chainId, library } = useWeb3React()
   const { pools: poolsWithoutAutoVault, userDataLoaded } = usePools(account)
   const [stakedOnly, setStakedOnly] = usePersistState(false, { localStorageKey: 'pancake_pool_staked' })
   const [numberOfPoolsVisible, setNumberOfPoolsVisible] = useState(NUMBER_OF_POOLS_VISIBLE)
@@ -269,10 +269,10 @@ const Pools: React.FC = () => {
         <PageHeader>
           <Flex justifyContent="space-between" flexDirection={['column', null, null, 'row']}>
             <Flex flex="1" flexDirection="column" mr={['8px', 0]}>
-              <Heading as="h1" scale="xxl" color="secondary" mb="24px">
+              <GradientHeading as="h1" scale="xxl" color="glide" mb="24px">
                 {t('Sugar Pools')}
                 {/* translate */}
-              </Heading>
+              </GradientHeading>
               <Heading scale="md" color="text">
                 {t('Stake tokens to earn.')}
               </Heading>
@@ -343,7 +343,7 @@ const Pools: React.FC = () => {
         )}
         {chainId !== 20 &&
           <ConnectContainer justifyContent="center">
-            <Button onClick={()=>{setupNetwork(20)}}>{t('Please connect to Elastos to begin')}</Button>
+            <Button onClick={()=>{setupNetwork(20, library)}}>{t('Please connect to Elastos to begin')}</Button>
           </ConnectContainer>
         } 
         {/* {viewMode === ViewMode.CARD ? cardLayout : tableLayout} */}

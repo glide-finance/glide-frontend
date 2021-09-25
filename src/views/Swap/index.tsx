@@ -21,9 +21,8 @@ import { ArrowWrapper, SwapCallbackError, Wrapper } from './components/styleds'
 import TradePrice from './components/TradePrice'
 import ImportTokenWarningModal from './components/ImportTokenWarningModal'
 import ProgressSteps from './components/ProgressSteps'
-import { AppHeader, AppBody } from '../../components/App'
+import { GradientHeader, AppBody } from '../../components/App'
 import ConnectWalletButton from '../../components/ConnectWalletButton'
-
 import { INITIAL_ALLOWED_SLIPPAGE } from '../../config/constants'
 import useActiveWeb3React from '../../hooks/useActiveWeb3React'
 import { useCurrency, useAllTokens } from '../../hooks/Tokens'
@@ -49,10 +48,16 @@ const Label = styled(Text)`
   font-weight: bold;
   color: ${({ theme }) => theme.colors.secondary};
 `
-
+// radial-gradient(35% 50% at 50% 50%, #f2ad6c 0%, rgba(242, 173, 108, 0.4) 24.61%, rgba(0, 0, 0, 0) 80%);
+const SwapPage = styled(Page)`
+  background: radial-gradient(40% 55% at 45% 57.5%, #f2ad6c 0%, rgba(242, 173, 108, 0.4) 25%, rgba(6, 9, 20, 0) 72.5%),
+    radial-gradient(40% 45% at 55% 47.5%, #48b9ff 0%, rgba(72, 185, 255, 0.4) 25%, rgba(6, 9, 20, 0) 72.5%);
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  background-position-y: -13vh;
+`
 export default function Swap({ history }: RouteComponentProps) {
   const loadedUrlParams = useDefaultsFromURLSearch()
-
+  const { account, chainId, library } = useActiveWeb3React()
   const { t } = useTranslation()
 
   // token warning stuff
@@ -72,8 +77,6 @@ export default function Swap({ history }: RouteComponentProps) {
     urlLoadedTokens.filter((token: Token) => {
       return !(token.address in defaultTokens)
     })
-
-  const { account, chainId } = useActiveWeb3React()
 
   // for expert mode
   const [isExpertMode] = useExpertModeManager()
@@ -304,9 +307,9 @@ export default function Swap({ history }: RouteComponentProps) {
   )
 
   return (
-    <Page>
+    <SwapPage>
       <AppBody>
-        <AppHeader title={t('Exchange')} subtitle={t('Trade tokens in an instant')} />
+        <GradientHeader title={t('Exchange')} subtitle={t('Trade tokens effortlessly')} />
         <Wrapper id="swap-page">
           <AutoColumn gap="md">
             <CurrencyInputPanel
@@ -389,7 +392,14 @@ export default function Swap({ history }: RouteComponentProps) {
           </AutoColumn>
           <Box mt="1rem">
             {chainId !== 20 ? (
-              <Button width="100%" onClick={()=>{setupNetwork(20)}}>{t('Please connect to Elastos to begin')}</Button>
+              <Button
+                width="100%"
+                onClick={() => {
+                  setupNetwork(20, library)
+                }}
+              >
+                {t('Please connect to Elastos to begin')}
+              </Button>
             ) : swapIsUnsupported ? (
               <Button width="100%" disabled mb="4px">
                 {t('Unsupported Asset')}
@@ -500,6 +510,6 @@ export default function Swap({ history }: RouteComponentProps) {
       ) : (
         <UnsupportedCurrencyFooter currencies={[currencies.INPUT, currencies.OUTPUT]} />
       )}
-    </Page>
+    </SwapPage>
   )
 }

@@ -51,6 +51,8 @@ const CellInner = styled.div`
 `
 
 const StyledTr = styled.tr`
+  background: ${({ theme }) => theme.colors.gradients.bubblegum};
+  border-radius: 16px;
   cursor: pointer;
   border-bottom: 2px solid ${({ theme }) => theme.colors.cardBorder};
 `

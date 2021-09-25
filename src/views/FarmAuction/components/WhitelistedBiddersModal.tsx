@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import { Modal, Box, Text, Flex, Input, OpenNewIcon, useMatchBreakpoints, Spinner } from '@glide-finance/uikit'
+import { Modal, Box, Text, Flex, Input, OpenNewIcon, useMatchBreakpoints, ButterflyLoader } from '@glide-finance/uikit'
 import { useTranslation } from 'contexts/Localization'
 import useTheme from 'hooks/useTheme'
 import { FarmAuctionBidderConfig } from 'config/constants/types'
@@ -76,7 +76,7 @@ const WhitelistedBiddersModal: React.FC<WhitelistedBiddersModalProps> = ({ onDis
     filteredBiders.map((bidder) => <AddressRow key={bidder.account} bidder={bidder} isMobile={isXs || isSm} />)
   ) : (
     <Flex justifyContent="center" alignItems="center" py="24px">
-      <Spinner />
+      <ButterflyLoader />
     </Flex>
   )
 

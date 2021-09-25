@@ -10,7 +10,7 @@ BigNumber.config({
 export const ESC_BLOCK_TIME = 5
 
 export const BASE_BSC_SCAN_URLS = {
-  [ChainId.MAINNET]: 'https://esc.elastios.io',
+  [ChainId.MAINNET]: 'https://esc.elastos.io',
   [ChainId.TESTNET]: 'https://eth-testnet.elastos.io',
 }
 

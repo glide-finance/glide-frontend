@@ -62,6 +62,7 @@ export const coinTransfer = async function(currency: any, request: any, amount: 
 
     // if token, then call erc677Contract, otherwise nativeSourceMediator
     if (bridgeType === "token" && isToken) {
+        const type = 'relayTokens';
         const tokenSourceMediator = getNativeSourceMediator(request.contract, library.getSigner(account) );
         const gasPrice = await fetchGasPrice(library.getSigner(account));
 
@@ -73,7 +74,7 @@ export const coinTransfer = async function(currency: any, request: any, amount: 
         await receiptToken.wait(1);
         toastSuccess(t('Bridging in process. Awaiting relay from mediator.'));
         if (destNetwork === 20) {
-            callBridgeFaucet(receiptToken.hash, isToken, sourceNetwork, recipient, toastSuccess, toastError, t);
+            callBridgeFaucet(receiptToken.hash, type, sourceNetwork, recipient, toastSuccess, toastError, t);
         }
 
         await detectExchangeFinished(account, bridgeType, sourceNetwork, destNetwork, destinationParamsOtherSide.contract, destinationParamsOtherSide,
@@ -81,6 +82,7 @@ export const coinTransfer = async function(currency: any, request: any, amount: 
             toastSuccess, toastError, t, fromDestBlock);
 
     } else if (bridgeType === "native" && isToken) {
+        const type = 'transferAndCall';
         const tokenSourceMediator = getErc677Contract(currency.address, library.getSigner(account), );
         const gasPrice = await fetchGasPrice(library.getSigner(account));
 
@@ -91,15 +93,16 @@ export const coinTransfer = async function(currency: any, request: any, amount: 
         await receiptErc677.wait(1);
         toastSuccess(t('Bridging in process. Awaiting relay from mediator.'));
         if (destNetwork === 20) {
-            callBridgeFaucet(receiptErc677.hash, isToken, sourceNetwork, recipient, toastSuccess, toastError, t);
+            callBridgeFaucet(receiptErc677.hash, type, sourceNetwork, recipient, toastSuccess, toastError, t);
         }
 
         await detectExchangeFinished(account, bridgeType, sourceNetwork, destNetwork, reverseBridgeParamsOtherSide.contract, destinationParamsOtherSide,
             receiptErc677.hash, isToken,
             toastSuccess, toastError, t, fromDestBlock);
     } else {
+        const type = 'relayTokens';
         const nativeSourceMediator = getNativeSourceMediator(request.contract, library.getSigner(account));
-        
+
         const receiptNative = await nativeSourceMediator["relayTokens(address)"](recipient, {
             from: from,
             value: value
@@ -107,7 +110,7 @@ export const coinTransfer = async function(currency: any, request: any, amount: 
         await receiptNative.wait(1);
         toastSuccess(t('Bridging in process. Awaiting relay from mediator.'));
         if (destNetwork === 20) {
-            callBridgeFaucet(receiptNative.hash, isToken, sourceNetwork, recipient, toastSuccess, toastError, t);
+            callBridgeFaucet(receiptNative.hash, type, sourceNetwork, recipient, toastSuccess, toastError, t);
         }
 
         await detectExchangeFinished(account, bridgeType, sourceNetwork, destNetwork, destinationParamsOtherSide.contract, destinationParamsOtherSide,
@@ -133,14 +136,10 @@ export const detectExchangeFinished = async function(recipient: any, bridgeType:
         sourceMediator = getNativeSourceMediator(sourceMediatorContract, destProvider, );
         tokensBridgedEvent = ethers.utils.id("TokensBridged(address,uint256,bytes32)");
         eventAddressArgument = 0;
-    } else if (bridgeType === "token" && isToken) {
+    } else {
         sourceMediator = getTokenSourceMediator(sourceMediatorContract, destProvider, );
         tokensBridgedEvent = ethers.utils.id("TokensBridged(address,address,uint256,bytes32)");
         eventAddressArgument = 1;
-    } else {
-        sourceMediator = getNativeSourceMediator(sourceMediatorContract, destProvider, );
-        tokensBridgedEvent = ethers.utils.id("TokensBridged(address,uint256,bytes32)");
-        eventAddressArgument = 0;
     }
 
     // get when transfer is finished 

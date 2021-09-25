@@ -2,7 +2,7 @@ import React, { useEffect, useCallback, useState, useMemo, useRef } from 'react'
 import { Route, useRouteMatch, useLocation, NavLink } from 'react-router-dom'
 import BigNumber from 'bignumber.js'
 import { useWeb3React } from '@web3-react/core'
-import { Image, Heading, RowType, Toggle, Text, Button, ArrowForwardIcon, Flex } from '@glide-finance/uikit'
+import { Image, Heading, GradientHeading, RowType, Toggle, Text, Button, ArrowForwardIcon, Flex } from '@glide-finance/uikit'
 import { ChainId } from '@glide-finance/sdk'
 import styled from 'styled-components'
 import FlexLayout from 'components/Layout/Flex'
@@ -58,6 +58,10 @@ const ToggleWrapper = styled.div`
     margin-left: 8px;
   }
 `
+
+// const Gradient = styled(GradientHeading)`
+//   display:inline-block; 
+// `
 
 const LabelWrapper = styled.div`
   > ${Text} {
@@ -128,7 +132,7 @@ const Farms: React.FC = () => {
   const cakePrice = usePriceCakeBusd()
   const [query, setQuery] = useState('')
   const [viewMode, setViewMode] = usePersistState(ViewMode.TABLE, { localStorageKey: 'pancake_farm_view' })
-  const { account, chainId } = useWeb3React()
+  const { account, chainId, library } = useWeb3React()
   const [sortOption, setSortOption] = useState('hot')
   const chosenFarmsLength = useRef(0)
 
@@ -392,9 +396,9 @@ const Farms: React.FC = () => {
     <>
       <Page>
         <PageHeader>
-          <Heading as="h1" scale="xxl" color="secondary" mb="24px">
+          <GradientHeading as="h1" scale="xxl" color="glide" mb="24px">
             {t('Farms')}
-          </Heading>
+          </GradientHeading>
           <Heading scale="lg" color="text">
             {t('Stake LP tokens to earn.')}
           </Heading>
@@ -453,7 +457,7 @@ const Farms: React.FC = () => {
         </ControlContainer>
         {chainId !== 20 &&
           <ConnectContainer justifyContent="center">
-            <Button onClick={()=>{setupNetwork(20)}}>{t('Please connect to Elastos to begin')}</Button>
+            <Button onClick={()=>{setupNetwork(20, library)}}>{t('Please connect to Elastos to begin')}</Button>
           </ConnectContainer>
         } 
         {renderContent()}

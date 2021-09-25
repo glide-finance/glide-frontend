@@ -53,6 +53,7 @@ const Container = styled.div<{ expanded }>`
   overflow: hidden;
   background: ${({ theme }) => theme.colors.background};
   display: flex;
+  border-radius: 16px;
   width: 100%;
   flex-direction: column-reverse;
   padding: 24px;
