@@ -6,7 +6,6 @@ import { getBalanceNumber, formatLocalisedCompactNumber } from 'utils/formatBala
 import { useFarms, usePriceCakeBusd } from 'state/farms/hooks'
 import { Flex, Text, Heading, Skeleton } from '@glide-finance/uikit'
 import { useTranslation } from 'contexts/Localization'
-import { useWeb3React } from '@web3-react/core'
 import { Farm, Pool } from 'state/types'
 import Balance from 'components/Balance'
 import {getGlideCurrentEmissions} from 'utils/calls'
