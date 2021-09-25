@@ -50,7 +50,7 @@ const GlobalStyle = createGlobalStyle`
     font-family: 'Nunito', sans-serif;
   }
   body {
-    background-color: #000;
+    background-color: #060914;
 
     img {
       height: auto;

@@ -37,9 +37,12 @@ const InputPanel = styled.div<{ hideInput?: boolean }>`
   background-color: ${({ theme }) => theme.colors.background};
   z-index: 1;
 `
+
+// background-color: ${({ theme }) => theme.colors.input};
+
 const Container = styled.div<{ hideInput: boolean }>`
   border-radius: 16px;
-  background-color: ${({ theme }) => theme.colors.input};
+  background: linear-gradient(250deg, #17264f 0%, hsl(220, 51%, 23%) 100%);
   box-shadow: ${({ theme }) => theme.shadows.inset};
 `
 interface CurrencyInputPanelProps {

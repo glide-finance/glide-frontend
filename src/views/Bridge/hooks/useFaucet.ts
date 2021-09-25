@@ -37,7 +37,7 @@ export const useCheckFaucetStatus = (currency, valid, destination) => {
   return isFaucetAvailable
 }
 
-export const callBridgeFaucet = async (txID: string, isToken: boolean, chainID: number, destAddress: string,
+export const callBridgeFaucet = async (txID: string, type: string, chainID: number, destAddress: string,
     toastSuccess: any, toastError: any, t: any) => {
     
     try {
@@ -57,7 +57,7 @@ export const callBridgeFaucet = async (txID: string, isToken: boolean, chainID: 
                         txID: txID,
                         chainID: chainID,
                         address: destAddress,
-                        isToken: isToken
+                        type: type
                     }),
                 });
 
