@@ -12,7 +12,7 @@ import { AutoColumn, ColumnCenter } from '../../components/Layout/Column'
 import TransactionConfirmationModal, { ConfirmationModalContent } from '../../components/TransactionConfirmationModal'
 import CurrencyInputPanel from '../../components/CurrencyInputPanel'
 import { MinimalPositionCard } from '../../components/PositionCard'
-import { AppHeader, AppBody } from '../../components/App'
+import { GradientHeader, AppBody } from '../../components/App'
 import { RowBetween, RowFixed } from '../../components/Layout/Row'
 import ConnectWalletButton from '../../components/ConnectWalletButton'
 import { LightGreyCard } from '../../components/Card'
@@ -36,7 +36,7 @@ import { useBurnActionHandlers, useDerivedBurnInfo, useBurnState } from '../../s
 
 import { Field } from '../../state/burn/actions'
 import { useUserSlippageTolerance } from '../../state/user/hooks'
-import Page from '../Page'
+import GradientPage from '../GradientPage'
 
 const BorderCard = styled.div`
   border: solid 1px ${({ theme }) => theme.colors.cardBorder};
@@ -111,7 +111,8 @@ export default function RemoveLiquidity({
       { name: 'chainId', type: 'uint256' },
       { name: 'verifyingContract', type: 'address' },
     ]
-    const domain = { // popsicle
+    const domain = {
+      // popsicle
       name: 'GlideSwap LPs',
       version: '1',
       chainId,
@@ -451,9 +452,9 @@ export default function RemoveLiquidity({
   )
 
   return (
-    <Page>
+    <GradientPage>
       <AppBody>
-        <AppHeader
+        <GradientHeader
           backTo="/pool"
           title={t('Remove %assetA%-%assetB% liquidity', {
             assetA: currencyA?.symbol ?? '',
@@ -670,6 +671,6 @@ export default function RemoveLiquidity({
           <MinimalPositionCard showUnwrapped={oneCurrencyIsWETH} pair={pair} />
         </AutoColumn>
       ) : null}
-    </Page>
+    </GradientPage>
   )
 }

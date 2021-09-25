@@ -30,7 +30,7 @@ const StyledBalanceText = styled(Text)`
 `
 
 const FixedContentRow = styled.div`
-  padding: 4px 20px;
+  padding: 4px 28px;
   height: 56px;
   display: grid;
   grid-gap: 16px;
@@ -42,7 +42,7 @@ function Balance({ balance }: { balance: CurrencyAmount }) {
 }
 
 const MenuItem = styled(RowBetween)<{ disabled: boolean; selected: boolean }>`
-  padding: 4px 20px;
+  padding: 4px 28px;
   height: 56px;
   display: grid;
   grid-template-columns: auto minmax(auto, 1fr) minmax(0, 72px);

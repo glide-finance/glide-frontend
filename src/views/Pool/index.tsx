@@ -10,11 +10,11 @@ import { useTokenBalancesWithLoadingIndicator } from '../../state/wallet/hooks'
 import { usePairs } from '../../hooks/usePairs'
 import { toV2LiquidityToken, useTrackedTokenPairs } from '../../state/user/hooks'
 import Dots from '../../components/Loader/Dots'
-import { AppHeader, AppBody } from '../../components/App'
-import Page from '../Page'
+import { GradientHeader, AppBody } from '../../components/App'
+import GradientPage from '../GradientPage'
 
 const Body = styled(CardBody)`
-  background-color: ${({ theme }) => theme.colors.dropdownDeep};
+  background-color: ${({ theme }) => theme.colors.backgroundAlt};
 `
 
 export default function Pool() {
@@ -83,9 +83,9 @@ export default function Pool() {
   }
 
   return (
-    <Page>
+    <GradientPage>
       <AppBody>
-        <AppHeader title={t('Your Liquidity')} subtitle={t('Remove liquidity to receive tokens back')} />
+        <GradientHeader title={t('Your Liquidity')} subtitle={t('Remove liquidity to receive tokens back')} />
         <Body>
           {renderBody()}
           {account && !v2IsLoading && (
@@ -105,6 +105,6 @@ export default function Pool() {
           </Button>
         </CardFooter>
       </AppBody>
-    </Page>
+    </GradientPage>
   )
 }

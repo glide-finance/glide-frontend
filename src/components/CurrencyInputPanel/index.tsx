@@ -38,8 +38,6 @@ const InputPanel = styled.div<{ hideInput?: boolean }>`
   z-index: 1;
 `
 
-// background-color: ${({ theme }) => theme.colors.input};
-
 const Container = styled.div<{ hideInput: boolean }>`
   border-radius: 16px;
   background: linear-gradient(250deg, #17264f 0%, hsl(220, 51%, 23%) 100%);

@@ -2,7 +2,17 @@ import React, { useEffect, useCallback, useState, useMemo, useRef } from 'react'
 import { Route, useRouteMatch, useLocation, NavLink } from 'react-router-dom'
 import BigNumber from 'bignumber.js'
 import { useWeb3React } from '@web3-react/core'
-import { Image, Heading, GradientHeading, RowType, Toggle, Text, Button, ArrowForwardIcon, Flex } from '@glide-finance/uikit'
+import {
+  Image,
+  Heading,
+  GradientHeading,
+  RowType,
+  Toggle,
+  Text,
+  Button,
+  ArrowForwardIcon,
+  Flex,
+} from '@glide-finance/uikit'
 import { ChainId } from '@glide-finance/sdk'
 import styled from 'styled-components'
 import FlexLayout from 'components/Layout/Flex'
@@ -29,7 +39,6 @@ import FarmTabButtons from './components/FarmTabButtons'
 import { RowProps } from './components/FarmTable/Row'
 import ToggleView from './components/ToggleView/ToggleView'
 import { DesktopColumnSchema, ViewMode } from './components/types'
-
 
 const ControlContainer = styled.div`
   display: flex;
@@ -60,7 +69,7 @@ const ToggleWrapper = styled.div`
 `
 
 // const Gradient = styled(GradientHeading)`
-//   display:inline-block; 
+//   display:inline-block;
 // `
 
 const LabelWrapper = styled.div`
@@ -174,7 +183,13 @@ const Farms: React.FC = () => {
         }
         const totalLiquidity = new BigNumber(farm.lpTotalInQuoteToken).times(farm.quoteToken.busdPrice)
         const { glideRewardsApr, lpRewardsApr } = isActive
-          ? getFarmApr(new BigNumber(farm.poolWeight), cakePrice, totalLiquidity, farm.lpAddresses[ChainId.MAINNET], currentBlock)
+          ? getFarmApr(
+              new BigNumber(farm.poolWeight),
+              cakePrice,
+              totalLiquidity,
+              farm.lpAddresses[ChainId.MAINNET],
+              currentBlock,
+            )
           : { glideRewardsApr: 0, lpRewardsApr: 0 }
 
         return { ...farm, apr: glideRewardsApr, lpRewardsApr, liquidity: totalLiquidity }
@@ -400,9 +415,9 @@ const Farms: React.FC = () => {
             {t('Farms')}
           </GradientHeading>
           <Heading scale="lg" color="text">
-            {t('Stake LP tokens to earn.')}
+            {t('Stake LP tokens to earn')}
           </Heading>
-        {/* <NavLink exact activeClassName="active" to="/farms/auction" id="lottery-pot-banner">
+          {/* <NavLink exact activeClassName="active" to="/farms/auction" id="lottery-pot-banner">
           <Button p="0" variant="text">
             <Text color="primary" bold fontSize="16px" mr="4px">
               {t('Community Auctions')}
@@ -455,11 +470,17 @@ const Farms: React.FC = () => {
             </LabelWrapper>
           </FilterContainer>
         </ControlContainer>
-        {chainId !== 20 &&
+        {chainId !== 20 && (
           <ConnectContainer justifyContent="center">
-            <Button onClick={()=>{setupNetwork(20, library)}}>{t('Please connect to Elastos to begin')}</Button>
+            <Button
+              onClick={() => {
+                setupNetwork(20, library)
+              }}
+            >
+              {t('Please connect to Elastos to begin')}
+            </Button>
           </ConnectContainer>
-        } 
+        )}
         {renderContent()}
         {account && !userDataLoaded && stakedOnly && (
           <Flex justifyContent="center">

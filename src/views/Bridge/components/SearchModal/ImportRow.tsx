@@ -12,7 +12,7 @@ import { useIsUserAddedToken, useIsTokenActive } from 'hooks/Tokens'
 import { useTranslation } from 'contexts/Localization'
 
 const TokenSection = styled.div<{ dim?: boolean }>`
-  padding: 4px 20px;
+  padding: 4px 28px;
   height: 56px;
   display: grid;
   grid-template-columns: auto minmax(auto, 1fr) auto;

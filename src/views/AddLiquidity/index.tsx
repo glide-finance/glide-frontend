@@ -13,7 +13,7 @@ import { AutoColumn, ColumnCenter } from '../../components/Layout/Column'
 import TransactionConfirmationModal, { ConfirmationModalContent } from '../../components/TransactionConfirmationModal'
 import CurrencyInputPanel from '../../components/CurrencyInputPanel'
 import { DoubleCurrencyLogo } from '../../components/Logo'
-import { AppHeader, AppBody } from '../../components/App'
+import { GradientHeader, AppBody } from '../../components/App'
 import { MinimalPositionCard } from '../../components/PositionCard'
 import Row, { RowBetween } from '../../components/Layout/Row'
 import ConnectWalletButton from '../../components/ConnectWalletButton'
@@ -35,7 +35,7 @@ import Dots from '../../components/Loader/Dots'
 import ConfirmAddModalBottom from './ConfirmAddModalBottom'
 import { currencyId } from '../../utils/currencyId'
 import PoolPriceBar from './PoolPriceBar'
-import Page from '../Page'
+import GradientPage from '../GradientPage'
 
 export default function AddLiquidity({
   match: {
@@ -303,9 +303,9 @@ export default function AddLiquidity({
   )
 
   return (
-    <Page>
+    <GradientPage>
       <AppBody>
-        <AppHeader
+        <GradientHeader
           title={t('Add Liquidity')}
           subtitle={t('Add liquidity to receive LP tokens')}
           helper={t(
@@ -448,6 +448,6 @@ export default function AddLiquidity({
       ) : (
         <UnsupportedCurrencyFooter currencies={[currencies.CURRENCY_A, currencies.CURRENCY_B]} />
       )}
-    </Page>
+    </GradientPage>
   )
 }

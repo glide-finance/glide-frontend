@@ -271,10 +271,9 @@ const Pools: React.FC = () => {
             <Flex flex="1" flexDirection="column" mr={['8px', 0]}>
               <GradientHeading as="h1" scale="xxl" color="glide" mb="24px">
                 {t('Sugar Pools')}
-                {/* translate */}
               </GradientHeading>
-              <Heading scale="md" color="text">
-                {t('Stake tokens to earn.')}
+              <Heading scale="lg" color="text">
+                {t('Stake tokens to earn')}
               </Heading>
               {/* <Heading scale="md" color="text">
                 {t('High APR, low risk.')}
@@ -341,11 +340,17 @@ const Pools: React.FC = () => {
             <Loading />
           </Flex>
         )}
-        {chainId !== 20 &&
+        {chainId !== 20 && (
           <ConnectContainer justifyContent="center">
-            <Button onClick={()=>{setupNetwork(20, library)}}>{t('Please connect to Elastos to begin')}</Button>
+            <Button
+              onClick={() => {
+                setupNetwork(20, library)
+              }}
+            >
+              {t('Please connect to Elastos to begin')}
+            </Button>
           </ConnectContainer>
-        } 
+        )}
         {/* {viewMode === ViewMode.CARD ? cardLayout : tableLayout} */}
         {cardLayout}
         <div ref={loadMoreRef} />

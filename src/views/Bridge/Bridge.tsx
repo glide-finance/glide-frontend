@@ -1,7 +1,16 @@
 import React, { useEffect, useCallback, useState } from 'react'
 import styled from 'styled-components'
 import { Currency, CurrencyAmount, currencyEquals, ETHER, Token } from '@glide-finance/sdk'
-import { Flex, Button, Text, ArrowForwardIcon, useModal, Heading, GradientHeading, AutoRenewIcon } from '@glide-finance/uikit'
+import {
+  Flex,
+  Button,
+  Text,
+  ArrowForwardIcon,
+  useModal,
+  Heading,
+  GradientHeading,
+  AutoRenewIcon,
+} from '@glide-finance/uikit'
 import PageHeader from 'components/PageHeader'
 import { useTranslation } from 'contexts/Localization'
 import SwapWarningTokens from 'config/constants/swapWarningTokens'
@@ -20,8 +29,9 @@ import Select, { OptionProps } from './components/Select'
 import { AutoColumn } from '../../components/Layout/Column'
 import BridgeInputPanel from './components/BridgeInputPanel'
 import { AutoRow } from '../../components/Layout/Row'
-import Page from '../../components/Layout/Page'
+import Page from './components/Page'
 import Body from './components/Body'
+import { GradientHeader } from '../../components/App'
 import { ApprovalState, useApproveCallbackFromTrade } from '../../hooks/useApproveCallback'
 import useWrapCallback, { WrapType } from '../../hooks/useWrapCallback'
 import { Field } from '../../state/swap/actions'
@@ -31,15 +41,26 @@ import { maxAmountSpend } from '../../utils/maxAmountSpend'
 // import CircleLoader from '../../components/Loader/CircleLoader'
 import SwapWarningModal from './components/SwapWarningModal'
 
+const BridgePage = styled(Page)`
+  padding-top: 10vh;
+  background: radial-gradient(40% 55% at 45% 57.5%, #f2ad6c 0%, rgba(242, 173, 108, 0.4) 25%, rgba(6, 9, 20, 0) 72.5%),
+    radial-gradient(40% 45% at 55% 47.5%, #48b9ff 0%, rgba(72, 185, 255, 0.4) 25%, rgba(6, 9, 20, 0) 72.5%);
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  background-position-y: -13vh;
+`
+
 const ChainContainer = styled.div`
   align-items: center;
+  padding: 8px;
+  border-radius: 14px;
 `
 const Warning = styled.div`
   text-align: center;
 `
 const Emphasize = styled.div`
   text-align: center;
-  background: ${({ theme }) => theme.colors.gradients.bubblegum};
+  background: ${({ theme }) => theme.colors.gradients.inverseBubblegum};
+  border: 1px solid ${({ theme }) => theme.colors.input};
   border-radius: 14px;
   padding: 8px;
   box-shadow: ${({ theme }) => theme.card.boxShadow};
@@ -63,10 +84,11 @@ const FilterContainer = styled.div`
 const ArrowContainer = styled.div`
   align-items: center;
   border-radius: 20px;
-  background-color: ${({ theme }) => theme.colors.input};
   padding: 0.25rem;
   margin-bottom: 1.5rem;
+  background-color: ${({ theme }) => theme.colors.input};
 `
+
 // move to config popsicle
 const IndexMap = {
   0: 'Elastos',
@@ -301,22 +323,23 @@ const Bridge: React.FC = () => {
 
   return (
     <>
-      <Page>
-        <PageHeader>
+      <BridgePage>
+        {/* <PageHeader>
           <GradientHeading as="h1" scale="xxl" color="glide" mb="24px">
             {t('Bridge')}
           </GradientHeading>
           <Heading scale="lg" color="text">
             {t('Map assets to and from Elastos')}
           </Heading>
-        </PageHeader>
+        </PageHeader> */}
         <Body>
+          <GradientHeader title={t('Bridge')} subtitle={t('Map tokens to and from the Elastos Network')} noConfig />
           <Wrapper id="bridge-page">
-            <AutoRow justify="center" style={{ padding: '0.5rem 0' }}>
+            <AutoRow justify="center">
               <AutoColumn gap="md" style={{ padding: '1rem 0' }}>
                 <ChainContainer>
                   <AutoRow justify="center">
-                    <Text color="textSubtle">{t('From Chain')}</Text>
+                    <Text color="text">{t('From')}</Text>
                   </AutoRow>
                   <AutoRow justify="center" style={{ padding: '0.5rem' }}>
                     <img src={`images/networks/${IndexMap[originIndex]}.png`} alt={IndexMap[originIndex]} width={75} />
@@ -357,7 +380,7 @@ const Bridge: React.FC = () => {
               <AutoColumn gap="md" style={{ padding: '1rem 0' }}>
                 <ChainContainer>
                   <AutoRow justify="center">
-                    <Text color="textSubtle">{t('To Chain')}</Text>
+                    <Text color="text">{t('To')}</Text>
                   </AutoRow>
                   <AutoRow justify="center" style={{ padding: '0.5rem' }}>
                     <img
@@ -494,7 +517,7 @@ const Bridge: React.FC = () => {
             )}
           </Wrapper>
         </Body>
-      </Page>
+      </BridgePage>
     </>
   )
 }

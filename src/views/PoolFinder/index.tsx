@@ -16,8 +16,8 @@ import { useTokenBalance } from '../../state/wallet/hooks'
 import StyledInternalLink from '../../components/Links'
 import { currencyId } from '../../utils/currencyId'
 import Dots from '../../components/Loader/Dots'
-import { AppHeader, AppBody } from '../../components/App'
-import Page from '../Page'
+import { GradientHeader, AppBody } from '../../components/App'
+import GradientPage from '../GradientPage'
 
 enum Fields {
   TOKEN0 = 0,
@@ -25,7 +25,7 @@ enum Fields {
 }
 
 const StyledButton = styled(Button)`
-  background-color: ${({ theme }) => theme.colors.input};
+  background: linear-gradient(250deg, #17264f 0%, hsl(220, 51%, 23%) 100%);
   color: ${({ theme }) => theme.colors.text};
   box-shadow: none;
   border-radius: 16px;
@@ -90,9 +90,9 @@ export default function PoolFinder() {
   )
 
   return (
-    <Page>
+    <GradientPage>
       <AppBody>
-        <AppHeader title={t('Import Pool')} subtitle={t('Import an existing pool')} backTo="/pool" />
+        <GradientHeader title={t('Import Pool')} subtitle={t('Import an existing pool')} backTo="/pool" />
         <AutoColumn style={{ padding: '1rem' }} gap="md">
           <StyledButton
             endIcon={<ChevronDownIcon />}
@@ -197,6 +197,6 @@ export default function PoolFinder() {
           selectedCurrency={(activeField === Fields.TOKEN0 ? currency1 : currency0) ?? undefined}
         /> */}
       </AppBody>
-    </Page>
+    </GradientPage>
   )
 }

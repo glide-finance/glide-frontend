@@ -39,9 +39,12 @@ const InputPanel = styled.div<{ hideInput?: boolean }>`
 `
 const Container = styled.div<{ hideInput: boolean }>`
   border-radius: 16px;
-  background-color: ${({ theme }) => theme.colors.input};
   box-shadow: ${({ theme }) => theme.shadows.inset};
+  background: ${({ theme }) => theme.colors.input};
 `
+// border: 1px solid ${({ theme }) => theme.colors.input};
+// background: linear-gradient(250deg, #17264f 0%, hsl(220, 51%, 23%) 100%);
+
 interface CurrencyInputPanelProps {
   value: string
   origin: number
@@ -83,7 +86,7 @@ export default function CurrencyInputPanel({
   const { t } = useTranslation()
   const translatedLabel = label || t('Input')
   const { chainId } = useActiveWeb3React()
-  const token = currency ? Object.prototype.hasOwnProperty.call(currency, "address") : undefined
+  const token = currency ? Object.prototype.hasOwnProperty.call(currency, 'address') : undefined
 
   const [onPresentCurrencyModal] = useModal(
     <CurrencySearchModal
@@ -158,8 +161,9 @@ export default function CurrencyInputPanel({
                       )}`
                     : currency?.symbol) || t('Select a currency')} */}
                   {currency && currency.symbol
-                    ? token ? currency.symbol :
-                    chainId === 1 && currency.symbol === 'ELA'
+                    ? token
+                      ? currency.symbol
+                      : chainId === 1 && currency.symbol === 'ELA'
                       ? 'ETH'
                       : chainId === 128 && currency.symbol === 'ELA'
                       ? 'HT'

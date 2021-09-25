@@ -5,7 +5,11 @@ import { AutoColumn } from 'components/Layout/Column'
 
 export const Wrapper = styled.div`
   position: relative;
-  padding: 1rem;
+  padding: 0 1rem 1rem 1rem;
+
+  ${({ theme }) => theme.mediaQueries.lg} {
+    padding: 0 2rem 2rem 2rem;
+  }
 `
 
 export const ArrowWrapper = styled.div<{ clickable: boolean }>`

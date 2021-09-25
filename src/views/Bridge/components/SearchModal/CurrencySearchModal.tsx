@@ -27,9 +27,15 @@ const Footer = styled.div`
   text-align: center;
 `
 
+const StyledModalHeader = styled(ModalHeader)`
+  background: ${({ theme }) => theme.colors.gradients.bubblegum};
+`
+
 const StyledModalContainer = styled(ModalContainer)`
   max-width: 420px;
   width: 100%;
+  border: 1px solid ${({ theme }) => theme.colors.input};
+  border-radius: 16px;
 `
 
 const StyledModalBody = styled(ModalBody)`
@@ -74,7 +80,6 @@ export default function CurrencySearchModal({
   const [importList, setImportList] = useState<TokenList | undefined>()
   const [listURL, setListUrl] = useState<string | undefined>()
 
-
   const { t } = useTranslation()
 
   const config = {
@@ -90,13 +95,13 @@ export default function CurrencySearchModal({
 
   return (
     <StyledModalContainer minWidth="320px">
-      <ModalHeader>
+      <StyledModalHeader>
         <ModalTitle>
           {config[modalView].onBack && <ModalBackButton onBack={config[modalView].onBack} />}
           <Heading>{config[modalView].title}</Heading>
         </ModalTitle>
         <ModalCloseButton onDismiss={onDismiss} />
-      </ModalHeader>
+      </StyledModalHeader>
       <StyledModalBody>
         {modalView === CurrencyModalView.search ? (
           <CurrencySearch

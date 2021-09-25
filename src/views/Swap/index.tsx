@@ -40,7 +40,7 @@ import { useExpertModeManager, useUserSlippageTolerance, useUserSingleHopOnly } 
 import { maxAmountSpend } from '../../utils/maxAmountSpend'
 import { computeTradePriceBreakdown, warningSeverity } from '../../utils/prices'
 import CircleLoader from '../../components/Loader/CircleLoader'
-import Page from '../Page'
+import GradientPage from '../GradientPage'
 import SwapWarningModal from './components/SwapWarningModal'
 
 const Label = styled(Text)`
@@ -48,13 +48,7 @@ const Label = styled(Text)`
   font-weight: bold;
   color: ${({ theme }) => theme.colors.secondary};
 `
-// radial-gradient(35% 50% at 50% 50%, #f2ad6c 0%, rgba(242, 173, 108, 0.4) 24.61%, rgba(0, 0, 0, 0) 80%);
-const SwapPage = styled(Page)`
-  background: radial-gradient(40% 55% at 45% 57.5%, #f2ad6c 0%, rgba(242, 173, 108, 0.4) 25%, rgba(6, 9, 20, 0) 72.5%),
-    radial-gradient(40% 45% at 55% 47.5%, #48b9ff 0%, rgba(72, 185, 255, 0.4) 25%, rgba(6, 9, 20, 0) 72.5%);
-  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-  background-position-y: -13vh;
-`
+
 export default function Swap({ history }: RouteComponentProps) {
   const loadedUrlParams = useDefaultsFromURLSearch()
   const { account, chainId, library } = useActiveWeb3React()
@@ -307,7 +301,7 @@ export default function Swap({ history }: RouteComponentProps) {
   )
 
   return (
-    <SwapPage>
+    <GradientPage>
       <AppBody>
         <GradientHeader title={t('Exchange')} subtitle={t('Trade tokens effortlessly')} />
         <Wrapper id="swap-page">
@@ -510,6 +504,6 @@ export default function Swap({ history }: RouteComponentProps) {
       ) : (
         <UnsupportedCurrencyFooter currencies={[currencies.INPUT, currencies.OUTPUT]} />
       )}
-    </SwapPage>
+    </GradientPage>
   )
 }

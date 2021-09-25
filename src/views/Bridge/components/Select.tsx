@@ -30,7 +30,7 @@ const DropDownListContainer = styled.div`
   width: 100%;
 
   ${({ theme }) => theme.mediaQueries.sm} {
-    min-width: 168px;
+    min-width: 116px;
   }
 `
 
@@ -45,7 +45,7 @@ const DropDownContainer = styled.div<{ isOpen: boolean; width: number; height: n
   user-select: none;
 
   ${({ theme }) => theme.mediaQueries.sm} {
-    min-width: 168px;
+    min-width: 116px;
   }
 
   ${(props) =>

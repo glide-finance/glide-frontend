@@ -32,6 +32,15 @@ import Dots from '../Loader/Dots'
 const FixedHeightRow = styled(RowBetween)`
   height: 24px;
 `
+const StyledFlex = styled(Flex)`
+  background: linear-gradient(250deg, #17264f 0%, hsl(220, 51%, 23%) 100%);
+  box-shadow: ${({ theme }) => theme.shadows.inset};
+`
+
+const StyledColumn = styled(AutoColumn)`
+  background: linear-gradient(250deg, #17264f 0%, hsl(220, 51%, 23%) 100%);
+  box-shadow: ${({ theme }) => theme.shadows.inset};
+`
 
 interface PositionCardProps extends CardProps {
   pair: Pair
@@ -134,7 +143,7 @@ export function MinimalPositionCard({ pair, showUnwrapped = false }: PositionCar
               🥞
             </span>{' '}
             {t(
-              "By adding liquidity you'll earn 0.17% of all trades on this pair proportional to your share of the pool. Fees are added to the pool, accrue in real time and can be claimed by withdrawing your liquidity.",
+              "By adding liquidity you'll earn 0.05% of all trades on this pair proportional to your share of the pool. Fees are added to the pool, accrue in real time and can be claimed by withdrawing your liquidity.",
             )}
           </Text>
         </LightCard>
@@ -172,8 +181,8 @@ export default function FullPositionCard({ pair, ...props }: PositionCardProps) 
       : [undefined, undefined]
 
   return (
-    <Card style={{ borderRadius: '12px' }} {...props}>
-      <Flex justifyContent="space-between" role="button" onClick={() => setShowMore(!showMore)} p="16px">
+    <Card style={{ borderRadius: '12px' }}>
+      <StyledFlex justifyContent="space-between" role="button" onClick={() => setShowMore(!showMore)} p="16px">
         <Flex flexDirection="column">
           <Flex alignItems="center" mb="4px">
             <DoubleCurrencyLogo currency0={currency0} currency1={currency1} size={20} />
@@ -186,10 +195,10 @@ export default function FullPositionCard({ pair, ...props }: PositionCardProps) 
           </Text>
         </Flex>
         {showMore ? <ChevronUpIcon /> : <ChevronDownIcon />}
-      </Flex>
+      </StyledFlex>
 
       {showMore && (
-        <AutoColumn gap="8px" style={{ padding: '16px' }}>
+        <StyledColumn gap="8px" style={{ padding: '16px' }}>
           <FixedHeightRow>
             <RowFixed>
               <CurrencyLogo size="20px" currency={currency0} />
@@ -253,7 +262,7 @@ export default function FullPositionCard({ pair, ...props }: PositionCardProps) 
               </Button>
             </Flex>
           )}
-        </AutoColumn>
+        </StyledColumn>
       )}
     </Card>
   )
