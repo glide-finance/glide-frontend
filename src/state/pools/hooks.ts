@@ -50,6 +50,26 @@ export const usePools = (account): { pools: Pool[]; userDataLoaded: boolean } =>
   return { pools: pools.map(transformPool), userDataLoaded }
 }
 
+export const usePoolsPublicData = (): { pools: Pool[]; userDataLoaded: boolean } => {
+  const { fastRefresh } = useRefresh()
+  const dispatch = useAppDispatch()
+  useEffect(() => {
+    const fetchPoolsPublicData = async () => {
+      const blockNumber = await simpleRpcProvider.getBlockNumber()
+      dispatch(fetchPoolsPublicDataAsync(blockNumber))
+    }
+
+    fetchPoolsPublicData()
+  }, [dispatch, fastRefresh])
+
+  const { pools, userDataLoaded } = useSelector((state: State) => ({
+    pools: state.pools.data,
+    userDataLoaded: state.pools.userDataLoaded,
+  }))
+  return { pools: pools.map(transformPool), userDataLoaded }
+}
+
+
 export const useFetchCakeVault = () => {
   const { account } = useWeb3React()
   const { fastRefresh } = useRefresh()

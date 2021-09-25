@@ -39,7 +39,6 @@ export const getFarmApr = (
   if (currentBlock > 0) {
   const glidesPerYear = getGlidesPerYear(new BigNumber(currentBlock));
   const yearlyGlideRewardAllocation = glidesPerYear.times(poolWeight)
-  // glidePriceUsd = 0.00000027, for test purpose
   const glideRewardsApr = yearlyGlideRewardAllocation.times(glidePriceUsd).div(poolLiquidityUsd).times(100)
   let glideRewardsAprAsNumber = null
   if (!glideRewardsApr.isNaN() && glideRewardsApr.isFinite()) {
