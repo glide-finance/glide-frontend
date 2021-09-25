@@ -115,14 +115,6 @@ const CakeDataRow = () => {
             <Skeleton height={24} width={126} my="4px" />
           )}
       </StyledColumn>
-      <StyledColumn noMobileBorder>
-        <Text color="textSubtle">{t('Circulating supply')}</Text>
-          {cakeSupply ? (
-            <Balance decimals={0} lineHeight="1.1" fontSize="24px" bold value={cakeSupply} />
-          ) : (
-            <Skeleton height={24} width={126} my="4px" />
-          )}
-      </StyledColumn>
       <StyledColumn>
         <Text color="textSubtle">{t('Circulating GLIDE')}</Text>
         {cakeSupply ? (
