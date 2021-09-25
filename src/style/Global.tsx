@@ -47,7 +47,7 @@ declare module 'styled-components' {
 
 const GlobalStyle = createGlobalStyle`
   * {
-    font-family: 'Kanit', sans-serif;
+    font-family: 'Nunito', sans-serif;
   }
   body {
     background-color: #000;

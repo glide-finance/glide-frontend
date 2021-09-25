@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { ButterflyLoader } from '@glide-finance/uikit'
 import PageSection from 'components/PageSection'
 import { useWeb3React } from '@web3-react/core'
 import useTheme from 'hooks/useTheme'
@@ -124,6 +125,7 @@ const Home: React.FC = () => {
       >
         {/* <SalesSection {...cakeSectionData} /> */}
         <CakeDataRow />
+        <ButterflyLoader />
       </PageSection>
 	  <PageSection
         innerProps={{ style: HomeSectionContainerStyles }}

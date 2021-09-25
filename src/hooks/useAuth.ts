@@ -31,7 +31,7 @@ const useAuth = () => {
         activate(connector, async (error: Error) => {
           if (error instanceof UnsupportedChainIdError) {
             console.log(error)
-            const hasSetup = await setupNetwork(20, library) // specify network to switch to
+            const hasSetup = await setupNetwork(20) // specify network to switch to
             if (hasSetup) {
               activate(connector)
             }
@@ -57,7 +57,7 @@ const useAuth = () => {
         toastError(t('Unable to find connector'), t('The connector config is wrong'))
       }
     },
-    [t, activate, library, toastError],
+    [t, activate, toastError],
   )
 
   const logout = useCallback(() => {

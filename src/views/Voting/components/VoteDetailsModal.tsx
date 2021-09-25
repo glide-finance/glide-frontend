@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Box, Flex, InjectedModalProps, Modal, Button, Spinner } from '@glide-finance/uikit'
+import { Box, Flex, InjectedModalProps, Modal, Button, ButterflyLoader } from '@glide-finance/uikit'
 import { useTranslation } from 'contexts/Localization'
 import useTheme from 'hooks/useTheme'
 import useGetVotingPower from '../hooks/useGetVotingPower'
@@ -26,7 +26,7 @@ const VoteDetailsModal: React.FC<VoteDetailsModalProps> = ({ block, onDismiss })
       <Box mb="24px" width="320px">
         {isLoading ? (
           <Flex height="450px" alignItems="center" justifyContent="center">
-            <Spinner size={80} />
+            <ButterflyLoader size={80} />
           </Flex>
         ) : (
           <>

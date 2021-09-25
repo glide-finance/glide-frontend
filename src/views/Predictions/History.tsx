@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Flex, Spinner, Text } from '@glide-finance/uikit'
+import { Flex, ButterflyLoader, Text } from '@glide-finance/uikit'
 import { useWeb3React } from '@web3-react/core'
 import styled from 'styled-components'
 import ConnectWalletButton from 'components/ConnectWalletButton'
@@ -33,7 +33,7 @@ const BetWrapper = styled.div`
   position: relative;
 `
 
-const SpinnerWrapper = styled.div`
+const ButterflyLoaderWrapper = styled.div`
   align-items: center;
   background-color: ${({ theme }) => theme.card.background};
   display: flex;
@@ -94,9 +94,9 @@ const History = () => {
       <Header activeTab={activeTab} setActiveTab={setActiveTab} />
       <BetWrapper>
         {isFetchingHistory ? (
-          <SpinnerWrapper>
-            <Spinner size={72} />
-          </SpinnerWrapper>
+          <ButterflyLoaderWrapper>
+            <ButterflyLoader size={72} />
+          </ButterflyLoaderWrapper>
         ) : (
           activeTabComponent
         )}

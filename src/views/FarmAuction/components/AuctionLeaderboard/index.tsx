@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import { Text, Card, Flex, Box, Spinner } from '@glide-finance/uikit'
+import { Text, Card, Flex, Box, ButterflyLoader } from '@glide-finance/uikit'
 import { useTranslation } from 'contexts/Localization'
 import { Auction, AuctionStatus, Bidder } from 'config/constants/types'
 import { TabToggleGroup, TabToggle } from '../TabToggle'
@@ -51,7 +51,7 @@ const CurrentAuctionCard: React.FC<AuctionLeaderboardProps> = ({ auction, bidder
           </TabToggle>
         </TabToggleGroup>
         <Flex justifyContent="center" alignItems="center" flexDirection="column" height="320px">
-          <Spinner />
+          <ButterflyLoader />
         </Flex>
       </AuctionLeaderboardCard>
     )
