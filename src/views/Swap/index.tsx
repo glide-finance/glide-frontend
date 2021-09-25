@@ -50,10 +50,10 @@ const Label = styled(Text)`
 `
 // radial-gradient(35% 50% at 50% 50%, #f2ad6c 0%, rgba(242, 173, 108, 0.4) 24.61%, rgba(0, 0, 0, 0) 80%);
 const SwapPage = styled(Page)`
-  background: radial-gradient(40% 50% at 45% 60%, #f2ad6c 0%, rgba(242, 173, 108, 0.4) 25%, rgba(0, 0, 0, 0) 80%),
-    radial-gradient(40% 50% at 55% 45%, #48b9ff 0%, rgba(72, 185, 255, 0.4) 25%, rgba(0, 0, 0, 0) 80%);
+  background: radial-gradient(40% 55% at 45% 57.5%, #f2ad6c 0%, rgba(242, 173, 108, 0.4) 25%, rgba(6, 9, 20, 0) 72.5%),
+    radial-gradient(40% 45% at 55% 47.5%, #48b9ff 0%, rgba(72, 185, 255, 0.4) 25%, rgba(6, 9, 20, 0) 72.5%);
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-  background-position-y: -9vh;
+  background-position-y: -13vh;
 `
 export default function Swap({ history }: RouteComponentProps) {
   const loadedUrlParams = useDefaultsFromURLSearch()

@@ -23,7 +23,7 @@ const StyledPage = styled.div`
   }
 
   ${({ theme }) => theme.mediaQueries.lg} {
-    padding-top: 15vh;
+    padding-top: 12vh;
     min-height: 100vh;
   }
 `
