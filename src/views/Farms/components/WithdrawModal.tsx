@@ -4,6 +4,7 @@ import { Button, Modal } from '@glide-finance/uikit'
 import { ModalActions, ModalInput } from 'components/Modal'
 import { useTranslation } from 'contexts/Localization'
 import { getFullDisplayBalance } from 'utils/formatBalance'
+import useTheme from 'hooks/useTheme'
 import useToast from 'hooks/useToast'
 import useActiveWeb3React from '../../../hooks/useActiveWeb3React'
 
@@ -16,6 +17,7 @@ interface WithdrawModalProps {
 
 const WithdrawModal: React.FC<WithdrawModalProps> = ({ onConfirm, onDismiss, max, tokenName = '' }) => {
   const [val, setVal] = useState('')
+  const { theme } = useTheme()
   const { toastSuccess, toastError } = useToast()
   const [pendingTx, setPendingTx] = useState(false)
   const { t } = useTranslation()
@@ -42,7 +44,7 @@ const WithdrawModal: React.FC<WithdrawModalProps> = ({ onConfirm, onDismiss, max
   }, [fullBalance, setVal])
 
   return (
-    <Modal title={t('Unstake LP tokens')} onDismiss={onDismiss}>
+    <Modal title={t('Unstake LP tokens')} onDismiss={onDismiss} headerBackground={theme.colors.gradients.cardHeader}>
       <ModalInput
         onSelectMax={handleSelectMax}
         onChange={handleChange}

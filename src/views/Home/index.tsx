@@ -23,13 +23,25 @@ const StyledHeroSection = styled(PageSection)`
   }
 `
 
+// const UserBannerWrapper = styled(Container)`
+//   z-index: 1;
+//   position: absolute;
+//   width: 100%;
+//   top: 0px;
+//   left: 50%;
+//   transform: translate(-50%, 0);
+//   padding-left: 0px;
+//   padding-right: 0px;
+
+//   ${({ theme }) => theme.mediaQueries.lg} {
+//     padding-left: 24px;
+//     padding-right: 24px;
+//   }
+// `
+
 const UserBannerWrapper = styled(Container)`
   z-index: 1;
-  position: absolute;
   width: 100%;
-  top: 0px;
-  left: 50%;
-  transform: translate(-50%, 0);
   padding-left: 0px;
   padding-right: 0px;
 
@@ -47,6 +59,11 @@ const Home: React.FC = () => {
 
   return (
     <>
+      {account && (
+        <UserBannerWrapper>
+          <UserBanner />
+        </UserBannerWrapper>
+      )}
       <StyledHeroSection
         innerProps={{ style: { margin: '0', width: '100%' } }}
         // background={
@@ -57,11 +74,6 @@ const Home: React.FC = () => {
         index={2}
         hasCurvedDivider={false}
       >
-        {account && (
-          <UserBannerWrapper>
-            <UserBanner />
-          </UserBannerWrapper>
-        )}
         <Hero />
       </StyledHeroSection>
       {/* <PageSection

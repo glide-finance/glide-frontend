@@ -33,11 +33,10 @@ const fading = () => keyframes`
 `
 
 const HomeFlex = styled(Flex)`
-  margin-top: 280px;
-  padding: 0 24px;
+  padding: 0;
 
   ${({ theme }) => theme.mediaQueries.sm} {
-    margin-top: 140px;
+    padding: 0 24px;
   }
 `
 
@@ -113,7 +112,7 @@ const Hero = () => {
       >
         <Flex flex="1" flexDirection="column" justifyContent="flex-start">
           <GradientHeading scale="xl" mb="24px" color="glide">
-            {t('Glide through the next evolution in finance')}
+            {t('Glide into a new kind of finance')}
           </GradientHeading>
           <Heading scale="md" mb="24px">
             {t('The first native farm and exchange on Elastos')}

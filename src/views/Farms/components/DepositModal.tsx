@@ -5,6 +5,7 @@ import { ModalActions, ModalInput } from 'components/Modal'
 import { useTranslation } from 'contexts/Localization'
 import { getFullDisplayBalance } from 'utils/formatBalance'
 import useToast from 'hooks/useToast'
+import useTheme from 'hooks/useTheme'
 import useActiveWeb3React from '../../../hooks/useActiveWeb3React'
 
 interface DepositModalProps {
@@ -17,6 +18,7 @@ interface DepositModalProps {
 
 const DepositModal: React.FC<DepositModalProps> = ({ max, onConfirm, onDismiss, tokenName = '', addLiquidityUrl }) => {
   const [val, setVal] = useState('')
+  const { theme } = useTheme()
   const { toastSuccess, toastError } = useToast()
   const [pendingTx, setPendingTx] = useState(false)
   const { t } = useTranslation()
@@ -42,7 +44,7 @@ const DepositModal: React.FC<DepositModalProps> = ({ max, onConfirm, onDismiss, 
   }, [fullBalance, setVal])
 
   return (
-    <Modal title={t('Stake LP tokens')} onDismiss={onDismiss}>
+    <Modal title={t('Stake LP tokens')} onDismiss={onDismiss} headerBackground={theme.colors.gradients.cardHeader}>
       <ModalInput
         value={val}
         onSelectMax={handleSelectMax}

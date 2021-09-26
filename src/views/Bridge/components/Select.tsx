@@ -17,7 +17,7 @@ const DropDownHeader = styled.div`
 `
 
 const DropDownListContainer = styled.div`
-  min-width: 136px;
+  min-width: 96px;
   height: 0;
   position: absolute;
   overflow: hidden;
@@ -30,7 +30,7 @@ const DropDownListContainer = styled.div`
   width: 100%;
 
   ${({ theme }) => theme.mediaQueries.sm} {
-    min-width: 116px;
+    min-width: 136px;
   }
 `
 
@@ -41,11 +41,11 @@ const DropDownContainer = styled.div<{ isOpen: boolean; width: number; height: n
   background: ${({ theme }) => theme.colors.input};
   border-radius: 16px;
   height: 40px;
-  min-width: 136px;
+  min-width: 96px;
   user-select: none;
 
   ${({ theme }) => theme.mediaQueries.sm} {
-    min-width: 116px;
+    min-width: 136px;
   }
 
   ${(props) =>

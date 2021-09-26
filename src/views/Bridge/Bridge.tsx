@@ -51,7 +51,6 @@ const BridgePage = styled(Page)`
 
 const ChainContainer = styled.div`
   align-items: center;
-  padding: 8px;
   border-radius: 14px;
 `
 const Warning = styled.div`
