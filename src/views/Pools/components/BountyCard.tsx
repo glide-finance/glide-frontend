@@ -20,6 +20,7 @@ import { usePriceCakeBusd } from 'state/farms/hooks'
 import { useCakeVault } from 'state/pools/hooks'
 import Balance from 'components/Balance'
 import BountyModal from './BountyModal'
+import useActiveWeb3React from '../../../hooks/useActiveWeb3React'
 
 const StyledCard = styled(Card)`
   width: 100%;
@@ -31,6 +32,7 @@ const StyledCard = styled(Card)`
 
 const BountyCard = () => {
   const { t } = useTranslation()
+  const { chainId } = useActiveWeb3React()
   const {
     estimatedCakeBountyReward,
     fees: { callFee },
@@ -105,7 +107,7 @@ const BountyCard = () => {
               )}
             </Flex>
             <Button
-              disabled={!dollarBountyToDisplay || !cakeBountyToDisplay || !callFee}
+              disabled={!dollarBountyToDisplay || !cakeBountyToDisplay || !callFee || chainId !== 20}
               onClick={onPresentBountyModal}
               scale="sm"
               id="clickClaimVaultBounty"

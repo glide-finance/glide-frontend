@@ -17,6 +17,7 @@ import { Pool } from 'state/types'
 import Balance from 'components/Balance'
 import NotEnoughTokensModal from '../../PoolCard/Modals/NotEnoughTokensModal'
 import DividendStakeModal from '../DividendStakeModal'
+import useActiveWeb3React from '../../../../../hooks/useActiveWeb3React'
 
 interface StakeActionsProps {
   pool: Pool
@@ -37,6 +38,7 @@ const StakeAction: React.FC<StakeActionsProps> = ({
 }) => {
   const { stakingToken, stakingTokenPrice, stakingLimit, isFinished, userData } = pool
   const { t } = useTranslation()
+  const { chainId } = useActiveWeb3React()
   const stakedTokenBalance = getBalanceNumber(stakedBalance, stakingToken.decimals)
   const stakedTokenDollarBalance = getBalanceNumber(
     stakedBalance.multipliedBy(stakingTokenPrice),
@@ -97,7 +99,10 @@ const StakeAction: React.FC<StakeActionsProps> = ({
         {tooltipVisible && tooltip}
       </Flex>
     ) : (
-      <Button disabled={isFinished} onClick={stakingTokenBalance.gt(0) ? onPresentStake : onPresentTokenRequired}>
+      <Button
+        disabled={isFinished || chainId !== 20}
+        onClick={stakingTokenBalance.gt(0) ? onPresentStake : onPresentTokenRequired}
+      >
         {t('Stake')}
       </Button>
     )

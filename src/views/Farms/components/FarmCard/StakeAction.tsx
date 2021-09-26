@@ -42,7 +42,7 @@ const StakeAction: React.FC<FarmCardActionsProps> = ({
   const { onUnstake } = useUnstakeFarms(pid)
   const location = useLocation()
   const dispatch = useAppDispatch()
-  const { account } = useWeb3React()
+  const { account, chainId } = useWeb3React()
   const lpPrice = useLpTokenPrice(tokenName)
 
   const handleStake = async (amount: string) => {
@@ -77,7 +77,7 @@ const StakeAction: React.FC<FarmCardActionsProps> = ({
     return stakedBalance.eq(0) ? (
       <Button
         onClick={onPresentDeposit}
-        disabled={['history', 'archived'].some((item) => location.pathname.includes(item))}
+        disabled={['history', 'archived'].some((item) => location.pathname.includes(item)) || chainId !== 20}
       >
         {t('Stake LP')}
       </Button>

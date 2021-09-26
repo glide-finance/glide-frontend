@@ -13,6 +13,7 @@ import { getAddress } from 'utils/addressHelpers'
 import PercentageButton from '../PoolCard/Modals/PercentageButton'
 import useStakePool from '../../hooks/useStakePool'
 import useUnstakePool from '../../hooks/useUnstakePool'
+import useActiveWeb3React from '../../../../hooks/useActiveWeb3React'
 
 interface StakeModalProps {
   isBnbPool: boolean
@@ -31,6 +32,7 @@ const DividendStakeModal: React.FC<StakeModalProps> = ({ isBnbPool, pool, isRemo
     stakingTokenPrice,
     userData: { stakingTokenBalance },
   } = useDividendPool()
+  const { chainId } = useActiveWeb3React()
   const { sousId, stakingToken, userData, stakingLimit, earningToken } = pool
   const { t } = useTranslation()
   const { theme } = useTheme()
@@ -184,7 +186,7 @@ const DividendStakeModal: React.FC<StakeModalProps> = ({ isBnbPool, pool, isRemo
         isLoading={pendingTx}
         endIcon={pendingTx ? <AutoRenewIcon spin color="currentColor" /> : null}
         onClick={handleConfirmClick}
-        disabled={!stakeAmount || parseFloat(stakeAmount) === 0 || hasReachedStakeLimit}
+        disabled={!stakeAmount || parseFloat(stakeAmount) === 0 || hasReachedStakeLimit || chainId !== 20}
         mt="24px"
       >
         {pendingTx ? t('Confirming') : t('Confirm')}

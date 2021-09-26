@@ -1,7 +1,17 @@
 import React from 'react'
 import styled from 'styled-components'
 import BigNumber from 'bignumber.js'
-import { Button, useModal, IconButton, AddIcon, MinusIcon, Skeleton, useTooltip, Flex, Text } from '@glide-finance/uikit'
+import {
+  Button,
+  useModal,
+  IconButton,
+  AddIcon,
+  MinusIcon,
+  Skeleton,
+  useTooltip,
+  Flex,
+  Text,
+} from '@glide-finance/uikit'
 import ConnectWalletButton from 'components/ConnectWalletButton'
 import { useWeb3React } from '@web3-react/core'
 import { useCakeVault } from 'state/pools/hooks'
@@ -40,10 +50,10 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({ pool, userDataLoa
     userData,
     stakingTokenPrice,
     isAutoVault,
-    isDividendPool
+    isDividendPool,
   } = pool
   const { t } = useTranslation()
-  const { account } = useWeb3React()
+  const { account, chainId } = useWeb3React()
 
   const stakingTokenContract = useERC20(stakingToken.address ? getAddress(stakingToken.address) : '')
   const { handleApprove: handlePoolApprove, requestedApproval: requestedPoolApproval } = useApprovePool(
@@ -171,7 +181,12 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({ pool, userDataLoa
           </Text>
         </ActionTitles>
         <ActionContent>
-          <Button width="100%" disabled={requestedApproval} onClick={handleApprove} variant="secondary">
+          <Button
+            width="100%"
+            disabled={requestedApproval || chainId !== 20}
+            onClick={handleApprove}
+            variant="secondary"
+          >
             {t('Enable')}
           </Button>
         </ActionContent>

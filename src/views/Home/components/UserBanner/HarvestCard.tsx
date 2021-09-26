@@ -1,6 +1,16 @@
 import React, { useState, useCallback } from 'react'
 import styled from 'styled-components'
-import { AutoRenewIcon, Button, Card, CardBody, Flex, Skeleton, Text, Link, ArrowForwardIcon } from '@glide-finance/uikit'
+import {
+  AutoRenewIcon,
+  Button,
+  Card,
+  CardBody,
+  Flex,
+  Skeleton,
+  Text,
+  Link,
+  ArrowForwardIcon,
+} from '@glide-finance/uikit'
 import BigNumber from 'bignumber.js'
 import { useTranslation } from 'contexts/Localization'
 import { usePriceCakeBusd } from 'state/farms/hooks'
@@ -95,7 +105,7 @@ const HarvestCard = () => {
               disabled={pendingTx}
               onClick={harvestAllFarms}
             >
-              <Text color="invertedContrast" bold>
+              <Text color="contrast" bold>
                 {pendingTx ? t('Harvesting') : t('Harvest all')}
               </Text>
             </Button>

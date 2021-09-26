@@ -62,7 +62,7 @@ const Home: React.FC = () => {
             <UserBanner />
           </UserBannerWrapper>
         )}
-        {/* <Hero /> */}
+        <Hero />
       </StyledHeroSection>
       {/* <PageSection
         innerProps={{ style: { margin: '0', width: '100%' } }}

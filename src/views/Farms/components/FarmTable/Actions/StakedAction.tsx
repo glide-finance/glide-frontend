@@ -40,7 +40,7 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
   userDataReady,
 }) => {
   const { t } = useTranslation()
-  const { account } = useWeb3React()
+  const { account, chainId } = useWeb3React()
   const [requestedApproval, setRequestedApproval] = useState(false)
   const { allowance, tokenBalance, stakedBalance } = useFarmUser(pid)
   const { onStake } = useStakeFarms(pid)
@@ -173,7 +173,7 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
             width="100%"
             onClick={onPresentDeposit}
             variant="secondary"
-            disabled={['history', 'archived'].some((item) => location.pathname.includes(item))}
+            disabled={['history', 'archived'].some((item) => location.pathname.includes(item)) || chainId !== 20}
           >
             {t('Stake LP')}
           </Button>
@@ -205,7 +205,7 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
         </Text>
       </ActionTitles>
       <ActionContent>
-        <Button width="100%" disabled={requestedApproval} onClick={handleApprove} variant="secondary">
+        <Button width="100%" disabled={requestedApproval || chainId !== 20} onClick={handleApprove} variant="secondary">
           {t('Enable')}
         </Button>
       </ActionContent>

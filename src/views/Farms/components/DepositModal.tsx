@@ -5,6 +5,7 @@ import { ModalActions, ModalInput } from 'components/Modal'
 import { useTranslation } from 'contexts/Localization'
 import { getFullDisplayBalance } from 'utils/formatBalance'
 import useToast from 'hooks/useToast'
+import useActiveWeb3React from '../../../hooks/useActiveWeb3React'
 
 interface DepositModalProps {
   max: BigNumber
@@ -19,6 +20,7 @@ const DepositModal: React.FC<DepositModalProps> = ({ max, onConfirm, onDismiss, 
   const { toastSuccess, toastError } = useToast()
   const [pendingTx, setPendingTx] = useState(false)
   const { t } = useTranslation()
+  const { chainId } = useActiveWeb3React()
   const fullBalance = useMemo(() => {
     return getFullDisplayBalance(max)
   }, [max])
@@ -56,7 +58,9 @@ const DepositModal: React.FC<DepositModalProps> = ({ max, onConfirm, onDismiss, 
         </Button>
         <Button
           width="100%"
-          disabled={pendingTx || !valNumber.isFinite() || valNumber.eq(0) || valNumber.gt(fullBalanceNumber)}
+          disabled={
+            pendingTx || !valNumber.isFinite() || valNumber.eq(0) || valNumber.gt(fullBalanceNumber) || chainId !== 20
+          }
           onClick={async () => {
             setPendingTx(true)
             try {

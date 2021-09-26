@@ -6,6 +6,7 @@ import { useTranslation } from 'contexts/Localization'
 import { getFullDisplayBalance, getBalanceNumber, formatNumber } from 'utils/formatBalance'
 import Balance from 'components/Balance'
 import CollectModal from '../../PoolCard/Modals/CollectModal'
+import useActiveWeb3React from '../../../../../hooks/useActiveWeb3React'
 
 interface HarvestActionsProps {
   earnings: BigNumber
@@ -25,6 +26,7 @@ const HarvestActions: React.FC<HarvestActionsProps> = ({
   isLoading = false,
 }) => {
   const { t } = useTranslation()
+  const { chainId } = useActiveWeb3React()
   const earningTokenBalance = getBalanceNumber(earnings, earningToken.decimals)
   const formattedBalance = formatNumber(earningTokenBalance, 3, 3)
 
@@ -79,7 +81,7 @@ const HarvestActions: React.FC<HarvestActionsProps> = ({
           </>
         )}
       </Flex>
-      <Button disabled={!hasEarnings} onClick={onPresentCollect}>
+      <Button disabled={!hasEarnings || chainId !== 20} onClick={onPresentCollect}>
         {isCompoundPool ? t('Collect') : t('Harvest')}
       </Button>
     </Flex>

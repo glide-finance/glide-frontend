@@ -18,6 +18,7 @@ import { Token } from 'config/constants/types'
 import { formatNumber } from 'utils/formatBalance'
 import useHarvestPool from '../../../hooks/useHarvestPool'
 import useStakePool from '../../../hooks/useStakePool'
+import useActiveWeb3React from '../../../../../hooks/useActiveWeb3React'
 
 interface CollectModalProps {
   formattedBalance: string
@@ -41,6 +42,7 @@ const CollectModal: React.FC<CollectModalProps> = ({
   onDismiss,
 }) => {
   const { t } = useTranslation()
+  const { chainId } = useActiveWeb3React()
   const { theme } = useTheme()
   const { toastSuccess, toastError } = useToast()
   const { onReward } = useHarvestPool(sousId, isBnbPool)
@@ -130,6 +132,7 @@ const CollectModal: React.FC<CollectModalProps> = ({
         mt="8px"
         onClick={handleHarvestConfirm}
         isLoading={pendingTx}
+        disabled={chainId !== 20}
         endIcon={pendingTx ? <AutoRenewIcon spin color="currentColor" /> : null}
       >
         {pendingTx ? t('Confirming') : t('Confirm')}

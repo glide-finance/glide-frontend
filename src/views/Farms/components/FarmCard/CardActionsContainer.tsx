@@ -12,6 +12,7 @@ import ConnectWalletButton from 'components/ConnectWalletButton'
 import StakeAction from './StakeAction'
 import HarvestAction from './HarvestAction'
 import useApproveFarm from '../../hooks/useApproveFarm'
+import useActiveWeb3React from '../../../../hooks/useActiveWeb3React'
 
 const Action = styled.div`
   padding-top: 16px;
@@ -28,6 +29,7 @@ interface FarmCardActionsProps {
 
 const CardActions: React.FC<FarmCardActionsProps> = ({ farm, account, addLiquidityUrl }) => {
   const { t } = useTranslation()
+  const { chainId } = useActiveWeb3React()
   const [requestedApproval, setRequestedApproval] = useState(false)
   const { pid, lpAddresses } = farm
   const {
@@ -69,7 +71,7 @@ const CardActions: React.FC<FarmCardActionsProps> = ({ farm, account, addLiquidi
         addLiquidityUrl={addLiquidityUrl}
       />
     ) : (
-      <Button mt="8px" width="100%" disabled={requestedApproval} onClick={handleApprove}>
+      <Button mt="8px" width="100%" disabled={requestedApproval || chainId !== 20} onClick={handleApprove}>
         {t('Enable Contract')}
       </Button>
     )

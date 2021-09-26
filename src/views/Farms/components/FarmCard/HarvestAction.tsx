@@ -18,7 +18,7 @@ interface FarmCardActionsProps {
 }
 
 const HarvestAction: React.FC<FarmCardActionsProps> = ({ earnings, pid }) => {
-  const { account } = useWeb3React()
+  const { account, chainId } = useWeb3React()
   const { toastSuccess, toastError } = useToast()
   const { t } = useTranslation()
   const [pendingTx, setPendingTx] = useState(false)
@@ -38,7 +38,7 @@ const HarvestAction: React.FC<FarmCardActionsProps> = ({ earnings, pid }) => {
         )}
       </Flex>
       <Button
-        disabled={rawEarningsBalance.eq(0) || pendingTx}
+        disabled={rawEarningsBalance.eq(0) || pendingTx || chainId !== 20}
         onClick={async () => {
           setPendingTx(true)
           try {

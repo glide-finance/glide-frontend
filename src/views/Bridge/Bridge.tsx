@@ -62,7 +62,7 @@ const Emphasize = styled.div`
   background: ${({ theme }) => theme.colors.gradients.inverseBubblegum};
   border: 1px solid ${({ theme }) => theme.colors.input};
   border-radius: 14px;
-  padding: 8px;
+  padding: 10px;
   box-shadow: ${({ theme }) => theme.card.boxShadow};
 `
 

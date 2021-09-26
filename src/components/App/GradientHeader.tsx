@@ -36,12 +36,12 @@ const GradientHeader: React.FC<Props> = ({ title, subtitle, helper, backTo, noCo
           </IconButton>
         )}
         <Flex flexDirection="column">
-          <GradientHeading as="h2" mb="8px" color="glide">
+          <GradientHeading as="h1" mb="8px" color="glide" scale="lg">
             {title}
           </GradientHeading>
           <Flex alignItems="center">
             {helper && <QuestionHelper text={helper} mr="4px" />}
-            <Text color="textSubtle" fontSize="14px">
+            <Text color="textSubtle" fontSize="16px">
               {subtitle}
             </Text>
           </Flex>

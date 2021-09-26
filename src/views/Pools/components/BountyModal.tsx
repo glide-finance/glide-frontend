@@ -27,7 +27,7 @@ const Divider = styled.div`
 
 const BountyModal: React.FC<BountyModalProps> = ({ onDismiss, TooltipComponent }) => {
   const { t } = useTranslation()
-  const { account } = useWeb3React()
+  const { account, chainId } = useWeb3React()
   const { theme } = useTheme()
   const { toastError, toastSuccess } = useToast()
   const cakeVaultContract = useCakeVaultContract()
@@ -108,7 +108,7 @@ const BountyModal: React.FC<BountyModalProps> = ({ onDismiss, TooltipComponent }
       {account ? (
         <Button
           isLoading={pendingTx}
-          disabled={!dollarBountyToDisplay || !cakeBountyToDisplay || !callFee}
+          disabled={!dollarBountyToDisplay || !cakeBountyToDisplay || !callFee || chainId !== 20}
           endIcon={pendingTx ? <AutoRenewIcon spin color="currentColor" /> : null}
           onClick={handleConfirmClick}
           mb="28px"

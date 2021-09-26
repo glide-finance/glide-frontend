@@ -5,6 +5,7 @@ import { ModalActions, ModalInput } from 'components/Modal'
 import { useTranslation } from 'contexts/Localization'
 import { getFullDisplayBalance } from 'utils/formatBalance'
 import useToast from 'hooks/useToast'
+import useActiveWeb3React from '../../../hooks/useActiveWeb3React'
 
 interface WithdrawModalProps {
   max: BigNumber
@@ -18,6 +19,8 @@ const WithdrawModal: React.FC<WithdrawModalProps> = ({ onConfirm, onDismiss, max
   const { toastSuccess, toastError } = useToast()
   const [pendingTx, setPendingTx] = useState(false)
   const { t } = useTranslation()
+  const { chainId } = useActiveWeb3React()
+
   const fullBalance = useMemo(() => {
     return getFullDisplayBalance(max)
   }, [max])
@@ -53,7 +56,9 @@ const WithdrawModal: React.FC<WithdrawModalProps> = ({ onConfirm, onDismiss, max
           {t('Cancel')}
         </Button>
         <Button
-          disabled={pendingTx || !valNumber.isFinite() || valNumber.eq(0) || valNumber.gt(fullBalanceNumber)}
+          disabled={
+            pendingTx || !valNumber.isFinite() || valNumber.eq(0) || valNumber.gt(fullBalanceNumber) || chainId !== 20
+          }
           onClick={async () => {
             setPendingTx(true)
             try {
