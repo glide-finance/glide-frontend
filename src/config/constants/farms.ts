@@ -29,7 +29,7 @@ const farms: FarmConfig[] = [
   },
   {
     pid: 2,
-    lpSymbol: 'HUSD-ELA LP',
+    lpSymbol: 'ELA-USDC LP', // HUSD-ELA 
     lpAddresses: {
       97: '0xfc9b9efebcd39e08a0618d4e05a852e4f8a854c6',
       56: '0x58F876857a02D6762E0101bb5C46A8c1ED44Dc16',
@@ -38,6 +38,50 @@ const farms: FarmConfig[] = [
     token: tokens.husd,
     quoteToken: tokens.wela,
   },
+  {
+    pid: 3,
+    lpSymbol: 'GLIDE-USDC LP',
+    lpAddresses: {
+      97: '0xfc9b9efebcd39e08a0618d4e05a852e4f8a854c6',
+      56: '0x58F876857a02D6762E0101bb5C46A8c1ED44Dc16',
+      20: '0x74f9dE892dEb1209BBb715F7bad6718cfE11F77e'
+    },
+    token: tokens.husd,
+    quoteToken: tokens.wela,
+  },
+  {
+    pid: 4,
+    lpSymbol: 'ELA-ETH LP',
+    lpAddresses: {
+      97: '0xfc9b9efebcd39e08a0618d4e05a852e4f8a854c6',
+      56: '0x58F876857a02D6762E0101bb5C46A8c1ED44Dc16',
+      20: '0x74f9dE892dEb1209BBb715F7bad6718cfE11F77e'
+    },
+    token: tokens.husd,
+    quoteToken: tokens.wela,
+  },
+  {
+    pid: 5,
+    lpSymbol: 'ELA-HT LP',
+    lpAddresses: {
+      97: '0xfc9b9efebcd39e08a0618d4e05a852e4f8a854c6',
+      56: '0x58F876857a02D6762E0101bb5C46A8c1ED44Dc16',
+      20: '0x74f9dE892dEb1209BBb715F7bad6718cfE11F77e'
+    },
+    token: tokens.husd,
+    quoteToken: tokens.wela,
+  },
+  {
+    pid: 6,
+    lpSymbol: 'USDC-HUSD LP',
+    lpAddresses: {
+      97: '0xfc9b9efebcd39e08a0618d4e05a852e4f8a854c6',
+      56: '0x58F876857a02D6762E0101bb5C46A8c1ED44Dc16',
+      20: '0x74f9dE892dEb1209BBb715F7bad6718cfE11F77e'
+    },
+    token: tokens.husd,
+    quoteToken: tokens.wela,
+  }
   /**
    * V3 by order of release (some may be out of PID order due to multiplier boost)
    */

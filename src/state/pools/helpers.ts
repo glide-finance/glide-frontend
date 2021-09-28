@@ -38,10 +38,10 @@ export const getTokenPricesFromFarm = (farms: Farm[]) => {
     const tokenAddress = getAddress(farm.token.address).toLocaleLowerCase()
     /* eslint-disable no-param-reassign */
     if (!prices[quoteTokenAddress]) {
-      prices[quoteTokenAddress] = new BigNumber(farm.quoteToken.busdPrice).toNumber()
+      prices[quoteTokenAddress] = new BigNumber(farm.quoteToken.usdcPrice).toNumber()
     }
     if (!prices[tokenAddress]) {
-      prices[tokenAddress] = new BigNumber(farm.token.busdPrice).toNumber()
+      prices[tokenAddress] = new BigNumber(farm.token.usdcPrice).toNumber()
     }
     /* eslint-enable no-param-reassign */
     return prices

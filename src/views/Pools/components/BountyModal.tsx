@@ -10,7 +10,7 @@ import useToast from 'hooks/useToast'
 import { useTranslation } from 'contexts/Localization'
 import ConnectWalletButton from 'components/ConnectWalletButton'
 import Balance from 'components/Balance'
-import { usePriceCakeBusd } from 'state/farms/hooks'
+import { usePriceCakeUsdc } from 'state/farms/hooks'
 import { useCakeVault } from 'state/pools/hooks'
 
 interface BountyModalProps {
@@ -37,13 +37,13 @@ const BountyModal: React.FC<BountyModalProps> = ({ onDismiss, TooltipComponent }
     totalPendingCakeHarvest,
     fees: { callFee },
   } = useCakeVault()
-  const cakePriceBusd = usePriceCakeBusd()
+  const cakePriceUsdc = usePriceCakeUsdc()
   const callFeeAsDecimal = callFee / 100
   const totalYieldToDisplay = getBalanceNumber(totalPendingCakeHarvest, 18)
 
   const estimatedDollarBountyReward = useMemo(() => {
-    return new BigNumber(estimatedCakeBountyReward).multipliedBy(cakePriceBusd)
-  }, [cakePriceBusd, estimatedCakeBountyReward])
+    return new BigNumber(estimatedCakeBountyReward).multipliedBy(cakePriceUsdc)
+  }, [cakePriceUsdc, estimatedCakeBountyReward])
 
   const hasFetchedDollarBounty = estimatedDollarBountyReward.gte(0)
   const hasFetchedCakeBounty = estimatedCakeBountyReward ? estimatedCakeBountyReward.gte(0) : false

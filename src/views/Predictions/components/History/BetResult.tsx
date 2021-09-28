@@ -4,7 +4,7 @@ import { Box, Flex, Heading, Text, PrizeIcon, BlockIcon, LinkExternal, useToolti
 import { useAppDispatch } from 'state'
 import { useTranslation } from 'contexts/Localization'
 import { useGetRewardRate } from 'state/predictions/hooks'
-import { usePriceBnbBusd } from 'state/farms/hooks'
+import { usePriceBnbUsdc } from 'state/farms/hooks'
 import styled from 'styled-components'
 import { Bet, BetPosition } from 'state/types'
 import { fetchLedgerData, markBetHistoryAsCollected } from 'state/predictions'
@@ -37,7 +37,7 @@ const BetResult: React.FC<BetResultProps> = ({ bet, result }) => {
   const dispatch = useAppDispatch()
   const { account } = useWeb3React()
   const { isRefundable } = useIsRefundable(bet.round.epoch)
-  const bnbBusdPrice = usePriceBnbBusd()
+  const bnbUsdcPrice = usePriceBnbUsdc()
   const canClaim = !bet.claimed && bet.position === bet.round.position
   const rewardRate = useGetRewardRate()
   const { targetRef, tooltip, tooltipVisible } = useTooltip(
@@ -157,7 +157,7 @@ const BetResult: React.FC<BetResultProps> = ({ bet, result }) => {
           <Box style={{ textAlign: 'right' }}>
             <Text bold color={getResultColor()}>{`${isWinner ? '+' : '-'}${formatBnb(payout)} BNB`}</Text>
             <Text fontSize="12px" color="textSubtle">
-              {`~$${formatBnb(bnbBusdPrice.times(payout).toNumber())}`}
+              {`~$${formatBnb(bnbUsdcPrice.times(payout).toNumber())}`}
             </Text>
           </Box>
         </Flex>

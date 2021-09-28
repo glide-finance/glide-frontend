@@ -1,5 +1,5 @@
 import { ChainId, JSBI, Percent, Token, WETH } from '@glide-finance/sdk'
-import { BUSD, CAKE, WELA } from './tokens'
+import { USDC, GLIDE, WELA } from './tokens'
 
 export const ROUTER_ADDRESS = '0x9606cdcB1193137DEb44e9a55C33AD8BD1d6aC96'
 
@@ -10,8 +10,8 @@ type ChainTokenList = {
 
 // used to construct intermediary pairs for trading
 export const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
-  [ChainId.MAINNET]: [WETH[ChainId.MAINNET], CAKE[ChainId.MAINNET], BUSD[ChainId.MAINNET]],
-  [ChainId.TESTNET]: [WETH[ChainId.TESTNET], CAKE[ChainId.TESTNET], BUSD[ChainId.TESTNET]],
+  [ChainId.MAINNET]: [WETH[ChainId.MAINNET], GLIDE[ChainId.MAINNET], USDC[ChainId.MAINNET]],
+  [ChainId.TESTNET]: [WETH[ChainId.TESTNET], GLIDE[ChainId.TESTNET], USDC[ChainId.TESTNET]],
   [ChainId.HECO]: [],
   [ChainId.ETHEREUM]: []
 }
@@ -35,23 +35,23 @@ export const CUSTOM_BASES: { [chainId in ChainId]?: { [tokenAddress: string]: To
 
 // used for display in the default list when adding liquidity
 export const SUGGESTED_BASES: ChainTokenList = {
-  [ChainId.MAINNET]: [BUSD[ChainId.MAINNET], CAKE[ChainId.MAINNET]],
-  [ChainId.TESTNET]: [WETH[ChainId.TESTNET], CAKE[ChainId.TESTNET], BUSD[ChainId.TESTNET]],
+  [ChainId.MAINNET]: [USDC[ChainId.MAINNET], GLIDE[ChainId.MAINNET]],
+  [ChainId.TESTNET]: [WETH[ChainId.TESTNET], GLIDE[ChainId.TESTNET], USDC[ChainId.TESTNET]],
   [ChainId.HECO]: [],
   [ChainId.ETHEREUM]: []
 }
 
 // used to construct the list of all pairs we consider by default in the frontend
 export const BASES_TO_TRACK_LIQUIDITY_FOR: ChainTokenList = {
-  [ChainId.MAINNET]: [WETH[ChainId.MAINNET], BUSD[ChainId.MAINNET]],
-  [ChainId.TESTNET]: [WETH[ChainId.TESTNET], CAKE[ChainId.TESTNET], BUSD[ChainId.TESTNET]],
+  [ChainId.MAINNET]: [WETH[ChainId.MAINNET], USDC[ChainId.MAINNET]],
+  [ChainId.TESTNET]: [WETH[ChainId.TESTNET], GLIDE[ChainId.TESTNET], USDC[ChainId.TESTNET]],
   [ChainId.HECO]: [],
   [ChainId.ETHEREUM]: []
 }
 
 export const PINNED_PAIRS: { readonly [chainId in ChainId]?: [Token, Token][] } = {
   [ChainId.MAINNET]: [
-    [CAKE[ChainId.MAINNET], WELA],
+    [GLIDE[ChainId.MAINNET], WELA],
   ],
 }
 

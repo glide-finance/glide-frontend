@@ -9,7 +9,7 @@ type SummaryType = 'won' | 'lost' | 'entered'
 interface SummaryRowProps {
   type: SummaryType
   summary: any
-  bnbBusdPrice: BigNumber
+  bnbUsdcPrice: BigNumber
 }
 
 const summaryTypeColors = {
@@ -24,7 +24,7 @@ const summaryTypeSigns = {
   entered: '',
 }
 
-const SummaryRow: React.FC<SummaryRowProps> = ({ type, summary, bnbBusdPrice }) => {
+const SummaryRow: React.FC<SummaryRowProps> = ({ type, summary, bnbUsdcPrice }) => {
   const { t } = useTranslation()
 
   const color = summaryTypeColors[type]
@@ -53,7 +53,7 @@ const SummaryRow: React.FC<SummaryRowProps> = ({ type, summary, bnbBusdPrice }) 
             {`${summaryTypeSigns[type]}${formatBnb(displayAmount)} BNB`}
           </Text>
           <Text fontSize="12px" color="textSubtle">
-            {`~$${formatBnb(bnbBusdPrice.times(displayAmount).toNumber())}`}
+            {`~$${formatBnb(bnbUsdcPrice.times(displayAmount).toNumber())}`}
           </Text>
         </Flex>
       </Flex>

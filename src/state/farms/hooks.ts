@@ -30,7 +30,7 @@ export const usePollFarmsData = (includeArchive = false) => {
 /**
  * Fetches the "core" farm data used globally
  * 251 = CAKE-BNB LP
- * 252 = BUSD-BNB LP
+ * 252 = USDC-BNB LP
  */
 export const usePollCoreFarmData = () => {
   const dispatch = useAppDispatch()
@@ -68,14 +68,14 @@ export const useFarmUser = (pid) => {
 }
 
 // Return the base token price for a farm, from a given pid
-export const useBusdPriceFromPid = (pid: number): BigNumber => {
+export const useUsdcPriceFromPid = (pid: number): BigNumber => {
   const farm = useFarmFromPid(pid)
-  return farm && new BigNumber(farm.token.busdPrice)
+  return farm && new BigNumber(farm.token.usdcPrice)
 }
 
 export const useLpTokenPrice = (symbol: string) => {
   const farm = useFarmFromLpSymbol(symbol)
-  const farmTokenPriceInUsd = useBusdPriceFromPid(farm.pid)
+  const farmTokenPriceInUsd = useUsdcPriceFromPid(farm.pid)
   let lpTokenPrice = BIG_ZERO
 
   if (farm.lpTotalSupply && farm.lpTotalInQuoteToken) {
@@ -91,21 +91,21 @@ export const useLpTokenPrice = (symbol: string) => {
   return lpTokenPrice
 }
 
-// /!\ Deprecated , use the BUSD hook in /hooks
+// /!\ Deprecated , use the USDC hook in /hooks
 
-export const usePriceBnbBusd = (): BigNumber => {
-  const bnbBusdFarm = useFarmFromPid(2)
-  return new BigNumber(bnbBusdFarm.quoteToken.busdPrice)
+export const usePriceBnbUsdc = (): BigNumber => {
+  const bnbUsdcFarm = useFarmFromPid(2)
+  return new BigNumber(bnbUsdcFarm.quoteToken.usdcPrice)
 }
 
-export const usePriceCakeBusd = (): BigNumber => {
+export const usePriceCakeUsdc = (): BigNumber => {
   const cakeBnbFarm = useFarmFromPid(1)
 
-  const cakePriceBusdAsString = cakeBnbFarm.token.busdPrice
+  const cakePriceUsdcAsString = cakeBnbFarm.token.usdcPrice
 
-  const cakePriceBusd = useMemo(() => {
-    return new BigNumber(cakePriceBusdAsString)
-  }, [cakePriceBusdAsString])
+  const cakePriceUsdc = useMemo(() => {
+    return new BigNumber(cakePriceUsdcAsString)
+  }, [cakePriceUsdcAsString])
 
-  return cakePriceBusd
+  return cakePriceUsdc
 }

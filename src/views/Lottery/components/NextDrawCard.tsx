@@ -17,7 +17,7 @@ import {
 import { useWeb3React } from '@web3-react/core'
 import { LotteryStatus } from 'config/constants/types'
 import { useTranslation } from 'contexts/Localization'
-import { usePriceCakeBusd } from 'state/farms/hooks'
+import { usePriceCakeUsdc } from 'state/farms/hooks'
 import { useLottery } from 'state/lottery/hooks'
 import { getBalanceNumber } from 'utils/formatBalance'
 import Balance from 'components/Balance'
@@ -63,8 +63,8 @@ const NextDrawCard = () => {
   const [isExpanded, setIsExpanded] = useState(false)
   const ticketBuyIsDisabled = status !== LotteryStatus.OPEN || isTransitioning
 
-  const cakePriceBusd = usePriceCakeBusd()
-  const prizeInBusd = amountCollectedInCake.times(cakePriceBusd)
+  const cakePriceUsdc = usePriceCakeUsdc()
+  const prizeInUsdc = amountCollectedInCake.times(cakePriceUsdc)
   const endTimeMs = parseInt(endTime, 10) * 1000
   const endDate = new Date(endTimeMs)
   const isLotteryOpen = status === LotteryStatus.OPEN
@@ -80,7 +80,7 @@ const NextDrawCard = () => {
     }
     return (
       <>
-        {prizeInBusd.isNaN() ? (
+        {prizeInUsdc.isNaN() ? (
           <Skeleton my="7px" height={40} width={160} />
         ) : (
           <Balance
@@ -90,11 +90,11 @@ const NextDrawCard = () => {
             lineHeight="1"
             bold
             prefix="~$"
-            value={getBalanceNumber(prizeInBusd)}
+            value={getBalanceNumber(prizeInUsdc)}
             decimals={0}
           />
         )}
-        {prizeInBusd.isNaN() ? (
+        {prizeInUsdc.isNaN() ? (
           <Skeleton my="2px" height={14} width={90} />
         ) : (
           <Balance

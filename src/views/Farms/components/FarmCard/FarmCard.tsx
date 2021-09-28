@@ -54,7 +54,7 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, displayApr, removed, cakePric
       ? `$${farm.liquidity.toNumber().toLocaleString(undefined, { maximumFractionDigits: 0 })}`
       : ''
 
-  const lpLabel = farm.lpSymbol && farm.lpSymbol.toUpperCase().replace('GLIDE', '')
+  const lpLabel = farm.lpSymbol && farm.lpSymbol.toUpperCase().replace('', '')
   const earnLabel = farm.dual ? farm.dual.earnLabel : t('GLIDE + Fees')
 
   const liquidityUrlPathParts = getLiquidityUrlPathParts({

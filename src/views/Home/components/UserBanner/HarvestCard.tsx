@@ -13,7 +13,7 @@ import {
 } from '@glide-finance/uikit'
 import BigNumber from 'bignumber.js'
 import { useTranslation } from 'contexts/Localization'
-import { usePriceCakeBusd } from 'state/farms/hooks'
+import { usePriceCakeUsdc } from 'state/farms/hooks'
 import useToast from 'hooks/useToast'
 import { useMasterchef } from 'hooks/useContract'
 import { harvestFarm } from 'utils/calls'
@@ -32,16 +32,16 @@ const HarvestCard = () => {
   const { farmsWithStakedBalance, earningsSum: farmEarningsSum } = useFarmsWithBalance()
 
   const masterChefContract = useMasterchef()
-  const cakePriceBusd = usePriceCakeBusd()
-  const earningsBusd = new BigNumber(farmEarningsSum).multipliedBy(cakePriceBusd)
+  const cakePriceUsdc = usePriceCakeUsdc()
+  const earningsUsdc = new BigNumber(farmEarningsSum).multipliedBy(cakePriceUsdc)
   const numFarmsToCollect = farmsWithStakedBalance.length
 
-  const earningsText = t('%earningsBusd% to collect from %count% %farms%', {
-    earningsBusd: earningsBusd.toString(),
+  const earningsText = t('%earningsUsdc% to collect from %count% %farms%', {
+    earningsUsdc: earningsUsdc.toString(),
     count: numFarmsToCollect > 0 ? numFarmsToCollect : '',
     farms: numFarmsToCollect === 0 || numFarmsToCollect > 1 ? 'farms' : 'farm',
   })
-  const [preText, toCollectText] = earningsText.split(earningsBusd.toString())
+  const [preText, toCollectText] = earningsText.split(earningsUsdc.toString())
 
   const harvestAllFarms = useCallback(async () => {
     setPendingTx(true)
@@ -71,14 +71,14 @@ const HarvestCard = () => {
                 {preText}
               </Text>
             )}
-            {earningsBusd && !earningsBusd.isNaN() ? (
+            {earningsUsdc && !earningsUsdc.isNaN() ? (
               <Balance
-                decimals={earningsBusd.gt(0) ? 2 : 0}
+                decimals={earningsUsdc.gt(0) ? 2 : 0}
                 fontSize="24px"
                 bold
-                prefix={earningsBusd.gt(0) ? '~$' : '$'}
+                prefix={earningsUsdc.gt(0) ? '~$' : '$'}
                 lineHeight="1.1"
-                value={earningsBusd.toNumber()}
+                value={earningsUsdc.toNumber()}
               />
             ) : (
               <Skeleton width={96} height={24} my="2px" />

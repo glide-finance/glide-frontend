@@ -24,8 +24,8 @@ export const fetchDividendPoolData = async (farms) => {
   const totalStaked = (await dividendPoolContract.poolInfo(0)).currentDepositAmount
   const priceFarm = farms.find((f) => f.pid === 1)
   const { decimals } = priceFarm.quoteToken
-  const earningTokenPrice = priceFarm.quoteToken.busdPrice
-  const stakingTokenPrice = priceFarm.token.busdPrice
+  const earningTokenPrice = priceFarm.quoteToken.usdcPrice
+  const stakingTokenPrice = priceFarm.token.usdcPrice
   const apr = getPoolApr(stakingTokenPrice, earningTokenPrice, getBalanceNumber(new BigNumber(totalStaked.toString()), 
   decimals), rewardsPerBlock.toString()/(10**decimals))
 

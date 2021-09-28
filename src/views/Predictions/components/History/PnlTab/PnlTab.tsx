@@ -7,7 +7,7 @@ import { getRoundResult, Result } from 'state/predictions/helpers'
 import { getBscScanLink } from 'utils'
 import store from 'state'
 import { useGetCurrentEpoch } from 'state/predictions/hooks'
-import { usePriceBnbBusd } from 'state/farms/hooks'
+import { usePriceBnbUsdc } from 'state/farms/hooks'
 import { Bet, BetPosition } from 'state/types'
 import { formatBnb, getMultiplier, getNetPayout } from '../helpers'
 import PnlChart from './PnlChart'
@@ -108,7 +108,7 @@ const PnlTab: React.FC<PnlTabProps> = ({ hasBetHistory, bets }) => {
   const { t } = useTranslation()
   const { account } = useWeb3React()
   const currentEpoch = useGetCurrentEpoch()
-  const bnbBusdPrice = usePriceBnbBusd()
+  const bnbUsdcPrice = usePriceBnbUsdc()
 
   const summary = getPnlSummary(bets, currentEpoch)
   const netResultAmount = summary.won.payout - summary.lost.amount
@@ -135,7 +135,7 @@ const PnlTab: React.FC<PnlTabProps> = ({ hasBetHistory, bets }) => {
             {`${netResultIsPositive ? '+' : ''}${formatBnb(netResultAmount)} BNB`}
           </Text>
           <Text small color="textSubtle">
-            {`~$${formatBnb(bnbBusdPrice.times(netResultAmount).toNumber())}`}
+            {`~$${formatBnb(bnbUsdcPrice.times(netResultAmount).toNumber())}`}
           </Text>
         </Flex>
       </Flex>
@@ -147,7 +147,7 @@ const PnlTab: React.FC<PnlTabProps> = ({ hasBetHistory, bets }) => {
           {`${avgBnbWonIsPositive ? '+' : ''}${formatBnb(avgBnbWonPerRound)} BNB`}
         </Text>
         <Text small color="textSubtle">
-          {`~$${formatBnb(bnbBusdPrice.times(avgBnbWonPerRound).toNumber())}`}
+          {`~$${formatBnb(bnbUsdcPrice.times(avgBnbWonPerRound).toNumber())}`}
         </Text>
 
         {hasBestRound && (
@@ -162,7 +162,7 @@ const PnlTab: React.FC<PnlTabProps> = ({ hasBetHistory, bets }) => {
               </Text>
             </Flex>
             <Text small color="textSubtle">
-              {`~$${formatBnb(bnbBusdPrice.times(summary.won.bestRound.payout).toNumber())}`}
+              {`~$${formatBnb(bnbUsdcPrice.times(summary.won.bestRound.payout).toNumber())}`}
             </Text>
           </>
         )}
@@ -172,14 +172,14 @@ const PnlTab: React.FC<PnlTabProps> = ({ hasBetHistory, bets }) => {
         </Text>
         <Text bold>{`${formatBnb(avgPositionEntered)} BNB`}</Text>
         <Text small color="textSubtle">
-          {`~$${formatBnb(bnbBusdPrice.times(avgPositionEntered).toNumber())}`}
+          {`~$${formatBnb(bnbUsdcPrice.times(avgPositionEntered).toNumber())}`}
         </Text>
 
         <Divider />
 
-        <SummaryRow type="won" summary={summary} bnbBusdPrice={bnbBusdPrice} />
-        <SummaryRow type="lost" summary={summary} bnbBusdPrice={bnbBusdPrice} />
-        <SummaryRow type="entered" summary={summary} bnbBusdPrice={bnbBusdPrice} />
+        <SummaryRow type="won" summary={summary} bnbUsdcPrice={bnbUsdcPrice} />
+        <SummaryRow type="lost" summary={summary} bnbUsdcPrice={bnbUsdcPrice} />
+        <SummaryRow type="entered" summary={summary} bnbUsdcPrice={bnbUsdcPrice} />
 
         <Flex justifyContent="center" mt="24px">
           <Link href={`${getBscScanLink(account, 'address')}#internaltx`} mb="16px" external>

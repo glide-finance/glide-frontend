@@ -55,10 +55,15 @@ const FarmsPoolsRow = () => {
     }
 
     if (pool.sousId === 0) {
-      return t('Manual GLIDE')
+      return t('Earn GLIDE')
     }
 
-    return t('Stake %stakingSymbol% - Earn %earningSymbol%', {
+    // return t('Stake %stakingSymbol% - Earn %earningSymbol%', {
+    //   earningSymbol: pool.earningToken.symbol,
+    //   stakingSymbol: pool.stakingToken.symbol,
+    // })
+
+    return t('Stake %stakingSymbol%', {
       earningSymbol: pool.earningToken.symbol,
       stakingSymbol: pool.stakingToken.symbol,
     })

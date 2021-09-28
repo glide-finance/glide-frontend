@@ -1,80 +1,28 @@
 import { ChainId, Token } from '@glide-finance/sdk'
 
-export const CAKE: { [chainId: number]: Token } = {
+export const GLIDE: { [chainId: number]: Token } = {
   [ChainId.MAINNET]: new Token(
     ChainId.MAINNET,
     '0x9c425FA88d84D40eE7Ec48391d1d00B07D53636B',
     18,
     'GLIDE',
     'Glide Token',
-  ),
-  [ChainId.TESTNET]: new Token(
-    ChainId.TESTNET,
-    '0xa35062141Fa33BCA92Ce69FeD37D0E8908868AAe',
-    18,
-    'CAKE',
-    'PancakeSwap Token',
-  ),
+  )
 }
 
-export const BUSD: { [chainId: number]: Token } = {
+export const USDC: { [chainId: number]: Token } = {
   [ChainId.MAINNET]: new Token(
     ChainId.MAINNET,
-    '0xF9Ca2eA3b1024c0DB31adB224B407441bECC18BB',
-    18,
-    'HUSD',
-    'Huobi USD',
-  ),
-  [ChainId.TESTNET]: new Token(
-    ChainId.TESTNET,
-    '0xeD24FC36d5Ee211Ea25A80239Fb8C4Cfd80f12Ee',
-    18,
-    'HUSD',
-    'Huobi USD',
-  ),
+    '0xA06be0F5950781cE28D965E5EFc6996e88a8C141',
+    6,
+    'USDC',
+    'USD Coin',
+  )
 }
 
-// export const USDC: { [chainId: number]: Token } = {
-//   [ChainId.MAINNET]: new Token(
-//     ChainId.MAINNET,
-//     '0xA06be0F5950781cE28D965E5EFc6996e88a8C141',
-//     6,
-//     'USDC',
-//     'USD Coin',
-//   )
-// }
-
 export const WELA = new Token(ChainId.MAINNET, '0x517E9e5d46C1EA8aB6f78677d6114Ef47F71f6c4', 18, 'WELA', 'Wrapped ELA')
-// export const DAI = new Token(ChainId.MAINNET, '0x1AF3F329e8BE154074D8769D1FFa4eE058B1DBc3', 18, 'DAI', 'Dai Stablecoin')
-// export const USDT = new Token(ChainId.MAINNET, '0x55d398326f99059fF775485246999027B3197955', 18, 'USDT', 'Tether USD')
-// export const BTCB = new Token(ChainId.MAINNET, '0x7130d2A12B9BCbFAe4f2634d864A1Ee1Ce3Ead9c', 18, 'BTCB', 'Binance BTC')
-// export const UST = new Token(
-//   ChainId.MAINNET,
-//   '0x23396cF899Ca06c4472205fC903bDB4de249D6fC',
-//   18,
-//   'UST',
-//   'Wrapped UST Token',
-// )
-// export const ETH = new Token(
-//   ChainId.MAINNET,
-//   '0x2170Ed0880ac9A755fd29B2688956BD959F933F8',
-//   18,
-//   'ETH',
-//   'Binance-Peg Ethereum Token',
-// )
-// export const USDC = new Token(
-//   ChainId.MAINNET,
-//   '0x8AC76a51cc950d9822D68b83fE1Ad97B32Cd580d',
-//   18,
-//   'USDC',
-//   'Binance-Peg USD Coin',
-// )
 
 const tokens = {
-  // bnb: {
-  //   symbol: 'BNB',
-  //   projectLink: 'https://www.binance.com/',
-  // },
   glide: {
     symbol: 'GLIDE',
     address: {

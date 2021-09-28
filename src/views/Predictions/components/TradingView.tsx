@@ -25,7 +25,7 @@ const initializeTradingView = (TradingViewObj: any, theme: DefaultTheme, localeC
   new TradingViewObj.widget({
     autosize: true,
     height: '100%',
-    symbol: 'BINANCE:BNBUSDT',
+    symbol: 'BINANCE:BNUSDCT',
     interval: '5',
     timezone: 'Etc/UTC',
     theme: theme.isDark ? 'dark' : 'light',

@@ -4,7 +4,7 @@ import BigNumber from 'bignumber.js'
 import { Flex, Skeleton, Heading, Box, Text } from '@glide-finance/uikit'
 import { useTranslation } from 'contexts/Localization'
 import { LotteryRound } from 'state/types'
-import { usePriceCakeBusd } from 'state/farms/hooks'
+import { usePriceCakeUsdc } from 'state/farms/hooks'
 import { useGetLotteryGraphDataById } from 'state/lottery/hooks'
 import { formatNumber, getBalanceNumber } from 'utils/formatBalance'
 import Balance from 'components/Balance'
@@ -26,25 +26,25 @@ const PreviousRoundCardFooter: React.FC<{ lotteryData: LotteryRound; lotteryId: 
 }) => {
   const { t } = useTranslation()
   const lotteryGraphData = useGetLotteryGraphDataById(lotteryId)
-  const cakePriceBusd = usePriceCakeBusd()
+  const cakePriceUsdc = usePriceCakeUsdc()
 
-  let prizeInBusd = new BigNumber(NaN)
+  let prizeInUsdc = new BigNumber(NaN)
   if (lotteryData) {
     const { amountCollectedInCake } = lotteryData
-    prizeInBusd = amountCollectedInCake.times(cakePriceBusd)
+    prizeInUsdc = amountCollectedInCake.times(cakePriceUsdc)
   }
 
   const getPrizeBalances = () => {
     return (
       <>
-        {prizeInBusd.isNaN() ? (
+        {prizeInUsdc.isNaN() ? (
           <Skeleton my="7px" height={40} width={200} />
         ) : (
           <Heading scale="xl" lineHeight="1" color="secondary">
-            ~${formatNumber(getBalanceNumber(prizeInBusd), 0, 0)}
+            ~${formatNumber(getBalanceNumber(prizeInUsdc), 0, 0)}
           </Heading>
         )}
-        {prizeInBusd.isNaN() ? (
+        {prizeInUsdc.isNaN() ? (
           <Skeleton my="2px" height={14} width={90} />
         ) : (
           <Balance

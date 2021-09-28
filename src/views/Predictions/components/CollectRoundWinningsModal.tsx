@@ -19,7 +19,7 @@ import {
 import { useWeb3React } from '@web3-react/core'
 import { getBscScanLink } from 'utils'
 import { useAppDispatch } from 'state'
-import { usePriceBnbBusd } from 'state/farms/hooks'
+import { usePriceBnbUsdc } from 'state/farms/hooks'
 import { fetchClaimableStatuses } from 'state/predictions'
 import { useTranslation } from 'contexts/Localization'
 import useToast from 'hooks/useToast'
@@ -56,7 +56,7 @@ const CollectRoundWinningsModal: React.FC<CollectRoundWinningsModalProps> = ({
   const { t } = useTranslation()
   const { toastSuccess, toastError } = useToast()
   const predictionsContract = usePredictionsContract()
-  const bnbBusdPrice = usePriceBnbBusd()
+  const bnbUsdcPrice = usePriceBnbUsdc()
   const dispatch = useAppDispatch()
 
   // Convert payout to number for compatibility
@@ -114,7 +114,7 @@ const CollectRoundWinningsModal: React.FC<CollectRoundWinningsModalProps> = ({
           <Box style={{ textAlign: 'right' }}>
             <Text>{`${betAmount} BNB`}</Text>
             <Text fontSize="12px" color="textSubtle">
-              {`~$${bnbBusdPrice.times(betAmountAsFloat).toFormat(2)}`}
+              {`~$${bnbUsdcPrice.times(betAmountAsFloat).toFormat(2)}`}
             </Text>
           </Box>
         </Flex>
@@ -123,7 +123,7 @@ const CollectRoundWinningsModal: React.FC<CollectRoundWinningsModalProps> = ({
           <Box style={{ textAlign: 'right' }}>
             <Text>{`${payout} BNB`}</Text>
             <Text fontSize="12px" color="textSubtle">
-              {`~$${bnbBusdPrice.times(payoutAsFloat).toFormat(2)}`}
+              {`~$${bnbUsdcPrice.times(payoutAsFloat).toFormat(2)}`}
             </Text>
           </Box>
         </Flex>

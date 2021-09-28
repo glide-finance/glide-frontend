@@ -14,7 +14,7 @@ export interface Token {
   address?: Address
   decimals?: number
   projectLink?: string
-  busdPrice?: string
+  usdcPrice?: string
 }
 
 export enum PoolIds {
