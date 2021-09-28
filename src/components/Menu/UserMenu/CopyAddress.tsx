@@ -35,11 +35,6 @@ const Address = styled.div`
   }
 
   &:after {
-    background: linear-gradient(
-      to right,
-      ${({ theme }) => theme.colors.background}00,
-      ${({ theme }) => theme.colors.background}E6
-    );
     content: '';
     height: 100%;
     pointer-events: none;
@@ -49,6 +44,12 @@ const Address = styled.div`
     width: 40px;
   }
 `
+
+// background: linear-gradient(
+//   to right,
+//   ${({ theme }) => theme.colors.background}00,
+//   ${({ theme }) => theme.colors.background}E6
+// );
 
 const Tooltip = styled.div<{ isTooltipDisplayed: boolean }>`
   display: ${({ isTooltipDisplayed }) => (isTooltipDisplayed ? 'inline-block' : 'none')};

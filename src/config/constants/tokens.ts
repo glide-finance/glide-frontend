@@ -16,6 +16,7 @@ export const CAKE: { [chainId: number]: Token } = {
     'PancakeSwap Token',
   ),
 }
+
 export const BUSD: { [chainId: number]: Token } = {
   [ChainId.MAINNET]: new Token(
     ChainId.MAINNET,
@@ -32,6 +33,16 @@ export const BUSD: { [chainId: number]: Token } = {
     'Huobi USD',
   ),
 }
+
+// export const USDC: { [chainId: number]: Token } = {
+//   [ChainId.MAINNET]: new Token(
+//     ChainId.MAINNET,
+//     '0xA06be0F5950781cE28D965E5EFc6996e88a8C141',
+//     6,
+//     'USDC',
+//     'USD Coin',
+//   )
+// }
 
 export const WELA = new Token(ChainId.MAINNET, '0x517E9e5d46C1EA8aB6f78677d6114Ef47F71f6c4', 18, 'WELA', 'Wrapped ELA')
 // export const DAI = new Token(ChainId.MAINNET, '0x1AF3F329e8BE154074D8769D1FFa4eE058B1DBc3', 18, 'DAI', 'Dai Stablecoin')
@@ -117,8 +128,8 @@ const tokens = {
     decimals: 18,
     projectLink: 'https://glidefinance.io/',
   },
-  busd: {
-    symbol: 'BUSD',
+  husd: {
+    symbol: 'HUSD',
     address: {
       56: '0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56',
       97: '',
@@ -126,6 +137,16 @@ const tokens = {
     },
     decimals: 8,
     projectLink: 'https://www.hecochain.com/',
+  },
+  usdc: {
+    symbol: 'USDC',
+    address: {
+      56: '',
+      97: '',
+      20: '0xA06be0F5950781cE28D965E5EFc6996e88a8C141'
+    },
+    decimals: 6,
+    projectLink: 'https://www.circle.com/en/usdc',
   }
 }
 

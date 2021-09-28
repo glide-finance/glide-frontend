@@ -106,7 +106,7 @@ const DividendStakeModal: React.FC<StakeModalProps> = ({ isBnbPool, pool, isRemo
         await onStake(stakeAmount, stakingToken.decimals)
         toastSuccess(
           `${t('Staked')}!`,
-          t('Your %symbol% funds have been staked in the pool!', {
+          t('Your %symbol% tokens have been staked in the pool!', {
             symbol: stakingToken.symbol,
           }),
         )

@@ -33,6 +33,7 @@ const StyledTokenInput = styled.div<InputProps>`
   color: ${({ theme }) => theme.colors.text};
   padding: 8px 16px 8px 0;
   width: 100%;
+  margin-bottom: 12px;
 `
 
 const StyledInput = styled(Input)`
@@ -53,7 +54,7 @@ const StyledInput = styled(Input)`
 
 const StyledErrorMessage = styled(Text)`
   position: absolute;
-  bottom: -22px;
+  bottom: -12px;
   a {
     display: inline;
   }

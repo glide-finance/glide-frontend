@@ -9,12 +9,13 @@ import { AutoColumn } from '../Layout/Column'
 import QuestionHelper from '../QuestionHelper'
 import { AutoRow } from '../Layout/Row'
 import { CurrencyLogo } from '../Logo'
+  
+// border: 1px solid ${({ theme, disable }) => (disable ? 'transparent' : theme.colors.dropdown)};
 
 const BaseWrapper = styled.div<{ disable?: boolean }>`
-  border: 1px solid ${({ theme, disable }) => (disable ? 'transparent' : theme.colors.dropdown)};
   border-radius: 10px;
   display: flex;
-  padding: 6px;
+  padding: 8px;
 
   align-items: center;
   :hover {

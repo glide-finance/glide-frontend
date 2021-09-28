@@ -347,7 +347,7 @@ const Pools: React.FC = () => {
                 setupNetwork(20, library)
               }}
             >
-              {t('Please connect to Elastos to begin')}
+              {t('Connect to the Elastos network to begin')}
             </Button>
           </ConnectContainer>
         )}

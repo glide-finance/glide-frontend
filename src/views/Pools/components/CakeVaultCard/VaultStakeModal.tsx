@@ -125,7 +125,7 @@ const VaultStakeModal: React.FC<VaultStakeModalProps> = ({ pool, stakingMax, isR
       const tx = await cakeVaultContract.deposit(convertedStakeAmount.toString(), callOptions)
       const receipt = await tx.wait()
       if (receipt.status) {
-        toastSuccess(t('Staked!'), t('Your funds have been staked in the pool'))
+        toastSuccess(t('Staked!'), t('Your tokens have been staked in the pool'))
         setPendingTx(false)
         onDismiss()
         dispatch(fetchCakeVaultUserData({ account }))

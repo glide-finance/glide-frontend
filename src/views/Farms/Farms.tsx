@@ -297,7 +297,7 @@ const Farms: React.FC = () => {
     const { token, quoteToken } = farm
     const tokenAddress = token.address
     const quoteTokenAddress = quoteToken.address
-    const lpLabel = farm.lpSymbol && farm.lpSymbol.split(' ')[0].toUpperCase().replace('PANCAKE', '')
+    const lpLabel = farm.lpSymbol && farm.lpSymbol.split(' ')[0].toUpperCase().replace('GLIDE', '')
 
     const row: RowProps = {
       apr: {
@@ -477,7 +477,7 @@ const Farms: React.FC = () => {
                 setupNetwork(20, library)
               }}
             >
-              {t('Please connect to Elastos to begin')}
+              {t('Connect to the Elastos network to begin')}
             </Button>
           </ConnectContainer>
         )}

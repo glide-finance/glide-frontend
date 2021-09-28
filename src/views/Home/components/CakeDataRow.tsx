@@ -8,13 +8,28 @@ import { Flex, Text, Heading, Skeleton } from '@glide-finance/uikit'
 import { useTranslation } from 'contexts/Localization'
 import { Farm, Pool } from 'state/types'
 import Balance from 'components/Balance'
-import {getGlideCurrentEmissions} from 'utils/calls'
+import { getGlideCurrentEmissions } from 'utils/calls'
 import { useBlock } from 'state/block/hooks'
 import BigNumber from 'bignumber.js'
 import isArchivedPid from 'utils/farmHelpers'
-import {
-  usePoolsPublicData
-} from 'state/pools/hooks'
+import { usePoolsPublicData } from 'state/pools/hooks'
+
+// const StyledColumn = styled(Flex)<{ noMobileBorder?: boolean }>`
+//   flex-direction: column;
+//   ${({ noMobileBorder, theme }) =>
+//     noMobileBorder
+//       ? `${theme.mediaQueries.md} {
+//            padding: 0 16px;
+//            border-left: 1px ${theme.colors.inputSecondary} solid;
+//          }
+//        `
+//       : `border-left: 1px ${theme.colors.inputSecondary} solid;
+//          padding: 0 8px;
+//          ${theme.mediaQueries.sm} {
+//            padding: 0 16px;
+//          }
+//        `}
+// `
 
 const StyledColumn = styled(Flex)<{ noMobileBorder?: boolean }>`
   flex-direction: column;
@@ -22,11 +37,9 @@ const StyledColumn = styled(Flex)<{ noMobileBorder?: boolean }>`
     noMobileBorder
       ? `${theme.mediaQueries.md} {
            padding: 0 16px;
-           border-left: 1px ${theme.colors.inputSecondary} solid;
          }
        `
-      : `border-left: 1px ${theme.colors.inputSecondary} solid;
-         padding: 0 8px;
+      : ` padding: 0 8px;
          ${theme.mediaQueries.sm} {
            padding: 0 16px;
          }
@@ -49,32 +62,30 @@ const Grid = styled.div`
   }
 `
 
-
 const CakeDataRow = () => {
-
   function calculateTotalLiquidtyFarms(farms: Farm[]) {
-    let totalLiquidity = new BigNumber(0);
-    farms.forEach( (farm: Farm) => {
+    let totalLiquidity = new BigNumber(0)
+    farms.forEach((farm: Farm) => {
       if (!farm.lpTotalInQuoteToken || !farm.quoteToken.busdPrice) {
-        return;
+        return
       }
-      totalLiquidity = new BigNumber(farm.lpTotalInQuoteToken).times(farm.quoteToken.busdPrice).plus(totalLiquidity);
-    });
-    return totalLiquidity;
+      totalLiquidity = new BigNumber(farm.lpTotalInQuoteToken).times(farm.quoteToken.busdPrice).plus(totalLiquidity)
+    })
+    return totalLiquidity
   }
 
   function calculateTotalLiquidtyPools(pools: Pool[]) {
-    let totalLiquidity = new BigNumber(0);
-    pools.forEach( (pool: Pool) => {
+    let totalLiquidity = new BigNumber(0)
+    pools.forEach((pool: Pool) => {
       if (!pool.stakingTokenPrice || !pool.totalStaked || !pool.stakingToken.decimals) {
-        return;
+        return
       }
       const totalStaked = getBalanceNumber(pool.totalStaked, pool.stakingToken.decimals)
-      totalLiquidity = new BigNumber(totalStaked).times(pool.stakingTokenPrice).plus(totalLiquidity);
-    });
-    return totalLiquidity;
+      totalLiquidity = new BigNumber(totalStaked).times(pool.stakingTokenPrice).plus(totalLiquidity)
+    })
+    return totalLiquidity
   }
-  
+
   const { t } = useTranslation()
   const { currentBlock } = useBlock()
   const { data: farmsLP } = useFarms()
@@ -86,7 +97,7 @@ const CakeDataRow = () => {
   const cakePriceBusd = usePriceCakeBusd()
   const mcap = cakePriceBusd.times(cakeSupply)
   const mcapString = formatLocalisedCompactNumber(mcap.toNumber())
-  const emissionsPerBlock = getGlideCurrentEmissions(new BigNumber(currentBlock)).toNumber();
+  const emissionsPerBlock = getGlideCurrentEmissions(new BigNumber(currentBlock)).toNumber()
 
   const activeFarms = farmsLP.filter((farm) => farm.pid !== 0 && farm.multiplier !== '0X' && !isArchivedPid(farm.pid))
   const inactiveFarms = farmsLP.filter((farm) => farm.pid !== 0 && farm.multiplier === '0X' && !isArchivedPid(farm.pid))
@@ -101,19 +112,19 @@ const CakeDataRow = () => {
     <Grid>
       <Flex flexDirection="column">
         <Text color="textSubtle">{t('Total Value Locked')}</Text>
-            {totalValueLocked ? (
-              <Balance decimals={2} lineHeight="1.1" prefix="$" fontSize="24px" bold value={totalValueLocked.toNumber()} />
-            ) : (
-              <Skeleton height={24} width={126} my="4px" />
-            )}
+        {totalValueLocked ? (
+          <Balance decimals={2} lineHeight="1.1" prefix="$" fontSize="24px" bold value={totalValueLocked.toNumber()} />
+        ) : (
+          <Skeleton height={24} width={126} my="4px" />
+        )}
       </Flex>
       <StyledColumn>
         <Text color="textSubtle">{t('Market cap')}</Text>
-          {mcap?.gt(0) && mcapString ? (
-            <Heading scale="lg">{t('$%marketCap%', { marketCap: mcapString })}</Heading>
-          ) : (
-            <Skeleton height={24} width={126} my="4px" />
-          )}
+        {mcap?.gt(0) && mcapString ? (
+          <Heading scale="lg">{t('$%marketCap%', { marketCap: mcapString })}</Heading>
+        ) : (
+          <Skeleton height={24} width={126} my="4px" />
+        )}
       </StyledColumn>
       <StyledColumn>
         <Text color="textSubtle">{t('Circulating GLIDE')}</Text>

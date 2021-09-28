@@ -338,7 +338,7 @@ const Bridge: React.FC = () => {
               <AutoColumn gap="md" style={{ padding: '1rem 0' }}>
                 <ChainContainer>
                   <AutoRow justify="center">
-                    <Text color="text">{t('From')}</Text>
+                    <Text color="textSubtle">{t('From')}</Text>
                   </AutoRow>
                   <AutoRow justify="center" style={{ padding: '0.5rem' }}>
                     <img src={`images/networks/${IndexMap[originIndex]}.png`} alt={IndexMap[originIndex]} width={75} />
@@ -379,7 +379,7 @@ const Bridge: React.FC = () => {
               <AutoColumn gap="md" style={{ padding: '1rem 0' }}>
                 <ChainContainer>
                   <AutoRow justify="center">
-                    <Text color="text">{t('To')}</Text>
+                    <Text color="textSubtle">{t('To')}</Text>
                   </AutoRow>
                   <AutoRow justify="center" style={{ padding: '0.5rem' }}>
                     <img

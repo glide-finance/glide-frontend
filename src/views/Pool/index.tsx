@@ -85,7 +85,7 @@ export default function Pool() {
   return (
     <GradientPage>
       <AppBody>
-        <GradientHeader title={t('Your Liquidity')} subtitle={t('Remove liquidity to receive tokens back')} />
+        <GradientHeader title={t('Your Liquidity')} subtitle={t('Deconstruct LP tokens')} />
         <Body>
           {renderBody()}
           {account && !v2IsLoading && (

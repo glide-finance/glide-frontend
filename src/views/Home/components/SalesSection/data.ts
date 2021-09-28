@@ -10,7 +10,7 @@ export const swapSectionData: SalesSectionProps = {
     external: false,
   },
   secondaryButton: {
-    to: 'https://docs.pancakeswap.finance/',
+    to: 'https://docs.glidefinance.io/',
     text: 'Learn',
     external: true,
   },
@@ -19,7 +19,7 @@ export const swapSectionData: SalesSectionProps = {
     attributes: [
       { src: 'ELA', alt: 'ELA token' },
       { src: 'BTC', alt: 'BTC token' },
-      { src: 'CAKE', alt: 'CAKE token' },
+      { src: 'GLIDE', alt: 'GLIDE token' },
     ],
   },
 }

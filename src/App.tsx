@@ -60,6 +60,12 @@ const App: React.FC = () => {
   usePollBlockNumber()
   usePollCoreFarmData()
 
+  // <div style={{ position: 'fixed', bottom: '15px', right: '20px', zIndex: 999, width: '200px' }}>
+  //   <a href="https://paladinsec.co" target="_blank" rel="noreferrer">
+  //     <img src="https://paladinsec.co/pld/assets/audited-by-paladin-standard.svg" width="200" alt="Paladin" />
+  //   </a>
+  // </div>
+
   return (
     <Router history={history}>
       <ResetCSS />

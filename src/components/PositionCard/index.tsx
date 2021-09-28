@@ -32,6 +32,11 @@ import Dots from '../Loader/Dots'
 const FixedHeightRow = styled(RowBetween)`
   height: 24px;
 `
+
+// const StyledCard = styled(Card)`
+//   border-radius: 12px;
+// `
+
 const StyledFlex = styled(Flex)`
   background: linear-gradient(250deg, #17264f 0%, hsl(220, 51%, 23%) 100%);
   box-shadow: ${({ theme }) => theme.shadows.inset};
@@ -139,9 +144,6 @@ export function MinimalPositionCard({ pair, showUnwrapped = false }: PositionCar
       ) : (
         <LightCard>
           <Text fontSize="14px" style={{ textAlign: 'center' }}>
-            <span role="img" aria-label="pancake-icon">
-              🥞
-            </span>{' '}
             {t(
               "By adding liquidity you'll earn 0.05% of all trades on this pair proportional to your share of the pool. Fees are added to the pool, accrue in real time and can be claimed by withdrawing your liquidity.",
             )}
@@ -181,7 +183,7 @@ export default function FullPositionCard({ pair, ...props }: PositionCardProps) 
       : [undefined, undefined]
 
   return (
-    <Card style={{ borderRadius: '12px' }}>
+    <Card>
       <StyledFlex justifyContent="space-between" role="button" onClick={() => setShowMore(!showMore)} p="16px">
         <Flex flexDirection="column">
           <Flex alignItems="center" mb="4px">

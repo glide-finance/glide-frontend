@@ -392,7 +392,7 @@ export default function Swap({ history }: RouteComponentProps) {
                   setupNetwork(20, library)
                 }}
               >
-                {t('Please connect to Elastos to begin')}
+                {t('Connect to the Elastos network to begin')}
               </Button>
             ) : swapIsUnsupported ? (
               <Button width="100%" disabled mb="4px">
