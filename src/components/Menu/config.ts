@@ -1,111 +1,72 @@
-import { MenuEntry } from '@glide-finance/uikit'
 import { ContextApi } from 'contexts/Localization/types'
+import { MenuEntry, MenuItemsType, DropdownMenuItemType } from '@glide-finance/uikit'
 
-const config: (t: ContextApi['t']) => MenuEntry[] = (t) => [
+export type ConfigMenuItemsType = MenuItemsType & { hideSubNav?: boolean }
+
+const config: (t: ContextApi['t']) => ConfigMenuItemsType[] = (t) => [
   {
     label: t('Home'),
-    icon: 'HomeIcon',
+    icon: 'Home',
     href: '/',
+    showItemsOnMobile: false,
+    showOnMobile: false
   },
   {
-    label: t('Swap'), // Trade
-    icon: 'TradeIcon',
+    label: t('Trade'),
+    icon: 'Trade',
     href: '/swap',
+    showItemsOnMobile: false
   },
-  // {
-  //   label: t('Liquidity'),
-  //   icon: 'TradeIcon',
-  //   href: '/pool',
-  // },
   {
-    label: t('Farm'), // Farms
-    icon: 'FarmIcon',
+    label: t('Farm'),
+    icon: 'Farm',
     href: '/farms',
+    showItemsOnMobile: false
   },
   {
-    label: t('Stake'), // Pools
-    icon: 'PoolIcon',
+    label: t('Stake'),
+    icon: 'Pool',
     href: '/pools',
+    showItemsOnMobile: false
   },
   {
     label: t('Bridge'),
-    icon: 'BridgeIcon',
+    icon: 'Bridge',
     href: '/bridge',
+    showItemsOnMobile: false
   },
-  // {
-  //   label: t('Prediction (BETA)'),
-  //   icon: 'PredictionsIcon',
-  //   href: '/prediction',
-  // },
-  // {
-  //   label: t('Lottery'),
-  //   icon: 'TicketIcon',
-  //   href: '/lottery',
-  // },
-  // {
-  //   label: t('Collectibles'),
-  //   icon: 'NftIcon',
-  //   href: '/collectibles',
-  // },
-  // {
-  //   label: t('Team Battle'),
-  //   icon: 'TeamBattleIcon',
-  //   href: '/competition',
-  // },
-  // {
-  //   label: t('Teams & Profile'),
-  //   icon: 'GroupsIcon',
-  //   items: [
-  //     {
-  //       label: t('Leaderboard'),
-  //       href: '/teams',
-  //     },
-  //     {
-  //       label: t('Task Center'),
-  //       href: '/profile/tasks',
-  //     },
-  //     {
-  //       label: t('Your Profile'),
-  //       href: '/profile',
-  //     },
-  //   ],
-  // },
-  // {
-  //   label: t('Info'),
-  //   icon: 'InfoIcon',
-  //   href: 'https://pancakeswap.info',
-  // },
-  // {
-  //   label: t('IFO'),
-  //   icon: 'IfoIcon',
-  //   href: '/ifo',
-  // },
-  // {
-  //   label: t('More'),
-  //   icon: 'MoreIcon',
-  //   items: [
-  //     // {
-  //     //   label: t('Voting'),
-  //     //   href: '/voting',
-  //     // },
-  //     {
-  //       label: t('Github'),
-  //       href: 'https://github.com/glide-finance',
-  //     },
-  //     {
-  //       label: t('Docs'),
-  //       href: 'https://docs.glidefinance.io/',
-  //     },
-  //     {
-  //       label: t('Blog'),
-  //       href: 'https://medium.com/glide-finance',
-  //     },
-  //     // {
-  //     //   label: t('Merch'),
-  //     //   href: 'https://pancakeswap.creator-spring.com/',
-  //     // },
-  //   ],
-  // },
+  {
+    label: '',
+    href: '/info',
+    icon: 'More',
+    hideSubNav: true,
+    showOnDesktop: false,
+    items: [
+      {
+        type: DropdownMenuItemType.PRICE,
+      },
+      {
+        type: DropdownMenuItemType.DIVIDER,
+      },
+      {
+        type: DropdownMenuItemType.SOCIALS,
+      },
+      {
+        type: DropdownMenuItemType.DIVIDER,
+      },
+      {
+        label: t('Docs & Help'),
+        href: 'https://docs.glidefinance.io',
+        type: DropdownMenuItemType.EXTERNAL_LINK,
+      },
+      {
+        label: t('Blog'),
+        href: 'https://medium.com/glide-finance',
+        type: DropdownMenuItemType.EXTERNAL_LINK,
+      }
+    ],
+  },
 ]
 
 export default config
+

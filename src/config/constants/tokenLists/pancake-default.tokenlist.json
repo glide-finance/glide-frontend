@@ -11,7 +11,7 @@
   "keywords": ["glide", "default"],
   "tokens": [
     {
-      "name": "ELA on HuobiChain",
+      "name": "ELA on Heco",
       "symbol": "ELA",
       "address": "0xa1ecFc2beC06E4b43dDd423b94Fef84d0dBc8F5c",
       "chainId": 128,
@@ -19,7 +19,7 @@
       "logoURI": ""
     },
     {
-      "name": "Glide Token",
+      "name": "Glide",
       "symbol": "GLIDE",
       "address": "0x9c425FA88d84D40eE7Ec48391d1d00B07D53636B",
       "chainId": 20,
@@ -35,7 +35,7 @@
       "logoURI": ""
     },
     {
-      "name": "Heco-Peg HUSD Token",
+      "name": "HUSD on Elastos",
       "symbol": "HUSD",
       "address": "0xF9Ca2eA3b1024c0DB31adB224B407441bECC18BB",
       "chainId": 20,
@@ -43,7 +43,7 @@
       "logoURI": ""
     },
     {
-      "name": "Heco-Peg HUSD Token",
+      "name": "Heco-Peg HUSD",
       "symbol": "HUSD",
       "address": "0x0298c2b32eaE4da002a15f36fdf7615BEa3DA047",
       "chainId": 128,

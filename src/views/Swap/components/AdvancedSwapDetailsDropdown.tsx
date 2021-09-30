@@ -10,7 +10,6 @@ const AdvancedDetailsFooter = styled.div<{ show: boolean }>`
   width: 100%;
   max-width: 400px;
   border-radius: 20px;
-  border: 1px solid ${({ theme }) => theme.colors.input};
   background: ${({ theme }) => theme.colors.backgroundAlt};
   transform: ${({ show }) => (show ? 'translateY(0%)' : 'translateY(-100%)')};
   transition: transform 300ms ease-in-out;
