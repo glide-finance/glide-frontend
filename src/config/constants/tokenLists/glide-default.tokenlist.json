@@ -1,0 +1,62 @@
+{
+  "name": "Glide Default List",
+  "timestamp": "2021-05-06T00:00:00Z",
+  "version": {
+    "major": 1,
+    "minor": 0,
+    "patch": 0
+  },
+  "tags": {},
+  "logoURI": "",
+  "keywords": ["glide", "default"],
+  "tokens": [
+    {
+      "name": "Glide",
+      "symbol": "GLIDE",
+      "address": "0x3983cD2787A1e63c6Fb189CE0C06B9B44E382c31",
+      "chainId": 20,
+      "decimals": 18,
+      "logoURI": ""
+    },
+    {
+      "name": "HT on Elastos",
+      "symbol": "HT",
+      "address": "0xeceefC50f9aAcF0795586Ed90a8b9E24f55Ce3F3",
+      "chainId": 20,
+      "decimals": 18,
+      "logoURI": ""
+    },
+    {
+      "name": "HUSD on Elastos",
+      "symbol": "HUSD",
+      "address": "0xF9Ca2eA3b1024c0DB31adB224B407441bECC18BB",
+      "chainId": 20,
+      "decimals": 8,
+      "logoURI": ""
+    },
+    {
+      "name": "USDC on Elastos",
+      "symbol": "USDC",
+      "address": "0xA06be0F5950781cE28D965E5EFc6996e88a8C141",
+      "chainId": 20,
+      "decimals": 6,
+      "logoURI": ""
+    },
+    {
+      "name": "ETH on Elastos",
+      "symbol": "ETH",
+      "address": "0x802c3e839E4fDb10aF583E3E759239ec7703501e",
+      "chainId": 20,
+      "decimals": 18,
+      "logoURI": ""
+    },
+    {
+      "name": "Wrapped Elastos",
+      "symbol": "WELA",
+      "address": "0x517E9e5d46C1EA8aB6f78677d6114Ef47F71f6c4",
+      "chainId": 20,
+      "decimals": 18,
+      "logoURI": ""
+    }
+  ]
+}

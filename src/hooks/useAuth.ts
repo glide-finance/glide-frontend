@@ -26,15 +26,13 @@ const useAuth = () => {
   const login = useCallback(
     (connectorID: ConnectorNames) => {
       const connector = connectorsByName[connectorID]
-      console.log('login triggered', connector)
       if (connector) {
         activate(connector, async (error: Error) => {
           if (error instanceof UnsupportedChainIdError) {
-            console.log(error)
-            const hasSetup = await setupNetwork(20) // specify network to switch to
-            if (hasSetup) {
-              activate(connector)
-            }
+              const hasSetup = await setupNetwork(20) // specify network to switch to
+              if (hasSetup) {
+                activate(connector)
+              }
           } else {
             window.localStorage.removeItem(connectorLocalStorageKey)
             if (error instanceof NoEthereumProviderError || error instanceof NoBscProviderError) {

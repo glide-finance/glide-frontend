@@ -111,7 +111,7 @@ const CakeDataRow = () => {
   return (
     <Grid>
       <Flex flexDirection="column">
-        <Text color="textSubtle">{t('Total Value Locked')}</Text>
+        <Text color="textSubtle">{t('Total value locked')}</Text>
         {totalValueLocked ? (
           <Balance decimals={2} lineHeight="1.1" prefix="$" fontSize="24px" bold value={totalValueLocked.toNumber()} />
         ) : (
@@ -119,17 +119,17 @@ const CakeDataRow = () => {
         )}
       </Flex>
       <StyledColumn>
-        <Text color="textSubtle">{t('Market cap')}</Text>
-        {mcap?.gt(0) && mcapString ? (
-          <Heading scale="lg">{t('$%marketCap%', { marketCap: mcapString })}</Heading>
+        <Text color="textSubtle">{t('Circulating GLIDE')}</Text>
+        {cakeSupply ? (
+          <Balance decimals={0} lineHeight="1.1" fontSize="24px" bold value={cakeSupply} />
         ) : (
           <Skeleton height={24} width={126} my="4px" />
         )}
       </StyledColumn>
       <StyledColumn>
-        <Text color="textSubtle">{t('Circulating GLIDE')}</Text>
-        {cakeSupply ? (
-          <Balance decimals={0} lineHeight="1.1" fontSize="24px" bold value={cakeSupply} />
+        <Text color="textSubtle">{t('Market cap')}</Text>
+        {mcap?.gt(0) && mcapString ? (
+          <Heading scale="lg">{t('$%marketCap%', { marketCap: mcapString })}</Heading>
         ) : (
           <Skeleton height={24} width={126} my="4px" />
         )}

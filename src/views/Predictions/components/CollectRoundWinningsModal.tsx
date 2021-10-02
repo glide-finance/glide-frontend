@@ -84,7 +84,7 @@ const CollectRoundWinningsModal: React.FC<CollectRoundWinningsModalProps> = ({
           </Text>
           {receipt.transactionHash && (
             <LinkExternal href={getBscScanLink(receipt.transactionHash, 'transaction')}>
-              {t('View on BscScan')}
+              {t('View on explorer')}
             </LinkExternal>
           )}
         </Box>,

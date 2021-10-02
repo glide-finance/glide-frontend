@@ -7,7 +7,8 @@ function phase(blockNumber: BigNumber) {
       // Calculate block number from start block
       const blockNumberFromStart = blockNumber.minus(GLIDE_START_BLOCK); 
       // If blockNumberFromStart less then block for reduction period, then we are in one phase
-      if (blockNumberFromStart <= GLIDE_BONUS_PERIOD) { 
+      if (blockNumberFromStart.lte(GLIDE_BONUS_PERIOD)) { 
+          console.log('helloooooo')
           return 1;
       } 
       // Calculate phase and add 1, because, will be start from one, and one phase is bonus phase 
@@ -29,7 +30,7 @@ function rewardPerPhase(phaseNumber: number) {
 }
 
 /**
- * Returns the total number of glides per year
+ * Returns the total number of glide per year
  */
 export const getGlidesPerYear = (currentBlock: BigNumber) => {
   // Reward sum

@@ -1,7 +1,7 @@
 import { ChainId, JSBI, Percent, Token, WETH } from '@glide-finance/sdk'
 import { USDC, GLIDE, WELA } from './tokens'
 
-export const ROUTER_ADDRESS = '0x9606cdcB1193137DEb44e9a55C33AD8BD1d6aC96'
+export const ROUTER_ADDRESS = '0x476c857735FF79041310B82879994E99c8bbfE0D'
 
 // a list of tokens by chain
 type ChainTokenList = {
@@ -35,7 +35,7 @@ export const CUSTOM_BASES: { [chainId in ChainId]?: { [tokenAddress: string]: To
 
 // used for display in the default list when adding liquidity
 export const SUGGESTED_BASES: ChainTokenList = {
-  [ChainId.MAINNET]: [USDC[ChainId.MAINNET], GLIDE[ChainId.MAINNET]],
+  [ChainId.MAINNET]: [WETH[ChainId.MAINNET], USDC[ChainId.MAINNET], GLIDE[ChainId.MAINNET]],
   [ChainId.TESTNET]: [WETH[ChainId.TESTNET], GLIDE[ChainId.TESTNET], USDC[ChainId.TESTNET]],
   [ChainId.HECO]: [],
   [ChainId.ETHEREUM]: []
@@ -43,7 +43,7 @@ export const SUGGESTED_BASES: ChainTokenList = {
 
 // used to construct the list of all pairs we consider by default in the frontend
 export const BASES_TO_TRACK_LIQUIDITY_FOR: ChainTokenList = {
-  [ChainId.MAINNET]: [WETH[ChainId.MAINNET], USDC[ChainId.MAINNET]],
+  [ChainId.MAINNET]: [WETH[ChainId.MAINNET], USDC[ChainId.MAINNET], GLIDE[ChainId.MAINNET]],
   [ChainId.TESTNET]: [WETH[ChainId.TESTNET], GLIDE[ChainId.TESTNET], USDC[ChainId.TESTNET]],
   [ChainId.HECO]: [],
   [ChainId.ETHEREUM]: []
@@ -87,11 +87,6 @@ export const VALIDATOR_TIMEOUT = 180000 // Milliseconds
 
 // SDN OFAC addresses
 export const BLOCKED_ADDRESSES: string[] = [
-  '0x7F367cC41522cE07553e823bf3be79A889DEbe1B',
-  '0xd882cFc20F52f2599D84b8e8D58C7FB62cfE344b',
-  '0x901bb9583b24D97e995513C6778dc6888AB6870e',
-  '0xA7e5d5A720f06526557c513402f2e6B5fA20b008',
-  '0x8576aCC5C05D6Ce88f4e49bf65BdF0C62F91353C',
 ]
 
 export { default as farmsConfig } from './farms'

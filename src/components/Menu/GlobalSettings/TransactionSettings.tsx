@@ -139,7 +139,7 @@ const SlippageTabs = () => {
           </Flex>
         </Flex>
         {!!slippageError && (
-          <Text fontSize="14px" color={slippageError === SlippageError.InvalidInput ? 'red' : '#F3841E'} mt="8px">
+          <Text fontSize="14px" color={slippageError === SlippageError.InvalidInput ? '	#d11576' : '#F3841E'} mt="8px">
             {slippageError === SlippageError.InvalidInput
               ? t('Enter a valid slippage percentage')
               : slippageError === SlippageError.RiskyLow
@@ -160,7 +160,7 @@ const SlippageTabs = () => {
           <Box width="52px" mt="4px">
             <Input
               scale="sm"
-              color={deadlineError ? 'red' : undefined}
+              color={deadlineError ? '	#d11576' : undefined}
               onBlur={() => {
                 parseCustomDeadline((ttl / 60).toString())
               }}

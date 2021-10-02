@@ -5,6 +5,7 @@ import { Text, Flex, CardBody, CardFooter, Button, AddIcon } from '@glide-financ
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'contexts/Localization'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
+import { setupNetwork } from 'utils/wallet'
 import FullPositionCard from '../../components/PositionCard'
 import { useTokenBalancesWithLoadingIndicator } from '../../state/wallet/hooks'
 import { usePairs } from '../../hooks/usePairs'
@@ -18,7 +19,7 @@ const Body = styled(CardBody)`
 `
 
 export default function Pool() {
-  const { account } = useActiveWeb3React()
+  const { account, library, chainId } = useActiveWeb3React()
   const { t } = useTranslation()
 
   // fetch the user's balances of all tracked V2 LP tokens
@@ -100,9 +101,20 @@ export default function Pool() {
           )}
         </Body>
         <CardFooter style={{ textAlign: 'center' }}>
-          <Button id="join-pool-button" as={Link} to="/add" width="100%" startIcon={<AddIcon color="white" />}>
-            {t('Add Liquidity')}
-          </Button>
+          {chainId !== 20 ? (
+            <Button
+              width="100%"
+              onClick={() => {
+                setupNetwork(20, library)
+              }}
+            >
+              {t('Connect to the Elastos network to begin')}
+            </Button>
+          ) : (
+            <Button id="join-pool-button" as={Link} to="/add" width="100%" startIcon={<AddIcon color="white" />}>
+              {t('Add Liquidity')}
+            </Button>
+          )}
         </CardFooter>
       </AppBody>
     </GradientPage>

@@ -113,7 +113,7 @@ export default function RemoveLiquidity({
     ]
     const domain = {
       // popsicle
-      name: 'GlideSwap LPs',
+      name: 'Glide LPs',
       version: '1',
       chainId,
       verifyingContract: pair.liquidityToken.address,

@@ -61,7 +61,7 @@ const BountyModal: React.FC<BountyModalProps> = ({ onDismiss, TooltipComponent }
       const tx = await cakeVaultContract.harvest({ gasLimit: 300000 })
       const receipt = await tx.wait()
       if (receipt.status) {
-        toastSuccess(t('Bounty collected!'), t('GLIDE bounty has been sent to your wallet.'))
+        toastSuccess(t('Bounty collected!'), t('GLIDE has been sent to your wallet.'))
         setPendingTx(false)
         onDismiss()
       }

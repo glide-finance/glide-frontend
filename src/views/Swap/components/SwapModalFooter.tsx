@@ -20,7 +20,7 @@ const SwapModalFooterContainer = styled(AutoColumn)`
   padding: 16px;
   border-radius: ${({ theme }) => theme.radii.default};
   border: 1px solid ${({ theme }) => theme.colors.cardBorder};
-  background: ${({ theme }) => theme.colors.background};
+  background-color: ${({ theme }) => theme.colors.background};
 `
 
 export default function SwapModalFooter({
@@ -46,7 +46,7 @@ export default function SwapModalFooter({
 
   return (
     <>
-      <SwapModalFooterContainer style={{ backgroundColor: 'red' }}>
+      <SwapModalFooterContainer>
         <RowBetween align="center">
           <Text fontSize="14px">Price</Text>
           <Text

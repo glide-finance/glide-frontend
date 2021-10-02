@@ -14,14 +14,14 @@ export const getCustomMeta = (path: string, t: ContextApi['t']): PageMeta => {
       return {
         title: `${t('Home')} | ${t('Glide Finance')}`,
       }
-    case '/competition':
-      return {
-        title: `${t('Trading Battle')} | ${t('Glide Finance')}`,
-      }
-    case '/prediction':
-      return {
-        title: `${t('Prediction')} | ${t('Glide Finance')}`,
-      }
+    // case '/competition':
+    //   return {
+    //     title: `${t('Trading Battle')} | ${t('Glide Finance')}`,
+    //   }
+    // case '/prediction':
+    //   return {
+    //     title: `${t('Prediction')} | ${t('Glide Finance')}`,
+    //   }
     case '/farms':
       return {
         title: `${t('Farms')} | ${t('Glide Finance')}`,
@@ -30,30 +30,30 @@ export const getCustomMeta = (path: string, t: ContextApi['t']): PageMeta => {
       return {
         title: `${t('Pools')} | ${t('Glide Finance')}`,
       }
-    case '/lottery':
-      return {
-        title: `${t('Lottery')} | ${t('Glide Finance')}`,
-      }
-    case '/collectibles':
-      return {
-        title: `${t('Collectibles')} | ${t('Glide Finance')}`,
-      }
-    case '/ifo':
-      return {
-        title: `${t('Initial Farm Offering')} | ${t('Glide Finance')}`,
-      }
-    case '/teams':
-      return {
-        title: `${t('Leaderboard')} | ${t('Glide Finance')}`,
-      }
-    case '/profile/tasks':
-      return {
-        title: `${t('Task Center')} | ${t('Glide Finance')}`,
-      }
-    case '/profile':
-      return {
-        title: `${t('Your Profile')} | ${t('Glide Finance')}`,
-      }
+    // case '/lottery':
+    //   return {
+    //     title: `${t('Lottery')} | ${t('Glide Finance')}`,
+    //   }
+    // case '/collectibles':
+    //   return {
+    //     title: `${t('Collectibles')} | ${t('Glide Finance')}`,
+    //   }
+    // case '/ifo':
+    //   return {
+    //     title: `${t('Initial Farm Offering')} | ${t('Glide Finance')}`,
+    //   }
+    // case '/teams':
+    //   return {
+    //     title: `${t('Leaderboard')} | ${t('Glide Finance')}`,
+    //   }
+    // case '/profile/tasks':
+    //   return {
+    //     title: `${t('Task Center')} | ${t('Glide Finance')}`,
+    //   }
+    // case '/profile':
+    //   return {
+    //     title: `${t('Your Profile')} | ${t('Glide Finance')}`,
+    //   }
     default:
       return null
   }

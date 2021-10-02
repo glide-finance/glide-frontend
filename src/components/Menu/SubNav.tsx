@@ -8,6 +8,10 @@ const StyledNav = styled.nav`
   margin-bottom: 20px;
 `
 
+const StyledButtonMenu = styled(ButtonMenu)`
+  border: none;
+`
+
 const getActiveIndex = (pathname: string): number => {
   if (
     pathname.includes('/pool') ||
@@ -28,14 +32,14 @@ const Nav = () => {
   const { t } = useTranslation()
   return (
     <StyledNav>
-      <ButtonMenu activeIndex={getActiveIndex(location.pathname)} scale="sm" variant="subtle">
+      <StyledButtonMenu activeIndex={getActiveIndex(location.pathname)} scale="sm" variant="subtle">
         <ButtonMenuItem id="swap-nav-link" to="/swap" as={Link}>
           {t('Swap')}
         </ButtonMenuItem>
         <ButtonMenuItem id="pool-nav-link" to="/pool" as={Link}>
           {t('Liquidity')}
         </ButtonMenuItem>
-      </ButtonMenu>
+      </StyledButtonMenu>
     </StyledNav>
   )
 }

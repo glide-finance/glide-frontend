@@ -1,1 +1,44 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 209.05 209.05"><defs><style>.cls-1{fill:#fff;}.cls-2{fill:#282e5b;}.cls-3{fill:#059bdc;}</style></defs><title>ht</title><g id="图层_2" data-name="图层 2"><circle class="cls-1" cx="104.52" cy="104.52" r="104.52"/></g><g id="图层_1" data-name="图层 1"><path class="cls-2" d="M118.4,79c0-19.5-9.4-36.3-16.6-41.8,0,0-.5-.3-.5.5-.6,37.7-19.7,48-30.3,61.7-24.3,31.8-1.7,66.6,21.3,73,12.9,3.6-3-6.4-5-27.4-2.4-25.5,31.1-44.9,31.1-66" transform="translate(0 -0.63)"/><path class="cls-3" d="M131,91.89a.45.45,0,0,0-.5,0l-.1.1c-.4,4.7-5.6,14.9-12.1,24.2-22.1,31.6-9.5,46.8-2.4,55,4.1,4.8,0,0,10.3-4.9.8-.4,20-10.6,22.1-33.7,2.1-22.5-12.2-36.6-17.3-40.7" transform="translate(0 -0.63)"/></g></svg>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   id="svg5883"
+   version="1.1"
+   viewBox="0 0 16 16">
+  <metadata
+     id="metadata5889">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs5887" />
+  <circle
+     id="circle5875"
+     fill="#2a3069"
+     cx="8"
+     cy="8"
+     r="8" />
+  <g
+     id="g5881"
+     transform="matrix(0.0901218,0,0,0.0901218,4.0416817,5.1102163)"
+     fill="#ffffff">
+    <path
+       id="path5877"
+       fill="#ffffff"
+       d="m 57.8,5.9000061 c 0,-19.5000001 -9.4,-36.3000001 -16.6,-41.8000001 0,0 -0.5,-0.3 -0.5,0.5 -0.6,37.7000001 -19.7,48 -30.3,61.7 -24.3,31.8 -1.7,66.6 21.3,73 12.9,3.600004 -3,-6.4 -5,-27.4 -2.4,-25.5 31.1,-44.9 31.1,-65.9999999" />
+    <path
+       id="path5879"
+       fill="#ffffff"
+       d="m 70.4,18.800006 c -0.1,-0.1 -0.3,-0.1 -0.5,0 0,0 0,0 -0.1,0.1 -0.4,4.7 -5.6,14.9 -12.1,24.2 -22.1,31.6 -9.5,46.8 -2.4,55 4.1,4.800004 0,0 10.3,-4.9 0.8,-0.4 20,-10.6 22.1,-33.7 2.1,-22.5 -12.2,-36.6 -17.3,-40.7" />
+  </g>
+</svg>

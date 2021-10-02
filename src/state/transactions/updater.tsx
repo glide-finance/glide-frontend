@@ -75,7 +75,7 @@ export default function Updater(): null {
                   <Text>{transactions[hash]?.summary ?? `Hash: ${hash.slice(0, 8)}...${hash.slice(58, 65)}`}</Text>
                   {chainId && (
                     <Link external href={getBscScanLink(hash, 'transaction', chainId)}>
-                      View on BscScan
+                      View on explorer
                     </Link>
                   )}
                 </Flex>,

@@ -145,7 +145,7 @@ const App: React.FC = () => {
             <Route path="/staking">
               <Redirect to="/pools" />
             </Route>
-            <Route path="/syrup">
+            <Route path="/sugar">
               <Redirect to="/pools" />
             </Route>
             {/* <Route path="/nft">
