@@ -53,7 +53,7 @@ const Container = styled.div<{ expanded }>`
   overflow: hidden;
   background: ${({ theme }) => theme.colors.dropdownDeep};
   display: flex;
-  border-radius: 16px;
+  border-radius: 10px;
   width: 100%;
   flex-direction: column-reverse;
   padding: 24px;

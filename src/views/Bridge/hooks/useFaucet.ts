@@ -63,11 +63,11 @@ export const callBridgeFaucet = async (txID: string, type: string, chainID: numb
 
                 if (response.ok) {
                     const dataSuccess = await response.json();
-                    await wait(3000);
+                    await wait(5000);
                     toastSuccess(t('0.01 ELA received from gas faucet!')); // dataSuccess?.success?.message
                 } else {
                     const dataError = await response.json();
-                    await wait(3000);
+                    await wait(5000);
                     toastError(t('Error receiving faucet distribution')); // dataError?.error?.message
                 }
             }

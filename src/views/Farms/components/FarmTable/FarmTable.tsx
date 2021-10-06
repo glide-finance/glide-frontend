@@ -44,7 +44,7 @@ const TableWrapper = styled.div`
 // `
 
 const StyledTable = styled.table`
-  border-collapse: separate; 
+  border-collapse: separate;
   border-spacing: 0 1em;
   font-size: 14px;
   border-radius: 4px;
@@ -61,13 +61,13 @@ const TableBody = styled.tbody`
     }
     td:first-child {
       border-left-style: solid;
-      border-top-left-radius: 10px; 
+      border-top-left-radius: 10px;
       border-bottom-left-radius: 10px;
     }
     td:last-child {
       border-right-style: solid;
-      border-bottom-right-radius: 10px; 
-      border-top-right-radius: 10px; 
+      border-bottom-right-radius: 10px;
+      border-top-right-radius: 10px;
     }
   }
 `

@@ -139,15 +139,16 @@ function CurrencySearch({
               onKeyDown={handleEnter}
             />
           </Row>
-          {showCommonBases && (
+          {/* {showCommonBases && (
             <CommonBases chainId={chainId} onSelect={handleCurrencySelect} selectedCurrency={selectedCurrency} />
-          )}
+          )} */}
         </AutoColumn>
-        {searchToken && !searchTokenIsAdded ? (
+        {/* {searchToken && !searchTokenIsAdded ? (
           <Column style={{ padding: '20px 0', height: '100%' }}>
             <ImportRow token={searchToken} showImportView={showImportView} setImportToken={setImportToken} />
           </Column>
-        ) : filteredSortedTokens?.length > 0 || filteredInactiveTokens?.length > 0 ? (
+        ) :  */}
+        {filteredSortedTokens?.length > 0 || filteredInactiveTokens?.length > 0 ? (
           <Box margin="24px -24px">
             <CurrencyList
               height={390}

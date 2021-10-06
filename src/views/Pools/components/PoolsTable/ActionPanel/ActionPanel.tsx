@@ -167,7 +167,7 @@ const ActionPanel: React.FC<ActionPanelProps> = ({ account, pool, userDataLoaded
 
   const manualTooltipText = t('You must harvest and compound your earnings from this pool manually.')
   const autoTooltipText = t(
-    'Any funds you stake in this pool will be automagically harvested and restaked (compounded) for you.',
+    'Any funds you stake in this pool will be automatically harvested and restaked (compounded) for you.',
   )
 
   const {

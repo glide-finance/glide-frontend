@@ -167,29 +167,29 @@ export default function CurrencyList({
 
       const showImport = inactiveTokens && token && Object.keys(inactiveTokens).includes(token.address)
 
-      if (index === breakIndex || !data) {
-        return (
-          <FixedContentRow style={style}>
-            <LightGreyCard padding="8px 12px" borderRadius="8px">
-              <RowBetween>
-                <Text small>{t('Expanded results from inactive Token Lists')}</Text>
-                <QuestionHelper
-                  text={t(
-                    "Tokens from inactive lists. Import specific tokens below or click 'Manage' to activate more lists.",
-                  )}
-                  ml="4px"
-                />
-              </RowBetween>
-            </LightGreyCard>
-          </FixedContentRow>
-        )
-      }
+      // if (index === breakIndex || !data) {
+      //   return (
+      //     <FixedContentRow style={style}>
+      //       <LightGreyCard padding="8px 12px" borderRadius="8px">
+      //         <RowBetween>
+      //           <Text small>{t('Expanded results from inactive Token Lists')}</Text>
+      //           <QuestionHelper
+      //             text={t(
+      //               "Tokens from inactive lists. Import specific tokens below or click 'Manage' to activate more lists.",
+      //             )}
+      //             ml="4px"
+      //           />
+      //         </RowBetween>
+      //       </LightGreyCard>
+      //     </FixedContentRow>
+      //   )
+      // }
 
-      if (showImport && token) {
-        return (
-          <ImportRow style={style} token={token} showImportView={showImportView} setImportToken={setImportToken} dim />
-        )
-      }
+      // if (showImport && token) {
+      //   return (
+      //     <ImportRow style={style} token={token} showImportView={showImportView} setImportToken={setImportToken} dim />
+      //   )
+      // }
       return (
         <CurrencyRow
           origin={origin}
@@ -201,18 +201,7 @@ export default function CurrencyList({
         />
       )
     },
-    [
-      origin,
-      chainId,
-      inactiveTokens,
-      onCurrencySelect,
-      otherCurrency,
-      selectedCurrency,
-      setImportToken,
-      showImportView,
-      breakIndex,
-      t,
-    ],
+    [origin, chainId, inactiveTokens, onCurrencySelect, otherCurrency, selectedCurrency],
   )
 
   const itemKey = useCallback((index: number, data: any) => currencyKey(data[index]), [])

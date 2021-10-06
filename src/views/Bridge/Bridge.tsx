@@ -332,7 +332,7 @@ const Bridge: React.FC = () => {
           </Heading>
         </PageHeader> */}
         <Body>
-          <GradientHeader title={t('Bridge')} subtitle={t('Map tokens to and from the Elastos Network')} noConfig />
+          <GradientHeader title={t('Bridge')} subtitle={t('Map tokens to and from the Elastos Smart Chain')} noConfig />
           <Wrapper id="bridge-page">
             <AutoRow justify="center">
               <AutoColumn gap="md" style={{ padding: '1rem 0' }}>
