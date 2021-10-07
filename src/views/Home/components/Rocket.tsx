@@ -36,7 +36,8 @@ const HomeFlex = styled(Flex)`
   padding: 0;
 
   ${({ theme }) => theme.mediaQueries.sm} {
-    padding: 0 24px;
+    width: 65%;
+    margin: 0 auto;
   }
 `
 
@@ -57,7 +58,7 @@ const InnerWrapper = styled.div`
 `
 
 const BunnyWrapper = styled.div`
-  width: 80%;
+  width: 90%;
   animation: ${flyingAnim} 3.5s ease-in-out infinite;
 `
 
@@ -72,7 +73,7 @@ const StarsWrapper = styled.div`
   }
 
   & :nth-child(3) {
-    animation: ${fading} 5s ease-in-out infinite;
+    animation: ${fading} 4s ease-in-out infinite;
     animation-delay: 0.66s;
   }
 
@@ -82,16 +83,15 @@ const StarsWrapper = styled.div`
   }
 `
 
-// const imagePath = '/images/home/rocket/'
-const imagePath = '/images/home/glider/'
-const imageSrc = 'glider'
+const imagePath = '/images/home/rocket/'
+const imageSrc = 'rocket1'
 
 const starsImage: CompositeImageProps = {
-  path: '/images/home/lunar-bunny/',
+  path: '/images/home/rocket/',
   attributes: [
     { src: 'star-l', alt: '3D Star' },
-    { src: 'star-r', alt: '3D Star' },
     { src: 'star-top-r', alt: '3D Star' },
+    { src: 'star-bottom-r', alt: '3D Star' },
   ],
 }
 
@@ -111,33 +111,13 @@ const Hero = () => {
         alignItems={['flex-end', null, null, 'center']}
         justifyContent="center"
       >
-        <Flex flex="1" flexDirection="column" justifyContent="flex-start">
-          <GradientHeading scale="xl" mb="24px" color="glide">
-            {t('Glide into a new kind of finance')}
-          </GradientHeading>
-          <Heading scale="md" mb="24px">
-            {t('The first native farm and exchange on Elastos')}
-          </Heading>
-          <Flex>
-            {!account && <ConnectWalletButton mr="8px" />}
-            <Link mr="16px" href="/swap">
-              <Button variant={!account ? 'secondary' : 'primary'}>{t('Trade Now')}</Button>
-            </Link>
-          </Flex>
-        </Flex>
-        <Flex
-          // height={['164px', null, null, '100%']}
-          // width={['164px', null, null, '100%']}
-          flex={[null, null, null, '1']}
-          mb={['24px', null, null, '0']}
-          position="relative"
-        >
+        <Flex flex={[null, null, null, '1']} mb={['24px']} mt={['10vh']} position="relative">
           <BunnyWrapper>
             <img src={`${imagePath}${imageSrc}.png`} srcSet={getSrcSet(imagePath, imageSrc)} alt={t('Glide rocket')} />
           </BunnyWrapper>
-          {/* <StarsWrapper>
+          <StarsWrapper>
             <CompositeImage {...starsImage} />
-          </StarsWrapper> */}
+          </StarsWrapper>
         </Flex>
       </HomeFlex>
     </>

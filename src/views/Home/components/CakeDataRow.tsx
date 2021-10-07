@@ -33,23 +33,22 @@ import { usePoolsPublicData } from 'state/pools/hooks'
 
 const StyledColumn = styled(Flex)<{ noMobileBorder?: boolean }>`
   flex-direction: column;
-  ${({ noMobileBorder, theme }) =>
-    noMobileBorder
-      ? `${theme.mediaQueries.md} {
-           padding: 0 16px;
-         }
-       `
-      : ` padding: 0 8px;
-         ${theme.mediaQueries.sm} {
-           padding: 0 16px;
-         }
-       `}
 `
+//  ${({ noMobileBorder, theme }) =>
+//     noMobileBorder
+//       ? `${theme.mediaQueries.md} {
+//            padding: 0 16px;
+//          }
+//        `
+//       : ` padding: 0 8px;
+//          ${theme.mediaQueries.sm} {
+//            padding: 0 16px;
+//          }
+//        `}
 
 const Grid = styled.div`
   display: grid;
   grid-gap: 16px 8px;
-  margin-top: 24px;
   grid-template-columns: repeat(2, auto);
 
   ${({ theme }) => theme.mediaQueries.sm} {
@@ -59,6 +58,7 @@ const Grid = styled.div`
   ${({ theme }) => theme.mediaQueries.md} {
     grid-gap: 32px;
     grid-template-columns: repeat(4, auto);
+    padding: 0 16px;
   }
 `
 
@@ -111,33 +111,32 @@ const CakeDataRow = () => {
   return (
     <Grid>
       <Flex flexDirection="column">
-        <Text color="textSubtle">{t('Total value locked')}</Text>
         {totalValueLocked ? (
           <Balance decimals={2} lineHeight="1.1" prefix="$" fontSize="24px" bold value={totalValueLocked.toNumber()} />
         ) : (
           <Skeleton height={24} width={126} my="4px" />
         )}
+        <Text color="textSubtle">{t('Total value locked')}</Text>
       </Flex>
       <StyledColumn>
-        <Text color="textSubtle">{t('Circulating GLIDE')}</Text>
         {cakeSupply ? (
           <Balance decimals={0} lineHeight="1.1" fontSize="24px" bold value={cakeSupply} />
         ) : (
           <Skeleton height={24} width={126} my="4px" />
         )}
+        <Text color="textSubtle">{t('Circulating GLIDE')}</Text>
       </StyledColumn>
       <StyledColumn>
-        <Text color="textSubtle">{t('Market cap')}</Text>
         {mcap?.gt(0) && mcapString ? (
           <Heading scale="lg">{t('$%marketCap%', { marketCap: mcapString })}</Heading>
         ) : (
           <Skeleton height={24} width={126} my="4px" />
         )}
+        <Text color="textSubtle">{t('Market cap')}</Text>
       </StyledColumn>
       <StyledColumn>
-        <Text color="textSubtle">{t('Emission rate')}</Text>
-
         <Heading scale="lg">{t('%cakeEmissions%/block', { cakeEmissions: emissionsPerBlock })}</Heading>
+        <Text color="textSubtle">{t('Emission rate')}</Text>
       </StyledColumn>
     </Grid>
   )

@@ -59,11 +59,11 @@ const config: (t: ContextApi['t']) => ConfigMenuItemsType[] = (t) => [
         href: 'https://docs.glidefinance.io',
         type: DropdownMenuItemType.EXTERNAL_LINK,
       },
-      {
-        label: t('Blog'),
-        href: 'https://medium.com/glide-finance',
-        type: DropdownMenuItemType.EXTERNAL_LINK,
-      }
+      // {
+      //   label: t('Blog'),
+      //   href: 'https://medium.com/glide-finance',
+      //   type: DropdownMenuItemType.EXTERNAL_LINK,
+      // }
     ],
   },
 ]

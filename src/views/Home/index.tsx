@@ -6,8 +6,10 @@ import { useWeb3React } from '@web3-react/core'
 import useTheme from 'hooks/useTheme'
 import Container from 'components/Layout/Container'
 import Hero from './components/Hero'
+import Rocket from './components/Rocket'
 import { swapSectionData, earnSectionData, cakeSectionData } from './components/SalesSection/data'
 import MetricsSection from './components/MetricsSection'
+import PitchSection from './components/PitchSection'
 import SalesSection from './components/SalesSection'
 import WinSection from './components/WinSection'
 import FarmsPoolsRow from './components/FarmsPoolsRow'
@@ -17,9 +19,21 @@ import UserBanner from './components/UserBanner'
 
 const StyledHeroSection = styled(PageSection)`
   padding-top: 16px;
+  padding-bottom: 0;
 
   ${({ theme }) => theme.mediaQueries.md} {
-    padding-top: 48px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+  }
+`
+
+const StyledPageSection = styled(PageSection)`
+  padding-top: 32px;
+  padding-botom: 0;
+
+  ${({ theme }) => theme.mediaQueries.md} {
+    padding-top: 0px;
+    padding-bottom: 0px;
   }
 `
 
@@ -42,8 +56,8 @@ const StyledHeroSection = styled(PageSection)`
 const UserBannerWrapper = styled(Container)`
   z-index: 1;
   width: 100%;
-  padding-left: 0px;
-  padding-right: 0px;
+  padding-left: 16px;
+  padding-right: 16px;
 
   ${({ theme }) => theme.mediaQueries.lg} {
     padding-left: 24px;
@@ -76,18 +90,27 @@ const Home: React.FC = () => {
       >
         <Hero />
       </StyledHeroSection>
-      {/* <PageSection
-        innerProps={{ style: { margin: '0', width: '100%' } }}
-        background={
-          theme.isDark
-            ? 'linear-gradient(180deg, #09070C 22%, #201335 100%)'
-            : 'linear-gradient(180deg, #FFFFFF 22%, #D7CAEC 100%)'
-        }
+      <StyledPageSection
+        // innerProps={{ style: { margin: '0', width: '100%' } }}
+        // background={
+        //   theme.isDark
+        //     ? 'linear-gradient(180deg, #09070C 22%, #201335 100%)'
+        //     : 'linear-gradient(180deg, #FFFFFF 22%, #D7CAEC 100%)'
+        // }
         index={2}
         hasCurvedDivider={false}
       >
-        <MetricsSection />
-      </PageSection> */}
+        {/* <MetricsSection /> */}
+        <CakeDataRow />
+        <Rocket />
+      </StyledPageSection>
+      <StyledPageSection
+        // innerProps={{ style: { margin: '0', width: '100%' } }}
+        index={2}
+        hasCurvedDivider={false}
+      >
+        <PitchSection />
+      </StyledPageSection>
       {/* <PageSection
         innerProps={{ style: HomeSectionContainerStyles }}
         background={theme.colors.background}
@@ -127,16 +150,14 @@ const Home: React.FC = () => {
       >
         <WinSection />
       </PageSection> */}
-      <PageSection
+      {/* <StyledPageSection
         innerProps={{ style: HomeSectionContainerStyles }}
         // background={theme.colors.background}
         index={2}
         hasCurvedDivider={false}
       >
-        {/* <SalesSection {...cakeSectionData} /> */}
-        <CakeDataRow />
-        <ButterflyLoader />
-      </PageSection>
+        <SalesSection {...cakeSectionData} />
+      </StyledPageSection> */}
       {/* <PageSection
         innerProps={{ style: HomeSectionContainerStyles }}
         background="linear-gradient(180deg, #7645D9 0%, #5121B1 100%)"
