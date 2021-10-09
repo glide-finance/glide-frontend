@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom'
 import styled from 'styled-components'
 import BigNumber from 'bignumber.js'
 import { useWeb3React } from '@web3-react/core'
-import { Heading, GradientHeading, Flex, Image, Text, Button } from '@glide-finance/uikit'
+import { Heading, GradientHeading, Flex, Text, Button } from '@glide-finance/uikit'
 import orderBy from 'lodash/orderBy'
 import partition from 'lodash/partition'
 import { useTranslation } from 'contexts/Localization'
@@ -16,7 +16,7 @@ import {
   useCakeVault,
   useDividendPool,
 } from 'state/pools/hooks'
-import tokens from 'config/constants/tokens'
+// import tokens from 'config/constants/tokens'
 import { usePollFarmsData } from 'state/farms/hooks'
 import { latinise } from 'utils/latinise'
 import { setupNetwork } from 'utils/wallet'
@@ -32,8 +32,8 @@ import CakeVaultCard from './components/CakeVaultCard'
 import DividendPoolCard from './components/DividendPoolCard'
 import PoolTabButtons from './components/PoolTabButtons'
 import BountyCard from './components/BountyCard'
-import HelpButton from './components/HelpButton'
-import PoolsTable from './components/PoolsTable/PoolsTable'
+// import HelpButton from './components/HelpButton'
+// import PoolsTable from './components/PoolsTable/PoolsTable'
 import { ViewMode } from './components/ToggleView/ToggleView'
 import { getAprData, getCakeVaultEarnings } from './helpers'
 
@@ -108,7 +108,7 @@ const Pools: React.FC = () => {
     totalCakeInVault,
   } = useCakeVault()
   const {
-    userData: { allowance, stakingTokenBalance, stakedBalance, pendingReward },
+    userData: { stakedBalance },
   } = useDividendPool()
 
   const accountHasVaultShares = userShares && userShares.gt(0)
@@ -261,7 +261,7 @@ const Pools: React.FC = () => {
     </CardLayout>
   )
 
-  const tableLayout = <PoolsTable pools={chosenPools} account={account} userDataLoaded={userDataLoaded} />
+  // const tableLayout = <PoolsTable pools={chosenPools} account={account} userDataLoaded={userDataLoaded} />
 
   return (
     <>

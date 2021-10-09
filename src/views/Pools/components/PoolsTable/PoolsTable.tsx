@@ -43,7 +43,6 @@ const PoolsTable: React.FC<PoolsTableProps> = ({ pools, userDataLoaded, account 
     })
   }
 
-  console.log(pools)
   return (
     <StyledTableBorder>
       <StyledTable role="table" ref={tableWrapperEl}>

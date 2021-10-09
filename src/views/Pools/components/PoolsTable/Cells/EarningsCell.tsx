@@ -33,7 +33,7 @@ const HelpIconWrapper = styled.div`
 const EarningsCell: React.FC<EarningsCellProps> = ({ pool, account, userDataLoaded }) => {
   const { t } = useTranslation()
   const { isXs, isSm } = useMatchBreakpoints()
-  const { sousId, earningToken, poolCategory, userData, earningTokenPrice, isAutoVault, isDividendPool } = pool
+  const { sousId, earningToken, poolCategory, userData, earningTokenPrice, isAutoVault } = pool
   const isManualCakePool = sousId === 0
 
   const earnings = userData?.pendingReward ? new BigNumber(userData.pendingReward) : BIG_ZERO

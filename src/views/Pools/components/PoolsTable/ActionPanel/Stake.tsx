@@ -50,7 +50,6 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({ pool, userDataLoa
     userData,
     stakingTokenPrice,
     isAutoVault,
-    isDividendPool,
   } = pool
   const { t } = useTranslation()
   const { account, chainId } = useWeb3React()

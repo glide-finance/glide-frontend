@@ -5,7 +5,7 @@ import { useWeb3React } from '@web3-react/core'
 import { useTranslation } from 'contexts/Localization'
 import ConnectWalletButton from 'components/ConnectWalletButton'
 import useTheme from 'hooks/useTheme'
-import { SlideSvgDark, SlideSvgLight } from './SlideSvg'
+// import { SlideSvgDark, SlideSvgLight } from './SlideSvg'
 import CompositeImage, { getSrcSet, CompositeImageProps } from './CompositeImage'
 
 const flyingAnim = () => keyframes`
@@ -13,7 +13,7 @@ const flyingAnim = () => keyframes`
     transform: translate(0,  0px);
   }
   50% {
-    transform: translate(-5px, -5px);
+    transform: translate(-7px, -7px);
   }
   to {
     transform: translate(0, 0px);
@@ -57,42 +57,24 @@ const InnerWrapper = styled.div`
 `
 
 const BunnyWrapper = styled.div`
-  width: 80%;
-  animation: ${flyingAnim} 3.5s ease-in-out infinite;
+  width: 90%;
+  animation: ${flyingAnim} 4s ease-in-out infinite;
 `
 
 const StarsWrapper = styled.div`
   position: absolute;
   top: 0;
   left: 0;
-
-  & :nth-child(2) {
-    animation: ${fading} 2s ease-in-out infinite;
-    animation-delay: 1s;
-  }
-
-  & :nth-child(3) {
-    animation: ${fading} 5s ease-in-out infinite;
-    animation-delay: 0.66s;
-  }
-
-  & :nth-child(4) {
-    animation: ${fading} 2.5s ease-in-out infinite;
-    animation-delay: 0.33s;
-  }
+  animation: ${flyingAnim} 2s ease-in-out infinite;
 `
 
 // const imagePath = '/images/home/rocket/'
 const imagePath = '/images/home/glider/'
-const imageSrc = 'glider'
+const imageSrc = 'glider1'
 
-const starsImage: CompositeImageProps = {
-  path: '/images/home/lunar-bunny/',
-  attributes: [
-    { src: 'star-l', alt: '3D Star' },
-    { src: 'star-r', alt: '3D Star' },
-    { src: 'star-top-r', alt: '3D Star' },
-  ],
+const butterflyImage: CompositeImageProps = {
+  path: '/images/home/glider/',
+  attributes: [{ src: 'butterfly', alt: 'Butterfly' }],
 }
 
 const Hero = () => {
@@ -133,11 +115,11 @@ const Hero = () => {
           position="relative"
         >
           <BunnyWrapper>
-            <img src={`${imagePath}${imageSrc}.png`} srcSet={getSrcSet(imagePath, imageSrc)} alt={t('Glide rocket')} />
+            <img src={`${imagePath}${imageSrc}.png`} srcSet={getSrcSet(imagePath, imageSrc)} alt={t('Glider')} />
           </BunnyWrapper>
-          {/* <StarsWrapper>
-            <CompositeImage {...starsImage} />
-          </StarsWrapper> */}
+          <StarsWrapper>
+            <CompositeImage {...butterflyImage} />
+          </StarsWrapper>
         </Flex>
       </HomeFlex>
     </>

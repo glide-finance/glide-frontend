@@ -1,18 +1,18 @@
 import React from 'react'
 import {
-  Heading,
+  // Heading,
   GradientHeading,
   Flex,
-  Text,
-  Skeleton,
-  ChartIcon,
-  CommunityIcon,
-  SwapIcon,
+  // Text,
+  // Skeleton,
+  // ChartIcon,
+  // CommunityIcon,
+  // SwapIcon,
 } from '@glide-finance/uikit'
 import { useTranslation } from 'contexts/Localization'
-import { useGetStats } from 'hooks/api'
+// import { useGetStats } from 'hooks/api'
 import useTheme from 'hooks/useTheme'
-import { formatLocalisedCompactNumber } from 'utils/formatBalance'
+// import { formatLocalisedCompactNumber } from 'utils/formatBalance'
 import GraphicCard, { GraphicCardData } from '../GraphicCard'
 import StatCardContent from './StatCardContent'
 

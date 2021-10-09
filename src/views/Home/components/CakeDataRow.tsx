@@ -49,19 +49,19 @@ const StyledColumn = styled(Flex)<{ noMobileBorder?: boolean }>`
 const Grid = styled.div`
   display: grid;
   grid-gap: 16px 8px;
-  grid-template-columns: repeat(2, auto);
-
-  ${({ theme }) => theme.mediaQueries.sm} {
-    grid-gap: 16px;
-  }
+  grid-template-columns: repeat(1, auto);
+  justify-content: center;
 
   ${({ theme }) => theme.mediaQueries.md} {
     grid-gap: 32px;
     grid-template-columns: repeat(4, auto);
     padding: 0 16px;
+    justify-content: space-between;
   }
 `
-
+// ${({ theme }) => theme.mediaQueries.sm} {
+//   grid-gap: 16px;
+// }
 const CakeDataRow = () => {
   function calculateTotalLiquidtyFarms(farms: Farm[]) {
     let totalLiquidity = new BigNumber(0)
@@ -112,31 +112,39 @@ const CakeDataRow = () => {
     <Grid>
       <Flex flexDirection="column">
         {totalValueLocked ? (
-          <Balance decimals={2} lineHeight="1.1" prefix="$" fontSize="24px" bold value={totalValueLocked.toNumber()} />
+          <Balance decimals={2} prefix="$" fontSize="32px" bold value={totalValueLocked.toNumber()} />
         ) : (
           <Skeleton height={24} width={126} my="4px" />
         )}
-        <Text color="textSubtle">{t('Total value locked')}</Text>
+        <Text fontSize="20px" color="textSubtle">
+          {t('Total value locked')}
+        </Text>
       </Flex>
       <StyledColumn>
         {cakeSupply ? (
-          <Balance decimals={0} lineHeight="1.1" fontSize="24px" bold value={cakeSupply} />
+          <Balance decimals={0} fontSize="32px" bold value={cakeSupply} />
         ) : (
           <Skeleton height={24} width={126} my="4px" />
         )}
-        <Text color="textSubtle">{t('Circulating GLIDE')}</Text>
+        <Text fontSize="20px" color="textSubtle">
+          {t('Circulating GLIDE')}
+        </Text>
       </StyledColumn>
       <StyledColumn>
         {mcap?.gt(0) && mcapString ? (
-          <Heading scale="lg">{t('$%marketCap%', { marketCap: mcapString })}</Heading>
+          <Text fontSize="32px">{t('$%marketCap%', { marketCap: mcapString })}</Text>
         ) : (
           <Skeleton height={24} width={126} my="4px" />
         )}
-        <Text color="textSubtle">{t('Market cap')}</Text>
+        <Text fontSize="20px" color="textSubtle">
+          {t('Market cap')}
+        </Text>
       </StyledColumn>
       <StyledColumn>
-        <Heading scale="lg">{t('%cakeEmissions%/block', { cakeEmissions: emissionsPerBlock })}</Heading>
-        <Text color="textSubtle">{t('Emission rate')}</Text>
+        <Text fontSize="32px">{t('%cakeEmissions%/block', { cakeEmissions: emissionsPerBlock })}</Text>
+        <Text fontSize="20px" color="textSubtle">
+          {t('Emission rate')}
+        </Text>
       </StyledColumn>
     </Grid>
   )

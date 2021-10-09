@@ -26,7 +26,6 @@ const HarvestAction: React.FunctionComponent<HarvestActionProps> = ({
   userData,
   userDataLoaded,
   isAutoVault,
-  isDividendPool,
   earningTokenPrice,
 }) => {
   const { t } = useTranslation()
