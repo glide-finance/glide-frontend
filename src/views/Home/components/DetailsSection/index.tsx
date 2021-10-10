@@ -20,15 +20,15 @@ const flyingAnim = () => keyframes`
   }  
 `
 
-const fading = () => keyframes`
+const flyingAnim2 = () => keyframes`
   from {
-    opacity: 0.9;
+    transform: translate(0,  0px);
   }
   50% {
-    opacity: 0.1;
+    transform: translate(100px, 16px);
   }
   to {
-    opacity: 0.9;
+    transform: translate(0, 0px);
   }  
 `
 
@@ -40,21 +40,34 @@ const HomeFlex = styled(Flex)`
     padding: 0 24px;
   }
 `
+const GliderFlex = styled(Flex)`
+  width: 164px;
 
-const BgWrapper = styled.div`
-  z-index: -1;
-  overflow: hidden;
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  bottom: 0px;
-  left: 0px;
+  ${({ theme }) => theme.mediaQueries.sm} {
+    width: 324px;
+  }
 `
 
-const InnerWrapper = styled.div`
-  position: absolute;
-  width: 100%;
-  bottom: -3px;
+const Glider = styled.img`
+  width: 164px;
+  margin-right: 50%;
+
+  ${({ theme }) => theme.mediaQueries.sm} {
+    width: 324px;
+  }
+`
+
+const GliderWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 20px;
+
+  ${({ theme }) => theme.mediaQueries.sm} {
+  
+  }
+
+  animation: ${flyingAnim2} 4s ease-in-out infinite;
 `
 
 const BunnyWrapper = styled.div`
@@ -62,21 +75,7 @@ const BunnyWrapper = styled.div`
   animation: ${flyingAnim} 4s ease-in-out infinite;
 `
 
-const StarsWrapper = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  animation: ${flyingAnim} 2s ease-in-out infinite;
-`
-
 const imagePath = '/images/home/details/'
-const imageSrc = 'stamp'
-
-const butterflyImage: CompositeImageProps = {
-  path: '/images/home/glider/',
-  attributes: [{ src: 'butterfly', alt: 'Butterfly' }],
-}
-
 const DetailsSection = () => {
   const { t } = useTranslation()
   const { account } = useWeb3React()
@@ -87,8 +86,11 @@ const DetailsSection = () => {
       {/* <BgWrapper>
         <InnerWrapper>{theme.isDark ? <SlideSvgDark width="100%" /> : <SlideSvgLight width="100%" />}</InnerWrapper>
       </BgWrapper> */}
+      <GliderWrapper>
+         <Glider src={`${imagePath}glider2.png`} srcSet={getSrcSet(imagePath, 'glider2')} alt={t('Glider')} />
+      </GliderWrapper>
       <Flex justifyContent="center" alignItems="center" flexDirection="column">
-        <GradientHeading textAlign="center" scale="xl" color="glide" mb="32px">
+        <GradientHeading textAlign="center" scale="xl" color="glide" mb="48px">
           {t('Why Glide?')}
         </GradientHeading>
         <HomeFlex
@@ -122,9 +124,6 @@ const DetailsSection = () => {
             <BunnyWrapper>
               <img src={`${imagePath}shield.png`} srcSet={getSrcSet(imagePath, 'shield')} alt={t('Shield')} />
             </BunnyWrapper>
-            {/* <StarsWrapper>
-            <CompositeImage {...butterflyImage} />
-          </StarsWrapper> */}
           </Flex>
         </HomeFlex>
         <HomeFlex
@@ -143,9 +142,6 @@ const DetailsSection = () => {
             <BunnyWrapper>
               <img src={`${imagePath}coins.png`} srcSet={getSrcSet(imagePath, 'coins')} alt={t('Coins')} />
             </BunnyWrapper>
-            {/* <StarsWrapper>
-            <CompositeImage {...butterflyImage} />
-          </StarsWrapper> */}
           </Flex>
           <Flex flex="1" flexDirection="column" justifyContent="flex-start">
             <Heading scale="xl" mb="24px" color="primary">
@@ -199,9 +195,6 @@ const DetailsSection = () => {
             <BunnyWrapper>
               <img src={`${imagePath}stamp.png`} srcSet={getSrcSet(imagePath, 'stamp')} alt={t('Audit')} />
             </BunnyWrapper>
-            {/* <StarsWrapper>
-            <CompositeImage {...butterflyImage} />
-          </StarsWrapper> */}
           </Flex>
         </HomeFlex>
         <HomeFlex
@@ -220,9 +213,6 @@ const DetailsSection = () => {
             <BunnyWrapper>
               <img src={`${imagePath}thumb.png`} srcSet={getSrcSet(imagePath, 'thumb')} alt={t('Thumbs up')} />
             </BunnyWrapper>
-            {/* <StarsWrapper>
-            <CompositeImage {...butterflyImage} />
-          </StarsWrapper> */}
           </Flex>
           <Flex flex="1" flexDirection="column" justifyContent="flex-start">
             <Heading scale="xl" mb="24px" color="primary">

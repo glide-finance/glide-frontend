@@ -5,7 +5,7 @@ import Container from '../Layout/Container'
 
 const Outer = styled(Box)<{ background?: string }>`
   background: ${({ theme, background }) => background || theme.colors.gradients.bubblegum};
-  border-radius: 15px;
+  border-radius: 24px;
 `
 
 const Inner = styled(Container)`
