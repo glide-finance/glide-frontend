@@ -350,15 +350,15 @@ const Bridge: React.FC = () => {
                           chainIndex={originIndex}
                           options={[
                             {
-                              label: t('Elastos'),
+                              label: 'Elastos',
                               value: 'elastos',
                             },
                             {
-                              label: t('Ethereum'),
+                              label: 'Ethereum',
                               value: 'ethereum',
                             },
                             {
-                              label: t('Heco'),
+                              label: 'Heco',
                               value: 'heco',
                             },
                           ]}
@@ -395,15 +395,15 @@ const Bridge: React.FC = () => {
                           chainIndex={destinationIndex}
                           options={[
                             {
-                              label: t('Elastos'),
+                              label: 'Elastos',
                               value: 'elastos',
                             },
                             {
-                              label: t('Ethereum'),
+                              label: 'Ethereum',
                               value: 'ethereum',
                             },
                             {
-                              label: t('Heco'),
+                              label: 'Heco',
                               value: 'heco',
                             },
                           ]}

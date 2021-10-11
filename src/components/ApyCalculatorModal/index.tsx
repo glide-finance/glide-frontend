@@ -223,7 +223,7 @@ const ApyCalculatorModal: React.FC<ApyCalculatorModalProps> = ({
             {isFarm && (
               <li>
                 <Text fontSize="12px" textAlign="center" color="textSubtle" display="inline">
-                  {t('LP rewards: 0.17% trading fees, distributed proportionally among LP token holders.')}
+                  {t('LP rewards: 0.05% trading fees, distributed proportionally among LP token holders.')}
                 </Text>
               </li>
             )}

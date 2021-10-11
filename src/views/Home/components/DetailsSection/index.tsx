@@ -100,7 +100,7 @@ const DetailsSection = () => {
           justifyContent="center"
         >
           <Flex flex="1" flexDirection="column" justifyContent="flex-start">
-            <Heading scale="xl" mb="24px" color="primary">
+            <Heading scale="xl" mb="24px" color="secondary">
               {t('Elastos Smart Chain')}
             </Heading>
             <Heading scale="md" mb="24px" color="text">
@@ -144,7 +144,7 @@ const DetailsSection = () => {
             </BunnyWrapper>
           </Flex>
           <Flex flex="1" flexDirection="column" justifyContent="flex-start">
-            <Heading scale="xl" mb="24px" color="primary">
+            <Heading scale="xl" mb="24px" color="secondary">
               {t('Fully Supports $ELA')}
             </Heading>
             <Heading scale="md" mb="24px" color="text">
@@ -167,7 +167,7 @@ const DetailsSection = () => {
           justifyContent="center"
         >
           <Flex flex="1" flexDirection="column" justifyContent="flex-start">
-            <Heading scale="xl" mb="24px" color="primary">
+            <Heading scale="xl" mb="24px" color="secondary">
               {t('Audited by Paladin')}
             </Heading>
             <Heading scale="md" mb="24px" color="text">
@@ -215,7 +215,7 @@ const DetailsSection = () => {
             </BunnyWrapper>
           </Flex>
           <Flex flex="1" flexDirection="column" justifyContent="flex-start">
-            <Heading scale="xl" mb="24px" color="primary">
+            <Heading scale="xl" mb="24px" color="secondary">
               {t('Fair Launch')}
             </Heading>
             <Heading scale="md" mb="24px" color="text">

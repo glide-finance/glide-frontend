@@ -14,6 +14,7 @@ import {
   Flex,
 } from '@glide-finance/uikit'
 import { ChainId } from '@glide-finance/sdk'
+import { GLIDE_START_BLOCK } from 'config'
 import styled from 'styled-components'
 import FlexLayout from 'components/Layout/Flex'
 import Page from 'components/Layout/Page'
@@ -39,6 +40,8 @@ import FarmTabButtons from './components/FarmTabButtons'
 import { RowProps } from './components/FarmTable/Row'
 import ToggleView from './components/ToggleView/ToggleView'
 import { DesktopColumnSchema, ViewMode } from './components/types'
+import CountdownCard from './components/CountdownCard'
+
 
 const ControlContainer = styled.div`
   display: flex;
@@ -411,12 +414,21 @@ const Farms: React.FC = () => {
     <>
       <Page>
         <PageHeader>
-          <GradientHeading as="h1" scale="xxl" color="glide" mb="24px">
-            {t('Farms')}
-          </GradientHeading>
-          <Heading scale="lg" color="text">
-            {t('Deposit LP tokens to earn')}
-          </Heading>
+          <Flex justifyContent="space-between" flexDirection={['column', null, null, 'row']}>
+            <Flex flex="1" flexDirection="column" mr={['8px', 0]}>
+              <GradientHeading as="h1" scale="xxl" color="glide" mb="24px">
+                {t('Farms')}
+              </GradientHeading>
+              <Heading scale="lg" color="text">
+                {t('Deposit LP tokens to earn')}
+              </Heading>
+            </Flex>
+              {chainId === 20 && (Number(GLIDE_START_BLOCK.toString()) - currentBlock + 30000 > 0) &&
+                <Flex flex="1" height="fit-content" justifyContent="center" alignItems="center" mt={['24px', null, '0']}>
+                  <CountdownCard currentBlock={currentBlock} targetBlock={Number(GLIDE_START_BLOCK.toString())}/>
+                </Flex>
+              }
+          </Flex>
           {/* <NavLink exact activeClassName="active" to="/farms/auction" id="lottery-pot-banner">
           <Button p="0" variant="text">
             <Text color="primary" bold fontSize="16px" mr="4px">
