@@ -21,15 +21,15 @@ const Stats = () => {
   const { theme } = useTheme()
 
   const TradeCardData: GraphicCardData = {
-    icon: <img src="/images/home/pitch/trade.png" alt={t('Trade')} />,
+    icon: <img src="/images/home/pitch/trade.png"  alt={t('Trade')} />,
   }
 
   const LiquidityCardData: GraphicCardData = {
-    icon: <img src="/images/home/pitch/wallet.png" alt={t('Trade')} />,
+    icon: <img src="/images/home/pitch/wallet.png"  alt={t('Trade')} />,
   }
 
   const EarnCardData: GraphicCardData = {
-    icon: <img src="/images/home/pitch/percent.png" alt={t('Trade')} />,
+    icon: <img src="/images/home/pitch/percent.png"  alt={t('Trade')} />,
   }
 
   return (
@@ -59,7 +59,7 @@ const Stats = () => {
         <GraphicCard {...TradeCardData} mr={['16px']} mb={['16px']}>
           <StatCardContent
             headingText={t('Trade Tokens')}
-            bodyText={t('Exchange tokens on the Elastos Smart Chain with minimal fees')}
+            bodyText={t('Swap tokens with minimal fees and arbitrage against other exchanges')}
             highlightColor={theme.colors.secondary}
           />
         </GraphicCard>
@@ -73,7 +73,7 @@ const Stats = () => {
         <GraphicCard {...EarnCardData} mr={['16px']} mb={['16px']}>
           <StatCardContent
             headingText={t('Earn at Farms')}
-            bodyText={t('Stake your liquidity provider tokens at farms to start earning GLIDE!')}
+            bodyText={t('Stake your liquidity provider tokens in farms to earn GLIDE!')}
             highlightColor={theme.colors.secondary}
           />
         </GraphicCard>

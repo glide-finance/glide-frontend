@@ -417,7 +417,7 @@ const Bridge: React.FC = () => {
             </AutoRow>
             <AutoColumn gap="md">
               <BridgeInputPanel
-                label={t('Select token to bridge')}
+                label={t('Token to bridge')}
                 origin={ChainMap[originIndex]}
                 destination={ChainMap[destinationIndex]}
                 value={formattedAmounts[Field.INPUT]}
@@ -458,7 +458,7 @@ const Bridge: React.FC = () => {
               {!correctChain && (
                 <Warning>
                   <Text color="failure" mb="4px">
-                    {t('• Please connect your wallet to the chain you wish to bridge from!')}
+                    • {t('Please connect your wallet to the chain you wish to bridge from!')}
                     {'  '}
                     <Button scale="xs" variant="danger" onClick={() => switchNetwork(ChainMap[originIndex])}>
                       {t('Click Here to Switch')}
@@ -469,14 +469,14 @@ const Bridge: React.FC = () => {
               {correctParams && amountToBridge < bridgeParams.minTx ? (
                 <Warning>
                   <Text color="failure" mb="4px">
-                    {t('• Below minimum bridge amount')}
+                   • {t('Below minimum bridge amount')}
                   </Text>
                 </Warning>
               ) : (
                 exceedsMax && (
                   <Warning>
                     <Text color="failure" mb="4px">
-                      {t('• Insufficient balance')}
+                    • {t('Insufficient balance')}
                     </Text>
                   </Warning>
                 )

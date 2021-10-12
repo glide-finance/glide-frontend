@@ -59,7 +59,7 @@ const ExpertModal: React.FC<ExpertModalProps> = ({
           }
         }}
       >
-        {t('Turn On Expert Mode')}
+        {t('Turn on Expert Mode')}
       </Button>
       <Button
         variant="secondary"

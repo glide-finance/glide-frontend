@@ -172,7 +172,7 @@ const DetailsSection = () => {
             </Heading>
             <Heading scale="md" mb="24px" color="text">
               {t(
-                `We take your asset safety seriously, so we had our contracts reviewed by one of the leading security organizations`,
+                'We take your asset safety seriously, so we had our contracts reviewed by one of the leading security organizations.',
               )}
             </Heading>
             <Flex>

@@ -54,7 +54,6 @@ interface PositionCardProps extends CardProps {
 
 export function MinimalPositionCard({ pair, showUnwrapped = false }: PositionCardProps) {
   const { account } = useActiveWeb3React()
-
   const { t } = useTranslation()
 
   const currency0 = showUnwrapped ? pair.token0 : unwrappedToken(pair.token0)
@@ -156,7 +155,7 @@ export function MinimalPositionCard({ pair, showUnwrapped = false }: PositionCar
 
 export default function FullPositionCard({ pair, ...props }: PositionCardProps) {
   const { account } = useActiveWeb3React()
-
+  const { t } = useTranslation()
   const currency0 = unwrappedToken(pair.token0)
   const currency1 = unwrappedToken(pair.token1)
 
@@ -189,7 +188,7 @@ export default function FullPositionCard({ pair, ...props }: PositionCardProps) 
           <Flex alignItems="center" mb="4px">
             <DoubleCurrencyLogo currency0={currency0} currency1={currency1} size={20} />
             <Text bold ml="8px">
-              {!currency0 || !currency1 ? <Dots>Loading</Dots> : `${currency0.symbol}/${currency1.symbol}`}
+              {!currency0 || !currency1 ? <Dots>{t('Loading')}</Dots> : `${currency0.symbol}/${currency1.symbol}`}
             </Text>
           </Flex>
           <Text fontSize="14px" color="textSubtle">
@@ -205,7 +204,7 @@ export default function FullPositionCard({ pair, ...props }: PositionCardProps) 
             <RowFixed>
               <CurrencyLogo size="20px" currency={currency0} />
               <Text color="textSubtle" ml="4px">
-                Pooled {currency0.symbol}
+                {t('Pooled')} {currency0.symbol}
               </Text>
             </RowFixed>
             {token0Deposited ? (
@@ -221,7 +220,7 @@ export default function FullPositionCard({ pair, ...props }: PositionCardProps) 
             <RowFixed>
               <CurrencyLogo size="20px" currency={currency1} />
               <Text color="textSubtle" ml="4px">
-                Pooled {currency1.symbol}
+                {t('Pooled')} {currency1.symbol}
               </Text>
             </RowFixed>
             {token1Deposited ? (
@@ -234,7 +233,7 @@ export default function FullPositionCard({ pair, ...props }: PositionCardProps) 
           </FixedHeightRow>
 
           <FixedHeightRow>
-            <Text color="textSubtle">Share of pool</Text>
+            <Text color="textSubtle">{t('Share of pool')}</Text>
             <Text>
               {poolTokenPercentage
                 ? `${poolTokenPercentage.toFixed(2) === '0.00' ? '<0.01' : poolTokenPercentage.toFixed(2)}%`
@@ -251,7 +250,7 @@ export default function FullPositionCard({ pair, ...props }: PositionCardProps) 
                 width="100%"
                 mb="8px"
               >
-                Remove
+                {t('Pooled')}
               </Button>
               <Button
                 as={Link}
@@ -260,7 +259,7 @@ export default function FullPositionCard({ pair, ...props }: PositionCardProps) 
                 startIcon={<AddIcon color="primary" />}
                 width="100%"
               >
-                Add liquidity instead
+                {t('Add liquidity instead')}
               </Button>
             </Flex>
           )}

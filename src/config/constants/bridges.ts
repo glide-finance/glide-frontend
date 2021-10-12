@@ -3,7 +3,7 @@ export default {
       native: {
         '1': {
           contract: '0xf127003ea39878EFeEE89aA4E22248CC6cb7728E',
-          minTx: 0.01, // 10000000000000000
+          minTx: 0.1, // 0.01, // 10000000000000000
           maxTx: 1500000, // 1500000000000000000000000
           fee: 0.1
         },
@@ -33,7 +33,7 @@ export default {
       native: {
         '1': {
           contract: '0x314dfec1Fb4de1e0Be70F260d0a065E497f7E2eB', // token 0x802c3e839E4fDb10aF583E3E759239ec7703501e
-          minTx: 0.5, // 500000000000000000
+          minTx: 0.1, // 0.5, // 500000000000000000
           maxTx: 750000, // 750000000000000000000000
           fee: 0 // ??
         },
@@ -41,7 +41,7 @@ export default {
           contract: '0xE235CbC85e26824E4D855d4d0ac80f3A85A520E4',
           minTx: 1,  // 1000000000000000000
           maxTx: 1500000, // 1500000000000000000000000
-          fee: 1
+          fee: 0 // was 1
         }
       }, 
       token: {
