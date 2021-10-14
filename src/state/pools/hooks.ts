@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux'
 import { useAppDispatch } from 'state'
 import { simpleRpcProvider } from 'utils/providers'
 import useRefresh from 'hooks/useRefresh'
-import { getDividendPoolContract, getCakeContract } from 'utils/contractHelpers'
+// import { getDividendPoolContract, getCakeContract } from 'utils/contractHelpers'
 import {
   fetchPoolsPublicDataAsync,
   fetchPoolsUserDataAsync,
@@ -17,7 +17,8 @@ import {
   fetchDividendPoolUserData
 } from '.'
 import { State, Pool } from '../types'
-import { transformPool, getTokenPricesFromFarm } from './helpers'
+// import { transformPool, getTokenPricesFromFarm } from './helpers'
+import { transformPool } from './helpers'
 
 export const useFetchPublicPoolsData = () => {
   const dispatch = useAppDispatch()

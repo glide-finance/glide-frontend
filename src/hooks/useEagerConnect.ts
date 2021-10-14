@@ -2,19 +2,19 @@ import { useEffect } from 'react'
 import { connectorLocalStorageKey, ConnectorNames } from '@glide-finance/uikit'
 import useAuth from 'hooks/useAuth'
 
-const _binanceChainListener = async () =>
-  new Promise<void>((resolve) =>
-    Object.defineProperty(window, 'BinanceChain', {
-      get() {
-        return this.bsc
-      },
-      set(bsc) {
-        this.bsc = bsc
+// const _binanceChainListener = async () =>
+//   new Promise<void>((resolve) =>
+//     Object.defineProperty(window, 'BinanceChain', {
+//       get() {
+//         return this.bsc
+//       },
+//       set(bsc) {
+//         this.bsc = bsc
 
-        resolve()
-      },
-    }),
-  )
+//         resolve()
+//       },
+//     }),
+//   )
 
 const useEagerConnect = () => {
   const { login } = useAuth()

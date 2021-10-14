@@ -5,7 +5,6 @@ import {
   Button,
   Text,
   ErrorIcon,
-  ArrowUpIcon,
   MetamaskIcon,
   Flex,
   Box,
@@ -26,12 +25,13 @@ const Wrapper = styled.div`
   width: 100%;
 `
 const Section = styled(AutoColumn)`
-  padding: 24px;
+  padding: 12px;
 `
 
 const ConfirmedIcon = styled(ColumnCenter)`
-  padding: 24px 0;
+  padding: 12px 0;
 `
+
 
 function ConfirmationPendingContent({ pendingText }: { pendingText: string }) {
   const { t } = useTranslation()
@@ -76,7 +76,8 @@ function TransactionSubmittedContent({
     <Wrapper>
       <Section>
         <ConfirmedIcon>
-          <ArrowUpIcon strokeWidth={0.5} width="90px" color="primary" />
+          {/* <ArrowUpIcon strokeWidth={0.5} width="90px" color="primary" /> */}
+          <img src="images/success.png" width="80%" alt="Submitted"/>
         </ConfirmedIcon>
         <AutoColumn gap="12px" justify="center">
           <Text fontSize="20px">{t('Transaction Submitted')}</Text>

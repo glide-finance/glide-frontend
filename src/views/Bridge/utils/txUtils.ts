@@ -25,7 +25,7 @@ export const parseValue = (num: any, dec: number) => {
     return value;
 };
 
-export const fetchGasPrice = async function(provider: any) {
+export const fetchGasPrice = async (provider: any) => {
     const gasPrice = await provider.getGasPrice()
     return gasPrice
 }

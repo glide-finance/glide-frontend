@@ -61,7 +61,7 @@ interface CurrencyInputPanelProps {
   hideInput?: boolean
   otherCurrency?: Currency | null
   id: string
-  showCommonBases?: boolean
+  // showCommonBases?: boolean
 }
 export default function CurrencyInputPanel({
   value,
@@ -79,7 +79,7 @@ export default function CurrencyInputPanel({
   hideInput = false,
   otherCurrency,
   id,
-  showCommonBases,
+  // showCommonBases,
 }: CurrencyInputPanelProps) {
   const { account } = useActiveWeb3React()
   const selectedCurrencyBalance = useCurrencyBalance(account ?? undefined, currency ?? undefined)
@@ -95,7 +95,7 @@ export default function CurrencyInputPanel({
       onCurrencySelect={onCurrencySelect}
       selectedCurrency={currency}
       otherSelectedCurrency={otherCurrency}
-      showCommonBases={showCommonBases}
+      // showCommonBases={showCommonBases}
     />,
   )
 

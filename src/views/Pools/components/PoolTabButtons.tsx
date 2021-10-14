@@ -3,7 +3,7 @@ import { useRouteMatch, Link } from 'react-router-dom'
 import styled from 'styled-components'
 import { ButtonMenu, ButtonMenuItem, Toggle, Text, NotificationDot } from '@glide-finance/uikit'
 import { useTranslation } from 'contexts/Localization'
-import ToggleView, { ViewMode } from './ToggleView/ToggleView'
+// import ToggleView, { ViewMode } from './ToggleView/ToggleView'
 
 const ToggleWrapper = styled.div`
   display: flex;
@@ -55,7 +55,7 @@ const PoolTabButtons = ({ stakedOnly, setStakedOnly, hasStakeInFinishedPools, vi
   const { url, isExact } = useRouteMatch()
   const { t } = useTranslation()
 
-  const viewModeToggle = <ToggleView viewMode={viewMode} onToggle={(mode: ViewMode) => setViewMode(mode)} />
+  // const viewModeToggle = <ToggleView viewMode={viewMode} onToggle={(mode: ViewMode) => setViewMode(mode)} />
 
   const liveOrFinishedSwitch = (
     <Wrapper>

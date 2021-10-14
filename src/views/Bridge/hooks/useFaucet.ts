@@ -1,10 +1,10 @@
 /* eslint-disable no-await-in-loop */
 /* eslint-disable func-names */
 /* eslint-disable object-shorthand */
-import { useCallback, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useWeb3React } from '@web3-react/core'
-import { useTranslation } from 'contexts/Localization'
-import useToast from 'hooks/useToast'
+// import { useTranslation } from 'contexts/Localization'
+// import useToast from 'hooks/useToast'
 import { BRIDGE_FAUCET_API }  from 'config/constants/endpoints';
 
 const wait = (time: number) => new Promise(resolve => setTimeout(resolve, time));
@@ -62,11 +62,11 @@ export const callBridgeFaucet = async (txID: string, type: string, chainID: numb
                 });
 
                 if (response.ok) {
-                    const dataSuccess = await response.json();
+                    await response.json();
                     await wait(5000);
                     toastSuccess(t('0.01 ELA received from gas faucet!')); // dataSuccess?.success?.message
                 } else {
-                    const dataError = await response.json();
+                    await response.json();
                     await wait(5000);
                     toastError(t('Error receiving faucet distribution')); // dataError?.error?.message
                 }

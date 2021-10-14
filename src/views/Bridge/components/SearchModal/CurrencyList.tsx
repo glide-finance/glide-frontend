@@ -3,20 +3,20 @@ import { Currency, CurrencyAmount, currencyEquals, ETHER, Token } from '@glide-f
 import { Text } from '@glide-finance/uikit'
 import styled from 'styled-components'
 import { FixedSizeList } from 'react-window'
-import { wrappedCurrency } from 'utils/wrappedCurrency'
-import { LightGreyCard } from 'components/Card'
-import QuestionHelper from 'components/QuestionHelper'
+// import { wrappedCurrency } from 'utils/wrappedCurrency'
+// import { LightGreyCard } from 'components/Card'
+// import QuestionHelper from 'components/QuestionHelper'
 import { useTranslation } from 'contexts/Localization'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { useCombinedActiveList } from 'state/lists/hooks'
 import { useCurrencyBalance } from 'state/wallet/hooks'
-import { useIsUserAddedToken, useAllInactiveTokens } from 'hooks/Tokens'
+import { useIsUserAddedToken } from 'hooks/Tokens'
 import Column from 'components/Layout/Column'
 import { RowFixed, RowBetween } from 'components/Layout/Row'
 import { CurrencyLogo } from 'components/Logo'
 import CircleLoader from 'components/Loader/CircleLoader'
 import { isTokenOnList } from 'utils'
-import ImportRow from './ImportRow'
+// import ImportRow from './ImportRow'
 
 function currencyKey(currency: Currency): string {
   return currency instanceof Token ? currency.address : currency === ETHER ? 'ETHER' : ''
@@ -29,13 +29,13 @@ const StyledBalanceText = styled(Text)`
   text-overflow: ellipsis;
 `
 
-const FixedContentRow = styled.div`
-  padding: 4px 28px;
-  height: 56px;
-  display: grid;
-  grid-gap: 16px;
-  align-items: center;
-`
+// const FixedContentRow = styled.div`
+//   padding: 4px 28px;
+//   height: 56px;
+//   display: grid;
+//   grid-gap: 16px;
+//   align-items: center;
+// `
 
 function Balance({ balance }: { balance: CurrencyAmount }) {
   return <StyledBalanceText title={balance.toExact()}>{balance.toSignificant(4)}</StyledBalanceText>
@@ -70,7 +70,8 @@ function CurrencyRow({
   otherSelected: boolean
   style: CSSProperties
 }) {
-  const { account, chainId } = useActiveWeb3React()
+  const { t } = useTranslation()
+  const { account } = useActiveWeb3React()
   const key = currencyKey(currency)
   const selectedTokenList = useCombinedActiveList()
   const isOnSelectedList = isTokenOnList(selectedTokenList, currency)
@@ -98,7 +99,7 @@ function CurrencyRow({
           {!isOnSelectedList && customAdded && 'Added by user •'} {token ? currency.name : currency.symbol === 'ELA' && chainId === 1 ? 'Ethereum' : currency.symbol === 'ELA' && chainId === 128 ? 'Huobi Token' : currency.symbol === 'ELA' && chainId === 20 ? 'Elastos' : currency.name }
         </Text> */}
         <Text color="textSubtle" small ellipsis maxWidth="200px">
-          {!isOnSelectedList && customAdded && 'Added by user •'}{' '}
+          {!isOnSelectedList && customAdded && t('Added by user')}{'• '}
           {token
             ? currency.name
             : origin === 20
@@ -124,8 +125,8 @@ export default function CurrencyList({
   otherCurrency,
   fixedListRef,
   showETH,
-  showImportView,
-  setImportToken,
+  // showImportView,
+  // setImportToken,
   breakIndex,
 }: {
   origin: number
@@ -136,8 +137,8 @@ export default function CurrencyList({
   otherCurrency?: Currency | null
   fixedListRef?: MutableRefObject<FixedSizeList | undefined>
   showETH: boolean
-  showImportView: () => void
-  setImportToken: (token: Token) => void
+  // showImportView: () => void
+  // setImportToken: (token: Token) => void
   breakIndex: number | undefined
 }) {
   const itemData: (Currency | undefined)[] = useMemo(() => {
@@ -148,13 +149,11 @@ export default function CurrencyList({
     return formatted
   }, [breakIndex, currencies, showETH])
 
-  const { chainId } = useActiveWeb3React()
+  // const { chainId } = useActiveWeb3React()
 
-  const { t } = useTranslation()
-
-  const inactiveTokens: {
-    [address: string]: Token
-  } = useAllInactiveTokens()
+  // const inactiveTokens: {
+  //   [address: string]: Token
+  // } = useAllInactiveTokens()
 
   const Row = useCallback(
     ({ data, index, style }) => {
@@ -163,9 +162,8 @@ export default function CurrencyList({
       const otherSelected = Boolean(otherCurrency && currencyEquals(otherCurrency, currency))
       const handleSelect = () => onCurrencySelect(currency)
 
-      const token = wrappedCurrency(currency, chainId)
-
-      const showImport = inactiveTokens && token && Object.keys(inactiveTokens).includes(token.address)
+      // const token = wrappedCurrency(currency, chainId)
+      // const showImport = inactiveTokens && token && Object.keys(inactiveTokens).includes(token.address)
 
       // if (index === breakIndex || !data) {
       //   return (
@@ -201,7 +199,7 @@ export default function CurrencyList({
         />
       )
     },
-    [origin, chainId, inactiveTokens, onCurrencySelect, otherCurrency, selectedCurrency],
+    [origin, onCurrencySelect, otherCurrency, selectedCurrency],
   )
 
   const itemKey = useCallback((index: number, data: any) => currencyKey(data[index]), [])

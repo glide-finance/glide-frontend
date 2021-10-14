@@ -1,14 +1,14 @@
 import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { useAppDispatch } from 'state'
-import { simpleRpcProvider } from 'utils/providers'
+// import { simpleRpcProvider } from 'utils/providers'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { setBlock } from '.'
 import { State } from '../types'
 
 export const usePollBlockNumber = () => {
   const dispatch = useAppDispatch()
-  const { library, chainId } = useActiveWeb3React()
+  const { library } = useActiveWeb3React()
 
   useEffect(() => {
     const interval = setInterval(async () => {

@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import BigNumber from 'bignumber.js'
 import { useWeb3React } from '@web3-react/core'
 import { Heading, GradientHeading, Flex, Text, Button } from '@glide-finance/uikit'
-import orderBy from 'lodash/orderBy'
+// import orderBy from 'lodash/orderBy'
 import partition from 'lodash/partition'
 import { useTranslation } from 'contexts/Localization'
 import usePersistState from 'hooks/usePersistState'
@@ -18,14 +18,14 @@ import {
 } from 'state/pools/hooks'
 // import tokens from 'config/constants/tokens'
 import { usePollFarmsData } from 'state/farms/hooks'
-import { latinise } from 'utils/latinise'
+// import { latinise } from 'utils/latinise'
 import { setupNetwork } from 'utils/wallet'
 import FlexLayout from 'components/Layout/Flex'
 import Page from 'components/Layout/Page'
 import PageHeader from 'components/PageHeader'
-import SearchInput from 'components/SearchInput'
-import Select, { OptionProps } from 'components/Select/Select'
-import { Pool } from 'state/types'
+// import SearchInput from 'components/SearchInput'
+// import { OptionProps } from 'components/Select/Select'
+// import { Pool } from 'state/types'
 import Loading from 'components/Loading'
 import PoolCard from './components/PoolCard'
 import CakeVaultCard from './components/CakeVaultCard'
@@ -35,7 +35,7 @@ import BountyCard from './components/BountyCard'
 // import HelpButton from './components/HelpButton'
 // import PoolsTable from './components/PoolsTable/PoolsTable'
 import { ViewMode } from './components/ToggleView/ToggleView'
-import { getAprData, getCakeVaultEarnings } from './helpers'
+// import { getAprData, getCakeVaultEarnings } from './helpers'
 
 const CardLayout = styled(FlexLayout)`
   justify-content: center;
@@ -59,29 +59,30 @@ const PoolControls = styled.div`
   }
 `
 
-const FilterContainer = styled.div`
-  display: flex;
-  align-items: center;
-  width: 100%;
-  padding: 8px 0px;
+// const FilterContainer = styled.div`
+//   display: flex;
+//   align-items: center;
+//   width: 100%;
+//   padding: 8px 0px;
 
-  ${({ theme }) => theme.mediaQueries.sm} {
-    width: auto;
-    padding: 0;
-  }
-`
+//   ${({ theme }) => theme.mediaQueries.sm} {
+//     width: auto;
+//     padding: 0;
+//   }
+// `
 
-const LabelWrapper = styled.div`
-  > ${Text} {
-    font-size: 12px;
-  }
-`
+// const LabelWrapper = styled.div`
+//   > ${Text} {
+//     font-size: 12px;
+//   }
+// `
 
-const ControlStretch = styled(Flex)`
-  > div {
-    flex: 1;
-  }
-`
+// const ControlStretch = styled(Flex)`
+//   > div {
+//     flex: 1;
+//   }
+// `
+
 const ConnectContainer = styled(Flex)`
   margin-bottom: 15px;
 `
@@ -98,14 +99,15 @@ const Pools: React.FC = () => {
   const [observerIsSet, setObserverIsSet] = useState(false)
   const loadMoreRef = useRef<HTMLDivElement>(null)
   const [viewMode, setViewMode] = usePersistState(ViewMode.TABLE, { localStorageKey: 'glide_pool_view' })
-  const [searchQuery, setSearchQuery] = useState('')
-  const [sortOption, setSortOption] = useState('hot')
+  // const [searchQuery, setSearchQuery] = useState('')
+  // const [sortOption, setSortOption] = useState('hot')
   const chosenPoolsLength = useRef(0)
   const {
-    userData: { glideAtLastUserAction, userShares },
-    fees: { performanceFee },
-    pricePerFullShare,
-    totalCakeInVault,
+    // userData: { glideAtLastUserAction, userShares },
+    userData: { userShares },
+    // fees: { performanceFee },
+    // pricePerFullShare,
+    // totalCakeInVault,
   } = useCakeVault()
   const {
     userData: { stakedBalance },
@@ -113,7 +115,7 @@ const Pools: React.FC = () => {
 
   const accountHasVaultShares = userShares && userShares.gt(0)
   const accountHasDividendPoolStake = stakedBalance && stakedBalance.gt(0)
-  const performanceFeeAsDecimal = performanceFee && performanceFee / 100
+  // const performanceFeeAsDecimal = performanceFee && performanceFee / 100
 
   const pools = useMemo(() => {
     const cakePool = poolsWithoutAutoVault.find((pool) => pool.sousId === 0)
@@ -183,52 +185,52 @@ const Pools: React.FC = () => {
 
   const showFinishedPools = location.pathname.includes('history')
 
-  const handleChangeSearchQuery = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchQuery(event.target.value)
-  }
+  // const handleChangeSearchQuery = (event: React.ChangeEvent<HTMLInputElement>) => {
+  //   setSearchQuery(event.target.value)
+  // }
 
-  const handleSortOptionChange = (option: OptionProps): void => {
-    setSortOption(option.value)
-  }
+  // const handleSortOptionChange = (option: OptionProps): void => {
+  //   setSortOption(option.value)
+  // }
 
-  const sortPools = (poolsToSort: Pool[]) => {
-    switch (sortOption) {
-      case 'apr':
-        // Ternary is needed to prevent pools without APR (like MIX) getting top spot
-        return orderBy(
-          poolsToSort,
-          (pool: Pool) => (pool.apr ? getAprData(pool, performanceFeeAsDecimal).apr : 0),
-          'desc',
-        )
-      case 'earned':
-        return orderBy(
-          poolsToSort,
-          (pool: Pool) => {
-            if (!pool.userData || !pool.earningTokenPrice) {
-              return 0
-            }
-            return pool.isAutoVault
-              ? getCakeVaultEarnings(
-                  account,
-                  glideAtLastUserAction,
-                  userShares,
-                  pricePerFullShare,
-                  pool.earningTokenPrice,
-                ).autoUsdToDisplay
-              : pool.userData.pendingReward.times(pool.earningTokenPrice).toNumber()
-          },
-          'desc',
-        )
-      case 'totalStaked':
-        return orderBy(
-          poolsToSort,
-          (pool: Pool) => (pool.isAutoVault ? totalCakeInVault.toNumber() : pool.totalStaked.toNumber()),
-          'desc',
-        )
-      default:
-        return poolsToSort
-    }
-  }
+  // const sortPools = (poolsToSort: Pool[]) => {
+  //   switch (sortOption) {
+  //     case 'apr':
+  //       // Ternary is needed to prevent pools without APR (like MIX) getting top spot
+  //       return orderBy(
+  //         poolsToSort,
+  //         (pool: Pool) => (pool.apr ? getAprData(pool, performanceFeeAsDecimal).apr : 0),
+  //         'desc',
+  //       )
+  //     case 'earned':
+  //       return orderBy(
+  //         poolsToSort,
+  //         (pool: Pool) => {
+  //           if (!pool.userData || !pool.earningTokenPrice) {
+  //             return 0
+  //           }
+  //           return pool.isAutoVault
+  //             ? getCakeVaultEarnings(
+  //                 account,
+  //                 glideAtLastUserAction,
+  //                 userShares,
+  //                 pricePerFullShare,
+  //                 pool.earningTokenPrice,
+  //               ).autoUsdToDisplay
+  //             : pool.userData.pendingReward.times(pool.earningTokenPrice).toNumber()
+  //         },
+  //         'desc',
+  //       )
+  //     case 'totalStaked':
+  //       return orderBy(
+  //         poolsToSort,
+  //         (pool: Pool) => (pool.isAutoVault ? totalCakeInVault.toNumber() : pool.totalStaked.toNumber()),
+  //         'desc',
+  //       )
+  //     default:
+  //       return poolsToSort
+  //   }
+  // }
 
   let chosenPools
   if (showFinishedPools) {
@@ -237,14 +239,15 @@ const Pools: React.FC = () => {
     chosenPools = stakedOnly ? stakedOnlyOpenPools : openPools
   }
 
-  if (searchQuery) {
-    const lowercaseQuery = latinise(searchQuery.toLowerCase())
-    chosenPools = chosenPools.filter((pool) =>
-      latinise(pool.earningToken.symbol.toLowerCase()).includes(lowercaseQuery),
-    )
-  }
+  // if (searchQuery) {
+  //   const lowercaseQuery = latinise(searchQuery.toLowerCase())
+  //   chosenPools = chosenPools.filter((pool) =>
+  //     latinise(pool.earningToken.symbol.toLowerCase()).includes(lowercaseQuery),
+  //   )
+  // }
 
-  chosenPools = sortPools(chosenPools).slice(0, numberOfPoolsVisible)
+  // chosenPools = sortPools(chosenPools).slice(0, numberOfPoolsVisible)
+  chosenPools = chosenPools.slice(0, numberOfPoolsVisible)
   chosenPoolsLength.current = chosenPools.length
 
   const cardLayout = (

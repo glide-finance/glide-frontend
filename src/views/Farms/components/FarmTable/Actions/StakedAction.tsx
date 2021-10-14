@@ -75,7 +75,7 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
     if (stakedBalanceBigNumber.gt(0) && stakedBalanceBigNumber.lt(0.0001)) {
       return getFullDisplayBalance(stakedBalance).toLocaleString()
     }
-    return stakedBalanceBigNumber.toFixed(3, BigNumber.ROUND_DOWN)
+    return stakedBalanceBigNumber.toFixed(6, BigNumber.ROUND_DOWN)
   }, [stakedBalance])
 
   const [onPresentDeposit] = useModal(

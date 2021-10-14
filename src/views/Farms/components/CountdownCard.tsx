@@ -1,27 +1,15 @@
-import React, { useMemo } from 'react'
-import BigNumber from 'bignumber.js'
+import React from 'react'
 import styled from 'styled-components'
 import {
   Card,
   CardBody,
   Text,
   Flex,
-  HelpIcon,
-  Button,
   Heading,
   Skeleton,
-  useModal,
-  Box,
-  useTooltip,
 } from '@glide-finance/uikit'
 import { ESC_BLOCK_TIME } from 'config'
 import { useTranslation } from 'contexts/Localization'
-import { getBalanceNumber } from 'utils/formatBalance'
-import { usePriceCakeUsdc } from 'state/farms/hooks'
-import { useCakeVault } from 'state/pools/hooks'
-import Balance from 'components/Balance'
-// import BountyModal from './BountyModal'
-import useActiveWeb3React from '../../../hooks/useActiveWeb3React'
 
 interface CountdownCardProps {
   currentBlock: number
@@ -38,7 +26,6 @@ const StyledCard = styled(Card)`
 
 const CountdownCard: React.FC<CountdownCardProps> = ({ currentBlock, targetBlock }) => {
   const { t } = useTranslation()
-  const { chainId } = useActiveWeb3React()
 
   // const cakeBountyToDisplay = hasFetchedCakeBounty ? getBalanceNumber(estimatedCakeBountyReward, 18) : 0
 

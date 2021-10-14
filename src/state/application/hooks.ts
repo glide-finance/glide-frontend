@@ -3,7 +3,7 @@ import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { AppState } from '../index'
 
 export function useBlockNumber(): number | undefined {
-  const { chainId, library } = useActiveWeb3React()
+  const { chainId } = useActiveWeb3React()
   return useSelector((state: AppState) => state.application.blockNumber[chainId ?? -1])
 }
 

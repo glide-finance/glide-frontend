@@ -1,7 +1,7 @@
 import React from 'react'
 import { useTranslation } from 'contexts/Localization'
 import styled from 'styled-components'
-import { Modal, Text, Button, OpenNewIcon, Link } from '@glide-finance/uikit'
+import { Modal, Text, Button, Link } from '@glide-finance/uikit'
 import useTheme from 'hooks/useTheme'
 
 interface NotEnoughTokensModalProps {
@@ -9,9 +9,9 @@ interface NotEnoughTokensModalProps {
   onDismiss?: () => void
 }
 
-const StyledLink = styled(Link)`
-  width: 100%;
-`
+// const StyledLink = styled(Link)`
+//   width: 100%;
+// `
 
 const NotEnoughTokensModal: React.FC<NotEnoughTokensModalProps> = ({ tokenSymbol, onDismiss }) => {
   const { t } = useTranslation()

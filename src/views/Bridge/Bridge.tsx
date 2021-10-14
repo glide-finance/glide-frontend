@@ -1,17 +1,15 @@
 import React, { useEffect, useCallback, useState } from 'react'
 import styled from 'styled-components'
-import { Currency, CurrencyAmount, currencyEquals, ETHER, Token } from '@glide-finance/sdk'
+import { Currency, CurrencyAmount, ETHER, Token } from '@glide-finance/sdk'
 import {
   Flex,
   Button,
   Text,
   ArrowForwardIcon,
   useModal,
-  Heading,
-  GradientHeading,
   AutoRenewIcon,
 } from '@glide-finance/uikit'
-import PageHeader from 'components/PageHeader'
+// import PageHeader from 'components/PageHeader'
 import { useTranslation } from 'contexts/Localization'
 import SwapWarningTokens from 'config/constants/swapWarningTokens'
 import { getAddress } from 'utils/addressHelpers'
@@ -23,7 +21,7 @@ import { useCheckFaucetStatus } from './hooks/useFaucet'
 import { useBridgeMediator } from './hooks/useBridgeMediator'
 import ConnectWalletButton from '../../components/ConnectWalletButton'
 import useActiveWeb3React from '../../hooks/useActiveWeb3React'
-import useTokenBalance, { useGetBnbBalance } from '../../hooks/useTokenBalance'
+// import useTokenBalance, { useGetBnbBalance } from '../../hooks/useTokenBalance'
 import { ArrowWrapper, Wrapper } from './components/styleds'
 import Select, { OptionProps } from './components/Select'
 import { AutoColumn } from '../../components/Layout/Column'
@@ -306,7 +304,6 @@ const Bridge: React.FC = () => {
   const { handleApprove, requestedApproval, approvalComplete } = useApproveMediator(
     tokenToBridge,
     bridgeParams,
-    amountToBridge,
   )
   const { handleBridgeTransfer, requestedBridgeTransfer } = useBridgeMediator(
     tokenToBridge,

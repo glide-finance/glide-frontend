@@ -1917,10 +1917,10 @@
     "@ethersproject/properties" "^5.4.0"
     "@ethersproject/strings" "^5.4.0"
 
-"@glide-finance/sdk@^1.0.8":
-  version "1.0.8"
-  resolved "https://registry.yarnpkg.com/@glide-finance/sdk/-/sdk-1.0.8.tgz#a90793770a3847490f1d37999e4b8f85fdcff3e7"
-  integrity sha512-VRNSNNkfI8T4zocUxIqVtn9eEQfAgLPJ2TKjJYrYmdiRmhSqeNYxBUUGuZyz+hsLIGvwR3RN7V+CPNC9wc5m+g==
+"@glide-finance/sdk@^1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@glide-finance/sdk/-/sdk-1.1.0.tgz#2dbe4a81bd35ce827da3647ce9e28d620b132ac2"
+  integrity sha512-BISBOVD6xljq3Gy998RcWBxw2p/ZkVFVhfZYvZY9/TTq1hAAWtNdLso9MuzzdQuKqgT4aicxOtWLYB4/+SkMqQ==
   dependencies:
     "@pancakeswap-libs/pancake-swap-core" "^0.1.0"
     big.js "^5.2.2"
@@ -1930,10 +1930,10 @@
     tiny-warning "^1.0.3"
     toformat "^2.0.0"
 
-"@glide-finance/uikit@^1.3.5":
-  version "1.3.5"
-  resolved "https://registry.yarnpkg.com/@glide-finance/uikit/-/uikit-1.3.5.tgz#1c52ebeafb961b55c84a4ed90fe5290896414021"
-  integrity sha512-8hYtIZOvS9wxcPDqYph5+UgOt2p973rjKPcgVebNl1p5ZUlayOmagljsZeTHkQnQjfPjUpaCh0XsOa/yqARAnQ==
+"@glide-finance/uikit@^1.3.6":
+  version "1.3.6"
+  resolved "https://registry.yarnpkg.com/@glide-finance/uikit/-/uikit-1.3.6.tgz#3c12119c5fddd0d4917dbdc67fcc7294dfd4d499"
+  integrity sha512-y3dBdtaRyeXn6pxVpDzkn2EsWMPX4sOMIxwyMh32+NEELHqZbsauo6RVBAsmPUZ/QELr57+4NV2hgKclrP33/Q==
   dependencies:
     "@popperjs/core" "^2.9.2"
     "@types/lodash" "^4.14.168"

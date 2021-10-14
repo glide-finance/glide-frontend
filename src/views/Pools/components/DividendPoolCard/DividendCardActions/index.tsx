@@ -5,7 +5,7 @@ import { BIG_ZERO } from 'utils/bigNumber'
 import { Flex, Text, Box } from '@glide-finance/uikit'
 import { useTranslation } from 'contexts/Localization'
 import { PoolCategory } from 'config/constants/types'
-import { Pool, DividendUser } from 'state/types'
+import { Pool } from 'state/types'
 import ApprovalAction from './ApprovalAction'
 import StakeActions from './StakeActions'
 import HarvestActions from './HarvestActions'
@@ -21,7 +21,7 @@ interface CardActionsProps {
 
 const DividendCardActions: React.FC<CardActionsProps> = ({ pool, stakedBalance }) => {
   const { sousId, stakingToken, earningToken, harvest, poolCategory, earningTokenPrice, userData } = pool
-  // Pools using native BNB behave differently than pools using a token
+  // Pools using native ELA behave differently than pools using a token
   const isBnbPool = poolCategory === PoolCategory.BINANCE
   const { t } = useTranslation()
   const allowance = userData?.allowance ? new BigNumber(userData.allowance) : BIG_ZERO

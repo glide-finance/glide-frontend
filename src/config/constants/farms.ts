@@ -9,7 +9,7 @@ const farms: FarmConfig[] = [
     pid: 0,
     lpSymbol: 'GLIDE',
     lpAddresses: {
-      20: '0x3983cD2787A1e63c6Fb189CE0C06B9B44E382c31'
+      20: '0xd88F23867f329fF0B1D145c096b78050825F701A'
     },
     token: tokens.sugar,
     quoteToken: tokens.wela,
@@ -18,7 +18,7 @@ const farms: FarmConfig[] = [
     pid: 1,
     lpSymbol: 'GLIDE-ELA LP',
     lpAddresses: {
-      20: '0xE4225468888E06A870B1Ec85F4E7761C9032DD50'
+      20: '0x4e06B7673a16b628489275cF4c430C03B45940d2'
     },
     token: tokens.glide,
     quoteToken: tokens.wela,
@@ -27,50 +27,47 @@ const farms: FarmConfig[] = [
     pid: 2,
     lpSymbol: 'USDC-ELA LP', 
     lpAddresses: {
-      20: '0x6860bd8a7CEDEC7CD79480EdFD8583Aa8Fac5a2E'
+      20: '0xDBB317d34Fbf91B62381ffB69a2F3a8b997Fbf70'
     },
     token: tokens.usdc,
     quoteToken: tokens.wela,
   },
   {
     pid: 3,
-    lpSymbol: 'GLIDE-USDC LP',
-    lpAddresses: {
-      20: '0xC556F765766151823258545b2b402796C16916D4'
-    },
-    token: tokens.glide,
-    quoteToken: tokens.usdc,
-  },
-  {
-    pid: 4,
     lpSymbol: 'ETH-ELA LP',
     lpAddresses: {
-      20: '0xF660A325594999835C2506b0Ec79051D1F7A6EF1'
+      20: '0x0424088a053876261440bA35B5B9c63d9af394eF'
     },
     token: tokens.eth,
     quoteToken: tokens.wela,
   },
   {
-    pid: 5,
-    lpSymbol: 'HT-ELA LP',
-    lpAddresses: {
-      20: '0x48056B7bB775eC158Ba6e379C017fc9720d3Db11'
-    },
-    token: tokens.ht,
-    quoteToken: tokens.wela,
-  },
-  {
-    pid: 6,
+    pid: 4,
     lpSymbol: 'HUSD-USDC LP',
     lpAddresses: {
-      20: '0xc8596312A0e6eaEaBB2D8c2c02e6Ec2cd426b731'
+      20: '0xF90d0eBD444A87b21C2446001c22FCfaFD0E2caf'
     },
     token: tokens.husd,
     quoteToken: tokens.usdc,
+  },
+  {
+    pid: 5,
+    lpSymbol: 'GLIDE-USDC LP',
+    lpAddresses: {
+      20: '0x97533701f1D555fB3414E0Ab8aE33E6d18943155'
+    },
+    token: tokens.glide,
+    quoteToken: tokens.usdc,
+  },
+  {
+    pid: 6,
+    lpSymbol: 'HT-ELA LP',
+    lpAddresses: {
+      20: '0xd20521F660aFAdBad047239B0c3390A24F8b0cFf'
+    },
+    token: tokens.ht,
+    quoteToken: tokens.wela,
   }
-  /**
-   * V3 by order of release (some may be out of PID order due to multiplier boost)
-   */
 ]
 
 export default farms

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
-import styled from 'styled-components'
-import { Text, PancakeToggle, Toggle, Flex, Modal, InjectedModalProps } from '@glide-finance/uikit'
-import { useAudioModeManager, useExpertModeManager, useUserSingleHopOnly } from 'state/user/hooks'
+// import styled from 'styled-components'
+import { Text, Toggle, Flex, Modal, InjectedModalProps } from '@glide-finance/uikit'
+import { useExpertModeManager, useUserSingleHopOnly } from 'state/user/hooks'
 import { useTranslation } from 'contexts/Localization'
 import { useSwapActionHandlers } from 'state/swap/hooks'
 import usePersistState from 'hooks/usePersistState'
@@ -10,20 +10,20 @@ import TransactionSettings from './TransactionSettings'
 import ExpertModal from './ExpertModal'
 
 // TODO: Temporary. Once uikit is merged with this style change, this can be removed.
-const PancakeToggleWrapper = styled.div`
-  .pancakes {
-    position: absolute;
-  }
-`
+// const PancakeToggleWrapper = styled.div`
+//   .pancakes {
+//     position: absolute;
+//   }
+// `
 
 const SettingsModal: React.FC<InjectedModalProps> = ({ onDismiss }) => {
   const [showConfirmExpertModal, setShowConfirmExpertModal] = useState(false)
   const [rememberExpertModeAcknowledgement, setRememberExpertModeAcknowledgement] = usePersistState(false, {
-    localStorageKey: 'pancake_expert_mode_remember_acknowledgement',
+    localStorageKey: 'glide_expert_mode_remember_acknowledgement',
   })
   const [expertMode, toggleExpertMode] = useExpertModeManager()
   const [singleHopOnly, setSingleHopOnly] = useUserSingleHopOnly()
-  const [audioPlay, toggleSetAudioMode] = useAudioModeManager()
+  // const [audioPlay, toggleSetAudioMode] = useAudioModeManager()
   const { onChangeRecipient } = useSwapActionHandlers()
 
   const { t } = useTranslation()

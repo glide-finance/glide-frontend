@@ -1,23 +1,24 @@
 import { useCallback, useEffect, useState } from 'react'
-import { Currency, ETHER, Token } from '@glide-finance/sdk'
+import { Token } from '@glide-finance/sdk'
 import { useWeb3React } from '@web3-react/core'
-import { ethers, Contract } from 'ethers'
+import { ethers } from 'ethers'
 import BigNumber from 'bignumber.js'
 import { getBep20Contract } from 'utils/contractHelpers'
 import { ethersToBigNumber } from 'utils/bigNumber'
-import { useAppDispatch } from 'state'
-import { updateUserAllowance } from 'state/actions'
+// import { useAppDispatch } from 'state'
+// import { updateUserAllowance } from 'state/actions'
 import { useTranslation } from 'contexts/Localization'
-import { useCake, useSousChef, useCakeVaultContract } from 'hooks/useContract'
+// import { useCake, useSousChef, useCakeVaultContract } from 'hooks/useContract'
 import useToast from 'hooks/useToast'
 import useLastUpdated from 'hooks/useLastUpdated'
-import { parseValue, fetchGasPrice } from "../utils/txUtils";
+// import { parseValue, fetchGasPrice } from "../utils/txUtils";
+import { parseValue } from "../utils/txUtils";
 
 export const useCheckMediatorApprovalStatus = (currency, request, amount) => {
-  const [isMediatorApproved, setIsMediatorApproved] = useState(false)
+  // const [isMediatorApproved, setIsMediatorApproved] = useState(false)
   const [needsApproval, setNeedsApproval] = useState(false)
   const { account, library } = useWeb3React()
-  const { lastUpdated, setLastUpdated } = useLastUpdated()
+  const { lastUpdated } = useLastUpdated()
 
   useEffect(() => {
     const isToken = currency instanceof Token
@@ -41,11 +42,10 @@ export const useCheckMediatorApprovalStatus = (currency, request, amount) => {
     checkApprovalStatus()
   }, [currency, request, library, account, lastUpdated, amount])
 
-  // return { isVaultApproved, setLastUpdated }
   return needsApproval
 }
 
-export const useApproveMediator = (currency, request, amount) => {
+export const useApproveMediator = (currency, request ) => {
   const [requestedApproval, setRequestedApproval] = useState(false)
   const [approvalComplete, setApprovalComplete] = useState(false)
   const { toastSuccess, toastError } = useToast()
@@ -61,9 +61,8 @@ export const useApproveMediator = (currency, request, amount) => {
     const response = (await tokenContract.allowance(account, request.contract))
     const allowance = ethersToBigNumber(response)
     try {
-      // if (!allowance.gt(0)) {
+      if (!allowance.gt(0)) {
         setRequestedApproval(true)
-        // const tx = await tokenContract.approve(request.contract, 0)
         const tx = await tokenContract.approve(request.contract, ethers.constants.MaxUint256)
         const receipt = await tx.wait()
         // dispatch(updateUserAllowance(sousId, account))
@@ -79,9 +78,9 @@ export const useApproveMediator = (currency, request, amount) => {
           toastError(t('Error'), t('Please try again. Confirm the transaction and make sure you are paying enough gas!'))
           setRequestedApproval(false)
         }
-      // } else {
-        // setRequestedApproval(false)
-      // }
+      } else {
+        setRequestedApproval(false)
+      }
     } catch (e) {
       setRequestedApproval(false)
       console.error(e)

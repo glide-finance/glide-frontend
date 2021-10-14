@@ -81,7 +81,7 @@ const ModalInput: React.FC<ModalInputProps> = ({
     if (balanceBigNumber.gt(0) && balanceBigNumber.lt(0.0001)) {
       return balanceBigNumber.toLocaleString()
     }
-    return balanceBigNumber.toFixed(3, BigNumber.ROUND_DOWN)
+    return balanceBigNumber.toFixed(6, BigNumber.ROUND_DOWN)
   }
 
   return (

@@ -1,12 +1,12 @@
 import React from 'react'
 import styled, { keyframes } from 'styled-components'
 import { Flex, GradientHeading, Heading, Link, Button } from '@glide-finance/uikit'
-import { useWeb3React } from '@web3-react/core'
+// import { useWeb3React } from '@web3-react/core'
 import { useTranslation } from 'contexts/Localization'
-import ConnectWalletButton from 'components/ConnectWalletButton'
-import useTheme from 'hooks/useTheme'
+// import ConnectWalletButton from 'components/ConnectWalletButton'
+// import useTheme from 'hooks/useTheme'
 // import { SlideSvgDark, SlideSvgLight } from './SlideSvg'
-import CompositeImage, { getSrcSet, CompositeImageProps } from '../CompositeImage'
+import { getSrcSet } from '../CompositeImage'
 
 const flyingAnim = () => keyframes`
   from {
@@ -40,13 +40,13 @@ const HomeFlex = styled(Flex)`
     padding: 0 24px;
   }
 `
-const GliderFlex = styled(Flex)`
-  width: 164px;
+// const GliderFlex = styled(Flex)`
+//   width: 164px;
 
-  ${({ theme }) => theme.mediaQueries.sm} {
-    width: 324px;
-  }
-`
+//   ${({ theme }) => theme.mediaQueries.sm} {
+//     width: 324px;
+//   }
+// `
 
 const Glider = styled.img`
   width: 164px;
@@ -78,8 +78,8 @@ const BunnyWrapper = styled.div`
 const imagePath = '/images/home/details/'
 const DetailsSection = () => {
   const { t } = useTranslation()
-  const { account } = useWeb3React()
-  const { theme } = useTheme()
+  // const { account } = useWeb3React()
+  // const { theme } = useTheme()
 
   return (
     <>

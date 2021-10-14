@@ -1,5 +1,5 @@
 import { Currency, ETHER, Token } from '@glide-finance/sdk'
-import { BinanceIcon, ElastosIcon, EthereumIcon, HecoIcon } from '@glide-finance/uikit'
+import { ElastosIcon, EthereumIcon, HecoIcon } from '@glide-finance/uikit'
 import React, { useMemo } from 'react'
 import styled from 'styled-components'
 import useHttpLocations from '../../hooks/useHttpLocations'

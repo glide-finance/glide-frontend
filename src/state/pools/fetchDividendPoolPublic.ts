@@ -3,7 +3,7 @@ import { multicallv2 } from 'utils/multicall'
 import dividendPoolAbi from 'config/abi/dividendPool.json'
 import { getDividendPoolAddress } from 'utils/addressHelpers'
 import { getBalanceNumber } from 'utils/formatBalance'
-import { BIG_ZERO } from 'utils/bigNumber'
+// import { BIG_ZERO } from 'utils/bigNumber'
 import { getPoolApr } from 'utils/apr'
 import { getDividendPoolContract } from 'utils/contractHelpers'
 

@@ -4,7 +4,7 @@ import { Flex, GradientHeading, Heading, Link, Button } from '@glide-finance/uik
 import { useWeb3React } from '@web3-react/core'
 import { useTranslation } from 'contexts/Localization'
 import ConnectWalletButton from 'components/ConnectWalletButton'
-import useTheme from 'hooks/useTheme'
+// import useTheme from 'hooks/useTheme'
 // import { SlideSvgDark, SlideSvgLight } from './SlideSvg'
 import CompositeImage, { getSrcSet, CompositeImageProps } from './CompositeImage'
 
@@ -20,40 +20,12 @@ const flyingAnim = () => keyframes`
   }  
 `
 
-const fading = () => keyframes`
-  from {
-    opacity: 0.9;
-  }
-  50% {
-    opacity: 0.1;
-  }
-  to {
-    opacity: 0.9;
-  }  
-`
-
 const HomeFlex = styled(Flex)`
   padding: 0;
 
   ${({ theme }) => theme.mediaQueries.sm} {
     padding: 0 24px;
   }
-`
-
-const BgWrapper = styled.div`
-  z-index: -1;
-  overflow: hidden;
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  bottom: 0px;
-  left: 0px;
-`
-
-const InnerWrapper = styled.div`
-  position: absolute;
-  width: 100%;
-  bottom: -3px;
 `
 
 const BunnyWrapper = styled.div`
@@ -80,7 +52,7 @@ const butterflyImage: CompositeImageProps = {
 const Hero = () => {
   const { t } = useTranslation()
   const { account } = useWeb3React()
-  const { theme } = useTheme()
+  // const { theme } = useTheme()
 
   return (
     <>

@@ -16,11 +16,9 @@ import styled from 'styled-components'
 import { useTranslation } from 'contexts/Localization'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import useTotalSupply from '../../hooks/useTotalSupply'
-
 import { useTokenBalance } from '../../state/wallet/hooks'
 import { currencyId } from '../../utils/currencyId'
 import { unwrappedToken } from '../../utils/wrappedCurrency'
-
 import { LightCard } from '../Card'
 import { AutoColumn } from '../Layout/Column'
 import CurrencyLogo from '../Logo/CurrencyLogo'
@@ -55,7 +53,7 @@ interface PositionCardProps extends CardProps {
 export function MinimalPositionCard({ pair, showUnwrapped = false }: PositionCardProps) {
   const { account } = useActiveWeb3React()
   const { t } = useTranslation()
-
+  
   const currency0 = showUnwrapped ? pair.token0 : unwrappedToken(pair.token0)
   const currency1 = showUnwrapped ? pair.token1 : unwrappedToken(pair.token1)
 
@@ -153,7 +151,8 @@ export function MinimalPositionCard({ pair, showUnwrapped = false }: PositionCar
   )
 }
 
-export default function FullPositionCard({ pair, ...props }: PositionCardProps) {
+export default function FullPositionCard({ ...props }: PositionCardProps) {
+  const { pair } = props;
   const { account } = useActiveWeb3React()
   const { t } = useTranslation()
   const currency0 = unwrappedToken(pair.token0)
@@ -250,7 +249,7 @@ export default function FullPositionCard({ pair, ...props }: PositionCardProps) 
                 width="100%"
                 mb="8px"
               >
-                {t('Pooled')}
+                {t('Remove')}
               </Button>
               <Button
                 as={Link}

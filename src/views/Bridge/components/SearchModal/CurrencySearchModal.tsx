@@ -9,7 +9,6 @@ import {
   ModalBody,
   InjectedModalProps,
   Heading,
-  Button,
 } from '@glide-finance/uikit'
 import styled from 'styled-components'
 import usePrevious from 'hooks/usePreviousValue'
@@ -21,11 +20,11 @@ import Manage from './Manage'
 import ImportList from './ImportList'
 import { CurrencyModalView } from './types'
 
-const Footer = styled.div`
-  width: 100%;
-  background-color: ${({ theme }) => theme.colors.backgroundAlt};
-  text-align: center;
-`
+// const Footer = styled.div`
+//   width: 100%;
+//   background-color: ${({ theme }) => theme.colors.backgroundAlt};
+//   text-align: center;
+// `
 
 const StyledModalHeader = styled(ModalHeader)`
   background: ${({ theme }) => theme.colors.gradients.bubblegum};
@@ -48,7 +47,7 @@ interface CurrencySearchModalProps extends InjectedModalProps {
   selectedCurrency?: Currency | null
   onCurrencySelect: (currency: Currency) => void
   otherSelectedCurrency?: Currency | null
-  showCommonBases?: boolean
+  // showCommonBases?: boolean
 }
 
 export default function CurrencySearchModal({
@@ -58,7 +57,7 @@ export default function CurrencySearchModal({
   onCurrencySelect,
   selectedCurrency,
   otherSelectedCurrency,
-  showCommonBases = false,
+  // showCommonBases = false,
 }: CurrencySearchModalProps) {
   const [modalView, setModalView] = useState<CurrencyModalView>(CurrencyModalView.search)
 
@@ -110,9 +109,9 @@ export default function CurrencySearchModal({
             onCurrencySelect={handleCurrencySelect}
             selectedCurrency={selectedCurrency}
             otherSelectedCurrency={otherSelectedCurrency}
-            showCommonBases={showCommonBases}
-            showImportView={() => setModalView(CurrencyModalView.importToken)}
-            setImportToken={setImportToken}
+            // showCommonBases={showCommonBases}
+            // showImportView={() => setModalView(CurrencyModalView.importToken)}
+            // setImportToken={setImportToken}
           />
         ) : modalView === CurrencyModalView.importToken && importToken ? (
           <ImportToken tokens={[importToken]} handleCurrencySelect={handleCurrencySelect} />

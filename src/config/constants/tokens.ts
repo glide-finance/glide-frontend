@@ -3,7 +3,7 @@ import { ChainId, Token } from '@glide-finance/sdk'
 export const GLIDE: { [chainId: number]: Token } = {
   [ChainId.MAINNET]: new Token(
     ChainId.MAINNET,
-    '0x3983cD2787A1e63c6Fb189CE0C06B9B44E382c31',
+    '0xd88F23867f329fF0B1D145c096b78050825F701A',
     18,
     'GLIDE',
     'Glide',
@@ -26,7 +26,7 @@ const tokens = {
   glide: {
     symbol: 'GLIDE',
     address: {
-      20: '0x3983cD2787A1e63c6Fb189CE0C06B9B44E382c31'
+      20: '0xd88F23867f329fF0B1D145c096b78050825F701A'
     },
     decimals: 18,
     projectLink: 'https://glidefinance.io/',
@@ -34,7 +34,7 @@ const tokens = {
   sugar: {
     symbol: 'SUGAR',
     address: {
-      20: '0x6A60b79C16f0434950F2c3774453f09BCF627Ef5'
+      20: '0x0649DFD6269cc6343aF6a0eEEc58e12a8C7BB495'
     },
     decimals: 18,
     projectLink: 'https://glidefinance.io/',

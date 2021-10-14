@@ -20,7 +20,7 @@ import { useTranslation } from 'contexts/Localization'
 const useAuth = () => {
   const { t } = useTranslation()
   const dispatch = useAppDispatch()
-  const { activate, deactivate, library } = useWeb3React()
+  const { activate, deactivate } = useWeb3React()
   const { toastError } = useToast()
 
   const login = useCallback(

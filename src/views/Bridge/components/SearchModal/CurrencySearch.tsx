@@ -5,17 +5,16 @@ import { useTranslation } from 'contexts/Localization'
 import { FixedSizeList } from 'react-window'
 import { useAudioModeManager } from 'state/user/hooks'
 import useDebounce from 'hooks/useDebounce'
-import useActiveWeb3React from 'hooks/useActiveWeb3React'
-import { useBridgeableTokens, useToken, useIsUserAddedToken, useFoundOnInactiveList } from 'hooks/Tokens'
+// import useActiveWeb3React from 'hooks/useActiveWeb3React'
+import { useBridgeableTokens, useFoundOnInactiveList } from 'hooks/Tokens'
 import { isAddress } from 'utils'
 import Column, { AutoColumn } from 'components/Layout/Column'
 import Row from 'components/Layout/Row'
-import CommonBases from './CommonBases'
+// import CommonBases from './CommonBases'
 import CurrencyList from './CurrencyList'
 import { filterTokens, useSortedTokensByQuery } from './filtering'
 import useTokenComparator from './sorting'
-
-import ImportRow from './ImportRow'
+// import ImportRow from './ImportRow'
 
 interface CurrencySearchProps {
   origin: number
@@ -23,9 +22,9 @@ interface CurrencySearchProps {
   selectedCurrency?: Currency | null
   onCurrencySelect: (currency: Currency) => void
   otherSelectedCurrency?: Currency | null
-  showCommonBases?: boolean
-  showImportView: () => void
-  setImportToken: (token: Token) => void
+  // showCommonBases?: boolean
+  // showImportView: () => void
+  // setImportToken: (token: Token) => void
 }
 
 const swapSound = new Audio('swap.mp3')
@@ -36,12 +35,12 @@ function CurrencySearch({
   selectedCurrency,
   onCurrencySelect,
   otherSelectedCurrency,
-  showCommonBases,
-  showImportView,
-  setImportToken,
+  // showCommonBases,
+  // showImportView,
+  // setImportToken,
 }: CurrencySearchProps) {
   const { t } = useTranslation()
-  const { chainId } = useActiveWeb3React()
+  // const { chainId } = useActiveWeb3React()
 
   // refs for fixed size lists
   const fixedList = useRef<FixedSizeList>()
@@ -54,8 +53,8 @@ function CurrencySearch({
   const allTokens = useBridgeableTokens(origin, destination)
 
   // if they input an address, use it
-  const searchToken = useToken(debouncedQuery)
-  const searchTokenIsAdded = useIsUserAddedToken(searchToken)
+  // const searchToken = useToken(debouncedQuery)
+  // const searchTokenIsAdded = useIsUserAddedToken(searchToken)
 
   const [audioPlay] = useAudioModeManager()
 
@@ -162,8 +161,8 @@ function CurrencySearch({
               otherCurrency={otherSelectedCurrency}
               selectedCurrency={selectedCurrency}
               fixedListRef={fixedList}
-              showImportView={showImportView}
-              setImportToken={setImportToken}
+              // showImportView={showImportView}
+              // setImportToken={setImportToken}
             />
           </Box>
         ) : (

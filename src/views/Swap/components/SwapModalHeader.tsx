@@ -1,4 +1,5 @@
 import React, { useMemo } from 'react'
+import { useTranslation } from 'contexts/Localization'
 import { Trade, TradeType } from '@glide-finance/sdk'
 import { Button, Text, ErrorIcon, ArrowDownIcon } from '@glide-finance/uikit'
 import { Field } from 'state/swap/actions'
@@ -22,6 +23,7 @@ export default function SwapModalHeader({
   showAcceptChanges: boolean
   onAcceptChanges: () => void
 }) {
+  const { t } = useTranslation()
   const slippageAdjustedAmounts = useMemo(
     () => computeSlippageAdjustedAmounts(trade, allowedSlippage),
     [trade, allowedSlippage],
@@ -77,35 +79,35 @@ export default function SwapModalHeader({
           <RowBetween>
             <RowFixed>
               <ErrorIcon mr="8px" />
-              <Text bold> Price Updated</Text>
+              <Text bold> {t('Price Updated')}</Text>
             </RowFixed>
-            <Button onClick={onAcceptChanges}>Accept</Button>
+            <Button onClick={onAcceptChanges}>{t('Accept')}</Button>
           </RowBetween>
         </SwapShowAcceptChanges>
       ) : null}
       <AutoColumn justify="flex-start" gap="sm" style={{ padding: '24px 0 0 0px' }}>
         {trade.tradeType === TradeType.EXACT_INPUT ? (
           <Text small color="textSubtle" textAlign="left" style={{ width: '100%' }}>
-            {`Output is estimated. You will receive at least `}
+            {t(`Output is estimated. You will receive at least`)}{' '}
             <b>
               {slippageAdjustedAmounts[Field.OUTPUT]?.toSignificant(6)} {trade.outputAmount.currency.symbol}
             </b>
-            {' or the transaction will revert.'}
+            {' '}{t('or the transaction will revert.')}
           </Text>
         ) : (
           <Text small color="textSubtle" textAlign="left" style={{ width: '100%' }}>
-            {`Input is estimated. You will sell at most `}
+            {t(`Input is estimated. You will sell at most`)}{' '}
             <b>
               {slippageAdjustedAmounts[Field.INPUT]?.toSignificant(6)} {trade.inputAmount.currency.symbol}
             </b>
-            {' or the transaction will revert.'}
+            {' '}{t('or the transaction will revert.')}
           </Text>
         )}
       </AutoColumn>
       {recipient !== null ? (
         <AutoColumn justify="flex-start" gap="sm" style={{ padding: '12px 0 0 0px' }}>
           <Text color="textSubtle">
-            Output will be sent to{' '}
+            {t('Output will be sent to')}{' '}
             <b title={recipient}>{isAddress(recipient) ? shortenAddress(recipient) : recipient}</b>
           </Text>
         </AutoColumn>

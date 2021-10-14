@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { Flex } from '@glide-finance/uikit'
 // import Footer from 'components/Menu/Footer'
-import SubNav from 'components/Menu/SubNav'
+// import SubNav from 'components/Menu/SubNav'
 
 const StyledPage = styled.div`
   display: flex;

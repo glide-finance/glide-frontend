@@ -106,7 +106,7 @@ const Select: React.FunctionComponent<SelectProps> = ({ options, onChange, chain
   const containerRef = useRef(null)
   const dropdownRef = useRef(null)
   const [isOpen, setIsOpen] = useState(false)
-  const [selectedOptionIndex, setSelectedOptionIndex] = useState(chainIndex)
+  // const [selectedOptionIndex, setSelectedOptionIndex] = useState(chainIndex)
   const [containerSize, setContainerSize] = useState({ width: 0, height: 0 })
 
   const toggling = (event: React.MouseEvent<HTMLDivElement>) => {
@@ -115,7 +115,7 @@ const Select: React.FunctionComponent<SelectProps> = ({ options, onChange, chain
   }
 
   const onOptionClicked = (selectedIndex: number) => () => {
-    setSelectedOptionIndex(selectedIndex)
+    // setSelectedOptionIndex(selectedIndex)
     setIsOpen(false)
 
     if (onChange) {

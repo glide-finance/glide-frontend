@@ -1,16 +1,15 @@
 import React, { useEffect, useCallback, useState, useMemo, useRef } from 'react'
-import { Route, useRouteMatch, useLocation, NavLink } from 'react-router-dom'
+import { Route, useRouteMatch, useLocation } from 'react-router-dom'
 import BigNumber from 'bignumber.js'
 import { useWeb3React } from '@web3-react/core'
 import {
-  Image,
+  // Image,
   Heading,
   GradientHeading,
   RowType,
   Toggle,
   Text,
   Button,
-  ArrowForwardIcon,
   Flex,
 } from '@glide-finance/uikit'
 import { ChainId } from '@glide-finance/sdk'
@@ -38,7 +37,7 @@ import FarmCard, { FarmWithStakedValue } from './components/FarmCard/FarmCard'
 import Table from './components/FarmTable/FarmTable'
 import FarmTabButtons from './components/FarmTabButtons'
 import { RowProps } from './components/FarmTable/Row'
-import ToggleView from './components/ToggleView/ToggleView'
+// import ToggleView from './components/ToggleView/ToggleView'
 import { DesktopColumnSchema, ViewMode } from './components/types'
 import CountdownCard from './components/CountdownCard'
 
@@ -114,11 +113,11 @@ const ViewControls = styled.div`
   }
 `
 
-const StyledImage = styled(Image)`
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 58px;
-`
+// const StyledImage = styled(Image)`
+//   margin-left: auto;
+//   margin-right: auto;
+//   margin-top: 58px;
+// `
 
 const ConnectContainer = styled(Flex)`
   margin-bottom: 15px;
@@ -143,7 +142,7 @@ const Farms: React.FC = () => {
   const { data: farmsLP, userDataLoaded } = useFarms()
   const cakePrice = usePriceCakeUsdc()
   const [query, setQuery] = useState('')
-  const [viewMode, setViewMode] = usePersistState(ViewMode.TABLE, { localStorageKey: 'glide_farm_view' })
+  const [viewMode] = usePersistState(ViewMode.TABLE, { localStorageKey: 'glide_farm_view' })
   const { account, chainId, library } = useWeb3React()
   const [sortOption, setSortOption] = useState('hot')
   const chosenFarmsLength = useRef(0)

@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Flex, Box, Text } from '@glide-finance/uikit'
+import { Flex, Text } from '@glide-finance/uikit'
 // import Footer from 'components/Menu/Footer'
 import SubNav from 'components/Menu/SubNav'
 import { useTranslation } from 'contexts/Localization'

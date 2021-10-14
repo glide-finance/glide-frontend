@@ -1120,7 +1120,7 @@
   "Are you sure?": "Are you sure?",
   "Expert mode turns off the 'Confirm' transaction prompt, and allows high slippage trades that often result in bad rates and lost funds.": "Expert mode turns off the 'Confirm' transaction prompt, and allows high slippage trades that often result in bad rates and lost funds.",
   "Only use this mode if you know what you’re doing.": "Only use this mode if you know what you’re doing.",
-  "Turn On Expert Mode": "Turn On Expert Mode",
+  "Turn on Expert Mode": "Turn on Expert Mode",
   "Disable Multihops": "Disable Multihops",
   "Restricts swaps to direct pairs only.": "Restricts swaps to direct pairs only.",
   "Enter a valid slippage percentage": "Enter a valid slippage percentage",

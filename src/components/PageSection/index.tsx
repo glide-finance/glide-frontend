@@ -28,7 +28,7 @@ const BackgroundColor = styled(Flex)<BackgroundColorProps>`
   flex-direction: column;
   align-items: center;
   z-index: ${({ index }) => index - 1};
-  background: ${({ background, theme }) => background || 'none'};
+  background: ${({ background }) => background || 'none'};
   padding: ${({ getPadding }) => getPadding()};
 `
 

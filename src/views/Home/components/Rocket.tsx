@@ -1,11 +1,11 @@
 import React from 'react'
 import styled, { keyframes } from 'styled-components'
-import { Flex, GradientHeading, Heading, Link, Button } from '@glide-finance/uikit'
-import { useWeb3React } from '@web3-react/core'
+import { Flex } from '@glide-finance/uikit'
+// import { useWeb3React } from '@web3-react/core'
 import { useTranslation } from 'contexts/Localization'
-import ConnectWalletButton from 'components/ConnectWalletButton'
-import useTheme from 'hooks/useTheme'
-import { SlideSvgDark, SlideSvgLight } from './SlideSvg'
+// import ConnectWalletButton from 'components/ConnectWalletButton'
+// import useTheme from 'hooks/useTheme'
+// import { SlideSvgDark, SlideSvgLight } from './SlideSvg'
 import CompositeImage, { getSrcSet, CompositeImageProps } from './CompositeImage'
 
 const flyingAnim = () => keyframes`
@@ -41,21 +41,21 @@ const HomeFlex = styled(Flex)`
   }
 `
 
-const BgWrapper = styled.div`
-  z-index: -1;
-  overflow: hidden;
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  bottom: 0px;
-  left: 0px;
-`
+// const BgWrapper = styled.div`
+//   z-index: -1;
+//   overflow: hidden;
+//   position: absolute;
+//   width: 100%;
+//   height: 100%;
+//   bottom: 0px;
+//   left: 0px;
+// `
 
-const InnerWrapper = styled.div`
-  position: absolute;
-  width: 100%;
-  bottom: -3px;
-`
+// const InnerWrapper = styled.div`
+//   position: absolute;
+//   width: 100%;
+//   bottom: -3px;
+// `
 
 const BunnyWrapper = styled.div`
   width: 90%;
@@ -97,8 +97,8 @@ const starsImage: CompositeImageProps = {
 
 const Hero = () => {
   const { t } = useTranslation()
-  const { account } = useWeb3React()
-  const { theme } = useTheme()
+  // const { account } = useWeb3React()
+  // const { theme } = useTheme()
 
   return (
     <>

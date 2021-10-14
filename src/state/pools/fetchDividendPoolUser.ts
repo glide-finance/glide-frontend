@@ -1,4 +1,4 @@
-import BigNumber from 'bignumber.js'
+// import BigNumber from 'bignumber.js'
 // import { getCakeVaultContract } from 'utils/contractHelpers'
 import { getDividendPoolContract, getCakeContract } from 'utils/contractHelpers'
 

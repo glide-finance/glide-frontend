@@ -1,5 +1,5 @@
 import { ContextApi } from 'contexts/Localization/types'
-import { MenuEntry, MenuItemsType, DropdownMenuItemType } from '@glide-finance/uikit'
+import { MenuItemsType, DropdownMenuItemType } from '@glide-finance/uikit'
 
 export type ConfigMenuItemsType = MenuItemsType & { hideSubNav?: boolean }
 

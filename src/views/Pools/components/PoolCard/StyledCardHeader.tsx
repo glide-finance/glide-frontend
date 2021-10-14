@@ -19,7 +19,7 @@ const StyledCardHeader: React.FC<{
   isDividendPool?: boolean
   isFinished?: boolean
   isStaking?: boolean
-}> = ({ earningToken, stakingToken, isFinished = false, isAutoVault = false, isStaking = false }) => {
+}> = ({ earningToken, stakingToken, isFinished = false, isAutoVault = false }) => {
   const { t } = useTranslation()
   const isCakePool = earningToken.symbol === 'GLIDE' && stakingToken.symbol === 'GLIDE'
   // const background = isStaking ? 'bubblegum' : 'cardHeader'
