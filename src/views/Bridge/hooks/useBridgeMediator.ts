@@ -156,11 +156,23 @@ export const detectExchangeFinished = async function(recipient: any, bridgeType:
             toastSuccess(t('Transfer complete! You can now use your assets on the destination network.'));
             return;
         }
+
+        if ((Date.now()+177000) < stopTime && (Date.now()+183000) > stopTime) { // 2 minutes elapsed, 3 minutes to go
+            toastSuccess("Spinning, spinning, spinning...");
+        }
+
+        if ((Date.now()+117000) < stopTime && (Date.now()+123000) > stopTime) { // 3 minutes elapsed, 2 minutes to go 
+            toastSuccess("Ugh how long does this take?");
+        }
+
+        if ((Date.now()+57000) < stopTime && (Date.now()+63000) > stopTime) { // 4 minutes elapsed, 1 minute to go
+            toastSuccess("We'll give it one more minute");
+        }
         
         await wait(5000);
     }
 
     if (Date.now() > stopTime) {
-        toastError("Bridge completion event not detected within 3 minutes. Please monitor block explorer for receipt.");
+        toastError("Bridge completion event not detected within 5 minutes. Please monitor block explorer for receipt.");
     }
 }
