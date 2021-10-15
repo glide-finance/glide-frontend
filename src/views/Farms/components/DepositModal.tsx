@@ -1,6 +1,6 @@
 import BigNumber from 'bignumber.js'
 import React, { useCallback, useMemo, useState } from 'react'
-import { Button, Modal, LinkExternal } from '@glide-finance/uikit'
+import { Button, Modal, LinkExternal, AutoRenewIcon } from '@glide-finance/uikit'
 import { ModalActions, ModalInput } from 'components/Modal'
 import { useTranslation } from 'contexts/Localization'
 import { getFullDisplayBalance } from 'utils/formatBalance'
@@ -15,6 +15,8 @@ interface DepositModalProps {
   tokenName?: string
   addLiquidityUrl?: string
 }
+
+const spinnerIcon = <AutoRenewIcon spin color="currentColor" />
 
 const DepositModal: React.FC<DepositModalProps> = ({ max, onConfirm, onDismiss, tokenName = '', addLiquidityUrl }) => {
   const [val, setVal] = useState('')
@@ -63,6 +65,8 @@ const DepositModal: React.FC<DepositModalProps> = ({ max, onConfirm, onDismiss, 
           disabled={
             pendingTx || !valNumber.isFinite() || valNumber.eq(0) || valNumber.gt(fullBalanceNumber) || chainId !== 20
           }
+          isLoading={pendingTx}
+          endIcon={pendingTx ? spinnerIcon : undefined}
           onClick={async () => {
             setPendingTx(true)
             try {

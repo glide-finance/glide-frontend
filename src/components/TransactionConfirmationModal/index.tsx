@@ -2,6 +2,7 @@ import React, { useCallback } from 'react'
 import { ChainId, Currency, Token } from '@glide-finance/sdk'
 import styled from 'styled-components'
 import {
+  Image,
   Button,
   Text,
   ErrorIcon,
@@ -20,6 +21,7 @@ import { wrappedCurrency } from 'utils/wrappedCurrency'
 import { RowFixed } from '../Layout/Row'
 import { AutoColumn, ColumnCenter } from '../Layout/Column'
 import { getBscScanLink } from '../../utils'
+import GliderSuccessImage from './pngs/success.png'
 
 const Wrapper = styled.div`
   width: 100%;
@@ -31,7 +33,6 @@ const Section = styled(AutoColumn)`
 const ConfirmedIcon = styled(ColumnCenter)`
   padding: 12px 0;
 `
-
 
 function ConfirmationPendingContent({ pendingText }: { pendingText: string }) {
   const { t } = useTranslation()
@@ -77,7 +78,7 @@ function TransactionSubmittedContent({
       <Section>
         <ConfirmedIcon>
           {/* <ArrowUpIcon strokeWidth={0.5} width="90px" color="primary" /> */}
-          <img src="images/success.png" width="80%" alt="Submitted"/>
+          <Image src={GliderSuccessImage} alt="Submitted" width={200} height={200} />
         </ConfirmedIcon>
         <AutoColumn gap="12px" justify="center">
           <Text fontSize="20px">{t('Transaction Submitted')}</Text>

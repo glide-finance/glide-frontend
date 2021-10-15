@@ -1,11 +1,13 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Link, useLocation } from 'react-router-dom'
-import { ButtonMenu, ButtonMenuItem } from '@glide-finance/uikit'
+import { ButtonMenu, ButtonMenuItem, Flex } from '@glide-finance/uikit'
 import { useTranslation } from 'contexts/Localization'
+import GliderSuccessImage from './peak.png'
 
 const StyledNav = styled.nav`
-  margin-bottom: 20px;
+  align-self: center;
+  margin-left: 20px;
 `
 
 const StyledButtonMenu = styled(ButtonMenu)`
@@ -31,16 +33,19 @@ const Nav = () => {
   const location = useLocation()
   const { t } = useTranslation()
   return (
-    <StyledNav>
-      <StyledButtonMenu activeIndex={getActiveIndex(location.pathname)} scale="sm" variant="subtle">
-        <ButtonMenuItem id="swap-nav-link" to="/swap" as={Link}>
-          {t('Swap')}
-        </ButtonMenuItem>
-        <ButtonMenuItem id="pool-nav-link" to="/pool" as={Link}>
-          {t('Liquidity')}
-        </ButtonMenuItem>
-      </StyledButtonMenu>
-    </StyledNav>
+    <Flex flexDirection={['row', null, null, 'row']}>
+      <img src={GliderSuccessImage} alt="Submitted" width="80px" height="71px" />
+      <StyledNav>
+        <StyledButtonMenu activeIndex={getActiveIndex(location.pathname)} scale="sm" variant="subtle">
+          <ButtonMenuItem id="swap-nav-link" to="/swap" as={Link}>
+            {t('Swap')}
+          </ButtonMenuItem>
+          <ButtonMenuItem id="pool-nav-link" to="/pool" as={Link}>
+            {t('Liquidity')}
+          </ButtonMenuItem>
+        </StyledButtonMenu>
+      </StyledNav>
+    </Flex>
   )
 }
 

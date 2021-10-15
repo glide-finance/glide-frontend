@@ -1,6 +1,6 @@
 import BigNumber from 'bignumber.js'
 import React, { useCallback, useMemo, useState } from 'react'
-import { Button, Modal } from '@glide-finance/uikit'
+import { Button, Modal, AutoRenewIcon } from '@glide-finance/uikit'
 import { ModalActions, ModalInput } from 'components/Modal'
 import { useTranslation } from 'contexts/Localization'
 import { getFullDisplayBalance } from 'utils/formatBalance'
@@ -14,6 +14,8 @@ interface WithdrawModalProps {
   onDismiss?: () => void
   tokenName?: string
 }
+
+const spinnerIcon = <AutoRenewIcon spin color="currentColor" />
 
 const WithdrawModal: React.FC<WithdrawModalProps> = ({ onConfirm, onDismiss, max, tokenName = '' }) => {
   const [val, setVal] = useState('')
@@ -61,6 +63,8 @@ const WithdrawModal: React.FC<WithdrawModalProps> = ({ onConfirm, onDismiss, max
           disabled={
             pendingTx || !valNumber.isFinite() || valNumber.eq(0) || valNumber.gt(fullBalanceNumber) || chainId !== 20
           }
+          isLoading={pendingTx}
+          endIcon={pendingTx ? spinnerIcon : undefined}
           onClick={async () => {
             setPendingTx(true)
             try {
