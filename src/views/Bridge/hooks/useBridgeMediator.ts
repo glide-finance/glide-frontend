@@ -54,14 +54,11 @@ export const coinTransfer = async function(currency: any, request: any, amount: 
     sourceNetwork: number, destNetwork: number, destinationParamsOtherSide: any,
     toastSuccess: any, toastError: any, t: any) {
 
-    console.log(currency)
-
     const destProvider = new ethers.providers.JsonRpcProvider(networksUrl[destNetwork]);
     const fromDestBlock = await destProvider.getBlockNumber();
     const from = account;
     const recipient = account;
     const value = ethers.BigNumber.from(String(parseValue(amount, currency.decimals))).toString();
-
 
     // if token, then call erc677Contract, otherwise nativeSourceMediator
     if (bridgeType === "token" && isToken) {
