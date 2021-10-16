@@ -1,14 +1,7 @@
 import React, { useEffect, useCallback, useState } from 'react'
 import styled from 'styled-components'
 import { Currency, CurrencyAmount, ETHER, Token } from '@glide-finance/sdk'
-import {
-  Flex,
-  Button,
-  Text,
-  ArrowForwardIcon,
-  useModal,
-  AutoRenewIcon,
-} from '@glide-finance/uikit'
+import { Flex, Button, Text, ArrowForwardIcon, useModal, AutoRenewIcon } from '@glide-finance/uikit'
 // import PageHeader from 'components/PageHeader'
 import { useTranslation } from 'contexts/Localization'
 import SwapWarningTokens from 'config/constants/swapWarningTokens'
@@ -279,8 +272,25 @@ const Bridge: React.FC = () => {
       ? 'native'
       : 'token'
     : undefined // popsicle
-  const bridgeParams =
+
+  // eslint-disable-next-line prefer-const
+  let bridgeParams =
     bridgeType && chainId === ChainMap[originIndex] ? BRIDGES[bridgeSelected][bridgeType][chainId] : undefined
+
+  if (
+    tokenToBridge instanceof Token &&
+    tokenToBridge.address === '0xF9Ca2eA3b1024c0DB31adB224B407441bECC18BB' &&
+    chainId === 20
+  ) {
+    bridgeParams.contract = '0x6683268d72eeA063d8ee17639cC9B7C317d1734a'
+  } else if (
+    tokenToBridge instanceof Token &&
+    tokenToBridge.address === '0xA06be0F5950781cE28D965E5EFc6996e88a8C141' &&
+    chainId === 20
+  ) {
+    bridgeParams.contract = '0xe6fd75ff38Adca4B97FBCD938c86b98772431867'
+  }
+
   const bridgeParamsOtherSide =
     bridgeType && chainId === ChainMap[originIndex]
       ? BRIDGES[bridgeSelected][bridgeType][ChainMap[destinationIndex]]
@@ -300,11 +310,9 @@ const Bridge: React.FC = () => {
     correctParams && amountToBridge > 0 ? ((parseFloat(bridgeParams.fee) / 100) * amountToBridge).toPrecision(3) : 0
 
   const needsApproval = useCheckMediatorApprovalStatus(tokenToBridge, bridgeParams, amountToBridge)
+
   const faucetAvailable = useCheckFaucetStatus(tokenToBridge, correctParams, ChainMap[destinationIndex])
-  const { handleApprove, requestedApproval, approvalComplete } = useApproveMediator(
-    tokenToBridge,
-    bridgeParams,
-  )
+  const { handleApprove, requestedApproval, approvalComplete } = useApproveMediator(tokenToBridge, bridgeParams)
   const { handleBridgeTransfer, requestedBridgeTransfer } = useBridgeMediator(
     tokenToBridge,
     amountToBridge,
@@ -466,14 +474,14 @@ const Bridge: React.FC = () => {
               {correctParams && amountToBridge < bridgeParams.minTx ? (
                 <Warning>
                   <Text color="failure" mb="4px">
-                   • {t('Below minimum bridge amount')}
+                    • {t('Below minimum bridge amount')}
                   </Text>
                 </Warning>
               ) : (
                 exceedsMax && (
                   <Warning>
                     <Text color="failure" mb="4px">
-                    • {t('Insufficient balance')}
+                      • {t('Insufficient balance')}
                     </Text>
                   </Warning>
                 )

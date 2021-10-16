@@ -54,18 +54,33 @@ export const coinTransfer = async function(currency: any, request: any, amount: 
     sourceNetwork: number, destNetwork: number, destinationParamsOtherSide: any,
     toastSuccess: any, toastError: any, t: any) {
 
+    console.log(currency)
+
     const destProvider = new ethers.providers.JsonRpcProvider(networksUrl[destNetwork]);
     const fromDestBlock = await destProvider.getBlockNumber();
     const from = account;
     const recipient = account;
     const value = ethers.BigNumber.from(String(parseValue(amount, currency.decimals))).toString();
 
+
     // if token, then call erc677Contract, otherwise nativeSourceMediator
     if (bridgeType === "token" && isToken) {
         const type = 'relayTokens';
-        const tokenSourceMediator = getNativeSourceMediator(request.contract, library.getSigner(account) );
-        const gasPrice = await fetchGasPrice(library.getSigner(account));
 
+        let tokenSourceMediator;
+        let tokenDestinationMediator;
+        if (currency.address === "0xF9Ca2eA3b1024c0DB31adB224B407441bECC18BB" && currency.chainId === 20) {
+            tokenSourceMediator = getTokenSourceMediator("0x6683268d72eeA063d8ee17639cC9B7C317d1734a", library.getSigner(account) );
+            tokenDestinationMediator = "0x323b5913dadd3e61e5242Fe44781cb7Dd4BE7EB8";
+        } else if (currency.address === "0xA06be0F5950781cE28D965E5EFc6996e88a8C141" && currency.chainId === 20) {
+            tokenSourceMediator = getTokenSourceMediator("0xe6fd75ff38Adca4B97FBCD938c86b98772431867", library.getSigner(account) );
+            tokenDestinationMediator = "0xfBec16ac396431162789FF4b5f65F47978988D7f";
+        } else {
+            tokenSourceMediator = getNativeSourceMediator(request.contract, library.getSigner(account) );
+            tokenDestinationMediator = destinationParamsOtherSide.contract;
+        }
+     
+        const gasPrice = await fetchGasPrice(library.getSigner(account));
         const receiptToken = await tokenSourceMediator["relayTokens(address,address,uint256)"](currency.address, recipient, value, {
             from: from,
             gasPrice: gasPrice,
@@ -77,9 +92,14 @@ export const coinTransfer = async function(currency: any, request: any, amount: 
             callBridgeFaucet(receiptToken.hash, type, sourceNetwork, recipient, toastSuccess, toastError, t);
         }
 
-        await detectExchangeFinished(account, bridgeType, sourceNetwork, destNetwork, destinationParamsOtherSide.contract, destinationParamsOtherSide,
+        await detectExchangeFinished(account, bridgeType, sourceNetwork, destNetwork, tokenDestinationMediator, destinationParamsOtherSide,
             receiptToken.hash, isToken,
             toastSuccess, toastError, t, fromDestBlock);
+
+        // await detectExchangeFinished(account, bridgeType, sourceNetwork, destNetwork, destinationParamsOtherSide.contract, destinationParamsOtherSide,
+        //     receiptToken.hash, isToken,
+        //     toastSuccess, toastError, t, fromDestBlock);
+
 
     } else if (bridgeType === "native" && isToken) {
         const type = 'transferAndCall';
