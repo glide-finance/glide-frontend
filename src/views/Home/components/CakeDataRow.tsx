@@ -66,7 +66,6 @@ const CakeDataRow = () => {
   function calculateTotalLiquidtyFarms(farms: Farm[]) {
     let totalLiquidity = new BigNumber(0)
     farms.forEach((farm: Farm) => {
-      console.log(farms)
       if (!farm.lpTotalInQuoteToken || !farm.quoteToken.usdcPrice) {
         return
       }
