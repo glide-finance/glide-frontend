@@ -27,7 +27,7 @@ interface CurrencySearchProps {
   // setImportToken: (token: Token) => void
 }
 
-const swapSound = new Audio('swap.mp3')
+// const swapSound = new Audio('swap.mp3')
 
 function CurrencySearch({
   origin,
@@ -35,10 +35,10 @@ function CurrencySearch({
   selectedCurrency,
   onCurrencySelect,
   otherSelectedCurrency,
-  // showCommonBases,
-  // showImportView,
-  // setImportToken,
-}: CurrencySearchProps) {
+}: // showCommonBases,
+// showImportView,
+// setImportToken,
+CurrencySearchProps) {
   const { t } = useTranslation()
   // const { chainId } = useActiveWeb3React()
 
@@ -56,7 +56,7 @@ function CurrencySearch({
   // const searchToken = useToken(debouncedQuery)
   // const searchTokenIsAdded = useIsUserAddedToken(searchToken)
 
-  const [audioPlay] = useAudioModeManager()
+  // const [audioPlay] = useAudioModeManager()
 
   const showETH: boolean = useMemo(() => {
     const s = debouncedQuery.toLowerCase().trim()
@@ -78,11 +78,11 @@ function CurrencySearch({
   const handleCurrencySelect = useCallback(
     (currency: Currency) => {
       onCurrencySelect(currency)
-      if (audioPlay) {
-        swapSound.play()
-      }
+      // if (audioPlay) {
+      //   swapSound.play()
+      // }
     },
-    [audioPlay, onCurrencySelect],
+    [onCurrencySelect],
   )
 
   // manage focus on modal show
