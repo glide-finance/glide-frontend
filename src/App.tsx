@@ -4,7 +4,8 @@ import { ResetCSS } from '@glide-finance/uikit'
 import BigNumber from 'bignumber.js'
 import useEagerConnect from 'hooks/useEagerConnect'
 import { usePollBlockNumber } from 'state/block/hooks'
-import { usePollCoreFarmData } from 'state/farms/hooks'
+import { usePollFarmsData } from 'state/farms/hooks'
+// import { usePollCoreFarmData } from 'state/farms/hooks'
 // import { useFetchProfile } from 'state/profile/hooks'
 import { DatePickerPortal } from 'components/DatePicker'
 import GlobalStyle from './style/Global'
@@ -58,7 +59,8 @@ const App: React.FC = () => {
   useEagerConnect()
   // useFetchProfile()
   usePollBlockNumber()
-  usePollCoreFarmData()
+  // usePollCoreFarmData()
+  usePollFarmsData()
 
   // <div style={{ position: 'fixed', bottom: '15px', right: '20px', zIndex: 999, width: '200px' }}>
   //   <a href="https://paladinsec.co" target="_blank" rel="noreferrer">
