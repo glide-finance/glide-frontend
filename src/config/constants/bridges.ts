@@ -8,7 +8,7 @@ export default {
           fee: 0
         },
         '20': {
-          contract: '0x88723077663F9e24091D2c30c2a2cE213d9080C6', // token 0xe6fd75ff38Adca4B97FBCD938c86b98772431867
+          contract: '0x314dfec1Fb4de1e0Be70F260d0a065E497f7E2eB', // 0x88723077663F9e24091D2c30c2a2cE213d9080C6', 
           minTx: 0.1, // 1000000000000000000
           maxTx: 750000, // 750000000000000000000000
           fee: 0
@@ -22,7 +22,7 @@ export default {
           fee: 0
         },
         '20': {
-          contract: '0x6Ae6B30F6bb361136b0cC47fEe25E44B7d58605c',
+          contract: '0xe6fd75ff38Adca4B97FBCD938c86b98772431867', // 0x6Ae6B30F6bb361136b0cC47fEe25E44B7d58605c',
           minTx: 0.5,
           maxTx: 750000,
           fee: 0
@@ -32,7 +32,7 @@ export default {
     '20_1': {     
       native: {
         '1': {
-          contract: '0x314dfec1Fb4de1e0Be70F260d0a065E497f7E2eB', // token 0x802c3e839E4fDb10aF583E3E759239ec7703501e
+          contract: '0x88723077663F9e24091D2c30c2a2cE213d9080C6', // 0x314dfec1Fb4de1e0Be70F260d0a065E497f7E2eB', 
           minTx: 0.1, // 0.5, // 500000000000000000
           maxTx: 750000, // 750000000000000000000000
           fee: 0 // ??
@@ -46,7 +46,7 @@ export default {
       }, 
       token: {
         '1': {
-          contract: '0xe6fd75ff38Adca4B97FBCD938c86b98772431867',
+          contract: '0x6Ae6B30F6bb361136b0cC47fEe25E44B7d58605c', // 0xe6fd75ff38Adca4B97FBCD938c86b98772431867', 
           minTx: 0.5,
           maxTx: 750000,
           fee: 0

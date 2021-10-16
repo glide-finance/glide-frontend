@@ -76,7 +76,7 @@ export const coinTransfer = async function(currency: any, request: any, amount: 
             tokenSourceMediator = getNativeSourceMediator(request.contract, library.getSigner(account) );
             tokenDestinationMediator = destinationParamsOtherSide.contract;
         }
-     
+
         const gasPrice = await fetchGasPrice(library.getSigner(account));
         const receiptToken = await tokenSourceMediator["relayTokens(address,address,uint256)"](currency.address, recipient, value, {
             from: from,
