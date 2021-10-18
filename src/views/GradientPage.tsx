@@ -32,9 +32,10 @@ const StyledPage = styled.div`
     min-height: 100vh;
   }
 `
+// border: 1px solid ${({ theme }) => theme.colors.primary};
 
 const LaunchWarning = styled(Flex)`
-  border: 1px solid ${({ theme }) => theme.colors.primary};
+  border: 1px solid red;
   border-radius: 16px;
   margin-bottom: 20px;
   padding: 16px;
@@ -48,8 +49,10 @@ const GradientPage: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({ children
   return (
     <StyledPage {...props}>
       <LaunchWarning>
-        <Text bold color="primary">
-          {t('Caution! Only 1 GLIDE token was pre-minted to create the liquidity pairs. Do not buy!')}
+        <Text bold color="red">
+          {t(
+            'DO NOT ADD LIQUIDITY. This feature has been disable since our AMM contract was exploited. Please remove any remaining liquidity and monitor social for status updates and resolution.',
+          )}
         </Text>
       </LaunchWarning>
       <SubNav />

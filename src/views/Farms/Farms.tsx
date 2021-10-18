@@ -41,7 +41,6 @@ import { RowProps } from './components/FarmTable/Row'
 import { DesktopColumnSchema, ViewMode } from './components/types'
 import CountdownCard from './components/CountdownCard'
 
-
 const ControlContainer = styled.div`
   display: flex;
   width: 100%;
@@ -422,11 +421,11 @@ const Farms: React.FC = () => {
                 {t('Deposit LP tokens to earn')}
               </Heading>
             </Flex>
-              {chainId === 20 && (Number(GLIDE_START_BLOCK.toString()) - currentBlock + 30000 > 0) &&
-                <Flex flex="1" height="fit-content" justifyContent="center" alignItems="center" mt={['24px', null, '0']}>
-                  <CountdownCard currentBlock={currentBlock} targetBlock={Number(GLIDE_START_BLOCK.toString())}/>
-                </Flex>
-              }
+            {chainId === 20 && Number(GLIDE_START_BLOCK.toString()) - currentBlock + 30000 > 0 && (
+              <Flex flex="1" height="fit-content" justifyContent="center" alignItems="center" mt={['24px', null, '0']}>
+                <CountdownCard currentBlock={currentBlock} targetBlock={Number(GLIDE_START_BLOCK.toString())} />
+              </Flex>
+            )}
           </Flex>
           {/* <NavLink exact activeClassName="active" to="/farms/auction" id="lottery-pot-banner">
           <Button p="0" variant="text">
