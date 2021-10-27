@@ -1,7 +1,7 @@
 import React from 'react'
 import { Trade, TradeType } from '@glide-finance/sdk'
 import { Text } from '@glide-finance/uikit'
-import { Field } from 'state/swap/actions'
+import { Field } from 'state/bridge/actions'
 import { useUserSlippageTolerance } from 'state/user/hooks'
 import { computeSlippageAdjustedAmounts, computeTradePriceBreakdown } from 'utils/prices'
 import { AutoColumn } from 'components/Layout/Column'

@@ -2,7 +2,7 @@ import React, { useMemo, useState } from 'react'
 import styled from 'styled-components'
 import { Trade, TradeType } from '@glide-finance/sdk'
 import { Button, Text, AutoRenewIcon } from '@glide-finance/uikit'
-import { Field } from 'state/swap/actions'
+import { Field } from 'state/bridge/actions'
 import {
   computeSlippageAdjustedAmounts,
   computeTradePriceBreakdown,

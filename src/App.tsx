@@ -44,7 +44,7 @@ const NotFound = lazy(() => import('./views/NotFound'))
 // const Voting = lazy(() => import('./views/Voting'))
 // const Proposal = lazy(() => import('./views/Voting/Proposal'))
 // const CreateProposal = lazy(() => import('./views/Voting/CreateProposal'))
-// const AddLiquidity = lazy(() => import('./views/AddLiquidity'))
+const AddLiquidity = lazy(() => import('./views/AddLiquidity'))
 const Liquidity = lazy(() => import('./views/Pool'))
 const PoolFinder = lazy(() => import('./views/PoolFinder'))
 const RemoveLiquidity = lazy(() => import('./views/RemoveLiquidity'))
@@ -61,12 +61,6 @@ const App: React.FC = () => {
   usePollBlockNumber()
   // usePollCoreFarmData()
   usePollFarmsData()
-
-  // <div style={{ position: 'fixed', bottom: '15px', right: '20px', zIndex: 999, width: '200px' }}>
-  //   <a href="https://paladinsec.co" target="_blank" rel="noreferrer">
-  //     <img src="https://paladinsec.co/pld/assets/audited-by-paladin-standard.svg" width="200" alt="Paladin" />
-  //   </a>
-  // </div>
 
   return (
     <Router history={history}>
@@ -130,13 +124,15 @@ const App: React.FC = () => {
             <Route exact strict path="/send" component={RedirectPathToSwapOnly} />
             <Route exact strict path="/find" component={PoolFinder} />
             <Route exact strict path="/liquidity" component={Liquidity} />
-            {/* <Route exact strict path="/create" component={RedirectToAddLiquidity} /> */}
-            {/* <Route exact path="/add" component={AddLiquidity} />
+
+            <Route exact strict path="/create" component={RedirectToAddLiquidity} />
+            <Route exact path="/add" component={AddLiquidity} />
             <Route exact path="/add/:currencyIdA" component={RedirectOldAddLiquidityPathStructure} />
-            <Route exact path="/add/:currencyIdA/:currencyIdB" component={RedirectDuplicateTokenIds} /> */}
-            {/* <Route exact path="/create" component={AddLiquidity} /> */}
-            {/* <Route exact path="/create/:currencyIdA" component={RedirectOldAddLiquidityPathStructure} /> */}
-            {/* <Route exact path="/create/:currencyIdA/:currencyIdB" component={RedirectDuplicateTokenIds} /> */}
+            <Route exact path="/add/:currencyIdA/:currencyIdB" component={RedirectDuplicateTokenIds} />
+            <Route exact path="/create" component={AddLiquidity} />
+            <Route exact path="/create/:currencyIdA" component={RedirectOldAddLiquidityPathStructure} />
+            <Route exact path="/create/:currencyIdA/:currencyIdB" component={RedirectDuplicateTokenIds} />
+
             <Route exact strict path="/remove/:tokens" component={RedirectOldRemoveLiquidityPathStructure} />
             <Route exact strict path="/remove/:currencyIdA/:currencyIdB" component={RemoveLiquidity} />
 

@@ -56,6 +56,7 @@ function useTokensFromMap(tokenMap: TokenAddressMap, includeUserAdded: boolean):
 
 // reduce token map into standard address <-> Token mapping, optionally include user added tokens
 function useBridgeTokenMap(tokenMap: TokenAddressMap, origin: number): { [address: string]: Token } {
+
   return useMemo(() => {
     // reduce to just tokens
     const mapWithoutUrls = Object.keys(tokenMap[origin]).reduce<{ [address: string]: Token }>((newMap, address) => {

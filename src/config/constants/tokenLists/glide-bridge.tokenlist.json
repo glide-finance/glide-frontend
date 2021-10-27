@@ -65,6 +65,24 @@
       "origin": 128
     },
     {
+      "name": "FILDA on Heco",
+      "symbol": "FILDA",
+      "address": "0xE36FFD17B2661EB57144cEaEf942D95295E637F0",
+      "chainId": 128,
+      "decimals": 18,
+      "logoURI": "",
+      "origin": 128
+    },
+    {
+      "name": "FILDA on Elastos",
+      "symbol": "FILDA",
+      "address": "0xB9Ae03e3320235D3a8AE537f87FF8529b445B590",
+      "chainId": 20,
+      "decimals": 18,
+      "logoURI": "",
+      "origin": 128
+    },
+    {
       "name": "USD Coin",
       "symbol": "USDC",
       "address": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",

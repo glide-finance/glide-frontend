@@ -179,7 +179,6 @@ export function useBridgeableTokenList(origin, destination): TokenAddressMap {
   allTokens.tokens = destinationMatch
   const bridgeableTokens = allTokens
   return listToTokenMap(bridgeableTokens)
-  // return listToTokenMap(BRIDGEABLE_SET)
 }
 
 // list of tokens not supported on interface, used to show warnings and prevent swaps and adds

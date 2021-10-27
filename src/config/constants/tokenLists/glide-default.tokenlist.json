@@ -35,6 +35,15 @@
       "logoURI": ""
     },
     {
+      "name": "FILDA on Elastos",
+      "symbol": "FILDA",
+      "address": "0xB9Ae03e3320235D3a8AE537f87FF8529b445B590",
+      "chainId": 20,
+      "decimals": 18,
+      "logoURI": "",
+      "origin": 128
+    },
+    {
       "name": "USDC on Elastos",
       "symbol": "USDC",
       "address": "0xA06be0F5950781cE28D965E5EFc6996e88a8C141",
