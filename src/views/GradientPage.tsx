@@ -51,7 +51,7 @@ const GradientPage: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({ children
       <LaunchWarning>
         <Text bold color="red">
           {t(
-            'DO NOT ADD LIQUIDITY. This feature has been disable since our AMM contract was exploited. Please remove any remaining liquidity.',
+            'DO NOT ADD LIQUIDITY. This feature has been disabled. Please remove any remaining liquidity.',
           )}
         </Text>
       </LaunchWarning>
