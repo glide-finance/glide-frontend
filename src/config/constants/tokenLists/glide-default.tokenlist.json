@@ -13,7 +13,7 @@
     {
       "name": "Glide",
       "symbol": "GLIDE",
-      "address": "0xd88F23867f329fF0B1D145c096b78050825F701A",
+      "address": "0xd39eC832FF1CaaFAb2729c76dDeac967ABcA8F27",
       "chainId": 20,
       "decimals": 18,
       "logoURI": ""
@@ -32,6 +32,14 @@
       "address": "0xF9Ca2eA3b1024c0DB31adB224B407441bECC18BB",
       "chainId": 20,
       "decimals": 8,
+      "logoURI": ""
+    },
+    {
+      "name": "FILDA on Elastos",
+      "symbol": "FILDA",
+      "address": "0xB9Ae03e3320235D3a8AE537f87FF8529b445B590",
+      "chainId": 20,
+      "decimals": 18,
       "logoURI": ""
     },
     {

@@ -1,7 +1,7 @@
 import { ChainId, JSBI, Percent, Token, WETH } from '@glide-finance/sdk'
 import { USDC, GLIDE, WELA } from './tokens'
 
-export const ROUTER_ADDRESS = '0x672FdA04a1386c49b995e885142C0FCb92228BC9'
+export const ROUTER_ADDRESS = '0xec2f2b94465Ee0a7436beB4E38FC8Cf631ECf7DF'
 
 // a list of tokens by chain
 type ChainTokenList = {

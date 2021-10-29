@@ -1917,10 +1917,10 @@
     "@ethersproject/properties" "^5.4.0"
     "@ethersproject/strings" "^5.4.0"
 
-"@glide-finance/sdk@^1.1.0":
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/@glide-finance/sdk/-/sdk-1.1.0.tgz#2dbe4a81bd35ce827da3647ce9e28d620b132ac2"
-  integrity sha512-BISBOVD6xljq3Gy998RcWBxw2p/ZkVFVhfZYvZY9/TTq1hAAWtNdLso9MuzzdQuKqgT4aicxOtWLYB4/+SkMqQ==
+"@glide-finance/sdk@^1.1.1":
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@glide-finance/sdk/-/sdk-1.1.1.tgz#ca2d1e81b001d0f2e46d462b4daaab2e5a1c85bc"
+  integrity sha512-VBjBjP5X74QwJ4y2F6zJ0AU/4r3HWs88BjLgixBgKU77OWhGiIAFyHk1ZQ46BFgXQLnKbpBop8a6RKZoAOM28w==
   dependencies:
     "@pancakeswap-libs/pancake-swap-core" "^0.1.0"
     big.js "^5.2.2"

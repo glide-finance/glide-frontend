@@ -48,13 +48,13 @@ const GradientPage: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({ children
 
   return (
     <StyledPage {...props}>
-      <LaunchWarning>
+      {/* <LaunchWarning>
         <Text bold color="red">
           {t(
             'DO NOT ADD LIQUIDITY. This feature has been disable since our AMM contract was exploited. Please remove any remaining liquidity and monitor social for status updates and resolution.',
           )}
         </Text>
-      </LaunchWarning>
+      </LaunchWarning> */}
       <SubNav />
       {children}
       <Flex flexGrow={1} />
