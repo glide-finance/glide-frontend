@@ -12,6 +12,7 @@ import useToast from 'hooks/useToast'
 import { VALIDATOR_TIMEOUT } from 'config/constants'
 import { callBridgeFaucet } from "./useFaucet";
 import { parseValue, fetchGasPrice } from "../utils/txUtils";
+import BRIDGE_TOKEN_LIST from '../../../config/constants/tokenLists/glide-bridge.tokenlist.json'
 
 
 const wait = (time: number) => new Promise(resolve => setTimeout(resolve, time));
@@ -64,19 +65,11 @@ export const coinTransfer = async function(currency: any, request: any, amount: 
     if (bridgeType === "token" && isToken) {
         const type = 'relayTokens';
 
-        let tokenSourceMediator;
-        let tokenDestinationMediator;
-        if (currency.address === "0xF9Ca2eA3b1024c0DB31adB224B407441bECC18BB" && currency.chainId === 20) {
-            tokenSourceMediator = getTokenSourceMediator("0x6683268d72eeA063d8ee17639cC9B7C317d1734a", library.getSigner(account) );
-            tokenDestinationMediator = "0x323b5913dadd3e61e5242Fe44781cb7Dd4BE7EB8";
-        } else if (currency.address === "0xA06be0F5950781cE28D965E5EFc6996e88a8C141" && currency.chainId === 20) {
-            tokenSourceMediator = getTokenSourceMediator("0xe6fd75ff38Adca4B97FBCD938c86b98772431867", library.getSigner(account) );
-            tokenDestinationMediator = "0xfBec16ac396431162789FF4b5f65F47978988D7f";
-        } else {
-            tokenSourceMediator = getNativeSourceMediator(request.contract, library.getSigner(account) );
-            tokenDestinationMediator = destinationParamsOtherSide.contract;
-        }
+        const mediator = foreignOrigin(currency.address, currency.chainId) ? destinationParams.contract : request.contract;
+        const tokenDestinationMediator = foreignOrigin(currency.address, currency.chainId) ? reverseBridgeParamsOtherSide.contract : destinationParamsOtherSide.contract;
 
+        console.log(mediator, tokenDestinationMediator)
+        const tokenSourceMediator = getNativeSourceMediator(mediator, library.getSigner(account) );
         const gasPrice = await fetchGasPrice(library.getSigner(account));
         const receiptToken = await tokenSourceMediator["relayTokens(address,address,uint256)"](currency.address, recipient, value, {
             from: from,
@@ -92,11 +85,6 @@ export const coinTransfer = async function(currency: any, request: any, amount: 
         await detectExchangeFinished(account, bridgeType, sourceNetwork, destNetwork, tokenDestinationMediator, destinationParamsOtherSide,
             receiptToken.hash, isToken,
             toastSuccess, toastError, t, fromDestBlock);
-
-        // await detectExchangeFinished(account, bridgeType, sourceNetwork, destNetwork, destinationParamsOtherSide.contract, destinationParamsOtherSide,
-        //     receiptToken.hash, isToken,
-        //     toastSuccess, toastError, t, fromDestBlock);
-
 
     } else if (bridgeType === "native" && isToken) {
         const type = 'transferAndCall';
@@ -119,6 +107,7 @@ export const coinTransfer = async function(currency: any, request: any, amount: 
     } else {
         const type = 'relayTokens';
         const nativeSourceMediator = getNativeSourceMediator(request.contract, library.getSigner(account));
+
 
         const receiptNative = await nativeSourceMediator["relayTokens(address)"](recipient, {
             from: from,
@@ -192,4 +181,11 @@ export const detectExchangeFinished = async function(recipient: any, bridgeType:
     if (Date.now() > stopTime) {
         toastError("Bridge completion event not detected within 5 minutes. Please monitor block explorer for receipt.");
     }
+}
+
+const foreignOrigin = function(address: string, chainId: number) {
+    const tokenInfo = BRIDGE_TOKEN_LIST.tokens.filter(token => token.address === address)[0]
+    const { origin } = tokenInfo
+    if (origin !== chainId) return true;
+    return false;
 }
