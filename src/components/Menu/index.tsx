@@ -25,7 +25,7 @@ const Menu = (props) => {
       currentLang={currentLanguage.code}
       langs={languageList}
       setLang={setLanguage}
-      // glidePriceUsd={glidePriceUsd.toNumber()}
+      glidePriceUsd={glidePriceUsd.toNumber()}
       elaPriceUsd={elaPriceUsd.toNumber()}
       links={config(t)}
       // profile={{
