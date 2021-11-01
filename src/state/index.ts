@@ -17,6 +17,7 @@ import { updateVersion } from './global/actions'
 import user from './user/reducer'
 import transactions from './transactions/reducer'
 import swap from './swap/reducer'
+import bridge from './bridge/reducer'
 import mint from './mint/reducer'
 import lists from './lists/reducer'
 import burn from './burn/reducer'
@@ -31,7 +32,6 @@ const store = configureStore({
     block: blockReducer,
     farms: farmsReducer,
     pools: poolsReducer,
-    // bridge: bridgeReducer,
     // predictions: predictionsReducer,
     // profile: profileReducer,
     // teams: teamsReducer,
@@ -44,6 +44,7 @@ const store = configureStore({
     user,
     transactions,
     swap,
+    bridge,
     mint,
     burn,
     multicall,
