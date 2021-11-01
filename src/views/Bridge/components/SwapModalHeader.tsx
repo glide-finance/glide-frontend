@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react'
 import { Trade, TradeType } from '@glide-finance/sdk'
 import { Button, Text, ErrorIcon, ArrowDownIcon } from '@glide-finance/uikit'
-import { Field } from 'state/swap/actions'
+import { Field } from 'state/bridge/actions'
 import { isAddress, shortenAddress } from 'utils'
 import { computeSlippageAdjustedAmounts, computeTradePriceBreakdown, warningSeverity } from 'utils/prices'
 import { AutoColumn } from 'components/Layout/Column'
