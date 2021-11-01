@@ -32,10 +32,8 @@ const StyledPage = styled.div`
     min-height: 100vh;
   }
 `
-// border: 1px solid ${({ theme }) => theme.colors.primary};
-
 const LaunchWarning = styled(Flex)`
-  border: 1px solid red;
+  border: 1px solid ${({ theme }) => theme.colors.primary};
   border-radius: 16px;
   margin-bottom: 20px;
   padding: 16px;
@@ -48,13 +46,13 @@ const GradientPage: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({ children
 
   return (
     <StyledPage {...props}>
-      {/* <LaunchWarning>
-        <Text bold color="red">
+      <LaunchWarning>
+        <Text bold color="primary">
           {t(
-            'DO NOT ADD LIQUIDITY. This feature has been disable since our AMM contract was exploited. Please remove any remaining liquidity and monitor social for status updates and resolution.',
+            'There is no liquidity for GLIDE until it is farmed. Be cautious trading it as it will be volatile early on.',
           )}
         </Text>
-      </LaunchWarning> */}
+      </LaunchWarning>
       <SubNav />
       {children}
       <Flex flexGrow={1} />
