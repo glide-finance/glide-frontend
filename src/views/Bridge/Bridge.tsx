@@ -9,6 +9,7 @@ import { getAddress } from 'utils/addressHelpers'
 import { setupNetwork } from 'utils/wallet'
 import BRIDGES from 'config/constants/bridges'
 import { usePollBlockNumber } from 'state/block/hooks'
+import { useBridgeableTokens } from 'hooks/Tokens'
 import { useCheckMediatorApprovalStatus, useApproveMediator } from './hooks/useApprove'
 import { useCheckFaucetStatus } from './hooks/useFaucet'
 import { useBridgeMediator } from './hooks/useBridgeMediator'
@@ -25,8 +26,8 @@ import Body from './components/Body'
 import { GradientHeader } from '../../components/App'
 import { ApprovalState, useApproveCallbackFromTrade } from '../../hooks/useApproveCallback'
 import useWrapCallback, { WrapType } from '../../hooks/useWrapCallback'
-import { Field } from '../../state/swap/actions'
-import { useDerivedSwapInfo, useSwapActionHandlers, useSwapState } from '../../state/swap/hooks'
+import { Field } from '../../state/bridge/actions'
+import { useDerivedSwapInfo, useSwapActionHandlers, useSwapState } from '../../state/bridge/hooks'
 import { useUserSlippageTolerance } from '../../state/user/hooks'
 import { maxAmountSpend } from '../../utils/maxAmountSpend'
 // import CircleLoader from '../../components/Loader/CircleLoader'
@@ -174,7 +175,9 @@ const Bridge: React.FC = () => {
   // swap state
   const { independentField, typedValue } = useSwapState()
   const { v2Trade, currencyBalances, parsedAmount, currencies } = useDerivedSwapInfo()
+
   const { wrapType } = useWrapCallback(currencies[Field.INPUT], currencies[Field.OUTPUT], typedValue)
+
   const showWrap: boolean = wrapType !== WrapType.NOT_APPLICABLE
   const trade = showWrap ? undefined : v2Trade
 
@@ -276,21 +279,6 @@ const Bridge: React.FC = () => {
   // eslint-disable-next-line prefer-const
   let bridgeParams =
     bridgeType && chainId === ChainMap[originIndex] ? BRIDGES[bridgeSelected][bridgeType][chainId] : undefined
-
-  if (
-    tokenToBridge instanceof Token &&
-    tokenToBridge.address === '0xF9Ca2eA3b1024c0DB31adB224B407441bECC18BB' &&
-    chainId === 20
-  ) {
-    bridgeParams.contract = '0x6683268d72eeA063d8ee17639cC9B7C317d1734a'
-  } else if (
-    tokenToBridge instanceof Token &&
-    tokenToBridge.address === '0xA06be0F5950781cE28D965E5EFc6996e88a8C141' &&
-    chainId === 20
-  ) {
-    bridgeParams.contract = '0xe6fd75ff38Adca4B97FBCD938c86b98772431867'
-  }
-
   const bridgeParamsOtherSide =
     bridgeType && chainId === ChainMap[originIndex]
       ? BRIDGES[bridgeSelected][bridgeType][ChainMap[destinationIndex]]
