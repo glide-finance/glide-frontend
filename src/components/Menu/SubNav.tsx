@@ -7,11 +7,24 @@ import GliderSuccessImage from './peak.png'
 
 const StyledNav = styled.nav`
   align-self: center;
-  margin-left: 20px;
+  margin-bottom: 20px;
+
+  ${({ theme }) => theme.mediaQueries.lg} {
+    margin-bottom: 0;
+    margin-left: 20px;
+  }
 `
 
 const StyledButtonMenu = styled(ButtonMenu)`
   border: none;
+`
+
+const Glider = styled.div`
+  display: none;
+
+  ${({ theme }) => theme.mediaQueries.lg} {
+    display: block;
+  }
 `
 
 const getActiveIndex = (pathname: string): number => {
@@ -34,7 +47,9 @@ const Nav = () => {
   const { t } = useTranslation()
   return (
     <Flex flexDirection={['row', null, null, 'row']}>
-      <img src={GliderSuccessImage} alt="Submitted" width="80px" height="71px" />
+      <Glider>
+        <img src={GliderSuccessImage} alt="Submitted" width="80px" height="71px" />
+      </Glider>
       <StyledNav>
         <StyledButtonMenu activeIndex={getActiveIndex(location.pathname)} scale="sm" variant="subtle">
           <ButtonMenuItem id="swap-nav-link" to="/swap" as={Link}>
