@@ -302,7 +302,7 @@ const Farms: React.FC = () => {
 
     const row: RowProps = {
       apr: {
-        value: 'TBD', // getDisplayApr(farm.apr, farm.lpRewardsApr),
+        value: getDisplayApr(farm.apr, farm.lpRewardsApr), // TBD
         multiplier: farm.multiplier,
         lpLabel,
         tokenAddress,

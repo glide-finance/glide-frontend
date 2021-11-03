@@ -49,9 +49,10 @@ const CellInner = styled.div`
     padding-right: 32px;
   }
 `
-
+// background: ${({ theme }) => theme.colors.gradients.bubblegum};
+// add background color to uikit
 const StyledTr = styled.tr`
-  background: ${({ theme }) => theme.colors.gradients.bubblegum};
+  background: #19274d; 
   border-radius: 16px;
   cursor: pointer;
   border-bottom: 2px solid ${({ theme }) => theme.colors.cardBorder};

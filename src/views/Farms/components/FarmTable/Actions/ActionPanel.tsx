@@ -151,7 +151,7 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
   })
   const lpAddress = getAddress(farm.lpAddresses)
   const bsc = getBscScanLink(lpAddress, 'address')
-  const info = `https://glidefinance.info/pool/${lpAddress}`
+  // const info = `https://glidefinance.info/pool/${lpAddress}`
 
   return (
     <Container expanded={expanded}>
@@ -164,7 +164,7 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
           </StakeContainer>
         )}
         <StyledLinkExternal href={bsc}>{t('View Contract')}</StyledLinkExternal>
-        <StyledLinkExternal href={info}>{t('See Pair Info')}</StyledLinkExternal>
+        {/* <StyledLinkExternal href={info}>{t('See Pair Info')}</StyledLinkExternal> popsicle */}
         <TagsContainer>
           {farm.isCommunity ? <CommunityTag /> : <CoreTag />}
           {dual ? <DualTag /> : null}

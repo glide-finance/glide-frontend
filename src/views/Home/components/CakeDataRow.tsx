@@ -132,8 +132,7 @@ const CakeDataRow = () => {
       </StyledColumn>
       <StyledColumn>
         {mcap?.gt(0) && mcapString ? (
-          <Text fontSize="32px">$0</Text>
-          // <Text fontSize="32px">{t('$%marketCap%', { marketCap: mcapString })}</Text>
+          <Text fontSize="32px">{t('$%marketCap%', { marketCap: mcapString })}</Text>
         ) : (
           <Skeleton height={24} width={126} my="4px" />
         )}

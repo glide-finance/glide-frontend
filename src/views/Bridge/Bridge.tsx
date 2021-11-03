@@ -9,7 +9,7 @@ import { getAddress } from 'utils/addressHelpers'
 import { setupNetwork } from 'utils/wallet'
 import BRIDGES from 'config/constants/bridges'
 import { usePollBlockNumber } from 'state/block/hooks'
-import { useBridgeableTokens } from 'hooks/Tokens'
+// import { useBridgeableTokens } from 'hooks/Tokens'
 import { useCheckMediatorApprovalStatus, useApproveMediator } from './hooks/useApprove'
 import { useCheckFaucetStatus } from './hooks/useFaucet'
 import { useBridgeMediator } from './hooks/useBridgeMediator'
@@ -35,10 +35,13 @@ import SwapWarningModal from './components/SwapWarningModal'
 
 const BridgePage = styled(Page)`
   padding-top: 10vh;
-  background: radial-gradient(40% 55% at 45% 57.5%, #f2ad6c 0%, rgba(242, 173, 108, 0.4) 25%, rgba(6, 9, 20, 0) 72.5%),
+
+  ${({ theme }) => theme.mediaQueries.lg} {
+    background: radial-gradient(40% 55% at 45% 57.5%, #f2ad6c 0%, rgba(242, 173, 108, 0.4) 25%, rgba(6, 9, 20, 0) 72.5%),
     radial-gradient(40% 45% at 55% 47.5%, #48b9ff 0%, rgba(72, 185, 255, 0.4) 25%, rgba(6, 9, 20, 0) 72.5%);
-  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-  background-position-y: -13vh;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    background-position-y: -13vh;
+  }
 `
 
 const ChainContainer = styled.div`
