@@ -59,7 +59,8 @@ export const coinTransfer = async function(currency: any, request: any, amount: 
     const fromDestBlock = await destProvider.getBlockNumber();
     const from = account;
     const recipient = account;
-    const value = ethers.BigNumber.from(String(parseValue(amount, currency.decimals))).toString();
+    const value = parseValue(amount, currency.decimals).toString()
+    // const value = ethers.BigNumber.from(String(parseValue(amount, currency.decimals))).toString();
 
     // if token, then call erc677Contract, otherwise nativeSourceMediator
     if (bridgeType === "token" && isToken) {
@@ -70,6 +71,7 @@ export const coinTransfer = async function(currency: any, request: any, amount: 
 
         const tokenSourceMediator = getNativeSourceMediator(mediator, library.getSigner(account) );
         const gasPrice = await fetchGasPrice(library.getSigner(account));
+
         const receiptToken = await tokenSourceMediator["relayTokens(address,address,uint256)"](currency.address, recipient, value, {
             from: from,
             gasPrice: gasPrice,

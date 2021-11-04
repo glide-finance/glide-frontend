@@ -9,13 +9,14 @@ import { getAddress } from 'utils/addressHelpers'
 import { setupNetwork } from 'utils/wallet'
 import BRIDGES from 'config/constants/bridges'
 import { usePollBlockNumber } from 'state/block/hooks'
+// import useTokenBalance from '../../hooks/useTokenBalance'
 // import { useBridgeableTokens } from 'hooks/Tokens'
+import BigNumber from 'bignumber.js'
 import { useCheckMediatorApprovalStatus, useApproveMediator } from './hooks/useApprove'
 import { useCheckFaucetStatus } from './hooks/useFaucet'
 import { useBridgeMediator } from './hooks/useBridgeMediator'
 import ConnectWalletButton from '../../components/ConnectWalletButton'
 import useActiveWeb3React from '../../hooks/useActiveWeb3React'
-// import useTokenBalance, { useGetBnbBalance } from '../../hooks/useTokenBalance'
 import { ArrowWrapper, Wrapper } from './components/styleds'
 import Select, { OptionProps } from './components/Select'
 import { AutoColumn } from '../../components/Layout/Column'
@@ -268,7 +269,7 @@ const Bridge: React.FC = () => {
   }, [onUserInput, onCurrencySelection])
 
   const tokenToBridge = currencies[Field.INPUT]
-  const amountToBridge = parseFloat(formattedAmounts[Field.INPUT]) >= 0 ? parseFloat(formattedAmounts[Field.INPUT]) : 0
+  const amountToBridge = Number(formattedAmounts[Field.INPUT]) >= 0 ? new BigNumber(formattedAmounts[Field.INPUT]) : new BigNumber(0)
   const symbol =
     currencyKey(tokenToBridge) === 'ETHER' ? SymbolMap[chainId] : tokenToBridge ? tokenToBridge.symbol : undefined
   const bridgeSelected = `${ChainMap[originIndex]}_${ChainMap[destinationIndex]}`
@@ -298,7 +299,7 @@ const Bridge: React.FC = () => {
   const isBridgeable =
     correctParams && amountToBridge >= bridgeParams.minTx && amountToBridge <= bridgeParams.maxTx && !exceedsMax
   const feeAmount =
-    correctParams && amountToBridge > 0 ? ((parseFloat(bridgeParams.fee) / 100) * amountToBridge).toPrecision(3) : 0
+    correctParams && amountToBridge.gt(0) ? ((new BigNumber(bridgeParams.fee).div(new BigNumber(100))).times(amountToBridge)).toPrecision(3) : 0
 
   const needsApproval = useCheckMediatorApprovalStatus(tokenToBridge, bridgeParams, amountToBridge)
 
@@ -462,7 +463,7 @@ const Bridge: React.FC = () => {
                   </Text>
                 </Warning>
               )}
-              {correctParams && amountToBridge < bridgeParams.minTx ? (
+              {correctParams && amountToBridge.lt(bridgeParams.minTx) ? (
                 <Warning>
                   <Text color="failure" mb="4px">
                     • {t('Below minimum bridge amount')}
