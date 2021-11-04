@@ -26,7 +26,8 @@ export const useCheckMediatorApprovalStatus = (currency, request, amount) => {
     if (request === undefined) { setNeedsApproval(false); return }
     const tokenContract = getBep20Contract(currency.address, library.getSigner(account))
 
-    const value = parseValue(amount, currency.decimals).toString()
+    const value = amount;
+    // const value = parseValue(amount, currency.decimals).toString()
     // const value = ethers.BigNumber.from(String(parseValue(amount, currency.decimals))).toString();
 
     const checkApprovalStatus = async () => {
