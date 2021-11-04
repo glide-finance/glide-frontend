@@ -49,7 +49,7 @@ const GradientPage: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({ children
       <LaunchWarning>
         <Text bold color="primary">
           {t(
-            'There is no liquidity for GLIDE until it is farmed. Be cautious trading it as it will be volatile early on.',
+            'The GLIDE supply is limited due to fair launch! Volatility will be high for a few days. Play safe!',
           )}
         </Text>
       </LaunchWarning>
