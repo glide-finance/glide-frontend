@@ -39,7 +39,7 @@ const BridgePage = styled(Page)`
 
   ${({ theme }) => theme.mediaQueries.lg} {
     background: radial-gradient(40% 55% at 45% 57.5%, #f2ad6c 0%, rgba(242, 173, 108, 0.4) 25%, rgba(6, 9, 20, 0) 72.5%),
-    radial-gradient(40% 45% at 55% 47.5%, #48b9ff 0%, rgba(72, 185, 255, 0.4) 25%, rgba(6, 9, 20, 0) 72.5%);
+      radial-gradient(40% 45% at 55% 47.5%, #48b9ff 0%, rgba(72, 185, 255, 0.4) 25%, rgba(6, 9, 20, 0) 72.5%);
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
     background-position-y: -13vh;
   }
@@ -269,7 +269,8 @@ const Bridge: React.FC = () => {
   }, [onUserInput, onCurrencySelection])
 
   const tokenToBridge = currencies[Field.INPUT]
-  const amountToBridge = Number(formattedAmounts[Field.INPUT]) >= 0 ? new BigNumber(formattedAmounts[Field.INPUT]) : new BigNumber(0)
+  const amountToBridge =
+    Number(formattedAmounts[Field.INPUT]) >= 0 ? new BigNumber(formattedAmounts[Field.INPUT]) : new BigNumber(0)
   const symbol =
     currencyKey(tokenToBridge) === 'ETHER' ? SymbolMap[chainId] : tokenToBridge ? tokenToBridge.symbol : undefined
   const bridgeSelected = `${ChainMap[originIndex]}_${ChainMap[destinationIndex]}`
@@ -299,12 +300,18 @@ const Bridge: React.FC = () => {
   const isBridgeable =
     correctParams && amountToBridge >= bridgeParams.minTx && amountToBridge <= bridgeParams.maxTx && !exceedsMax
   const feeAmount =
-    correctParams && amountToBridge.gt(0) ? ((new BigNumber(bridgeParams.fee).div(new BigNumber(100))).times(amountToBridge)).toPrecision(3) : 0
+    correctParams && amountToBridge.gt(0)
+      ? new BigNumber(bridgeParams.fee).div(new BigNumber(100)).times(amountToBridge).toPrecision(3)
+      : 0
 
-  const needsApproval = useCheckMediatorApprovalStatus(tokenToBridge, bridgeParams, amountToBridge)
+  const needsApproval = useCheckMediatorApprovalStatus(tokenToBridge, bridgeParams, amountToBridge, reverseBridgeParams)
 
   const faucetAvailable = useCheckFaucetStatus(tokenToBridge, correctParams, ChainMap[destinationIndex])
-  const { handleApprove, requestedApproval, approvalComplete } = useApproveMediator(tokenToBridge, bridgeParams)
+  const { handleApprove, requestedApproval, approvalComplete } = useApproveMediator(
+    tokenToBridge,
+    bridgeParams,
+    reverseBridgeParams,
+  )
   const { handleBridgeTransfer, requestedBridgeTransfer } = useBridgeMediator(
     tokenToBridge,
     amountToBridge,
