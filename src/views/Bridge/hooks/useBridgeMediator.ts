@@ -14,7 +14,6 @@ import { callBridgeFaucet } from "./useFaucet";
 import { parseValue, fetchGasPrice } from "../utils/txUtils";
 import BRIDGE_TOKEN_LIST from '../../../config/constants/tokenLists/glide-bridge.tokenlist.json'
 
-
 const wait = (time: number) => new Promise(resolve => setTimeout(resolve, time));
 
 export const useBridgeMediator = (currency, amount, bridgeType,
@@ -184,7 +183,7 @@ export const detectExchangeFinished = async function(recipient: any, bridgeType:
     }
 }
 
-const foreignOrigin = function(address: string, chainId: number) {
+export const foreignOrigin = function(address: string, chainId: number) {
     const tokenInfo = BRIDGE_TOKEN_LIST.tokens.filter(token => token.address === address)[0]
     const { origin } = tokenInfo
     if (origin !== chainId) return true;
