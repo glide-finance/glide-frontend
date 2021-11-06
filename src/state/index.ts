@@ -22,6 +22,7 @@ import mint from './mint/reducer'
 import lists from './lists/reducer'
 import burn from './burn/reducer'
 import multicall from './multicall/reducer'
+import infoReducer from './info'
 
 const PERSISTED_KEYS: string[] = ['user', 'transactions', 'lists']
 
@@ -32,6 +33,7 @@ const store = configureStore({
     block: blockReducer,
     farms: farmsReducer,
     pools: poolsReducer,
+    info: infoReducer,
     // predictions: predictionsReducer,
     // profile: profileReducer,
     // teams: teamsReducer,
