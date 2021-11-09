@@ -17,7 +17,7 @@ import {
   Image,
   useMatchBreakpoints,
 } from '@glide-finance/uikit'
-import Page from 'components/Layout/Page'
+import Page1 from 'components/Layout/Page1'
 import { getBscScanLink } from 'utils'
 import truncateHash from 'utils/truncateHash'
 import useCMCLink from 'views/Info/hooks/useCMCLink'
@@ -108,7 +108,7 @@ const TokenPage: React.FC<RouteComponentProps<{ address: string }>> = ({
   const [watchlistTokens, addWatchlistToken] = useWatchlistTokens()
 
   return (
-    <Page symbol={tokenData?.symbol}>
+    <Page1 symbol={tokenData?.symbol}>
       {tokenData ? (
         !tokenData.exists ? (
           <Card>
@@ -248,7 +248,7 @@ const TokenPage: React.FC<RouteComponentProps<{ address: string }>> = ({
           <Spinner />
         </Flex>
       )}
-    </Page>
+    </Page1>
   )
 }
 

@@ -18,7 +18,7 @@ import {
   useTooltip,
 } from '@glide-finance/uikit'
 import styled from 'styled-components'
-import Page from 'components/Layout/Page'
+import Page1 from 'components/Layout/Page1'
 import { getBscScanLink } from 'utils'
 import { CurrencyLogo, DoubleCurrencyLogo } from 'views/Info/components/CurrencyLogo'
 import { formatAmount } from 'views/Info/utils/formatInfoNumbers'
@@ -89,7 +89,7 @@ const PoolPage: React.FC<RouteComponentProps<{ address: string }>> = ({
   const [watchlistPools, addPoolToWatchlist] = useWatchlistPools()
 
   return (
-    <Page symbol={poolData ? `${poolData?.token0.symbol} / ${poolData?.token1.symbol}` : null}>
+    <Page1 symbol={poolData ? `${poolData?.token0.symbol} / ${poolData?.token1.symbol}` : null}>
       {poolData ? (
         <>
           <Flex justifyContent="space-between" mb="16px" flexDirection={['column', 'column', 'row']}>
@@ -269,7 +269,7 @@ const PoolPage: React.FC<RouteComponentProps<{ address: string }>> = ({
           <Spinner />
         </Flex>
       )}
-    </Page>
+    </Page1>
   )
 }
 

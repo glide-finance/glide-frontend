@@ -9,6 +9,8 @@ import { AppDispatch, AppState } from '../../index'
 import {
   addSerializedPair,
   addSerializedToken,
+  addWatchlistPool,
+  addWatchlistToken,
   FarmStakedOnly,
   muteAudio,
   removeSerializedToken,

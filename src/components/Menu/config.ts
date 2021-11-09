@@ -36,6 +36,12 @@ const config: (t: ContextApi['t']) => ConfigMenuItemsType[] = (t) => [
     showItemsOnMobile: false
   },
   {
+    label: t('Analytics'),
+    icon: 'Analytics',
+    href: '/info',
+    showItemsOnMobile: false
+  },
+  {
     label: '',
     href: '/info',
     icon: 'More',
@@ -58,10 +64,6 @@ const config: (t: ContextApi['t']) => ConfigMenuItemsType[] = (t) => [
         label: t('Docs & Help'),
         href: 'https://docs.glidefinance.io',
         type: DropdownMenuItemType.EXTERNAL_LINK,
-      },
-      {
-        label: t('Info'),
-        href: '/info',
       },
       // {
       //   label: t('Blog'),
