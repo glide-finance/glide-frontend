@@ -12,11 +12,13 @@ import {
   ArrowForwardIcon,
 } from '@glide-finance/uikit'
 import BigNumber from 'bignumber.js'
+import { useWeb3React } from '@web3-react/core'
 import { useTranslation } from 'contexts/Localization'
 import { usePriceCakeUsdc } from 'state/farms/hooks'
 import useToast from 'hooks/useToast'
 import { useMasterchef } from 'hooks/useContract'
 import { harvestFarm } from 'utils/calls'
+import { setupNetwork } from 'utils/wallet'
 import Balance from 'components/Balance'
 import useFarmsWithBalance from 'views/Home/hooks/useFarmsWithBalance'
 
@@ -30,7 +32,7 @@ const HarvestCard = () => {
   const { t } = useTranslation()
   const { toastSuccess, toastError } = useToast()
   const { farmsWithStakedBalance, earningsSum: farmEarningsSum } = useFarmsWithBalance()
-
+  const { account, chainId, library } = useWeb3React()
   const masterChefContract = useMasterchef()
   const cakePriceUsdc = usePriceCakeUsdc()
   const earningsUsdc = new BigNumber(farmEarningsSum).multipliedBy(cakePriceUsdc)
@@ -97,18 +99,28 @@ const HarvestCard = () => {
               </Button>
             </Link>
           ) : (
-            <Button
-              width={['100%', null, null, 'auto']}
-              id="harvest-all"
-              isLoading={pendingTx}
-              endIcon={pendingTx ? <AutoRenewIcon spin color="currentColor" /> : null}
-              disabled={pendingTx}
-              onClick={harvestAllFarms}
-            >
+            <>
+              {chainId !== 20 ? (
+              <Button
+                onClick={() => {
+                setupNetwork(20, library)
+                }}
+              >
+              {t('Connect to Elastos')}
+              </Button>
+        ) :   <Button
+                width={['100%', null, null, 'auto']}
+                id="harvest-all"
+                isLoading={pendingTx}
+                endIcon={pendingTx ? <AutoRenewIcon spin color="currentColor" /> : null}
+                disabled={pendingTx}
+                onClick={harvestAllFarms}
+              >
               <Text color="contrast" bold>
                 {pendingTx ? t('Harvesting') : t('Harvest all')}
               </Text>
-            </Button>
+            </Button>}
+            </>
           )}
         </Flex>
       </CardBody>
