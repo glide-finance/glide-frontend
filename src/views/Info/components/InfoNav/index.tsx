@@ -9,8 +9,10 @@ const NavWrapper = styled(Flex)`
   background: ${({ theme }) => theme.colors.gradients.cardHeader};
   justify-content: space-between;
   padding: 20px 16px;
+  margin: 0 24px 16px 24px;
   flex-direction: column;
   gap: 8px;
+  border-radius: 16px;
   ${({ theme }) => theme.mediaQueries.sm} {
     padding: 20px 40px;
     flex-direction: row;

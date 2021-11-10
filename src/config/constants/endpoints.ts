@@ -9,8 +9,8 @@ export const BITQUERY_API = 'https://graphql.bitquery.io'
 // export const BRIDGE_FAUCET_API = 'http://localhost:3001'
 export const BRIDGE_FAUCET_API = 'https://api.glidefinance.io'
 
-export const INFO_CLIENT = 'https://bsc.streamingfast.io/subgraphs/name/pancakeswap/exchange-v2'
-export const BLOCKS_CLIENT = 'https://api.thegraph.com/subgraphs/name/pancakeswap/blocks'
+// export const INFO_CLIENT = 'https://bsc.streamingfast.io/subgraphs/name/pancakeswap/exchange-v2'
+// export const BLOCKS_CLIENT = 'https://api.thegraph.com/subgraphs/name/pancakeswap/blocks'
 
-// export const INFO_CLIENT = 'https://api.glidefinance.io/subgraphs/name/exchange'
-// export const BLOCKS_CLIENT = 'https://api.glidefinance.io/subgraphs/name/blocks'
+export const INFO_CLIENT = 'https://api.glidefinance.io/subgraphs/name/exchange'
+export const BLOCKS_CLIENT = 'https://elastos-graph.elk.finance/subgraphs/name/elkfinance/elastos-blocks'
