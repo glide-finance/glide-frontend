@@ -37,3 +37,6 @@ export const toggleTheme = createAction<void>('user/toggleTheme')
 export const updateUserFarmStakedOnly = createAction<{ userFarmStakedOnly: FarmStakedOnly }>(
   'user/updateUserFarmStakedOnly',
 )
+
+export const addWatchlistToken = createAction<{ address: string }>('user/addWatchlistToken')
+export const addWatchlistPool = createAction<{ address: string }>('user/addWatchlistPool')

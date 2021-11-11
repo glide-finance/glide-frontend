@@ -4,6 +4,8 @@ import { updateVersion } from '../global/actions'
 import {
   addSerializedPair,
   addSerializedToken,
+  addWatchlistPool,
+  addWatchlistToken,
   removeSerializedPair,
   removeSerializedToken,
   SerializedPair,
@@ -53,6 +55,8 @@ export interface UserState {
   audioPlay: boolean
   isDark: boolean
   userFarmStakedOnly: FarmStakedOnly
+  watchlistTokens: string[]
+  watchlistPools: string[]
 }
 
 function pairKey(token0Address: string, token1Address: string) {
@@ -70,6 +74,8 @@ export const initialState: UserState = {
   audioPlay: true,
   isDark: false,
   userFarmStakedOnly: FarmStakedOnly.ON_FINISHED,
+  watchlistTokens: [],
+  watchlistPools: [],
 }
 
 export default createReducer(initialState, (builder) =>
@@ -150,5 +156,27 @@ export default createReducer(initialState, (builder) =>
     })
     .addCase(updateUserFarmStakedOnly, (state, { payload: { userFarmStakedOnly } }) => {
       state.userFarmStakedOnly = userFarmStakedOnly
+    })
+    .addCase(addWatchlistToken, (state, { payload: { address } }) => {
+      // state.watchlistTokens can be undefined for pre-loaded localstorage user state
+      const tokenWatchlist = state.watchlistTokens ?? []
+      if (!tokenWatchlist.includes(address)) {
+        state.watchlistTokens = [...tokenWatchlist, address]
+      } else {
+        // Remove token from watchlist
+        const newTokens = state.watchlistTokens.filter((x) => x !== address)
+        state.watchlistTokens = newTokens
+      }
+    })
+    .addCase(addWatchlistPool, (state, { payload: { address } }) => {
+      // state.watchlistPools can be undefined for pre-loaded localstorage user state
+      const poolsWatchlist = state.watchlistPools ?? []
+      if (!poolsWatchlist.includes(address)) {
+        state.watchlistPools = [...poolsWatchlist, address]
+      } else {
+        // Remove pool from watchlist
+        const newPools = state.watchlistPools.filter((x) => x !== address)
+        state.watchlistPools = newPools
+      }
     }),
 )
