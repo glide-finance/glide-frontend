@@ -36,6 +36,12 @@ const config: (t: ContextApi['t']) => ConfigMenuItemsType[] = (t) => [
     showItemsOnMobile: false
   },
   {
+    label: t('Analytics'),
+    icon: 'Analytics',
+    href: '/info',
+    showItemsOnMobile: false
+  },
+  {
     label: '',
     href: '/info',
     icon: 'More',
