@@ -23,7 +23,7 @@ interface ChartCardProps {
 }
 
 const ChartCard: React.FC<ChartCardProps> = ({ variant, chartData, tokenData, tokenPriceData }) => {
-  const [view, setView] = useState(ChartView.VOLUME)
+  const [view, setView] = useState(ChartView.PRICE)
   const [hoverValue, setHoverValue] = useState<number | undefined>()
   const [hoverDate, setHoverDate] = useState<string | undefined>()
   const { t } = useTranslation()
@@ -77,17 +77,18 @@ const ChartCard: React.FC<ChartCardProps> = ({ variant, chartData, tokenData, to
   return (
     <Card>
       <TabToggleGroup>
+       {variant === 'token' && (
+          <TabToggle isActive={view === ChartView.PRICE} onClick={() => setView(ChartView.PRICE)}>
+            <Text>{t('Price')}</Text>
+          </TabToggle>
+        )}
         <TabToggle isActive={view === ChartView.VOLUME} onClick={() => setView(ChartView.VOLUME)}>
           <Text>{t('Volume')}</Text>
         </TabToggle>
         <TabToggle isActive={view === ChartView.LIQUIDITY} onClick={() => setView(ChartView.LIQUIDITY)}>
           <Text>{t('Liquidity')}</Text>
         </TabToggle>
-        {variant === 'token' && (
-          <TabToggle isActive={view === ChartView.PRICE} onClick={() => setView(ChartView.PRICE)}>
-            <Text>{t('Price')}</Text>
-          </TabToggle>
-        )}
+       
       </TabToggleGroup>
 
       <Flex flexDirection="column" px="24px" pt="24px">
