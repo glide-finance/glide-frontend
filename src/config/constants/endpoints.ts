@@ -12,5 +12,5 @@ export const BRIDGE_FAUCET_API = 'https://api.glidefinance.io'
 // export const INFO_CLIENT = 'https://bsc.streamingfast.io/subgraphs/name/pancakeswap/exchange-v2'
 // export const BLOCKS_CLIENT = 'https://api.thegraph.com/subgraphs/name/pancakeswap/blocks'
 
-export const INFO_CLIENT = 'https://api.glidefinance.io/subgraphs/name/exchange'
+export const INFO_CLIENT = 'https://api.glidefinance.io/subgraphs/name/glide/exchange'
 export const BLOCKS_CLIENT = 'https://elastos-graph.elk.finance/subgraphs/name/elkfinance/elastos-blocks'

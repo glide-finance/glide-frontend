@@ -2,7 +2,7 @@ import { ONE_DAY_UNIX, PCS_V2_START } from 'config/constants/info'
 import { getUnixTime } from 'date-fns'
 import { TransactionType } from 'state/info/types'
 import { ChartEntry } from '../types'
-import { MintResponse, SwapResponse, BurnResponse, TokenDayData, PairDayData, PancakeDayData } from './types'
+import { MintResponse, SwapResponse, BurnResponse, TokenDayData, PairDayData, GlideDayData } from './types'
 
 export const mapMints = (mint: MintResponse) => {
   return {
@@ -52,7 +52,7 @@ export const mapSwaps = (swap: SwapResponse) => {
   }
 }
 
-export const mapDayData = (tokenDayData: TokenDayData | PancakeDayData): ChartEntry => ({
+export const mapDayData = (tokenDayData: TokenDayData | GlideDayData): ChartEntry => ({
   date: tokenDayData.date,
   volumeUSD: parseFloat(tokenDayData.dailyVolumeUSD),
   liquidityUSD: parseFloat(tokenDayData.totalLiquidityUSD),

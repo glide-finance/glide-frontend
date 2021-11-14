@@ -236,11 +236,11 @@ const TokenPage: React.FC<RouteComponentProps<{ address: string }>> = ({
 
             <PoolTable poolDatas={poolDatas} />
 
-            {/* <Heading scale="lg" mb="16px" mt="40px">
+            <Heading scale="lg" mb="16px" mt="40px">
               {t('Transactions')}
             </Heading>
 
-            <TransactionTable transactions={transactions} /> */}
+            <TransactionTable transactions={transactions} />
           </>
         )
       ) : (

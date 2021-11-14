@@ -9,16 +9,16 @@ const getPriceSubqueries = (tokenAddress: string, blocks: any) =>
   blocks.map(
     (block: any) => `
       t${block.timestamp}:token(id:"${tokenAddress}", block: { number: ${block.number} }) { 
-        derivedBNB
+        derivedELA
       }
       b${block.timestamp}: bundle(id:"1", block: { number: ${block.number} }) { 
-        bnbPrice
+        elaPrice
       }
     `,
   )
 
 /**
- * Price data for token and bnb based on block number
+ * Price data for token and ela based on block number
  */
 const priceQueryConstructor = (subqueries: string[]) => {
   return gql`
@@ -67,35 +67,35 @@ const fetchTokenPriceData = async (
       }
     }
 
-    // format token BNB price results
+    // format token ELA price results
     const tokenPrices: {
       timestamp: string
-      derivedBNB: number
+      derivedELA: number
       priceUSD: number
     }[] = []
 
-    // Get Token prices in BNB
+    // Get Token prices in ELA
     Object.keys(prices).forEach((priceKey) => {
       const timestamp = priceKey.split('t')[1]
-      // if its BNB price e.g. `b123` split('t')[1] will be undefined and skip BNB price entry
+      // if its ELA price e.g. `b123` split('t')[1] will be undefined and skip ELA price entry
       if (timestamp) {
         tokenPrices.push({
           timestamp,
-          derivedBNB: prices[priceKey]?.derivedBNB ? parseFloat(prices[priceKey].derivedBNB) : 0,
+          derivedELA: prices[priceKey]?.derivedELA ? parseFloat(prices[priceKey].derivedELA) : 0,
           priceUSD: 0,
         })
       }
     })
 
-    // Go through BNB USD prices and calculate Token price based on it
+    // Go through ELA USD prices and calculate Token price based on it
     Object.keys(prices).forEach((priceKey) => {
       const timestamp = priceKey.split('b')[1]
       // if its Token price e.g. `t123` split('b')[1] will be undefined and skip Token price entry
       if (timestamp) {
         const tokenPriceIndex = tokenPrices.findIndex((tokenPrice) => tokenPrice.timestamp === timestamp)
         if (tokenPriceIndex >= 0) {
-          const { derivedBNB } = tokenPrices[tokenPriceIndex]
-          tokenPrices[tokenPriceIndex].priceUSD = parseFloat(prices[priceKey]?.bnbPrice ?? 0) * derivedBNB
+          const { derivedELA } = tokenPrices[tokenPriceIndex]
+          tokenPrices[tokenPriceIndex].priceUSD = parseFloat(prices[priceKey]?.elaPrice ?? 0) * derivedELA
         }
       }
     })

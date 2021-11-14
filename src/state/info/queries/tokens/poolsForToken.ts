@@ -9,7 +9,7 @@ const POOLS_FOR_TOKEN = gql`
   query poolsForToken($address: Bytes!, $blacklist: [String!]) {
     asToken0: pairs(
       first: 15
-      orderBy: trackedReserveBNB
+      orderBy: trackedReserveELA
       orderDirection: desc
       where: { totalTransactions_gt: 100, token0: $address, token1_not_in: $blacklist }
     ) {
@@ -17,7 +17,7 @@ const POOLS_FOR_TOKEN = gql`
     }
     asToken1: pairs(
       first: 15
-      orderBy: trackedReserveBNB
+      orderBy: trackedReserveELA
       orderDirection: desc
       where: { totalTransactions_gt: 100, token1: $address, token0_not_in: $blacklist }
     ) {

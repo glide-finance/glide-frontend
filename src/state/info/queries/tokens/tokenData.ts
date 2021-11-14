@@ -6,13 +6,13 @@ import { getDeltaTimestamps } from 'views/Info/utils/infoQueryHelpers'
 import { useBlocksFromTimestamps } from 'views/Info/hooks/useBlocksFromTimestamps'
 import { getPercentChange, getChangeForPeriod, getAmountChange } from 'views/Info/utils/infoDataHelpers'
 import { TokenData } from 'state/info/types'
-import { useBnbPrices } from 'views/Info/hooks/useBnbPrices'
+import { useElaPrices } from 'views/Info/hooks/useElaPrices'
 
 interface TokenFields {
   id: string
   symbol: string
   name: string
-  derivedBNB: string // Price in BNB per token
+  derivedELA: string // Price in ELA per token
   derivedUSD: string // Price in USD per token
   tradeVolumeUSD: string
   totalTransactions: string
@@ -20,8 +20,8 @@ interface TokenFields {
 }
 
 interface FormattedTokenFields
-  extends Omit<TokenFields, 'derivedBNB' | 'derivedUSD' | 'tradeVolumeUSD' | 'totalTransactions' | 'totalLiquidity'> {
-  derivedBNB: number
+  extends Omit<TokenFields, 'derivedELA' | 'derivedUSD' | 'tradeVolumeUSD' | 'totalTransactions' | 'totalLiquidity'> {
+  derivedELA: number
   derivedUSD: number
   tradeVolumeUSD: number
   totalTransactions: number
@@ -51,7 +51,7 @@ const TOKEN_AT_BLOCK = (block: number | undefined, tokens: string[]) => {
       id
       symbol
       name
-      derivedBNB
+      derivedELA
       derivedUSD
       tradeVolumeUSD
       totalTransactions
@@ -91,10 +91,10 @@ const parseTokenData = (tokens?: TokenFields[]) => {
     return {}
   }
   return tokens.reduce((accum: { [address: string]: FormattedTokenFields }, tokenData) => {
-    const { derivedBNB, derivedUSD, tradeVolumeUSD, totalTransactions, totalLiquidity } = tokenData
+    const { derivedELA, derivedUSD, tradeVolumeUSD, totalTransactions, totalLiquidity } = tokenData
     accum[tokenData.id] = {
       ...tokenData,
-      derivedBNB: parseFloat(derivedBNB),
+      derivedELA: parseFloat(derivedELA),
       derivedUSD: parseFloat(derivedUSD),
       tradeVolumeUSD: parseFloat(tradeVolumeUSD),
       totalTransactions: parseFloat(totalTransactions),
@@ -119,7 +119,7 @@ const useFetchedTokenDatas = (tokenAddresses: string[]): TokenDatas => {
   const [t24h, t48h, t7d, t14d] = getDeltaTimestamps()
   const { blocks, error: blockError } = useBlocksFromTimestamps([t24h, t48h, t7d, t14d])
   const [block24h, block48h, block7d, block14d] = blocks ?? []
-  const bnbPrices = useBnbPrices()
+  const elaPrices = useElaPrices()
 
   useEffect(() => {
     const fetch = async () => {
@@ -162,9 +162,9 @@ const useFetchedTokenDatas = (tokenAddresses: string[]): TokenDatas => {
           const liquidityUSDChange = getPercentChange(liquidityUSD, liquidityUSDOneDayAgo)
           const liquidityToken = current ? current.totalLiquidity : 0
           // Prices of tokens for now, 24h ago and 7d ago
-          const priceUSD = current ? current.derivedBNB * bnbPrices.current : 0
-          const priceUSDOneDay = oneDay ? oneDay.derivedBNB * bnbPrices.oneDay : 0
-          const priceUSDWeek = week ? week.derivedBNB * bnbPrices.week : 0
+          const priceUSD = current ? current.derivedELA * elaPrices.current : 0
+          const priceUSDOneDay = oneDay ? oneDay.derivedELA * elaPrices.oneDay : 0
+          const priceUSDWeek = week ? week.derivedELA * elaPrices.week : 0
           const priceUSDChange = getPercentChange(priceUSD, priceUSDOneDay)
           const priceUSDChangeWeek = getPercentChange(priceUSD, priceUSDWeek)
           const txCount = getAmountChange(current?.totalTransactions, oneDay?.totalTransactions)
@@ -192,10 +192,10 @@ const useFetchedTokenDatas = (tokenAddresses: string[]): TokenDatas => {
       }
     }
     const allBlocksAvailable = block24h?.number && block48h?.number && block7d?.number && block14d?.number
-    if (tokenAddresses.length > 0 && allBlocksAvailable && !blockError && bnbPrices) {
+    if (tokenAddresses.length > 0 && allBlocksAvailable && !blockError && elaPrices) {
       fetch()
     }
-  }, [tokenAddresses, block24h, block48h, block7d, block14d, blockError, bnbPrices])
+  }, [tokenAddresses, block24h, block48h, block7d, block14d, blockError, elaPrices])
 
   return fetchState
 }
