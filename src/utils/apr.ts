@@ -37,7 +37,7 @@ export const getFarmApr = (
   currentBlock: number,
 ): { glideRewardsApr: number; lpRewardsApr: number } => {
   if (currentBlock > 0) {
-  const glidesPerYear = getGlidesPerYear(new BigNumber(currentBlock));
+  const glidesPerYear = getGlidesPerYear(new BigNumber(currentBlock)).times(65).times(75).div(10000);
   const yearlyGlideRewardAllocation = glidesPerYear.times(poolWeight)
   const glideRewardsApr = yearlyGlideRewardAllocation.times(glidePriceUsd).div(poolLiquidityUsd).times(100)
   let glideRewardsAprAsNumber = null

@@ -84,6 +84,40 @@ export const useBurnedBalance = (tokenAddress: string) => {
   return balance
 }
 
+export const useDevBalance = (tokenAddress: string) => {
+  const [balance, setBalance] = useState(BIG_ZERO)
+  const { slowRefresh } = useRefresh()
+
+  useEffect(() => {
+    const fetchBalance = async () => {
+      const contract = getBep20Contract(tokenAddress)
+      const res = await contract.balanceOf('0xe511F61Ab96818579f995a4Db356caf3e9A00fFf')
+      setBalance(new BigNumber(res.toString()))
+    }
+
+    fetchBalance()
+  }, [tokenAddress, slowRefresh])
+
+  return balance
+}
+
+export const useTreasuryBalance = (tokenAddress: string) => {
+  const [balance, setBalance] = useState(BIG_ZERO)
+  const { slowRefresh } = useRefresh()
+
+  useEffect(() => {
+    const fetchBalance = async () => {
+      const contract = getBep20Contract(tokenAddress)
+      const res = await contract.balanceOf('0xFF998bF6F25e6b3dBdFedBecfC02B1e97a4FDb3c')
+      setBalance(new BigNumber(res.toString()))
+    }
+
+    fetchBalance()
+  }, [tokenAddress, slowRefresh])
+
+  return balance
+}
+
 export const useGetBnbBalance = () => {
   const [fetchStatus, setFetchStatus] = useState(FetchStatus.NOT_FETCHED)
   const [balance, setBalance] = useState(BIG_ZERO)

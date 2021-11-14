@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { useTotalSupply, useBurnedBalance } from 'hooks/useTokenBalance'
+import { useTotalSupply, useBurnedBalance, useDevBalance, useTreasuryBalance } from 'hooks/useTokenBalance'
 import { getCakeAddress } from 'utils/addressHelpers'
 import { getBalanceNumber, formatLocalisedCompactNumber } from 'utils/formatBalance'
 import { useFarms, usePriceCakeUsdc } from 'state/farms/hooks'
@@ -93,7 +93,10 @@ const CakeDataRow = () => {
 
   const totalSupply = useTotalSupply()
   const burnedBalance = getBalanceNumber(useBurnedBalance(getCakeAddress()))
-  const cakeSupply = totalSupply ? getBalanceNumber(totalSupply) - burnedBalance : 0
+  const devBalance = getBalanceNumber(useDevBalance(getCakeAddress()))
+  const treasuryBalance = getBalanceNumber(useTreasuryBalance(getCakeAddress()))
+
+  const cakeSupply = totalSupply ? getBalanceNumber(totalSupply) - burnedBalance - devBalance - treasuryBalance : 0
   const cakePriceUsdc = usePriceCakeUsdc()
   const mcap = cakePriceUsdc.times(cakeSupply)
   const mcapString = formatLocalisedCompactNumber(mcap.toNumber())
