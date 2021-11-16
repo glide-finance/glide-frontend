@@ -94,7 +94,16 @@ const tokens = {
     },
     decimals: 18,
     projectLink: 'https://filda.io/',
-  }
+  },
+  // Meme zone
+  fildaLP: {
+    symbol: 'FILDA-ELA LP',
+    address: {
+      20: '0x5B0Cf7D3b2D6885e1173674f4649B914e7A66B96'
+    },
+    decimals: 18,
+    projectLink: 'https://filda.io/',
+  },
 }
 
 export default tokens

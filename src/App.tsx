@@ -17,6 +17,7 @@ import PageLoader from './components/Loader/PageLoader'
 import history from './routerHistory'
 // Views included in the main bundle
 import Pools from './views/Pools'
+import Community from './views/Community'
 import Swap from './views/Swap'
 import {
   RedirectDuplicateTokenIds,
@@ -81,6 +82,9 @@ const App: React.FC = () => {
             </Route>
             <Route path="/pools">
               <Pools />
+            </Route>
+            <Route path="/community">
+              <Community />
             </Route>
             <Route path="/bridge">
               <Bridge />

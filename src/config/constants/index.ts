@@ -91,4 +91,5 @@ export const BLOCKED_ADDRESSES: string[] = [
 
 export { default as farmsConfig } from './farms'
 export { default as poolsConfig } from './pools'
+export { default as communityConfig } from './community'
 export { default as ifosConfig } from './ifo'

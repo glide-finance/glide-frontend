@@ -144,6 +144,13 @@ export interface PoolsState {
   userDataLoaded: boolean
 }
 
+export interface CommunityState {
+  data: Pool[]
+  cakeVault: CakeVault
+  dividendPool: DividendPool
+  userDataLoaded: boolean
+}
+
 export interface ProfileState {
   isInitialized: boolean
   isLoading: boolean
@@ -510,6 +517,7 @@ export interface State {
   block: BlockState
   farms: FarmsState
   pools: PoolsState
+  community: PoolsState
   predictions: PredictionsState
   profile: ProfileState
   teams: TeamsState
