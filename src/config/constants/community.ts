@@ -16,7 +16,7 @@ const community: CommunityConfig[] = [
     sortOrder: 999,
     tokenPerBlock: '0.0025',
   },
-  {
+  { //
     sousId: 1001,
     farmSymbol: "RINU-ELA LP",
     stakingToken: tokens.rinuLP,
