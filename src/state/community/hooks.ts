@@ -1,6 +1,4 @@
-import { useEffect, useMemo } from 'react'
-import BigNumber from 'bignumber.js'
-import { useWeb3React } from '@web3-react/core'
+import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { useAppDispatch } from 'state'
 import { simpleRpcProvider } from 'utils/providers'
@@ -30,7 +28,7 @@ export const useFetchPublicCommunityData = () => {
   }, [dispatch, slowRefresh])
 }
 
-export const useCommunity = (account): { community: Pool[]; userDataLoaded: boolean } => {
+export const useCommunityChef = (account): { community: Pool[]; userDataLoaded: boolean } => {
   const { fastRefresh } = useRefresh()
   const dispatch = useAppDispatch()
   useEffect(() => {
@@ -46,7 +44,7 @@ export const useCommunity = (account): { community: Pool[]; userDataLoaded: bool
   return { community: community.map(transformPool), userDataLoaded }
 }
 
-export const useCommunityPublicData = (): { community: Pool[]; userDataLoaded: boolean } => {
+export const useCommunityChefPublicData = (): { community: Pool[]; userDataLoaded: boolean } => {
   const { fastRefresh } = useRefresh()
   const dispatch = useAppDispatch()
   useEffect(() => {

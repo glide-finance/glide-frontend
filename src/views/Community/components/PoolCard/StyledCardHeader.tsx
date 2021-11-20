@@ -4,7 +4,6 @@ import styled from 'styled-components'
 import { useTranslation } from 'contexts/Localization'
 import { Token } from 'config/constants/types'
 import { TokenPairImage } from 'components/TokenImage'
-import CakeVaultTokenPairImage from '../CakeVaultCard/CakeVaultTokenPairImage'
 
 const Wrapper = styled(CardHeader)<{ isFinished?: boolean; background?: string }>`
   background: ${({ isFinished, background, theme }) =>
@@ -15,36 +14,20 @@ const Wrapper = styled(CardHeader)<{ isFinished?: boolean; background?: string }
 const StyledCardHeader: React.FC<{
   earningToken: Token
   stakingToken: Token
-  isAutoVault?: boolean
-  isDividendPool?: boolean
+  pairToken?: Token
   isFinished?: boolean
   isStaking?: boolean
-}> = ({ earningToken, stakingToken, isFinished = false, isAutoVault = false }) => {
+}> = ({ earningToken, stakingToken, pairToken, isFinished = false }) => {
   const { t } = useTranslation()
-  const isCakePool = earningToken.symbol === 'GLIDE' && stakingToken.symbol === 'GLIDE'
   // const background = isStaking ? 'bubblegum' : 'cardHeader'
   const background = 'bubblegum'
 
   const getHeadingPrefix = () => {
-    if (isAutoVault) {
-      // vault
-      return t('Auto')
-    }
-    if (isCakePool) {
-      // manual cake
-      return t('Manual')
-    }
     // all other pools
     return t('Earn')
   }
 
   const getSubHeading = () => {
-    if (isAutoVault) {
-      return t('Automatic restaking')
-    }
-    if (isCakePool) {
-      return t('Stake GLIDE, earn GLIDE')
-    }
     return t('Stake %symbol%', { symbol: stakingToken.symbol })
   }
 
@@ -57,11 +40,14 @@ const StyledCardHeader: React.FC<{
           </Heading>
           <Text color={isFinished ? 'textDisabled' : 'textSubtle'}>{getSubHeading()}</Text>
         </Flex>
-        {isAutoVault ? (
-          <CakeVaultTokenPairImage width={64} height={64} />
-        ) : (
-          <TokenPairImage primaryToken={earningToken} secondaryToken={stakingToken} width={64} height={64} />
-        )}
+        {/* <TokenImage token={earningToken} width={64} height={64} /> */}
+        <TokenPairImage
+          variant="inverted"
+          primaryToken={earningToken}
+          secondaryToken={pairToken}
+          width={80}
+          height={80}
+        />
       </Flex>
     </Wrapper>
   )

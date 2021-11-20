@@ -1,7 +1,7 @@
 import React from 'react'
 import { useTranslation } from 'contexts/Localization'
-import styled from 'styled-components'
-import { Modal, Text, Button, Link } from '@glide-finance/uikit'
+// import styled from 'styled-components'
+import { Modal, Text, Button } from '@glide-finance/uikit'
 import useTheme from 'hooks/useTheme'
 
 interface NotEnoughTokensModalProps {
@@ -28,12 +28,12 @@ const NotEnoughTokensModal: React.FC<NotEnoughTokensModalProps> = ({ tokenSymbol
       </Text>
       <Text mt="24px">{t('You’ll need %symbol% to stake in this pool!', { symbol: tokenSymbol })}</Text>
       <Text>
-        {t('Buy some %symbol%, or make sure your %symbol% isn’t in another pool or LP.', {
+        {t('Create some %symbol%, or make sure your %symbol% isn’t in another pool or LP.', {
           symbol: tokenSymbol,
         })}
       </Text>
-      <Button mt="24px" as="a" external href="/swap">
-        {t('Buy')} {tokenSymbol}
+      <Button mt="24px" as="a" external href="/add">
+        {t('Create')} {tokenSymbol}
       </Button>
       {/* <StyledLink href="https://yieldwatch.net" external>
         <Button variant="secondary" mt="8px" width="100%">

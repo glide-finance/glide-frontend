@@ -4,15 +4,15 @@ import { CardBody, Flex, Text, CardRibbon } from '@glide-finance/uikit'
 import ConnectWalletButton from 'components/ConnectWalletButton'
 import { useTranslation } from 'contexts/Localization'
 import { BIG_ZERO } from 'utils/bigNumber'
-import { Pool } from 'state/types'
+import { Community } from 'state/types'
 import AprRow from './AprRow'
 import { StyledCard } from './StyledCard'
 import CardFooter from './CardFooter'
 import StyledCardHeader from './StyledCardHeader'
 import CardActions from './CardActions'
 
-const PoolCard: React.FC<{ pool: Pool; account: string }> = ({ pool, account }) => {
-  const { sousId, stakingToken, earningToken, isFinished, userData } = pool
+const PoolCard: React.FC<{ pool: Community; account: string }> = ({ pool, account }) => {
+  const { sousId, stakingToken, earningToken, pairToken, isFinished, userData } = pool
   const { t } = useTranslation()
   const stakedBalance = userData?.stakedBalance ? new BigNumber(userData.stakedBalance) : BIG_ZERO
   const accountHasStakedBalance = stakedBalance.gt(0)
@@ -30,10 +30,11 @@ const PoolCard: React.FC<{ pool: Pool; account: string }> = ({ pool, account }) 
         isStaking={accountHasStakedBalance}
         earningToken={earningToken}
         stakingToken={stakingToken}
+        pairToken={pairToken}
         isFinished={isFinished && sousId !== 0}
       />
       <CardBody>
-        <AprRow pool={pool} />
+        <AprRow pool={pool} stakedBalance={stakedBalance} />
         <Flex mt="24px" flexDirection="column">
           {account ? (
             <CardActions pool={pool} stakedBalance={stakedBalance} />

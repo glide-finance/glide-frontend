@@ -5,7 +5,6 @@ import { useCallback, useState } from 'react'
 import { Token } from '@glide-finance/sdk'
 import { useWeb3React } from '@web3-react/core'
 import { ethers} from 'ethers'
-import BigNumber from 'bignumber.js'
 import { getTokenSourceMediator, getNativeSourceMediator, getErc677Contract } from 'utils/contractHelpers'
 import { useTranslation } from 'contexts/Localization'
 import  networksUrl from 'config/constants/networks'
@@ -13,7 +12,7 @@ import useToast from 'hooks/useToast'
 import { VALIDATOR_TIMEOUT } from 'config/constants'
 import { getDecimalAmount } from 'utils/formatBalance'
 import { callBridgeFaucet } from "./useFaucet";
-import { parseValue, fetchGasPrice } from "../utils/txUtils";
+import { fetchGasPrice } from "../utils/txUtils";
 import BRIDGE_TOKEN_LIST from '../../../config/constants/tokenLists/glide-bridge.tokenlist.json'
 
 const wait = (time: number) => new Promise(resolve => setTimeout(resolve, time));

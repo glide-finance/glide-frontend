@@ -13,14 +13,14 @@ import {
 import BigNumber from 'bignumber.js'
 import { useTranslation } from 'contexts/Localization'
 import { getBalanceNumber } from 'utils/formatBalance'
-import { Pool } from 'state/types'
+import { Community } from 'state/types'
 import Balance from 'components/Balance'
 import NotEnoughTokensModal from '../Modals/NotEnoughTokensModal'
 import StakeModal from '../Modals/StakeModal'
 import useActiveWeb3React from '../../../../../hooks/useActiveWeb3React'
 
 interface StakeActionsProps {
-  pool: Pool
+  pool: Community
   stakingTokenBalance: BigNumber
   stakedBalance: BigNumber
   isBnbPool: boolean

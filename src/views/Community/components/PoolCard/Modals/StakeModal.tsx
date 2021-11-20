@@ -1,28 +1,33 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
-import { Modal, Text, Flex, Image, Button, Slider, BalanceInput, AutoRenewIcon, Link } from '@glide-finance/uikit'
+import { Modal, Text, Flex, Button, Slider, BalanceInput, AutoRenewIcon } from '@glide-finance/uikit'
+// import { TokenPairImage } from 'components/TokenImage'
 import { useTranslation } from 'contexts/Localization'
 import useTheme from 'hooks/useTheme'
 import useToast from 'hooks/useToast'
 import BigNumber from 'bignumber.js'
 import { getFullDisplayBalance, formatNumber, getDecimalAmount } from 'utils/formatBalance'
-import { Pool } from 'state/types'
-import { getAddress } from 'utils/addressHelpers'
+import { Community } from 'state/types'
+// import { getAddress } from 'utils/addressHelpers'
 import PercentageButton from './PercentageButton'
 import useStakePool from '../../../hooks/useStakePool'
 import useUnstakePool from '../../../hooks/useUnstakePool'
 
 interface StakeModalProps {
   isBnbPool: boolean
-  pool: Pool
+  pool: Community
   stakingTokenBalance: BigNumber
   stakingTokenPrice: number
   isRemovingStake?: boolean
   onDismiss?: () => void
 }
 
-const StyledLink = styled(Link)`
-  width: 100%;
+// const StyledLink = styled(Link)`
+//   width: 100%;
+// `
+
+const StyledText = styled(Text)`
+  white-space: nowrap;
 `
 
 const StakeModal: React.FC<StakeModalProps> = ({
@@ -136,15 +141,16 @@ const StakeModal: React.FC<StakeModalProps> = ({
       <Flex alignItems="center" justifyContent="space-between" mb="8px">
         <Text bold>{isRemovingStake ? t('Unstake') : t('Stake')}:</Text>
         <Flex alignItems="center" minWidth="70px">
-          <Image
-            src={`/images/tokens/${getAddress(stakingToken.address)}.png`}
-            width={24}
-            height={24}
-            alt={stakingToken.symbol}
-          />
-          <Text ml="4px" bold>
+          {/* <TokenPairImage
+            variant="inverted"
+            primaryToken={earningToken}
+            secondaryToken={pairToken}
+            width={32}
+            height={32}
+          /> */}
+          <StyledText ml="4px" bold>
             {stakingToken.symbol}
-          </Text>
+          </StyledText>
         </Flex>
       </Flex>
       <BalanceInput
@@ -191,13 +197,13 @@ const StakeModal: React.FC<StakeModalProps> = ({
       >
         {pendingTx ? t('Confirming') : t('Confirm')}
       </Button>
-      {!isRemovingStake && (
-        <StyledLink external href="/swap">
+      {/* {!isRemovingStake && (
+        <StyledLink external href="/add">
           <Button width="100%" mt="8px" variant="secondary">
             {t('Get %symbol%', { symbol: stakingToken.symbol })}
           </Button>
         </StyledLink>
-      )}
+      )} */}
     </Modal>
   )
 }

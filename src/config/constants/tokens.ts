@@ -104,6 +104,22 @@ const tokens = {
     decimals: 18,
     projectLink: 'https://filda.io/',
   },
+  rinu: {
+    symbol: 'RINU',
+    address: {
+      20: '0x0b0148b82631A1ce18c83048471716d591726977'
+    },
+    decimals: 9,
+    projectLink: '',
+  },
+  rinuLP: {
+    symbol: 'RINU-ELA LP',
+    address: {
+      20: '0x411DA456D450111648310c5Ec3D188755727b92c'
+    },
+    decimals: 18,
+    projectLink: '',
+  },
 }
 
 export default tokens

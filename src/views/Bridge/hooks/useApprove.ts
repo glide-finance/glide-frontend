@@ -4,7 +4,6 @@ import { useWeb3React } from '@web3-react/core'
 import { ethers } from 'ethers'
 import BigNumber from 'bignumber.js'
 import { getBep20Contract } from 'utils/contractHelpers'
-import { ethersToBigNumber } from 'utils/bigNumber'
 // import { useAppDispatch } from 'state'
 // import { updateUserAllowance } from 'state/actions'
 import { useTranslation } from 'contexts/Localization'
@@ -62,8 +61,8 @@ export const useApproveMediator = (currency, request, reverseBridgeParams) => {
 
     const mediator = foreignOrigin(currency.address, currency.chainId) ? reverseBridgeParams.contract : request.contract;
     const tokenContract = getBep20Contract(currency.address, library.getSigner(account))
-    const response = (await tokenContract.allowance(account, mediator))
-    const allowance = ethersToBigNumber(response)
+    // const response = (await tokenContract.allowance(account, mediator))
+    // const allowance = ethersToBigNumber(response)
 
     try {
       // if (!allowance.gt(0)) {

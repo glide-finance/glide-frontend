@@ -8,10 +8,7 @@ import { Heading, GradientHeading, Flex, Text, Button } from '@glide-finance/uik
 import partition from 'lodash/partition'
 import { useTranslation } from 'contexts/Localization'
 import usePersistState from 'hooks/usePersistState'
-import {
-  useFetchPublicCommunityData,
-  useCommunity,
-} from 'state/community/hooks'
+import { useFetchPublicCommunityData, useCommunityChef } from 'state/community/hooks'
 // import tokens from 'config/constants/tokens'
 import { usePollFarmsData } from 'state/farms/hooks'
 // import { latinise } from 'utils/latinise'
@@ -23,12 +20,10 @@ import PageHeader from 'components/PageHeader'
 // import { OptionProps } from 'components/Select/Select'
 // import { Pool } from 'state/types'
 import Loading from 'components/Loading'
-import { useCakeVault, useDividendPool } from 'state/pools/hooks'
 import PoolCard from './components/PoolCard'
 import CakeVaultCard from './components/CakeVaultCard'
 import DividendPoolCard from './components/DividendPoolCard'
 import PoolTabButtons from './components/PoolTabButtons'
-import BountyCard from './components/BountyCard'
 // import HelpButton from './components/HelpButton'
 // import PoolsTable from './components/PoolsTable/PoolsTable'
 import { ViewMode } from './components/ToggleView/ToggleView'
@@ -90,7 +85,7 @@ const Community: React.FC = () => {
   const location = useLocation()
   const { t } = useTranslation()
   const { account, chainId, library } = useWeb3React()
-  const { community: poolsWithoutAutoVault, userDataLoaded } = useCommunity(account)
+  const { community: poolsWithoutAutoVault, userDataLoaded } = useCommunityChef(account)
   const [stakedOnly, setStakedOnly] = usePersistState(false, { localStorageKey: 'glide_pool_staked' })
   const [numberOfPoolsVisible, setNumberOfPoolsVisible] = useState(NUMBER_OF_POOLS_VISIBLE)
   const [observerIsSet, setObserverIsSet] = useState(false)
@@ -99,27 +94,11 @@ const Community: React.FC = () => {
   // const [searchQuery, setSearchQuery] = useState('')
   // const [sortOption, setSortOption] = useState('hot')
   const chosenPoolsLength = useRef(0)
-  const {
-    // userData: { glideAtLastUserAction, userShares },
-    userData: { userShares },
-    // fees: { performanceFee },
-    // pricePerFullShare,
-    // totalCakeInVault,
-  } = useCakeVault()
-  const {
-    userData: { stakedBalance },
-  } = useDividendPool()
 
-  const accountHasVaultShares = userShares && userShares.gt(0)
-  const accountHasDividendPoolStake = stakedBalance && stakedBalance.gt(0)
   // const performanceFeeAsDecimal = performanceFee && performanceFee / 100
 
   const pools = useMemo(() => {
-    const cakePool = poolsWithoutAutoVault.find((pool) => pool.sousId === 0)
-    const dividendPool = poolsWithoutAutoVault.find((pool) => pool.sousId === 1)
-    const cakeAutoVault = { ...cakePool, isAutoVault: true }
-    const cakeDividendPool = { ...dividendPool, isDividendPool: true }
-    return [cakeDividendPool, ...poolsWithoutAutoVault.filter((pool) => pool.sousId !== 1), cakeAutoVault]
+    return [...poolsWithoutAutoVault.filter((pool) => pool.sousId !== 1)]
   }, [poolsWithoutAutoVault])
 
   // TODO aren't arrays in dep array checked just by reference, i.e. it will rerender every time reference changes?
@@ -127,28 +106,16 @@ const Community: React.FC = () => {
   const stakedOnlyFinishedPools = useMemo(
     () =>
       finishedPools.filter((pool) => {
-        if (pool.isAutoVault) {
-          return accountHasVaultShares
-        }
-        if (pool.isDividendPool) {
-          return accountHasDividendPoolStake
-        }
         return pool.userData && new BigNumber(pool.userData.stakedBalance).isGreaterThan(0)
       }),
-    [finishedPools, accountHasVaultShares, accountHasDividendPoolStake],
+    [finishedPools],
   )
   const stakedOnlyOpenPools = useMemo(
     () =>
       openPools.filter((pool) => {
-        if (pool.isAutoVault) {
-          return accountHasVaultShares
-        }
-        if (pool.isDividendPool) {
-          return accountHasDividendPoolStake
-        }
         return pool.userData && new BigNumber(pool.userData.stakedBalance).isGreaterThan(0)
       }),
-    [openPools, accountHasVaultShares, accountHasDividendPoolStake],
+    [openPools],
   )
   const hasStakeInFinishedPools = stakedOnlyFinishedPools.length > 0
 
@@ -271,7 +238,7 @@ const Community: React.FC = () => {
                 {t('Community Zone')}
               </GradientHeading>
               <Heading scale="lg" color="text">
-                {t('Stake tokens to earn')}
+                {t(`Don't let your memes be dreams`)}
               </Heading>
               {/* <Heading scale="md" color="text">
                 {t('High APR, low risk.')}

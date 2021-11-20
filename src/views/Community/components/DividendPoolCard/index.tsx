@@ -46,12 +46,7 @@ const DividendPoolCard: React.FC<DividendPoolProps> = ({ pool, showStakedOnly })
 
   return (
     <StyledCard isActive>
-      <StyledCardHeader
-        isStaking={accountHasSharesStaked}
-        isDividendPool
-        earningToken={tokens.ela}
-        stakingToken={tokens.glide}
-      />
+      <StyledCardHeader isStaking={accountHasSharesStaked} earningToken={tokens.ela} stakingToken={tokens.glide} />
       <StyledCardBody isLoading={isLoading}>
         <AprRow pool={dividendPool} />
         <Flex mt="24px" flexDirection="column">

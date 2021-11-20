@@ -69,6 +69,22 @@ export interface FarmConfig {
   }
 }
 
+export interface CommunityConfig {
+  sousId: number
+  farmSymbol?: string
+  farmPID?: number
+  earningToken: Token
+  stakingToken: Token
+  pairToken?: Token
+  contractAddress: Address
+  poolCategory: PoolCategory
+  tokenPerBlock?: string
+  sortOrder?: number
+  harvest?: boolean
+  isFinished?: boolean
+  enableEmergencyWithdraw?: boolean
+}
+
 export interface PoolConfig {
   sousId: number
   earningToken: Token

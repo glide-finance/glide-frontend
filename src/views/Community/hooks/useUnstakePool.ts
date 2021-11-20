@@ -4,7 +4,7 @@ import BigNumber from 'bignumber.js'
 import { useAppDispatch } from 'state'
 import { updateUserStakedBalance, updateUserBalance, updateUserPendingReward } from 'state/actions'
 import { unstakeFarm } from 'utils/calls'
-import { useMasterchef, useSousChef } from 'hooks/useContract'
+import { useMasterchef, useCommunityChef } from 'hooks/useContract'
 import { BIG_TEN } from 'utils/bigNumber'
 
 const sousUnstake = async (sousChefContract, amount, decimals) => {
@@ -23,7 +23,7 @@ const useUnstakePool = (sousId, enableEmergencyWithdraw = false) => {
   const dispatch = useAppDispatch()
   const { account } = useWeb3React()
   const masterChefContract = useMasterchef()
-  const sousChefContract = useSousChef(sousId)
+  const sousChefContract = useCommunityChef(sousId)
 
   const handleUnstake = useCallback(
     async (amount: string, decimals: number) => {

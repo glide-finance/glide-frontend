@@ -1,10 +1,10 @@
-import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit'
 import BigNumber from 'bignumber.js'
 import communityConfig from 'config/constants/community'
 import { BIG_ZERO } from 'utils/bigNumber'
-import { CommunityState, Pool, CakeVault, VaultFees, VaultUser, AppThunk } from 'state/types'
+import { CommunityState, Pool, AppThunk } from 'state/types'
 import { getPoolApr } from 'utils/apr'
-import { getBalanceNumber } from 'utils/formatBalance'
+import { getBalanceNumber, getBalanceAmount } from 'utils/formatBalance'
 import { getAddress } from 'utils/addressHelpers'
 import { fetchPoolsBlockLimits, fetchPoolsStakingLimits, fetchPoolsTotalStaking } from './fetchPools'
 import {
@@ -58,8 +58,8 @@ const initialState: CommunityState = {
 export const fetchCommunityPublicDataAsync = (currentBlock: number) => async (dispatch, getState) => {
   const blockLimits = await fetchPoolsBlockLimits()
   const totalStakings = await fetchPoolsTotalStaking()
-
   const prices = getTokenPricesFromFarm(getState().farms.data)
+  const farms = getState().farms.data
 
   const liveData = communityConfig.map((pool) => {
     const blockLimit = blockLimits.find((entry) => entry.sousId === pool.sousId)
@@ -67,8 +67,25 @@ export const fetchCommunityPublicDataAsync = (currentBlock: number) => async (di
     const isPoolEndBlockExceeded = currentBlock > 0 && blockLimit ? currentBlock > Number(blockLimit.endBlock) : false
     const isPoolFinished = pool.isFinished || isPoolEndBlockExceeded
 
-    const stakingTokenAddress = pool.stakingToken.address ? getAddress(pool.stakingToken.address).toLowerCase() : null
-    const stakingTokenPrice = stakingTokenAddress ? prices[stakingTokenAddress] : 0
+    const { farmSymbol } = pool
+    // const stakingTokenAddress = pool.stakingToken.address ? getAddress(pool.stakingToken.address).toLowerCase() : null
+    const farm = farms.find((f) => f.lpSymbol === farmSymbol)
+    const farmTokenPriceInUsd = new BigNumber(farm.token.usdcPrice)
+    let lpTokenPrice = BIG_ZERO
+
+
+    if (farm.lpTotalSupply && farm.lpTotalInQuoteToken) {
+      // Total value of base token in LP
+      const valueOfBaseTokenInFarm = farmTokenPriceInUsd.times(farm.tokenAmountTotal)
+      // Double it to get overall value in LP
+      const overallValueOfAllTokensInFarm = valueOfBaseTokenInFarm.times(2)
+      // Divide total value of all tokens, by the number of LP tokens
+      const totalLpTokens = getBalanceAmount(new BigNumber(farm.lpTotalSupply))
+      lpTokenPrice = overallValueOfAllTokensInFarm.div(totalLpTokens)
+    }
+
+    const stakingTokenPrice = Number(lpTokenPrice.toFixed(18))
+    // const stakingTokenPrice = stakingTokenAddress ? prices[stakingTokenAddress] : 0
 
     const earningTokenAddress = pool.earningToken.address ? getAddress(pool.earningToken.address).toLowerCase() : null
     const earningTokenPrice = earningTokenAddress ? prices[earningTokenAddress] : 0

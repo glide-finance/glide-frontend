@@ -1,6 +1,6 @@
 import { ethers } from 'ethers'
 import { simpleRpcProvider } from 'utils/providers'
-import { poolsConfig } from 'config/constants'
+import { poolsConfig, communityConfig } from 'config/constants'
 import { PoolCategory } from 'config/constants/types'
 
 // Addresses
@@ -88,6 +88,11 @@ export const getTokenSourceMediator = (address: string, signer?: ethers.Signer |
 }
 export const getErc677Contract = (address: string, signer?: ethers.Signer | ethers.providers.Provider) => {
   return getContract(ERC677_ABI, address, signer);
+}
+export const getCommunityContract = (id: number, signer?: ethers.Signer | ethers.providers.Provider) => {
+  const config = communityConfig.find((pool) => pool.sousId === id)
+  const abi = config.poolCategory === PoolCategory.BINANCE ? sousChefBnb : sousChef
+  return getContract(abi, getAddress(config.contractAddress), signer)
 }
 export const getSouschefContract = (id: number, signer?: ethers.Signer | ethers.providers.Provider) => {
   const config = poolsConfig.find((pool) => pool.sousId === id)

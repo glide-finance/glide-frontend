@@ -1,7 +1,7 @@
 import React from 'react'
 import { useTranslation } from 'contexts/Localization'
-import styled from 'styled-components'
-import { Modal, Text, Button, Link } from '@glide-finance/uikit'
+// import styled from 'styled-components'
+import { Modal, Text, Button } from '@glide-finance/uikit'
 import useTheme from 'hooks/useTheme'
 
 interface NotEnoughTokensModalProps {

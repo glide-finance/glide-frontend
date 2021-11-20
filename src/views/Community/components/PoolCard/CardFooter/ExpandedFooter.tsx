@@ -13,7 +13,6 @@ import {
   Skeleton,
   useTooltip,
   Button,
-  Link,
   HelpIcon,
 } from '@glide-finance/uikit'
 import { BASE_BSC_SCAN_URL } from 'config'
@@ -22,7 +21,6 @@ import { useCakeVault } from 'state/pools/hooks'
 import { Pool } from 'state/types'
 import { getAddress, getCakeVaultAddress } from 'utils/addressHelpers'
 import { registerToken } from 'utils/wallet'
-import { getBscScanLink } from 'utils'
 import Balance from 'components/Balance'
 import { getPoolBlockInfo } from 'views/Pools/helpers'
 
@@ -50,8 +48,8 @@ const ExpandedFooter: React.FC<ExpandedFooterProps> = ({ pool, account }) => {
     stakingToken,
     earningToken,
     totalStaked,
-    startBlock,
-    endBlock,
+    // startBlock,
+    // endBlock,
     stakingLimit,
     contractAddress,
     sousId,
@@ -120,13 +118,13 @@ const ExpandedFooter: React.FC<ExpandedFooterProps> = ({ pool, account }) => {
           <Text small>{hasPoolStarted ? t('Ends in') : t('Starts in')}:</Text>
           {blocksRemaining || blocksUntilStart ? (
             <Flex alignItems="center">
-              <Link external href={getBscScanLink(hasPoolStarted ? endBlock : startBlock, 'countdown')}>
-                <Balance small value={blocksToDisplay} decimals={0} color="primary" />
-                <Text small ml="4px" color="primary" textTransform="lowercase">
-                  {t('Blocks')}
-                </Text>
-                <TimerIcon ml="4px" color="primary" />
-              </Link>
+              {/* <Link external href={getBscScanLink(hasPoolStarted ? endBlock : startBlock, 'countdown')}> */}
+              <Balance small value={blocksToDisplay} decimals={0} />
+              <Text small ml="4px" textTransform="lowercase">
+                {t('Blocks')}
+              </Text>
+              <TimerIcon ml="4px" />
+              {/* </Link> */}
             </Flex>
           ) : (
             <Skeleton width="54px" height="21px" />
