@@ -2,22 +2,8 @@ import tokens from './tokens'
 import { CommunityConfig, PoolCategory } from './types'
 
 const community: CommunityConfig[] = [
-  {
-    sousId: 1000,
-    farmSymbol: "FILDA-ELA LP",
-    stakingToken: tokens.fildaLP,
-    earningToken: tokens.filda,
-    pairToken: tokens.wela,
-    contractAddress: {
-      20: '0x2C3B3eb958ad0E1884A1Ff1BFaAd386a23097A85',
-    },
-    poolCategory: PoolCategory.COMMUNITY,
-    harvest: true,
-    sortOrder: 999,
-    tokenPerBlock: '0.0025',
-  },
   { 
-    sousId: 1001,
+    sousId: 1000,
     farmSymbol: "RINU-ELA LP",
     stakingToken: tokens.rinuLP,
     earningToken: tokens.rinu,

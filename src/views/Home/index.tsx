@@ -12,7 +12,7 @@ import Rocket from './components/Rocket'
 // import MetricsSection from './components/MetricsSection'
 import PitchSection from './components/PitchSection'
 import DetailsSection from './components/DetailsSection'
-// import SalesSection from './components/SalesSection'
+import PartnersSection from './components/PartnersSection'
 // import WinSection from './components/WinSection'
 // import FarmsPoolsRow from './components/FarmsPoolsRow'
 import CakeDataRow from './components/CakeDataRow'
@@ -109,25 +109,18 @@ const Home: React.FC = () => {
       >
         <Hero />
       </StyledHeroSection>
-      <StyledPageSection
-        index={2}
-        hasCurvedDivider={false}
-      >
+      <StyledPageSection index={2} hasCurvedDivider={false}>
         <CakeDataRow />
         <Rocket />
       </StyledPageSection>
-      <StyledPageSection
-        index={2}
-        hasCurvedDivider={false}
-      >
+      <StyledPageSection index={2} hasCurvedDivider={false}>
         <PitchSection />
       </StyledPageSection>
-      <StyledHeroSection
-        innerProps={{ style: { margin: '0', width: '100%' } }}
-        index={2}
-        hasCurvedDivider={false}
-      >
+      <StyledHeroSection innerProps={{ style: { margin: '0', width: '100%' } }} index={2} hasCurvedDivider={false}>
         <DetailsSection />
+      </StyledHeroSection>
+      <StyledHeroSection innerProps={{ style: { margin: '0', width: '100%' } }} index={2} hasCurvedDivider={false}>
+        <PartnersSection />
       </StyledHeroSection>
       <ScrollButtonContainer>
         <Button scale="md" variant="text" onClick={scrollToTop}>

@@ -240,9 +240,6 @@ const Community: React.FC = () => {
               <Heading scale="lg" color="text">
                 {t(`Don't let your memes be dreams`)}
               </Heading>
-              {/* <Heading scale="md" color="text">
-                {t('High APR, low risk.')}
-              </Heading> */}
             </Flex>
           </Flex>
         </PageHeader>
@@ -315,14 +312,6 @@ const Community: React.FC = () => {
         {/* {viewMode === ViewMode.CARD ? cardLayout : tableLayout} */}
         {cardLayout}
         <div ref={loadMoreRef} />
-        {/* <Image
-          mx="auto"
-          mt="12px"
-          src="/images/decorations/3d-syrup-bunnies.png"
-          alt="Pancake illustration"
-          width={192}
-          height={184.5}
-        /> */}
       </Page>
     </>
   )

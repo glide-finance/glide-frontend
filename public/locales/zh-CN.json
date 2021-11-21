@@ -275,7 +275,6 @@
   "Connected with %address%": "已连接到 %address%",
   "Connect Wallet": "连接钱包",
   "Core": "核心",
-  "Community": "社区",
   "Dual": "双重",
   "Vote Now": "立即投票",
   "Soon": "即将开始",
@@ -302,6 +301,8 @@
   "Trade": "交易",
   "Farm": "农场",
   "Stake": "质押",
+  "Community": "社区",
+  "Community Zone": "社区区",
   "Bridge": "桥",
   "Analytics": "分析",
   "Docs & Help": "文档和帮助",
@@ -366,5 +367,7 @@
   "Price Impact Too High": "价格影响太大",
   "Spinning, spinning, spinning...": "纺纱， 纺纱， 纺纱……",
   "Ugh how long does this take?": "呃，需要多长时间？",
-  "We'll give it one more minute": "我们再给它一分钟"
+  "We'll give it one more minute": "我们再给它一分钟",
+  "Not the chains you're looking for? Check out Elk and bridge to Elastos from 14 different networks!": "不是您要找的链条？查看 Elk 并从 14 个不同的网络连接到亦来云！",
+  "Don't let your memes be dreams": "生态系统代币的流动性激励"
 }

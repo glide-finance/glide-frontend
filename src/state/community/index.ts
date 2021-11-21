@@ -6,6 +6,7 @@ import { CommunityState, Pool, AppThunk } from 'state/types'
 import { getPoolApr } from 'utils/apr'
 import { getBalanceNumber, getBalanceAmount } from 'utils/formatBalance'
 import { getAddress } from 'utils/addressHelpers'
+import priceHelperLpsConfig from 'config/constants/priceHelperLps'
 import { fetchPoolsBlockLimits, fetchPoolsStakingLimits, fetchPoolsTotalStaking } from './fetchPools'
 import {
   fetchPoolsAllowance,
@@ -13,6 +14,8 @@ import {
   fetchUserStakeBalances,
   fetchUserPendingRewards,
 } from './fetchPoolsUser'
+import fetchFarms from '../farms/fetchFarms'
+import fetchFarmsPrices from '../farms/fetchFarmsPrices'
 import { getTokenPricesFromFarm } from './helpers'
 
 const initialState: CommunityState = {
@@ -58,8 +61,11 @@ const initialState: CommunityState = {
 export const fetchCommunityPublicDataAsync = (currentBlock: number) => async (dispatch, getState) => {
   const blockLimits = await fetchPoolsBlockLimits()
   const totalStakings = await fetchPoolsTotalStaking()
-  const prices = getTokenPricesFromFarm(getState().farms.data)
   const farms = getState().farms.data
+  const farmsWithPriceHelpers = farms.concat(priceHelperLpsConfig)
+  const communityFarms = await fetchFarms(farmsWithPriceHelpers)
+  const farmsWithPrices = await fetchFarmsPrices(communityFarms)
+  const prices = getTokenPricesFromFarm(farmsWithPrices)
 
   const liveData = communityConfig.map((pool) => {
     const blockLimit = blockLimits.find((entry) => entry.sousId === pool.sousId)
@@ -69,11 +75,9 @@ export const fetchCommunityPublicDataAsync = (currentBlock: number) => async (di
 
     const { farmSymbol } = pool
     // const stakingTokenAddress = pool.stakingToken.address ? getAddress(pool.stakingToken.address).toLowerCase() : null
-    const farm = farms.find((f) => f.lpSymbol === farmSymbol)
+    const farm = farmsWithPrices.find((f) => f.lpSymbol === farmSymbol)
     const farmTokenPriceInUsd = new BigNumber(farm.token.usdcPrice)
     let lpTokenPrice = BIG_ZERO
-
-
     if (farm.lpTotalSupply && farm.lpTotalInQuoteToken) {
       // Total value of base token in LP
       const valueOfBaseTokenInFarm = farmTokenPriceInUsd.times(farm.tokenAmountTotal)

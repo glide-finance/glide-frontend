@@ -67,17 +67,7 @@ const farms: FarmConfig[] = [
     },
     token: tokens.filda,
     quoteToken: tokens.wela,
-  },
-  // Meme zone, add to priceHelperLPs
-  // {
-  //   pid: 1000,
-  //   lpSymbol: 'RINU-ELA LP',
-  //   lpAddresses: {
-  //     20: '0x411DA456D450111648310c5Ec3D188755727b92c'
-  //   },
-  //   token: tokens.rinu,
-  //   quoteToken: tokens.wela,
-  // },
+  }
 ]
 
 export default farms

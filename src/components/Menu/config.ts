@@ -31,7 +31,7 @@ const config: (t: ContextApi['t']) => ConfigMenuItemsType[] = (t) => [
   },
   {
     label: t('Community'),
-    icon: 'Pool',
+    icon: 'Community',
     href: '/community',
     showItemsOnMobile: false,
     showOnMobile: false
