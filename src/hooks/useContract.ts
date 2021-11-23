@@ -12,6 +12,7 @@ import {
   getMasterchefContract,
   getPointCenterIfoContract,
   getSouschefContract,
+  getCommunityContract,
   getClaimRefundContract,
   getTradingCompetitionContract,
   getEasterNftContract,
@@ -94,6 +95,11 @@ export const useLotteryV2Contract = () => {
 export const useMasterchef = () => {
   const { library } = useActiveWeb3React()
   return useMemo(() => getMasterchefContract(library.getSigner()), [library])
+}
+
+export const useCommunityChef = (id) => {
+  const { library } = useActiveWeb3React()
+  return useMemo(() => getCommunityContract(id, library.getSigner()), [id, library])
 }
 
 export const useSousChef = (id) => {

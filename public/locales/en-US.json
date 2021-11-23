@@ -274,7 +274,6 @@
   "Connected with %address%": "Connected with %address%",
   "Connect Wallet": "Connect Wallet",
   "Core": "Core",
-  "Community": "Community",
   "Dual": "Dual",
   "Manual": "Manual",
   "Auto": "Auto",
@@ -303,6 +302,8 @@
   "Trade": "Trade",
   "Farm": "Farm",
   "Stake": "Stake",
+  "Community": "Community",
+  "Community Zone": "Community Zone",
   "Bridge": "Bridge",
   "Analytics": "Analytics",
   "Docs & Help": "Docs & Help",
@@ -368,5 +369,7 @@
   "Price Impact Too High": "Price Impact Too High",
   "Spinning, spinning, spinning...": "Spinning, spinning, spinning...",
   "Ugh how long does this take?": "Ugh how long does this take?",
-  "We'll give it one more minute": "We'll give it one more minute"
+  "We'll give it one more minute": "We'll give it one more minute",
+  "Not the chains you're looking for? Check out Elk and bridge to Elastos from 14 different networks!": "Not the chains you're looking for? Check out Elk and bridge to Elastos from 14 different networks!",
+  "Don't let your memes be dreams": "Don't let your memes be dreams"
 }

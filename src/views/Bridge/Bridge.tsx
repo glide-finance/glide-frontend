@@ -1,7 +1,16 @@
 import React, { useEffect, useCallback, useState } from 'react'
 import styled from 'styled-components'
 import { Currency, CurrencyAmount, ETHER, Token } from '@glide-finance/sdk'
-import { Flex, Button, Text, ArrowForwardIcon, useModal, AutoRenewIcon } from '@glide-finance/uikit'
+import {
+  Flex,
+  Button,
+  Text,
+  ArrowForwardIcon,
+  useModal,
+  AutoRenewIcon,
+  LinkExternal,
+  Image,
+} from '@glide-finance/uikit'
 // import PageHeader from 'components/PageHeader'
 import { useTranslation } from 'contexts/Localization'
 import SwapWarningTokens from 'config/constants/swapWarningTokens'
@@ -41,7 +50,7 @@ const BridgePage = styled(Page)`
     background: radial-gradient(40% 55% at 45% 57.5%, #f2ad6c 0%, rgba(242, 173, 108, 0.4) 25%, rgba(6, 9, 20, 0) 72.5%),
       radial-gradient(40% 45% at 55% 47.5%, #48b9ff 0%, rgba(72, 185, 255, 0.4) 25%, rgba(6, 9, 20, 0) 72.5%);
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-    background-position-y: -13vh;
+    background-position-y: -2vh;
   }
 `
 
@@ -82,6 +91,15 @@ const ArrowContainer = styled.div`
   padding: 0.25rem;
   margin-bottom: 1.5rem;
   background-color: ${({ theme }) => theme.colors.input};
+`
+
+const ElkNotice = styled(Flex)`
+  border: 1px solid ${({ theme }) => theme.colors.primary};
+  border-radius: 16px;
+  margin-bottom: 20px;
+  padding: 16px;
+  max-width: 478px;
+  width: 100%;
 `
 
 // move to config popsicle
@@ -327,14 +345,17 @@ const Bridge: React.FC = () => {
   return (
     <>
       <BridgePage>
-        {/* <PageHeader>
-          <GradientHeading as="h1" scale="xxl" color="glide" mb="24px">
-            {t('Bridge')}
-          </GradientHeading>
-          <Heading scale="lg" color="text">
-            {t('Map assets to and from Elastos')}
-          </Heading>
-        </PageHeader> */}
+        <ElkNotice>
+          <AutoRow justify="center">
+            <Text bold color="primary" mb="8px">
+              {t(`Not the chains you're looking for? Check out Elk and bridge to Elastos from 14 different networks!`)}
+            </Text>
+            <Image src="/images/tokens/elk.svg" width={36} height={36} mr="16px" mt="0px" />
+            <LinkExternal color="text" href="https://app.elk.finance/#/elknet">
+              {t('Elk Finance')}
+            </LinkExternal>
+          </AutoRow>
+        </ElkNotice>
         <Body>
           <GradientHeader title={t('Bridge')} subtitle={t('Map tokens to and from the Elastos Smart Chain')} noConfig />
           <Wrapper id="bridge-page">

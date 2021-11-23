@@ -2,7 +2,7 @@ import { ThunkAction } from 'redux-thunk'
 import { AnyAction } from '@reduxjs/toolkit'
 import BigNumber from 'bignumber.js'
 import { ethers } from 'ethers'
-import { CampaignType, FarmConfig, BridgeConfig, LotteryStatus, LotteryTicket, Nft, PoolConfig, Team } from 'config/constants/types'
+import { CampaignType, FarmConfig, BridgeConfig, LotteryStatus, LotteryTicket, Nft, PoolConfig, CommunityConfig, Team } from 'config/constants/types'
 
 export type AppThunk<ReturnType = void> = ThunkAction<ReturnType, State, unknown, AnyAction>
 
@@ -40,6 +40,24 @@ export interface Farm extends FarmConfig {
 }
 
 export interface Pool extends PoolConfig {
+  totalStaked?: BigNumber
+  stakingLimit?: BigNumber
+  startBlock?: number
+  endBlock?: number
+  apr?: number
+  stakingTokenPrice?: number
+  earningTokenPrice?: number
+  isAutoVault?: boolean
+  isDividendPool?: boolean
+  userData?: {
+    allowance: BigNumber
+    stakingTokenBalance: BigNumber
+    stakedBalance: BigNumber
+    pendingReward: BigNumber
+  }
+}
+
+export interface Community extends CommunityConfig {
   totalStaked?: BigNumber
   stakingLimit?: BigNumber
   startBlock?: number
@@ -138,6 +156,13 @@ export interface DividendPool {
 }
 
 export interface PoolsState {
+  data: Pool[]
+  cakeVault: CakeVault
+  dividendPool: DividendPool
+  userDataLoaded: boolean
+}
+
+export interface CommunityState {
   data: Pool[]
   cakeVault: CakeVault
   dividendPool: DividendPool
@@ -510,6 +535,7 @@ export interface State {
   block: BlockState
   farms: FarmsState
   pools: PoolsState
+  community: PoolsState
   predictions: PredictionsState
   profile: ProfileState
   teams: TeamsState

@@ -94,7 +94,56 @@ const tokens = {
     },
     decimals: 18,
     projectLink: 'https://filda.io/',
-  }
+  },
+  // Meme zone
+  rinu: {
+    symbol: 'RINU',
+    address: {
+      20: '0x0b0148b82631A1ce18c83048471716d591726977'
+    },
+    decimals: 9,
+    projectLink: '',
+  },
+  rinuLP: {
+    symbol: 'RINU-ELA LP',
+    address: {
+      20: '0x411DA456D450111648310c5Ec3D188755727b92c'
+    },
+    decimals: 18,
+    projectLink: '',
+  },
+  finu: {
+    symbol: 'FINU',
+    address: {
+      20: '0x18521074aBA94FA730d06aAe000778Dcc8C6059d'
+    },
+    decimals: 9,
+    projectLink: '',
+  },
+  finuLP: {
+    symbol: 'FINU-ELA LP',
+    address: {
+      20: '0xe8134F4e731Bb9a70Ddc0013755994B4906d480f'
+    },
+    decimals: 18,
+    projectLink: '',
+  },
+  beer: {
+    symbol: 'BEER',
+    address: {
+      20: '0x44F57DF34e7873191f5aF7065B8348dD581c34DC'
+    },
+    decimals: 18,
+    projectLink: '',
+  },
+  beerLP: {
+    symbol: 'BEER-ELA LP',
+    address: {
+      20: '0xbcA320f6b57b422a7Bf98A5bFaf8635923998d41'
+    },
+    decimals: 18,
+    projectLink: '',
+  },
 }
 
 export default tokens

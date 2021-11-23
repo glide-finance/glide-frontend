@@ -28,8 +28,12 @@ export const getCustomMeta = (path: string, t: ContextApi['t']): PageMeta => {
       }
     case '/pools':
       return {
-        title: `${t('Pools')} | ${t('Glide Finance')}`,
+        title: `${t('Stake')} | ${t('Glide Finance')}`,
       }
+    case '/community':
+      return {
+        title: `${t('Community')} | ${t('Glide Finance')}`,
+    }
     // case '/lottery':
     //   return {
     //     title: `${t('Lottery')} | ${t('Glide Finance')}`,

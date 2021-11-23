@@ -32,7 +32,7 @@ const HarvestCard = () => {
   const { t } = useTranslation()
   const { toastSuccess, toastError } = useToast()
   const { farmsWithStakedBalance, earningsSum: farmEarningsSum } = useFarmsWithBalance()
-  const { account, chainId, library } = useWeb3React()
+  const { chainId, library } = useWeb3React()
   const masterChefContract = useMasterchef()
   const cakePriceUsdc = usePriceCakeUsdc()
   const earningsUsdc = new BigNumber(farmEarningsSum).multipliedBy(cakePriceUsdc)
@@ -101,25 +101,27 @@ const HarvestCard = () => {
           ) : (
             <>
               {chainId !== 20 ? (
-              <Button
-                onClick={() => {
-                setupNetwork(20, library)
-                }}
-              >
-              {t('Connect to Elastos')}
-              </Button>
-        ) :   <Button
-                width={['100%', null, null, 'auto']}
-                id="harvest-all"
-                isLoading={pendingTx}
-                endIcon={pendingTx ? <AutoRenewIcon spin color="currentColor" /> : null}
-                disabled={pendingTx}
-                onClick={harvestAllFarms}
-              >
-              <Text color="contrast" bold>
-                {pendingTx ? t('Harvesting') : t('Harvest all')}
-              </Text>
-            </Button>}
+                <Button
+                  onClick={() => {
+                    setupNetwork(20, library)
+                  }}
+                >
+                  {t('Connect to Elastos')}
+                </Button>
+              ) : (
+                <Button
+                  width={['100%', null, null, 'auto']}
+                  id="harvest-all"
+                  isLoading={pendingTx}
+                  endIcon={pendingTx ? <AutoRenewIcon spin color="currentColor" /> : null}
+                  disabled={pendingTx}
+                  onClick={harvestAllFarms}
+                >
+                  <Text color="contrast" bold>
+                    {pendingTx ? t('Harvesting') : t('Harvest all')}
+                  </Text>
+                </Button>
+              )}
             </>
           )}
         </Flex>

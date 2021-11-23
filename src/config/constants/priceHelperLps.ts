@@ -1,4 +1,4 @@
-// import tokens from './tokens'
+import tokens from './tokens'
 import { FarmConfig } from './types'
 
 const priceHelperLps: FarmConfig[] = [
@@ -19,6 +19,33 @@ const priceHelperLps: FarmConfig[] = [
   //   token: tokens.usdc,
   //   quoteToken: tokens.wbnb,
   // },
+  {
+    pid: null,
+    lpSymbol: 'RINU-ELA LP',
+    lpAddresses: {
+      20: '0x411DA456D450111648310c5Ec3D188755727b92c'
+    },
+    token: tokens.rinu,
+    quoteToken: tokens.wela,
+  },
+  {
+    pid: null,
+    lpSymbol: 'FINU-ELA LP',
+    lpAddresses: {
+      20: '0xe8134F4e731Bb9a70Ddc0013755994B4906d480f'
+    },
+    token: tokens.finu,
+    quoteToken: tokens.wela,
+  },
+  {
+    pid: null,
+    lpSymbol: 'BEER-ELA LP',
+    lpAddresses: {
+      20: '0xbcA320f6b57b422a7Bf98A5bFaf8635923998d41'
+    },
+    token: tokens.beer,
+    quoteToken: tokens.wela,
+  },
 ]
 
 export default priceHelperLps

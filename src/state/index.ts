@@ -3,6 +3,7 @@ import { save, load } from 'redux-localstorage-simple'
 import { useDispatch } from 'react-redux'
 import farmsReducer from './farms'
 import poolsReducer from './pools'
+import communityReducer from './community'
 // import bridgeReducer from './bridge'
 // import predictionsReducer from './predictions'
 // import profileReducer from './profile'
@@ -33,6 +34,7 @@ const store = configureStore({
     block: blockReducer,
     farms: farmsReducer,
     pools: poolsReducer,
+    community: communityReducer,
     info: infoReducer,
     // predictions: predictionsReducer,
     // profile: profileReducer,
