@@ -28,6 +28,24 @@ const priceHelperLps: FarmConfig[] = [
     token: tokens.rinu,
     quoteToken: tokens.wela,
   },
+  {
+    pid: null,
+    lpSymbol: 'FINU-ELA LP',
+    lpAddresses: {
+      20: '0xe8134F4e731Bb9a70Ddc0013755994B4906d480f'
+    },
+    token: tokens.finu,
+    quoteToken: tokens.wela,
+  },
+  {
+    pid: null,
+    lpSymbol: 'BEER-ELA LP',
+    lpAddresses: {
+      20: '0xbcA320f6b57b422a7Bf98A5bFaf8635923998d41'
+    },
+    token: tokens.beer,
+    quoteToken: tokens.wela,
+  },
 ]
 
 export default priceHelperLps
