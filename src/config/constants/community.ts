@@ -44,6 +44,20 @@ const community: CommunityConfig[] = [
     sortOrder: 999,
     tokenPerBlock: '1',
   },
+  { // total 20000000000000 over 518400 blocks
+    sousId: 1003,
+    farmSymbol: "SLOTH-ELA LP",
+    stakingToken: tokens.slothLP,
+    earningToken: tokens.sloth,
+    pairToken: tokens.wela,
+    contractAddress: {
+      20: '0x981465427f6946F4E1A6fa4CC15408695559768d',
+    },
+    poolCategory: PoolCategory.COMMUNITY,
+    harvest: true,
+    sortOrder: 999,
+    tokenPerBlock: '38580246',
+  },
 ]
 
 export default community

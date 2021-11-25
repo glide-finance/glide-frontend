@@ -144,6 +144,22 @@ const tokens = {
     decimals: 18,
     projectLink: '',
   },
+  sloth: {
+    symbol: 'SLOTH',
+    address: {
+      20: '0xA70Efd687EADFb738389e0739a26fb9036D99A1E'
+    },
+    decimals: 18,
+    projectLink: 'https://www.slothtoken.club/',
+  },
+  slothLP: {
+    symbol: 'SLOTH-ELA LP',
+    address: {
+      20: '0x3DCe3e9C2DBe687ab1794E89e48ad0947c4ae48F'
+    },
+    decimals: 18,
+    projectLink: 'https://www.slothtoken.club/',
+  },
 }
 
 export default tokens

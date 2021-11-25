@@ -46,6 +46,15 @@ const priceHelperLps: FarmConfig[] = [
     token: tokens.beer,
     quoteToken: tokens.wela,
   },
+  {
+    pid: null,
+    lpSymbol: 'SLOTH-ELA LP',
+    lpAddresses: {
+      20: '0x3DCe3e9C2DBe687ab1794E89e48ad0947c4ae48F'
+    },
+    token: tokens.sloth,
+    quoteToken: tokens.wela,
+  },
 ]
 
 export default priceHelperLps

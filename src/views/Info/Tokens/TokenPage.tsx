@@ -60,7 +60,7 @@ const StyledCMCLink = styled(UIKitLink)`
     opacity: 0.8;
   }
 `
-const DEFAULT_TIME_WINDOW: Duration = { weeks: 1 }
+const DEFAULT_TIME_WINDOW: Duration = { weeks: 4 }
 
 const TokenPage: React.FC<RouteComponentProps<{ address: string }>> = ({
   match: {
