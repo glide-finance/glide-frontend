@@ -351,7 +351,10 @@ const Bridge: React.FC = () => {
               {t(`Not the chains you're looking for? Check out Elk and bridge to Elastos from 14 different networks!`)}
             </Text>
             <Image src="/images/tokens/elk.svg" width={36} height={36} mr="16px" mt="0px" />
-            <LinkExternal color="text" href="https://app.elk.finance/#/elknet">
+            <LinkExternal
+              color="text"
+              href="https://app.elk.finance/?utm_source=glide&utm_medium=banner&utm_campaign=elknet&utm_id=projectpromo#/elknet"
+            >
               {t('Elk Finance')}
             </LinkExternal>
           </AutoRow>
