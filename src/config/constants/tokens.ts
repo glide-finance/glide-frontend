@@ -160,6 +160,22 @@ const tokens = {
     decimals: 18,
     projectLink: 'https://www.slothtoken.club/',
   },
+  bun: {
+    symbol: 'BUN',
+    address: {
+      20: '0x63B2dcd421d2E9168EC79e880fB0D2D45d539A66'
+    },
+    decimals: 18,
+    projectLink: 'https://www.bunnypunk.online/',
+  },
+  bunLP: {
+    symbol: 'BUN-ELA LP',
+    address: {
+      20: '0xb454FC9F6681dCa0D7C3b7a170A89B8bD7bdA71A'
+    },
+    decimals: 18,
+    projectLink: 'https://www.bunnypunk.online/',
+  },
 }
 
 export default tokens

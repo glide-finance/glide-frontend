@@ -58,6 +58,20 @@ const community: CommunityConfig[] = [
     sortOrder: 999,
     tokenPerBlock: '38580246',
   },
+  { // total 2100000000000000000000 over 518400 blocks
+    sousId: 1004,
+    farmSymbol: "BUN-ELA LP",
+    stakingToken: tokens.bunLP,
+    earningToken: tokens.bun,
+    pairToken: tokens.wela,
+    contractAddress: {
+      20: '0x9A8433315B104ea2211e71Cf167AA8dDFBAF1C16',
+    },
+    poolCategory: PoolCategory.COMMUNITY,
+    harvest: true,
+    sortOrder: 999,
+    tokenPerBlock: '0.00405',
+  },
 ]
 
 export default community
