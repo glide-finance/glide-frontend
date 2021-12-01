@@ -3,7 +3,7 @@ import { TransactionResponse } from '@ethersproject/providers'
 import { Trade, TokenAmount, CurrencyAmount, ETHER } from '@glide-finance/sdk'
 import { useCallback, useMemo } from 'react'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
-import { ROUTER_ADDRESS } from '../config/constants'
+import { ROUTER_ADDRESS, APPROVE_BALANCE_ADDRESSES } from 'config/constants'
 import useTokenAllowance from './useTokenAllowance'
 import { Field } from '../state/swap/actions'
 import { useTransactionAdder, useHasPendingApproval } from '../state/transactions/hooks'
@@ -72,7 +72,17 @@ export function useApproveCallback(
     }
 
     let useExact = false
-    const estimatedGas = await tokenContract.estimateGas.approve(spender, MaxUint256).catch(() => {
+
+    const isApproveBalanceToken = APPROVE_BALANCE_ADDRESSES.includes(token?.address)
+    useExact = isApproveBalanceToken;
+
+    // const estimatedGas = await tokenContract.estimateGas.approve(spender, MaxUint256).catch(() => {
+    //   // general fallback for tokens who restrict approval amounts
+    //   useExact = true
+    //   return tokenContract.estimateGas.approve(spender, amountToApprove.raw.toString())
+    // })
+
+    const estimatedGas = useExact ? await tokenContract.estimateGas.approve(spender, amountToApprove.raw.toString()) : await tokenContract.estimateGas.approve(spender, MaxUint256).catch(() => {
       // general fallback for tokens who restrict approval amounts
       useExact = true
       return tokenContract.estimateGas.approve(spender, amountToApprove.raw.toString())

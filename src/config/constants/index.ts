@@ -89,6 +89,11 @@ export const VALIDATOR_TIMEOUT = 300000 // Milliseconds
 export const BLOCKED_ADDRESSES: string[] = [
 ]
 
+export const APPROVE_BALANCE_ADDRESSES: string[] = [
+  "0xaA9691BcE68ee83De7B518DfCBBfb62C04B1C0BA", // Gold
+  "0x44F57DF34e7873191f5aF7065B8348dD581c34DC" // Beer
+]
+
 export { default as farmsConfig } from './farms'
 export { default as poolsConfig } from './pools'
 export { default as communityConfig } from './community'
