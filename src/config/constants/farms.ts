@@ -67,6 +67,15 @@ const farms: FarmConfig[] = [
     },
     token: tokens.filda,
     quoteToken: tokens.wela,
+  },
+  {
+    pid: 7,
+    lpSymbol: 'GLIDE-USDC LP',
+    lpAddresses: {
+      20: '0x26aCE9c9da938fb2Db91B0d0E7703861c249bf08'
+    },
+    token: tokens.glide,
+    quoteToken: tokens.usdc,
   }
 ]
 
