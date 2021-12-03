@@ -99,6 +99,24 @@
       "decimals": 6,
       "logoURI": "",
       "origin": 1
+    },
+    {
+      "name": "Glide",
+      "symbol": "GLIDE",
+      "address": "0xd39eC832FF1CaaFAb2729c76dDeac967ABcA8F27",
+      "chainId": 20,
+      "decimals": 18,
+      "logoURI": "",
+      "origin": 20
+    },
+    {
+      "name": "Glide on Heco",
+      "symbol": "GLIDE",
+      "address": "0x8bD946896c0089cEea90b5dABa5A472684A3fA48",
+      "chainId": 128,
+      "decimals": 18,
+      "logoURI": "",
+      "origin": 20
     }
   ]
 }
