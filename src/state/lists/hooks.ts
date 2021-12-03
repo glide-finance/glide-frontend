@@ -175,11 +175,13 @@ export function useDefaultTokenList(): TokenAddressMap {
 export function useBridgeableTokenList(origin, destination): TokenAddressMap {
   const allTokens = {...BRIDGE_TOKEN_LIST}
   const bridgeableSet = allTokens.tokens.filter(token => token.chainId === origin)
-  const destinationMatch = bridgeableSet.filter(token => token.origin === destination || token.origin === token.chainId)
+  let destinationMatch = bridgeableSet.filter(token => token.origin === destination || token.origin === token.chainId)
+  if (origin === 20 && destination === 1) { // filter Glide from Ethereum bridge
+    destinationMatch = destinationMatch.filter(token => token.address !== "0xd39eC832FF1CaaFAb2729c76dDeac967ABcA8F27")
+  }
   allTokens.tokens = destinationMatch
   const bridgeableTokens = allTokens
   return listToTokenMap(bridgeableTokens)
-  // return listToTokenMap(BRIDGEABLE_SET)
 }
 
 // list of tokens not supported on interface, used to show warnings and prevent swaps and adds

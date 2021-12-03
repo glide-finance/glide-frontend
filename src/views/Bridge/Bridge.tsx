@@ -42,6 +42,7 @@ import { useUserSlippageTolerance } from '../../state/user/hooks'
 import { maxAmountSpend } from '../../utils/maxAmountSpend'
 // import CircleLoader from '../../components/Loader/CircleLoader'
 import SwapWarningModal from './components/SwapWarningModal'
+import BRIDGE_TOKEN_LIST from '../../config/constants/tokenLists/glide-bridge.tokenlist.json'
 
 const BridgePage = styled(Page)`
   padding-top: 10vh;
@@ -342,6 +343,14 @@ const Bridge: React.FC = () => {
     ChainMap[destinationIndex],
   )
 
+  let minTransfer = correctParams ? bridgeParams.minTx : '0'
+  if (tokenToBridge instanceof Token) {
+    const tokenInfo = BRIDGE_TOKEN_LIST.tokens.filter((token) => token.address === tokenToBridge.address)[0]
+    if (tokenInfo?.minTx !== undefined) {
+      minTransfer = tokenInfo.minTx
+    }
+  }
+
   return (
     <>
       <BridgePage>
@@ -463,7 +472,7 @@ const Bridge: React.FC = () => {
                 <Flex alignItems="center" justifyContent="space-between">
                   <Text color="textSubtle">{t('Min Bridge Amount')}</Text>
                   <Text color="textSubtle">
-                    {bridgeParams.minTx.toLocaleString()} {symbol}
+                    {minTransfer.toLocaleString()} {symbol}
                   </Text>
                 </Flex>
                 <Flex alignItems="center" justifyContent="space-between">
@@ -494,7 +503,7 @@ const Bridge: React.FC = () => {
                   </Text>
                 </Warning>
               )}
-              {correctParams && amountToBridge.lt(bridgeParams.minTx) ? (
+              {correctParams && amountToBridge.lt(minTransfer) ? (
                 <Warning>
                   <Text color="failure" mb="4px">
                     • {t('Below minimum bridge amount')}

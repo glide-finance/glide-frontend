@@ -17,7 +17,8 @@
       "chainId": 20,
       "decimals": 18,
       "logoURI": "",
-      "origin": 1
+      "origin": 1,
+      "minTx": 1
     },
     {
       "name": "HT on Elastos",
@@ -35,7 +36,8 @@
       "chainId": 1,
       "decimals": 18,
       "logoURI": "",
-      "origin": 20
+      "origin": 20,
+      "minTx": 1000
     },
     {
       "name": "ELA on Heco",
@@ -89,7 +91,8 @@
       "chainId": 1,
       "decimals": 6,
       "logoURI": "",
-      "origin": 1
+      "origin": 1,
+      "minTx": 5000
     },
     {
       "name": "USDC on Elastos",
@@ -98,7 +101,8 @@
       "chainId": 20,
       "decimals": 6,
       "logoURI": "",
-      "origin": 1
+      "origin": 1,
+      "minTx": 5000
     },
     {
       "name": "Glide",
