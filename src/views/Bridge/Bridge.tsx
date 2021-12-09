@@ -316,8 +316,7 @@ const Bridge: React.FC = () => {
       ? BRIDGES[bridgeDestinationSelected][bridgeType][ChainMap[destinationIndex]]
       : undefined
   const correctParams = bridgeParams !== undefined
-  const isBridgeable =
-    correctParams && amountToBridge >= bridgeParams.minTx && amountToBridge <= bridgeParams.maxTx && !exceedsMax
+ 
   const feeAmount =
     correctParams && amountToBridge.gt(0)
       ? new BigNumber(bridgeParams.fee).div(new BigNumber(100)).times(amountToBridge).toPrecision(3)
@@ -350,6 +349,9 @@ const Bridge: React.FC = () => {
       minTransfer = tokenInfo.minTx
     }
   }
+
+  const isBridgeable =
+    correctParams && amountToBridge >= minTransfer && amountToBridge <= bridgeParams.maxTx && !exceedsMax
 
   return (
     <>
