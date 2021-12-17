@@ -59,6 +59,14 @@
       "logoURI": ""
     },
     {
+      "name": "Material on Elastos",
+      "symbol": "MTRL",
+      "address": "0xe2390b8B08a9Ab68e6f1aaA150B2ddD03900CE25",
+      "chainId": 20,
+      "decimals": 18,
+      "logoURI": ""
+    },
+    {
       "name": "Wrapped Elastos",
       "symbol": "WELA",
       "address": "0x517E9e5d46C1EA8aB6f78677d6114Ef47F71f6c4",

@@ -316,12 +316,6 @@ const Bridge: React.FC = () => {
       ? BRIDGES[bridgeDestinationSelected][bridgeType][ChainMap[destinationIndex]]
       : undefined
   const correctParams = bridgeParams !== undefined
- 
-  const feeAmount =
-    correctParams && amountToBridge.gt(0)
-      ? new BigNumber(bridgeParams.fee).div(new BigNumber(100)).times(amountToBridge).toPrecision(3)
-      : 0
-
   const needsApproval = useCheckMediatorApprovalStatus(tokenToBridge, bridgeParams, amountToBridge, reverseBridgeParams)
 
   const faucetAvailable = useCheckFaucetStatus(tokenToBridge, correctParams, ChainMap[destinationIndex])
@@ -343,15 +337,25 @@ const Bridge: React.FC = () => {
   )
 
   let minTransfer = correctParams ? bridgeParams.minTx : '0'
+  let feePercent = correctParams ? bridgeParams.fee : '0'
   if (tokenToBridge instanceof Token) {
     const tokenInfo = BRIDGE_TOKEN_LIST.tokens.filter((token) => token.address === tokenToBridge.address)[0]
     if (tokenInfo?.minTx !== undefined) {
       minTransfer = tokenInfo.minTx
     }
+    if (tokenInfo?.fee !== undefined) {
+      feePercent = tokenInfo.fee
+    }
   }
 
+  const feeAmount =
+    correctParams && amountToBridge.gt(0)
+      ? new BigNumber(feePercent).div(new BigNumber(100)).times(amountToBridge).toPrecision(3)
+      : 0
   const isBridgeable =
     correctParams && amountToBridge >= minTransfer && amountToBridge <= bridgeParams.maxTx && !exceedsMax
+
+  console.log(tokenToBridge)
 
   return (
     <>
@@ -477,15 +481,15 @@ const Bridge: React.FC = () => {
                     {minTransfer.toLocaleString()} {symbol}
                   </Text>
                 </Flex>
-                <Flex alignItems="center" justifyContent="space-between">
+                {/* <Flex alignItems="center" justifyContent="space-between">
                   <Text color="textSubtle">{t('Max Bridge Amount')}</Text>
                   <Text color="textSubtle">
                     {bridgeParams.maxTx.toLocaleString()} {symbol}
                   </Text>
-                </Flex>
+                </Flex> */}
                 <Flex alignItems="center" justifyContent="space-between">
                   <Text color="textSubtle">
-                    {t('Fee')} ({bridgeParams.fee}%)
+                    {t('Fee')} ({feePercent}%)
                   </Text>
                   <Text color="textSubtle">
                     {feeAmount > 0 ? feeAmount.toLocaleString() : 0} {symbol}
@@ -519,6 +523,13 @@ const Bridge: React.FC = () => {
                     </Text>
                   </Warning>
                 )
+              )}
+              {correctParams && chainId === 1 && tokenToBridge.name !== 'ELA on Ethereum' && (
+                <Warning>
+                  <Text color="primary" mb="4px">
+                    {t(`Warning! Bridging assets back to Ethereum includes a fee (1-2%) to cover gas.`)}
+                  </Text>
+                </Warning>
               )}
               {!account ? (
                 <ConnectWalletButton width="100%" />

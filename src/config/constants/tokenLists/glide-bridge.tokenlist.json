@@ -121,6 +121,27 @@
       "decimals": 18,
       "logoURI": "",
       "origin": 20
+    },
+    {
+      "name": "Material",
+      "symbol": "MTRL",
+      "address": "0x13C99770694f07279607A6274F28a28c33086424",
+      "chainId": 1,
+      "decimals": 18,
+      "logoURI": "",
+      "origin": 1,
+      "minTx": 150000
+    },
+    {
+      "name": "Material on Elastos",
+      "symbol": "MTRL",
+      "address": "0xe2390b8B08a9Ab68e6f1aaA150B2ddD03900CE25",
+      "chainId": 20,
+      "decimals": 18,
+      "logoURI": "",
+      "origin": 1,
+      "minTx": 150000,
+      "fee": 2
     }
   ]
 }
