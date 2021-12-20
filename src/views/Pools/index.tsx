@@ -131,12 +131,7 @@ const Pools: React.FC = () => {
     const cakeAutoVault = { ...cakePool, isAutoVault: true }
     const cakeDividendPool = { ...dividendPool, isDividendPool: true }
     const cakePhantzPool = { ...phantzPool, isPhantzPool: true }
-    return [
-      cakeDividendPool,
-      ...poolsWithoutAutoVault.filter((pool) => pool.sousId !== 1),
-      cakeAutoVault,
-      cakePhantzPool,
-    ]
+    return [cakeDividendPool, ...poolsWithoutAutoVault.filter((pool) => pool.sousId !== 1), cakeAutoVault]
   }, [poolsWithoutAutoVault])
 
   // TODO aren't arrays in dep array checked just by reference, i.e. it will rerender every time reference changes?

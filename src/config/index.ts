@@ -10,16 +10,16 @@ BigNumber.config({
 export const ESC_BLOCK_TIME = 5
 
 export const BASE_BSC_SCAN_URLS = {
-  [ChainId.MAINNET]: 'https://esc.elastos.io',
+  [ChainId.MAINNET]: 'https://eth.elastos.io',
   [ChainId.TESTNET]: 'https://eth-testnet.elastos.io',
 }
 
 export const GLIDE_PER_BLOCK = new BigNumber(3)
 export const BLOCKS_PER_YEAR = new BigNumber((60 / ESC_BLOCK_TIME) * 60 * 24 * 365) // 6307200
 // export const GLIDE_PER_YEAR = GLIDE_PER_BLOCK.times(BLOCKS_PER_YEAR)
-export const GLIDE_START_BLOCK = new BigNumber(9255555);
-export const GLIDE_BONUS_PERIOD = new BigNumber(1572480);
-export const GLIDE_REDUCTION_PERIOD = new BigNumber(3144960);
+export const GLIDE_START_BLOCK = new BigNumber(9255555)
+export const GLIDE_BONUS_PERIOD = new BigNumber(1572480)
+export const GLIDE_REDUCTION_PERIOD = new BigNumber(3144960)
 export const BASE_URL = 'https://glidefinance.io'
 export const BASE_ADD_LIQUIDITY_URL = `${BASE_URL}/add`
 export const BASE_LIQUIDITY_POOL_URL = `${BASE_URL}/pool`
