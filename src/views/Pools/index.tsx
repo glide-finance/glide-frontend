@@ -13,8 +13,10 @@ import {
   usePools,
   useFetchCakeVault,
   useFetchDividendPool,
+  useFetchPhantzPool,
   useCakeVault,
   useDividendPool,
+  usePhantzPool,
 } from 'state/pools/hooks'
 // import tokens from 'config/constants/tokens'
 import { usePollFarmsData } from 'state/farms/hooks'
@@ -30,6 +32,7 @@ import Loading from 'components/Loading'
 import PoolCard from './components/PoolCard'
 import CakeVaultCard from './components/CakeVaultCard'
 import DividendPoolCard from './components/DividendPoolCard'
+import PhantzPoolCard from './components/PhantzPoolCard'
 import PoolTabButtons from './components/PoolTabButtons'
 import BountyCard from './components/BountyCard'
 // import HelpButton from './components/HelpButton'
@@ -112,17 +115,28 @@ const Pools: React.FC = () => {
   const {
     userData: { stakedBalance },
   } = useDividendPool()
+  const {
+    userData: { phantzStakedBalance },
+  } = usePhantzPool()
 
   const accountHasVaultShares = userShares && userShares.gt(0)
   const accountHasDividendPoolStake = stakedBalance && stakedBalance.gt(0)
+  const accountHasPhantzPoolStake = phantzStakedBalance && phantzStakedBalance.gt(0)
   // const performanceFeeAsDecimal = performanceFee && performanceFee / 100
 
   const pools = useMemo(() => {
     const cakePool = poolsWithoutAutoVault.find((pool) => pool.sousId === 0)
     const dividendPool = poolsWithoutAutoVault.find((pool) => pool.sousId === 1)
+    const phantzPool = poolsWithoutAutoVault.find((pool) => pool.sousId === 1)
     const cakeAutoVault = { ...cakePool, isAutoVault: true }
     const cakeDividendPool = { ...dividendPool, isDividendPool: true }
-    return [cakeDividendPool, ...poolsWithoutAutoVault.filter((pool) => pool.sousId !== 1), cakeAutoVault]
+    const cakePhantzPool = { ...phantzPool, isPhantzPool: true }
+    return [
+      cakeDividendPool,
+      ...poolsWithoutAutoVault.filter((pool) => pool.sousId !== 1),
+      cakeAutoVault,
+      cakePhantzPool,
+    ]
   }, [poolsWithoutAutoVault])
 
   // TODO aren't arrays in dep array checked just by reference, i.e. it will rerender every time reference changes?
@@ -136,9 +150,12 @@ const Pools: React.FC = () => {
         if (pool.isDividendPool) {
           return accountHasDividendPoolStake
         }
+        if (pool.isPhantzPool) {
+          return accountHasPhantzPoolStake
+        }
         return pool.userData && new BigNumber(pool.userData.stakedBalance).isGreaterThan(0)
       }),
-    [finishedPools, accountHasVaultShares, accountHasDividendPoolStake],
+    [finishedPools, accountHasVaultShares, accountHasDividendPoolStake, accountHasPhantzPoolStake],
   )
   const stakedOnlyOpenPools = useMemo(
     () =>
@@ -149,14 +166,18 @@ const Pools: React.FC = () => {
         if (pool.isDividendPool) {
           return accountHasDividendPoolStake
         }
+        if (pool.isPhantzPool) {
+          return accountHasPhantzPoolStake
+        }
         return pool.userData && new BigNumber(pool.userData.stakedBalance).isGreaterThan(0)
       }),
-    [openPools, accountHasVaultShares, accountHasDividendPoolStake],
+    [openPools, accountHasVaultShares, accountHasDividendPoolStake, accountHasPhantzPoolStake],
   )
   const hasStakeInFinishedPools = stakedOnlyFinishedPools.length > 0
 
   usePollFarmsData()
   useFetchDividendPool()
+  useFetchPhantzPool()
   useFetchCakeVault()
   useFetchPublicPoolsData()
 
@@ -257,6 +278,8 @@ const Pools: React.FC = () => {
           <DividendPoolCard key="dividend-pool" pool={pool} showStakedOnly={stakedOnly} />
         ) : pool.isAutoVault ? (
           <CakeVaultCard key="auto-cake" pool={pool} showStakedOnly={stakedOnly} />
+        ) : pool.isPhantzPool ? (
+          <PhantzPoolCard key="phantz-pool" pool={pool} showStakedOnly={stakedOnly} />
         ) : (
           <PoolCard key={pool.sousId} pool={pool} account={account} />
         ),

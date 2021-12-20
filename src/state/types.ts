@@ -2,7 +2,17 @@ import { ThunkAction } from 'redux-thunk'
 import { AnyAction } from '@reduxjs/toolkit'
 import BigNumber from 'bignumber.js'
 import { ethers } from 'ethers'
-import { CampaignType, FarmConfig, BridgeConfig, LotteryStatus, LotteryTicket, Nft, PoolConfig, CommunityConfig, Team } from 'config/constants/types'
+import {
+  CampaignType,
+  FarmConfig,
+  BridgeConfig,
+  LotteryStatus,
+  LotteryTicket,
+  Nft,
+  PoolConfig,
+  CommunityConfig,
+  Team,
+} from 'config/constants/types'
 
 export type AppThunk<ReturnType = void> = ThunkAction<ReturnType, State, unknown, AnyAction>
 
@@ -49,6 +59,7 @@ export interface Pool extends PoolConfig {
   earningTokenPrice?: number
   isAutoVault?: boolean
   isDividendPool?: boolean
+  isPhantzPool?: boolean
   userData?: {
     allowance: BigNumber
     stakingTokenBalance: BigNumber
@@ -131,6 +142,14 @@ export interface DividendUser {
   pendingReward: BigNumber
 }
 
+export interface PhantzUser {
+  isLoading: boolean
+  allowance: BigNumber
+  stakingTokenBalance: BigNumber
+  phantzStakedBalance: BigNumber
+  pendingReward: BigNumber
+}
+
 export interface CakeVault {
   totalShares?: string
   pricePerFullShare?: string
@@ -155,10 +174,25 @@ export interface DividendPool {
   userData?: DividendUser
 }
 
+export interface PhantzPool {
+  totalStaked?: BigNumber
+  stakingLimit?: BigNumber
+  startBlock?: number
+  endBlock?: number
+  apr?: number
+  stakingTokenPrice?: number
+  earningTokenPrice?: number
+  remainingReward?: BigNumber
+  isAutoVault?: boolean
+  isDividendPool?: boolean
+  userData?: PhantzUser
+}
+
 export interface PoolsState {
   data: Pool[]
   cakeVault: CakeVault
   dividendPool: DividendPool
+  phantzPool: PhantzPool
   userDataLoaded: boolean
 }
 

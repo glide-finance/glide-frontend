@@ -122,12 +122,12 @@ export type NftSource = {
   [key in NftType]: {
     address: Address
     identifierKey: string
+    creator: string
   }
 }
 
 export enum NftType {
-  PANCAKE = 'pancake',
-  MIXIE = 'mixie',
+  PHANTZ = 'phantz',
 }
 
 export type Nft = {
@@ -145,6 +145,10 @@ export type Nft = {
   // Used to be "bunnyId". Used when minting NFT
   variationId?: number | string
 }
+
+// export type FeedsNFT = {
+
+// }
 
 export type TeamImages = {
   alt: string

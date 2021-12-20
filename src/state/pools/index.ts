@@ -2,7 +2,17 @@ import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 import BigNumber from 'bignumber.js'
 import poolsConfig from 'config/constants/pools'
 import { BIG_ZERO } from 'utils/bigNumber'
-import { PoolsState, Pool, CakeVault, VaultFees, VaultUser, AppThunk, DividendUser, DividendPool } from 'state/types'
+import {
+  PoolsState,
+  Pool,
+  CakeVault,
+  VaultFees,
+  VaultUser,
+  AppThunk,
+  DividendUser,
+  DividendPool,
+  PhantzUser,
+} from 'state/types'
 import { getPoolApr } from 'utils/apr'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { getAddress } from 'utils/addressHelpers'
@@ -17,6 +27,7 @@ import { fetchPublicVaultData, fetchVaultFees } from './fetchVaultPublic'
 import { fetchDividendPoolData } from './fetchDividendPoolPublic'
 import fetchVaultUser from './fetchVaultUser'
 import fetchDividendPoolUser from './fetchDividendPoolUser'
+import fetchPhantzPoolUser from './fetchPhantzPoolUser'
 import { getTokenPricesFromFarm } from './helpers'
 
 const initialState: PoolsState = {
@@ -53,7 +64,21 @@ const initialState: PoolsState = {
       allowance: null,
       stakingTokenBalance: null,
       stakedBalance: null,
-      pendingReward: null
+      pendingReward: null,
+    },
+  },
+  phantzPool: {
+    totalStaked: null,
+    startBlock: null,
+    apr: null,
+    stakingTokenPrice: null,
+    earningTokenPrice: null,
+    userData: {
+      isLoading: true,
+      allowance: null,
+      stakingTokenBalance: null,
+      phantzStakedBalance: null,
+      pendingReward: null,
     },
   },
 }
@@ -171,10 +196,13 @@ export const fetchCakeVaultPublicData = createAsyncThunk<CakeVault>('cakeVault/f
   return publicVaultInfo
 })
 
-export const fetchDividendPoolPublicData = createAsyncThunk<DividendPool, { farms }>('dividendPool/fetchPublicData', async ({ farms }) => {
-  const publicDividendPoolInfo = await fetchDividendPoolData(farms)
-  return publicDividendPoolInfo
-})
+export const fetchDividendPoolPublicData = createAsyncThunk<DividendPool, { farms }>(
+  'dividendPool/fetchPublicData',
+  async ({ farms }) => {
+    const publicDividendPoolInfo = await fetchDividendPoolData(farms)
+    return publicDividendPoolInfo
+  },
+)
 
 export const fetchCakeVaultFees = createAsyncThunk<VaultFees>('cakeVault/fetchFees', async () => {
   const vaultFees = await fetchVaultFees()
@@ -193,6 +221,14 @@ export const fetchDividendPoolUserData = createAsyncThunk<DividendUser, { accoun
   'dividendPool/fetchUser',
   async ({ account }) => {
     const userData = await fetchDividendPoolUser(account)
+    return userData
+  },
+)
+
+export const fetchPhantzPoolUserData = createAsyncThunk<PhantzUser, { account: string }>(
+  'phantzPool/fetchUser',
+  async ({ account }) => {
+    const userData = await fetchPhantzPoolUser(account)
     return userData
   },
 )
@@ -250,6 +286,12 @@ export const PoolsSlice = createSlice({
       const userData = action.payload
       userData.isLoading = false
       state.dividendPool = { ...state.dividendPool, userData }
+    })
+    // Phantz pool user data
+    builder.addCase(fetchPhantzPoolUserData.fulfilled, (state, action: PayloadAction<PhantzUser>) => {
+      const userData = action.payload
+      userData.isLoading = false
+      state.phantzPool = { ...state.phantzPool, userData }
     })
   },
 })

@@ -18,7 +18,8 @@ export const teamNftMap = {
 const EasterNftCard: React.FC<NftCardProps> = ({ nft, ...props }) => {
   const [isClaimable, setIsClaimable] = useState(false)
   const { account } = useWeb3React()
-  const { profile } = useProfile()
+  // const { profile } = useProfile()
+  const profile = null
   const { identifier } = nft
   const { team } = profile ?? {}
   const easterNftContract = useEasterNftContract()

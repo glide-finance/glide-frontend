@@ -14,7 +14,8 @@ import {
   fetchCakeVaultFees,
   fetchPoolsStakingLimitsAsync,
   fetchDividendPoolPublicData,
-  fetchDividendPoolUserData
+  fetchDividendPoolUserData,
+  fetchPhantzPoolUserData,
 } from '.'
 import { State, Pool } from '../types'
 // import { transformPool, getTokenPricesFromFarm } from './helpers'
@@ -69,7 +70,6 @@ export const usePoolsPublicData = (): { pools: Pool[]; userDataLoaded: boolean }
   }))
   return { pools: pools.map(transformPool), userDataLoaded }
 }
-
 
 export const useFetchCakeVault = () => {
   const { account } = useWeb3React()
@@ -156,10 +156,6 @@ export const useCakeVault = () => {
   }
 }
 
-
-
-
-
 export const useFetchDividendPool = () => {
   const { account } = useWeb3React()
   const { fastRefresh } = useRefresh()
@@ -175,6 +171,23 @@ export const useFetchDividendPool = () => {
 
   useEffect(() => {
     dispatch(fetchDividendPoolUserData({ account }))
+  }, [dispatch, fastRefresh, account])
+}
+
+export const useFetchPhantzPool = () => {
+  const { account } = useWeb3React()
+  const { fastRefresh } = useRefresh()
+  const dispatch = useAppDispatch()
+
+  // const { farms } = useSelector((state: State) => ({
+  //   farms: state.farms.data,
+  // }))
+  // useEffect(() => {
+  //   dispatch(fetchDividendPoolPublicData({ farms }))
+  // }, [dispatch, fastRefresh, farms])
+
+  useEffect(() => {
+    dispatch(fetchPhantzPoolUserData({ account }))
   }, [dispatch, fastRefresh, account])
 }
 
@@ -211,7 +224,7 @@ export const useDividendPool = () => {
       allowance: allowanceAsString,
       stakingTokenBalance: stakingTokenBalanceAsString,
       stakedBalance: stakedBalanceAsString,
-      pendingReward: pendingRewardAsString
+      pendingReward: pendingRewardAsString,
     },
   } = useSelector((state: State) => state.pools.dividendPool)
 
@@ -242,7 +255,7 @@ export const useDividendPool = () => {
   // const glideAtLastUserAction = useMemo(() => {
   //   return new BigNumber(glideAtLastUserActionAsString)
   // }, [glideAtLastUserActionAsString])
-//
+  //
   return {
     totalStaked,
     startBlock,
@@ -254,7 +267,67 @@ export const useDividendPool = () => {
       allowance,
       stakingTokenBalance,
       stakedBalance,
-      pendingReward
+      pendingReward,
+    },
+  }
+}
+
+export const usePhantzPool = () => {
+  const {
+    totalStaked: totalStakedAsString,
+    startBlock,
+    apr,
+    stakingTokenPrice,
+    earningTokenPrice,
+    userData: {
+      isLoading,
+      allowance: allowanceAsString,
+      stakingTokenBalance: stakingTokenBalanceAsString,
+      phantzStakedBalance: phantzStakedBalanceAsString,
+      pendingReward: pendingRewardAsString,
+    },
+  } = useSelector((state: State) => state.pools.phantzPool)
+
+  const totalStaked = useMemo(() => {
+    return new BigNumber(totalStakedAsString)
+  }, [totalStakedAsString])
+
+  const allowance = useMemo(() => {
+    return new BigNumber(allowanceAsString)
+  }, [allowanceAsString])
+
+  const stakingTokenBalance = useMemo(() => {
+    return new BigNumber(stakingTokenBalanceAsString)
+  }, [stakingTokenBalanceAsString])
+
+  const phantzStakedBalance = useMemo(() => {
+    return new BigNumber(phantzStakedBalanceAsString)
+  }, [phantzStakedBalanceAsString])
+
+  const pendingReward = useMemo(() => {
+    return new BigNumber(pendingRewardAsString)
+  }, [pendingRewardAsString])
+
+  // const userShares = useMemo(() => {
+  //   return new BigNumber(userSharesAsString)
+  // }, [userSharesAsString])
+
+  // const glideAtLastUserAction = useMemo(() => {
+  //   return new BigNumber(glideAtLastUserActionAsString)
+  // }, [glideAtLastUserActionAsString])
+  //
+  return {
+    totalStaked,
+    startBlock,
+    apr,
+    stakingTokenPrice,
+    earningTokenPrice,
+    userData: {
+      isLoading,
+      allowance,
+      stakingTokenBalance,
+      phantzStakedBalance,
+      pendingReward,
     },
   }
 }

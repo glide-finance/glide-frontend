@@ -7,7 +7,7 @@ const pools: PoolConfig[] = [
     stakingToken: tokens.glide,
     earningToken: tokens.glide,
     contractAddress: {
-      20: '0x7F5489f77Bb8515DE4e0582B60Eb63A7D9959821'
+      20: '0x7F5489f77Bb8515DE4e0582B60Eb63A7D9959821',
     },
     poolCategory: PoolCategory.CORE,
     harvest: true,
@@ -20,7 +20,7 @@ const pools: PoolConfig[] = [
     stakingToken: tokens.glide,
     earningToken: tokens.ela,
     contractAddress: {
-      20: '0x80f2cF7059336b44a75F00451B81f8d742DD2b94'
+      20: '0x80f2cF7059336b44a75F00451B81f8d742DD2b94',
     },
     poolCategory: PoolCategory.CORE,
     harvest: true,

@@ -10,7 +10,7 @@ import communityReducer from './community'
 // import teamsReducer from './teams'
 // import achievementsReducer from './achievements'
 import blockReducer from './block'
-// import collectiblesReducer from './collectibles'
+import collectiblesReducer from './collectibles'
 // import votingReducer from './voting'
 // import lotteryReducer from './lottery'
 import application from './application/reducer'
@@ -39,7 +39,7 @@ const store = configureStore({
     // predictions: predictionsReducer,
     // profile: profileReducer,
     // teams: teamsReducer,
-    // collectibles: collectiblesReducer,
+    collectibles: collectiblesReducer,
     // voting: votingReducer,
     // lottery: lotteryReducer,
 

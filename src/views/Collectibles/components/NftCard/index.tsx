@@ -53,7 +53,7 @@ const InfoBlock = styled.div`
 const NftCard: React.FC<NftCardProps> = ({ nft, canClaim = false, tokenIds = [], onClaim, refresh }) => {
   const [isOpen, setIsOpen] = useState(false)
   const { t } = useTranslation()
-  const { profile } = useProfile()
+  // const { profile } = useProfile()
   const { identifier, name, description } = nft
   const walletOwnsNft = tokenIds.length > 0
   const Icon = isOpen ? ChevronUpIcon : ChevronDownIcon
@@ -82,11 +82,11 @@ const NftCard: React.FC<NftCardProps> = ({ nft, canClaim = false, tokenIds = [],
               {t('In Wallet')}
             </Tag>
           )}
-          {profile?.nft?.identifier === identifier && (
+          {/* {profile?.nft?.identifier === identifier && (
             <Tag outline variant="success">
               {t('Profile Pic')}
             </Tag>
-          )}
+          )} */}
         </Header>
         {canClaim && (
           <Button width="100%" mt="24px" onClick={onPresentClaimModal}>
