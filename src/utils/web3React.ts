@@ -8,7 +8,7 @@ import { ethers } from 'ethers'
 
 signingMethods.push('wallet_addEthereumChain', 'wallet_watchAsset', 'wallet_switchEthereumChain')
 
-const POLLING_INTERVAL = 8000
+// const POLLING_INTERVAL = 8000
 // const rpcUrl = getNodeUrl()
 // const chainId = parseInt(process.env.REACT_APP_CHAIN_ID, 10)
 
@@ -23,7 +23,7 @@ const walletconnect = new WalletConnectConnector({
   },
   bridge: 'https://walletconnect.elastos.net/v2',
   qrcode: true,
-  pollingInterval: POLLING_INTERVAL,
+  // pollingInterval: POLLING_INTERVAL,
 })
 
 export const connectorsByName: { [connectorName in ConnectorNames]: any } = {
