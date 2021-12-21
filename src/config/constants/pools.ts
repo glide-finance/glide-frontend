@@ -56,31 +56,6 @@ const pools: PoolConfig[] = [
     sortOrder: 999,
     isFinished: false,
   },
-  // {
-  //   sousId: 1000,
-  //   stakingToken: tokens.fildaLP,
-  //   earningToken: tokens.filda,
-  //   contractAddress: {
-  //     20: '0xC31494725feab0094fB0504746Ec6A1c36080d47',
-  //   },
-  //   poolCategory: PoolCategory.COMMUNITY,
-  //   harvest: true,
-  //   sortOrder: 999,
-  //   tokenPerBlock: '0.0000000000000001',
-  // },
-  // {
-  //   sousId: 210,
-  //   stakingToken: tokens.cake,
-  //   earningToken: tokens.pots,
-  //   contractAddress: {
-  //     97: '',
-  //     56: '0xBeDb490970204cb3CC7B0fea94463BeD67d5364D',
-  //   },
-  //   poolCategory: PoolCategory.CORE,
-  //   harvest: true,
-  //   sortOrder: 999,
-  //   tokenPerBlock: '0.0868',
-  // },
 ]
 
 export default pools

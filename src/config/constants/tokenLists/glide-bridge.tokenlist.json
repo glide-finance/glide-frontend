@@ -130,7 +130,7 @@
       "decimals": 18,
       "logoURI": "",
       "origin": 1,
-      "minTx": 150000
+      "minTx": 10000
     },
     {
       "name": "Material on Elastos",
@@ -140,7 +140,7 @@
       "decimals": 18,
       "logoURI": "",
       "origin": 1,
-      "minTx": 150000,
+      "minTx": 10000,
       "fee": 2
     }
   ]
