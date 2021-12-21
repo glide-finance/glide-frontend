@@ -33,7 +33,7 @@ export const connectorsByName: { [connectorName in ConnectorNames]: any } = {
 
 export const getLibrary = (provider): ethers.providers.Web3Provider => {
   const library = new ethers.providers.Web3Provider(provider)
-  library.pollingInterval = POLLING_INTERVAL
+  // library.pollingInterval = POLLING_INTERVAL
   return library
 }
 
