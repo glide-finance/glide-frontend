@@ -29,8 +29,8 @@ export const usePollFarmsData = (includeArchive = false) => {
 
 /**
  * Fetches the "core" farm data used globally
- * 251 = CAKE-BNB LP
- * 252 = USDC-BNB LP
+ * 1 = GLIDE-ELA LP
+ * 2 = USDC-ELA LP
  */
 export const usePollCoreFarmData = () => {
   const dispatch = useAppDispatch()

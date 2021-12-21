@@ -1,9 +1,12 @@
 import { InjectedConnector } from '@web3-react/injected-connector'
 import { WalletConnectConnector } from '@web3-react/walletconnect-connector'
+import { signingMethods } from '@walletconnect/utils'
 // import { BscConnector } from '@binance-chain/bsc-connector'
 import { ConnectorNames } from '@glide-finance/uikit'
 import { ethers } from 'ethers'
 // import getNodeUrl from './getRpcUrl'
+
+signingMethods.push('wallet_addEthereumChain', 'wallet_watchAsset', 'wallet_switchEthereumChain')
 
 const POLLING_INTERVAL = 8000
 // const rpcUrl = getNodeUrl()
