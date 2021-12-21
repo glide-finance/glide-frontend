@@ -3,18 +3,21 @@ import { WalletConnectConnector } from '@web3-react/walletconnect-connector'
 // import { BscConnector } from '@binance-chain/bsc-connector'
 import { ConnectorNames } from '@glide-finance/uikit'
 import { ethers } from 'ethers'
-import getNodeUrl from './getRpcUrl'
+// import getNodeUrl from './getRpcUrl'
 
-const POLLING_INTERVAL = 12000
-const rpcUrl = getNodeUrl()
-const chainId = parseInt(process.env.REACT_APP_CHAIN_ID, 10)
+const POLLING_INTERVAL = 8000
+// const rpcUrl = getNodeUrl()
+// const chainId = parseInt(process.env.REACT_APP_CHAIN_ID, 10)
 
 const injected = new InjectedConnector({ supportedChainIds: [1, 20, 128] })
 
-// console.log(injected)
-
 const walletconnect = new WalletConnectConnector({
-  rpc: { [chainId]: rpcUrl },
+  // rpc: { [chainId]: rpcUrl },
+  rpc: {
+    1: `https://mainnet.infura.io/v3/${process.env.REACT_APP_INFURA_KEY}`,
+    20: 'https://api.elastos.io/eth',
+    128: 'https://http-mainnet.hecochain.com',
+  },
   bridge: 'https://walletconnect.elastos.net/v2',
   qrcode: true,
   pollingInterval: POLLING_INTERVAL,
@@ -22,7 +25,7 @@ const walletconnect = new WalletConnectConnector({
 
 export const connectorsByName: { [connectorName in ConnectorNames]: any } = {
   [ConnectorNames.Injected]: injected,
-  [ConnectorNames.WalletConnect]: walletconnect
+  [ConnectorNames.WalletConnect]: walletconnect,
 }
 
 export const getLibrary = (provider): ethers.providers.Web3Provider => {

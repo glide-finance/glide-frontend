@@ -15,10 +15,10 @@ export const setupNetwork = async (chainId: number, library?: Web3Provider) => {
     // const chainId = parseInt(process.env.REACT_APP_CHAIN_ID, 10)
     const params = BRIDGE_NETWORKS[chainId]
     try {
-      if (chainId === 1 ) {
+      if (chainId === 1) {
         await provider.request({
           method: 'wallet_switchEthereumChain',
-          params: [{"chainId": '0x1'}],
+          params: [{ chainId: '0x1' }],
         })
       } else {
         await provider.request({
