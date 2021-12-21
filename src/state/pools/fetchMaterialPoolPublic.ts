@@ -20,7 +20,7 @@ export const fetchMaterialPoolData = async (farms) => {
     const totalStaked = (await materialPoolContract.poolInfo(0)).currentDepositAmount
     const priceFarm = farms.find((f) => f.pid === 8)
     const { decimals } = priceFarm.quoteToken
-    const earningTokenPrice = priceFarm.quoteToken.usdcPrice
+    const earningTokenPrice = priceFarm.token.usdcPrice
     const stakingTokenPrice = priceFarm.token.usdcPrice
     const apr = getPoolApr(
       stakingTokenPrice,
