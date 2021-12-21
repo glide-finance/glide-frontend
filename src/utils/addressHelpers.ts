@@ -11,6 +11,9 @@ export const getAddress = (address: Address): string => {
 export const getCakeAddress = () => {
   return getAddress(tokens.glide.address)
 }
+export const getMaterialAddress = () => {
+  return getAddress(tokens.mtrl.address)
+}
 export const getMasterChefAddress = () => {
   return getAddress(addresses.masterChef)
 }
@@ -52,6 +55,9 @@ export const getCakeVaultAddress = () => {
 }
 export const getDividendPoolAddress = () => {
   return getAddress(addresses.swapRewardsChef)
+}
+export const getMaterialPoolAddress = () => {
+  return getAddress(addresses.materialChef)
 }
 export const getPredictionsAddress = () => {
   return getAddress(addresses.predictions)

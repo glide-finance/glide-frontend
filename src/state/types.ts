@@ -60,10 +60,12 @@ export interface Pool extends PoolConfig {
   isAutoVault?: boolean
   isDividendPool?: boolean
   isPhantzPool?: boolean
+  isMaterialPool?: boolean
   userData?: {
     allowance: BigNumber
     stakingTokenBalance: BigNumber
     stakedBalance: BigNumber
+    materialStakedBalance?: BigNumber
     pendingReward: BigNumber
   }
 }
@@ -78,6 +80,7 @@ export interface Community extends CommunityConfig {
   earningTokenPrice?: number
   isAutoVault?: boolean
   isDividendPool?: boolean
+  isMaterialPool?: boolean
   userData?: {
     allowance: BigNumber
     stakingTokenBalance: BigNumber
@@ -150,6 +153,14 @@ export interface PhantzUser {
   pendingReward: BigNumber
 }
 
+export interface MaterialUser {
+  isLoading: boolean
+  allowance: BigNumber
+  stakingTokenBalance: BigNumber
+  materialStakedBalance: BigNumber
+  pendingReward: BigNumber
+}
+
 export interface CakeVault {
   totalShares?: string
   pricePerFullShare?: string
@@ -171,6 +182,7 @@ export interface DividendPool {
   remainingReward?: BigNumber
   isAutoVault?: boolean
   isDividendPool?: boolean
+  isMaterialPool?: boolean
   userData?: DividendUser
 }
 
@@ -185,13 +197,30 @@ export interface PhantzPool {
   remainingReward?: BigNumber
   isAutoVault?: boolean
   isDividendPool?: boolean
+  isMaterialPool?: boolean
   userData?: PhantzUser
+}
+
+export interface MaterialPool {
+  totalStaked?: BigNumber
+  stakingLimit?: BigNumber
+  startBlock?: number
+  endBlock?: number
+  apr?: number
+  stakingTokenPrice?: number
+  earningTokenPrice?: number
+  remainingReward?: BigNumber
+  isAutoVault?: boolean
+  isDividendPool?: boolean
+  isMaterialPool?: boolean
+  userData?: MaterialUser
 }
 
 export interface PoolsState {
   data: Pool[]
   cakeVault: CakeVault
   dividendPool: DividendPool
+  materialPool: MaterialPool
   phantzPool: PhantzPool
   userDataLoaded: boolean
 }

@@ -19,6 +19,7 @@ import {
   getErc721Contract,
   getCakeVaultContract,
   getDividendPoolContract,
+  getMaterialPoolContract,
   getPredictionsContract,
   getChainlinkOracleContract,
   getSouschefV2Contract,
@@ -145,6 +146,11 @@ export const useCakeVaultContract = () => {
 export const useDividendPoolContract = () => {
   const { library } = useActiveWeb3React()
   return useMemo(() => getDividendPoolContract(library.getSigner()), [library])
+}
+
+export const useMaterialPoolContract = () => {
+  const { library } = useActiveWeb3React()
+  return useMemo(() => getMaterialPoolContract(library.getSigner()), [library])
 }
 
 export const usePredictionsContract = () => {

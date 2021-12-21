@@ -16,6 +16,7 @@ const pools: PoolConfig[] = [
     isFinished: false,
   },
   {
+    // SwapRewardsChef
     sousId: 1,
     stakingToken: tokens.glide,
     earningToken: tokens.ela,
@@ -25,6 +26,33 @@ const pools: PoolConfig[] = [
     poolCategory: PoolCategory.CORE,
     harvest: true,
     tokenPerBlock: '0',
+    sortOrder: 999,
+    isFinished: false,
+  },
+  {
+    // SwapRewardsChef
+    sousId: 2,
+    stakingToken: tokens.mtrl,
+    earningToken: tokens.mtrl,
+    contractAddress: {
+      20: '0x217da50b13682e74b519b3bb94b586d964e5f3ba',
+    },
+    poolCategory: PoolCategory.CORE,
+    harvest: true,
+    tokenPerBlock: '0',
+    sortOrder: 999,
+    isFinished: false,
+  },
+  {
+    sousId: 3,
+    stakingToken: tokens.glide,
+    earningToken: tokens.mtrl,
+    contractAddress: {
+      20: '0xfb0e4c826BC153a2d7A231a641872a8dFd3b3859',
+    },
+    poolCategory: PoolCategory.COMMUNITY,
+    harvest: true,
+    tokenPerBlock: '0.96450617',
     sortOrder: 999,
     isFinished: false,
   },

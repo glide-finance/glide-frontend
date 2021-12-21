@@ -15,6 +15,8 @@ import {
   fetchPoolsStakingLimitsAsync,
   fetchDividendPoolPublicData,
   fetchDividendPoolUserData,
+  fetchMaterialPoolPublicData,
+  fetchMaterialPoolUserData,
   fetchPhantzPoolUserData,
 } from '.'
 import { State, Pool } from '../types'
@@ -191,27 +193,6 @@ export const useFetchPhantzPool = () => {
   }, [dispatch, fastRefresh, account])
 }
 
-// export const fetchDividendPoolData = async () => {
-//   const glideContract = getCakeContract()
-//   const dividendPoolContract = getDividendPoolContract()
-//   // const blockLimits = await fetchPoolsBlockLimits()
-//   const totalStaked = (await dividendPoolContract.poolInfo(0)).currentDepositAmount.toString()
-//   const startBlock = (await dividendPoolContract.startBlock()).toString()
-
-//   const prices = getTokenPricesFromFarm(getState().farms.data)
-
-//   const apr = 222
-//   const stakingTokenPrice = 0.1
-//   const earningTokenPrice = 3
-//   return {
-//     totalStaked,
-//     startBlock,
-//     apr,
-//     stakingTokenPrice,
-//     earningTokenPrice
-//   }
-// }
-
 export const useDividendPool = () => {
   const {
     totalStaked: totalStakedAsString,
@@ -248,14 +229,6 @@ export const useDividendPool = () => {
     return new BigNumber(pendingRewardAsString)
   }, [pendingRewardAsString])
 
-  // const userShares = useMemo(() => {
-  //   return new BigNumber(userSharesAsString)
-  // }, [userSharesAsString])
-
-  // const glideAtLastUserAction = useMemo(() => {
-  //   return new BigNumber(glideAtLastUserActionAsString)
-  // }, [glideAtLastUserActionAsString])
-  //
   return {
     totalStaked,
     startBlock,
@@ -308,14 +281,6 @@ export const usePhantzPool = () => {
     return new BigNumber(pendingRewardAsString)
   }, [pendingRewardAsString])
 
-  // const userShares = useMemo(() => {
-  //   return new BigNumber(userSharesAsString)
-  // }, [userSharesAsString])
-
-  // const glideAtLastUserAction = useMemo(() => {
-  //   return new BigNumber(glideAtLastUserActionAsString)
-  // }, [glideAtLastUserActionAsString])
-  //
   return {
     totalStaked,
     startBlock,
@@ -327,6 +292,76 @@ export const usePhantzPool = () => {
       allowance,
       stakingTokenBalance,
       phantzStakedBalance,
+      pendingReward,
+    },
+  }
+}
+
+export const useFetchMaterialPool = () => {
+  const { account } = useWeb3React()
+  const { fastRefresh } = useRefresh()
+  const dispatch = useAppDispatch()
+
+  const { farms } = useSelector((state: State) => ({
+    farms: state.farms.data,
+  }))
+
+  useEffect(() => {
+    dispatch(fetchMaterialPoolPublicData({ farms }))
+  }, [dispatch, fastRefresh, farms])
+
+  useEffect(() => {
+    dispatch(fetchMaterialPoolUserData({ account }))
+  }, [dispatch, fastRefresh, account])
+}
+
+export const useMaterialPool = () => {
+  const {
+    totalStaked: totalStakedAsString,
+    startBlock,
+    apr,
+    stakingTokenPrice,
+    earningTokenPrice,
+    userData: {
+      isLoading,
+      allowance: allowanceAsString,
+      stakingTokenBalance: stakingTokenBalanceAsString,
+      materialStakedBalance: materialStakedBalanceAsString,
+      pendingReward: pendingRewardAsString,
+    },
+  } = useSelector((state: State) => state.pools.materialPool)
+
+  const totalStaked = useMemo(() => {
+    return new BigNumber(totalStakedAsString)
+  }, [totalStakedAsString])
+
+  const allowance = useMemo(() => {
+    return new BigNumber(allowanceAsString)
+  }, [allowanceAsString])
+
+  const stakingTokenBalance = useMemo(() => {
+    return new BigNumber(stakingTokenBalanceAsString)
+  }, [stakingTokenBalanceAsString])
+
+  const materialStakedBalance = useMemo(() => {
+    return new BigNumber(materialStakedBalanceAsString)
+  }, [materialStakedBalanceAsString])
+
+  const pendingReward = useMemo(() => {
+    return new BigNumber(pendingRewardAsString)
+  }, [pendingRewardAsString])
+
+  return {
+    totalStaked,
+    startBlock,
+    apr,
+    stakingTokenPrice,
+    earningTokenPrice,
+    userData: {
+      isLoading,
+      allowance,
+      stakingTokenBalance,
+      materialStakedBalance,
       pendingReward,
     },
   }

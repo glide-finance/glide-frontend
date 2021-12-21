@@ -355,8 +355,6 @@ const Bridge: React.FC = () => {
   const isBridgeable =
     correctParams && amountToBridge >= minTransfer && amountToBridge <= bridgeParams.maxTx && !exceedsMax
 
-  console.log(tokenToBridge)
-
   return (
     <>
       <BridgePage>

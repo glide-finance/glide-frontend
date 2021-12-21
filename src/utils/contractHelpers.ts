@@ -11,6 +11,7 @@ import {
   getBunnyFactoryAddress,
   getBunnySpecialAddress,
   getCakeAddress,
+  getMaterialAddress,
   getLotteryV2Address,
   getMasterChefAddress,
   getPointCenterIfoAddress,
@@ -19,6 +20,7 @@ import {
   getEasterNftAddress,
   getCakeVaultAddress,
   getDividendPoolAddress,
+  getMaterialPoolAddress,
   getPredictionsAddress,
   getChainlinkOracleAddress,
   getMulticallAddress,
@@ -38,9 +40,9 @@ import lpTokenAbi from 'config/abi/lpToken.json'
 import cakeAbi from 'config/abi/cake.json'
 import ifoV1Abi from 'config/abi/ifoV1.json'
 import ifoV2Abi from 'config/abi/ifoV2.json'
-import AMB_NATIVE_ERC_ABI from 'config/abi/AMB_NATIVE_ERC_ABI.json';
-import MULTI_AMB_ERC_ERC_ABI from 'config/abi/MULTI_AMB_ERC_ERC_ABI.json';
-import ERC677_ABI from 'config/abi/ERC677_ABI.json';
+import AMB_NATIVE_ERC_ABI from 'config/abi/AMB_NATIVE_ERC_ABI.json'
+import MULTI_AMB_ERC_ERC_ABI from 'config/abi/MULTI_AMB_ERC_ERC_ABI.json'
+import ERC677_ABI from 'config/abi/ERC677_ABI.json'
 import pointCenterIfo from 'config/abi/pointCenterIfo.json'
 import lotteryV2Abi from 'config/abi/lotteryV2.json'
 import masterChef from 'config/abi/masterchef.json'
@@ -52,6 +54,7 @@ import tradingCompetitionAbi from 'config/abi/tradingCompetition.json'
 import easterNftAbi from 'config/abi/easterNft.json'
 import cakeVaultAbi from 'config/abi/cakeVault.json'
 import dividendPoolAbi from 'config/abi/dividendPool.json'
+import materialPoolAbi from 'config/abi/materialPool.json'
 import predictionsAbi from 'config/abi/predictions.json'
 import chainlinkOracleAbi from 'config/abi/chainlinkOracle.json'
 import MultiCallAbi from 'config/abi/Multicall.json'
@@ -81,13 +84,13 @@ export const getIfoV2Contract = (address: string, signer?: ethers.Signer | ether
   return getContract(ifoV2Abi, address, signer)
 }
 export const getNativeSourceMediator = (address: string, signer?: ethers.Signer | ethers.providers.Provider) => {
-  return getContract(AMB_NATIVE_ERC_ABI, address, signer);
+  return getContract(AMB_NATIVE_ERC_ABI, address, signer)
 }
 export const getTokenSourceMediator = (address: string, signer?: ethers.Signer | ethers.providers.Provider) => {
-  return getContract(MULTI_AMB_ERC_ERC_ABI, address, signer);
+  return getContract(MULTI_AMB_ERC_ERC_ABI, address, signer)
 }
 export const getErc677Contract = (address: string, signer?: ethers.Signer | ethers.providers.Provider) => {
-  return getContract(ERC677_ABI, address, signer);
+  return getContract(ERC677_ABI, address, signer)
 }
 export const getCommunityContract = (id: number, signer?: ethers.Signer | ethers.providers.Provider) => {
   const config = communityConfig.find((pool) => pool.sousId === id)
@@ -108,6 +111,9 @@ export const getPointCenterIfoContract = (signer?: ethers.Signer | ethers.provid
 }
 export const getCakeContract = (signer?: ethers.Signer | ethers.providers.Provider) => {
   return getContract(cakeAbi, getCakeAddress(), signer)
+}
+export const getMaterialContract = (signer?: ethers.Signer | ethers.providers.Provider) => {
+  return getContract(cakeAbi, getMaterialAddress(), signer)
 }
 export const getProfileContract = (signer?: ethers.Signer | ethers.providers.Provider) => {
   return getContract(profileABI, getPancakeProfileAddress(), signer)
@@ -141,6 +147,9 @@ export const getCakeVaultContract = (signer?: ethers.Signer | ethers.providers.P
 }
 export const getDividendPoolContract = (signer?: ethers.Signer | ethers.providers.Provider) => {
   return getContract(dividendPoolAbi, getDividendPoolAddress(), signer)
+}
+export const getMaterialPoolContract = (signer?: ethers.Signer | ethers.providers.Provider) => {
+  return getContract(materialPoolAbi, getMaterialPoolAddress(), signer)
 }
 export const getPredictionsContract = (signer?: ethers.Signer | ethers.providers.Provider) => {
   return getContract(predictionsAbi, getPredictionsAddress(), signer) as PredictionsContract

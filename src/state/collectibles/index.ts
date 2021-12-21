@@ -14,7 +14,7 @@ const initialState: CollectiblesState = {
   data: {},
 }
 
-type NftSourceItem = [number, string]
+// type NftSourceItem = [number, string]
 
 // Thunks
 // export const fetchWalletNfts = createAsyncThunk<NftSourceItem[], string>(

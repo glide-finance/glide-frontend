@@ -11,6 +11,8 @@ import {
   AppThunk,
   DividendUser,
   DividendPool,
+  MaterialUser,
+  MaterialPool,
   PhantzUser,
 } from 'state/types'
 import { getPoolApr } from 'utils/apr'
@@ -25,8 +27,10 @@ import {
 } from './fetchPoolsUser'
 import { fetchPublicVaultData, fetchVaultFees } from './fetchVaultPublic'
 import { fetchDividendPoolData } from './fetchDividendPoolPublic'
+import { fetchMaterialPoolData } from './fetchMaterialPoolPublic'
 import fetchVaultUser from './fetchVaultUser'
 import fetchDividendPoolUser from './fetchDividendPoolUser'
+import fetchMaterialPoolUser from './fetchMaterialPoolUser'
 import fetchPhantzPoolUser from './fetchPhantzPoolUser'
 import { getTokenPricesFromFarm } from './helpers'
 
@@ -64,6 +68,20 @@ const initialState: PoolsState = {
       allowance: null,
       stakingTokenBalance: null,
       stakedBalance: null,
+      pendingReward: null,
+    },
+  },
+  materialPool: {
+    totalStaked: null,
+    startBlock: null,
+    apr: null,
+    stakingTokenPrice: null,
+    earningTokenPrice: null,
+    userData: {
+      isLoading: true,
+      allowance: null,
+      stakingTokenBalance: null,
+      materialStakedBalance: null,
       pendingReward: null,
     },
   },
@@ -204,6 +222,14 @@ export const fetchDividendPoolPublicData = createAsyncThunk<DividendPool, { farm
   },
 )
 
+export const fetchMaterialPoolPublicData = createAsyncThunk<MaterialPool, { farms }>(
+  'materialPool/fetchPublicData',
+  async ({ farms }) => {
+    const publicMaterialPoolInfo = await fetchMaterialPoolData(farms)
+    return publicMaterialPoolInfo
+  },
+)
+
 export const fetchCakeVaultFees = createAsyncThunk<VaultFees>('cakeVault/fetchFees', async () => {
   const vaultFees = await fetchVaultFees()
   return vaultFees
@@ -221,6 +247,14 @@ export const fetchDividendPoolUserData = createAsyncThunk<DividendUser, { accoun
   'dividendPool/fetchUser',
   async ({ account }) => {
     const userData = await fetchDividendPoolUser(account)
+    return userData
+  },
+)
+
+export const fetchMaterialPoolUserData = createAsyncThunk<MaterialUser, { account: string }>(
+  'materialPool/fetchUser',
+  async ({ account }) => {
+    const userData = await fetchMaterialPoolUser(account)
     return userData
   },
 )
@@ -286,6 +320,16 @@ export const PoolsSlice = createSlice({
       const userData = action.payload
       userData.isLoading = false
       state.dividendPool = { ...state.dividendPool, userData }
+    })
+    // Material pool public data that updates frequently
+    builder.addCase(fetchMaterialPoolPublicData.fulfilled, (state, action: PayloadAction<MaterialPool>) => {
+      state.materialPool = { ...state.materialPool, ...action.payload }
+    })
+    // Material pool user data
+    builder.addCase(fetchMaterialPoolUserData.fulfilled, (state, action: PayloadAction<MaterialUser>) => {
+      const userData = action.payload
+      userData.isLoading = false
+      state.materialPool = { ...state.materialPool, userData }
     })
     // Phantz pool user data
     builder.addCase(fetchPhantzPoolUserData.fulfilled, (state, action: PayloadAction<PhantzUser>) => {

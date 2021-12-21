@@ -8,16 +8,20 @@ export default {
   cakeVault: {
     20: '0xBe224bb2EFe1aE7437Ab428557d3054E63033dA9',
   },
+  materialChef: {
+    20: '0x217da50b13682e74b519b3bb94b586d964e5f3ba',
+  },
   sousChef: {
     20: '0x9999999999999999999999999999999999999999',
   },
   lotteryV2: {
     20: '0x9999999999999999999999999999999999999999', // avoid ENS errors
   },
-  multiCall: { // Multicall2
+  multiCall: {
+    // Multicall2
     20: '0x0555fcE4231A25AcB648284bfecf6B85e1AF6Bd4',
     128: '0x0555fcE4231A25AcB648284bfecf6B85e1AF6Bd4',
-    1: '0x0555fcE4231A25AcB648284bfecf6B85e1AF6Bd4'
+    1: '0x0555fcE4231A25AcB648284bfecf6B85e1AF6Bd4',
   },
   pancakeProfile: {
     20: '0x9999999999999999999999999999999999999999',
