@@ -86,16 +86,9 @@ const initialState: PoolsState = {
     },
   },
   phantzPool: {
-    totalStaked: null,
-    startBlock: null,
-    apr: null,
-    stakingTokenPrice: null,
     earningTokenPrice: null,
     userData: {
       isLoading: true,
-      allowance: null,
-      stakingTokenBalance: null,
-      phantzStakedBalance: null,
       pendingReward: null,
     },
   },

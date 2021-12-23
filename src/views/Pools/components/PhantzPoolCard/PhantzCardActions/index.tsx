@@ -4,10 +4,7 @@ import styled from 'styled-components'
 import { BIG_ZERO } from 'utils/bigNumber'
 import { Flex, Text, Box } from '@glide-finance/uikit'
 import { useTranslation } from 'contexts/Localization'
-import { PoolCategory } from 'config/constants/types'
 import { Pool } from 'state/types'
-import ApprovalAction from './ApprovalAction'
-import StakeActions from './StakeActions'
 import HarvestActions from './HarvestActions'
 
 const InlineText = styled(Text)`
@@ -19,17 +16,16 @@ interface CardActionsProps {
   stakedBalance: BigNumber
 }
 
-const DividendCardActions: React.FC<CardActionsProps> = ({ pool, stakedBalance }) => {
-  const { sousId, stakingToken, earningToken, harvest, poolCategory, earningTokenPrice, userData } = pool
+const PhantzCardActions: React.FC<CardActionsProps> = ({ pool, stakedBalance }) => {
+  const { sousId, earningToken, harvest, earningTokenPrice, userData } = pool
   // Pools using native ELA behave differently than pools using a token
-  const isBnbPool = poolCategory === PoolCategory.BINANCE
   const { t } = useTranslation()
-  const allowance = userData?.allowance ? new BigNumber(userData.allowance) : BIG_ZERO
-  const stakingTokenBalance = userData?.stakingTokenBalance ? new BigNumber(userData.stakingTokenBalance) : BIG_ZERO
+  // const allowance = userData?.allowance ? new BigNumber(userData.allowance) : BIG_ZERO
+  // const stakingTokenBalance = userData?.stakingTokenBalance ? new BigNumber(userData.stakingTokenBalance) : BIG_ZERO
   const earnings = userData?.pendingReward ? new BigNumber(userData.pendingReward) : BIG_ZERO
-  const needsApproval = !allowance.gt(0) && !isBnbPool
+  // const needsApproval = !allowance.gt(0)
 
-  const isStaked = stakedBalance.gt(0)
+  // const isStaked = stakedBalance.gt(0)
   const isLoading = !userData
 
   return (
@@ -50,7 +46,6 @@ const DividendCardActions: React.FC<CardActionsProps> = ({ pool, stakedBalance }
               earningToken={earningToken}
               sousId={sousId}
               earningTokenPrice={earningTokenPrice}
-              isBnbPool={isBnbPool}
               isLoading={isLoading}
             />
           </>
@@ -80,4 +75,4 @@ const DividendCardActions: React.FC<CardActionsProps> = ({ pool, stakedBalance }
   )
 }
 
-export default DividendCardActions
+export default PhantzCardActions

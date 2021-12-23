@@ -13,7 +13,6 @@ interface HarvestActionsProps {
   earningToken: Token
   sousId: number
   earningTokenPrice: number
-  isBnbPool: boolean
   isLoading?: boolean
 }
 
@@ -21,7 +20,6 @@ const HarvestActions: React.FC<HarvestActionsProps> = ({
   earnings,
   earningToken,
   sousId,
-  isBnbPool,
   earningTokenPrice,
   isLoading = false,
 }) => {
@@ -29,9 +27,7 @@ const HarvestActions: React.FC<HarvestActionsProps> = ({
   const { chainId } = useActiveWeb3React()
   const earningTokenBalance = getBalanceNumber(earnings, earningToken.decimals)
   const formattedBalance = formatNumber(earningTokenBalance, 3, 3)
-
   const earningTokenDollarBalance = getBalanceNumber(earnings.multipliedBy(earningTokenPrice), earningToken.decimals)
-
   const fullBalance = getFullDisplayBalance(earnings, earningToken.decimals)
   const hasEarnings = earnings.toNumber() > 0
   const isCompoundPool = sousId === 0
@@ -43,7 +39,6 @@ const HarvestActions: React.FC<HarvestActionsProps> = ({
       earningToken={earningToken}
       earningsDollarValue={earningTokenDollarBalance}
       sousId={sousId}
-      isBnbPool={isBnbPool}
       isCompoundPool={isCompoundPool}
     />,
   )

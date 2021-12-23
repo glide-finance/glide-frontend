@@ -147,9 +147,6 @@ export interface DividendUser {
 
 export interface PhantzUser {
   isLoading: boolean
-  allowance: BigNumber
-  stakingTokenBalance: BigNumber
-  phantzStakedBalance: BigNumber
   pendingReward: BigNumber
 }
 
@@ -187,12 +184,6 @@ export interface DividendPool {
 }
 
 export interface PhantzPool {
-  totalStaked?: BigNumber
-  stakingLimit?: BigNumber
-  startBlock?: number
-  endBlock?: number
-  apr?: number
-  stakingTokenPrice?: number
   earningTokenPrice?: number
   remainingReward?: BigNumber
   isAutoVault?: boolean

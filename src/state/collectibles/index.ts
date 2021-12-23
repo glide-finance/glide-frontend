@@ -25,8 +25,9 @@ export const fetchWalletNfts = createAsyncThunk<any, string>('collectibles/fetch
     const creatorQuery = await fetch(creator).then((response) => response.json())
     const ownedNfts = creatorQuery.data.result.filter(
       // (nft) => nft.holder === '0x2aA33f425602c3c0b6313E71A1C0b981efa18142', // 3+
-      (nft) => nft.holder === '0x4b98efA1840e80962733432809Dd5e0ba941EA8C', // 1
-      // (nft) => nft.holder === account,
+      // (nft) => nft.holder === '0xA52B02C68cB65083788c46F2c08c6935f0aB19C1', // 2
+      // (nft) => nft.holder === '0x4b98efA1840e80962733432809Dd5e0ba941EA8C', // 1
+      (nft) => nft.holder === account,
     )
     const balanceOf = ownedNfts.length
 

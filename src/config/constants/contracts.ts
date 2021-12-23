@@ -11,6 +11,9 @@ export default {
   materialChef: {
     20: '0x217da50b13682e74b519b3bb94b586d964e5f3ba',
   },
+  phantzPool: {
+    20: '0xbe080A1Fee90c12fC7F308590DC56929E407aA6E',
+  },
   sousChef: {
     20: '0x9999999999999999999999999999999999999999',
   },

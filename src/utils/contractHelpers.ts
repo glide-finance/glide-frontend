@@ -20,6 +20,7 @@ import {
   getEasterNftAddress,
   getCakeVaultAddress,
   getDividendPoolAddress,
+  getPhantzPoolAddress,
   getMaterialPoolAddress,
   getPredictionsAddress,
   getChainlinkOracleAddress,
@@ -54,6 +55,7 @@ import tradingCompetitionAbi from 'config/abi/tradingCompetition.json'
 import easterNftAbi from 'config/abi/easterNft.json'
 import cakeVaultAbi from 'config/abi/cakeVault.json'
 import dividendPoolAbi from 'config/abi/dividendPool.json'
+import phantzPoolAbi from 'config/abi/phantzPool.json'
 import materialPoolAbi from 'config/abi/materialPool.json'
 import predictionsAbi from 'config/abi/predictions.json'
 import chainlinkOracleAbi from 'config/abi/chainlinkOracle.json'
@@ -147,6 +149,9 @@ export const getCakeVaultContract = (signer?: ethers.Signer | ethers.providers.P
 }
 export const getDividendPoolContract = (signer?: ethers.Signer | ethers.providers.Provider) => {
   return getContract(dividendPoolAbi, getDividendPoolAddress(), signer)
+}
+export const getPhantzPoolContract = (signer?: ethers.Signer | ethers.providers.Provider) => {
+  return getContract(phantzPoolAbi, getPhantzPoolAddress(), signer)
 }
 export const getMaterialPoolContract = (signer?: ethers.Signer | ethers.providers.Provider) => {
   return getContract(materialPoolAbi, getMaterialPoolAddress(), signer)

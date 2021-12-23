@@ -56,6 +56,9 @@ export const getCakeVaultAddress = () => {
 export const getDividendPoolAddress = () => {
   return getAddress(addresses.swapRewardsChef)
 }
+export const getPhantzPoolAddress = () => {
+  return getAddress(addresses.phantzPool)
+}
 export const getMaterialPoolAddress = () => {
   return getAddress(addresses.materialChef)
 }

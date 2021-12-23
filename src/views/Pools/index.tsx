@@ -18,7 +18,6 @@ import {
   useCakeVault,
   useDividendPool,
   useMaterialPool,
-  usePhantzPool,
 } from 'state/pools/hooks'
 // import tokens from 'config/constants/tokens'
 import { usePollFarmsData } from 'state/farms/hooks'
@@ -117,21 +116,18 @@ const Pools: React.FC = () => {
   const {
     userData: { materialStakedBalance },
   } = useMaterialPool()
-  const {
-    userData: { phantzStakedBalance },
-  } = usePhantzPool()
 
   const accountHasVaultShares = userShares && userShares.gt(0)
   const accountHasDividendPoolStake = stakedBalance && stakedBalance.gt(0)
   const accountHasMaterialPoolStake = materialStakedBalance && materialStakedBalance.gt(0)
-  const accountHasPhantzPoolStake = phantzStakedBalance && phantzStakedBalance.gt(0)
+  const accountHasPhantzPoolStake = true // deal with this
   // const performanceFeeAsDecimal = performanceFee && performanceFee / 100
 
   const pools = useMemo(() => {
     const cakePool = poolsWithoutAutoVault.find((pool) => pool.sousId === 0)
     const dividendPool = poolsWithoutAutoVault.find((pool) => pool.sousId === 1)
     const materialPool = poolsWithoutAutoVault.find((pool) => pool.sousId === 2)
-    const phantzPool = poolsWithoutAutoVault.find((pool) => pool.sousId === 1)
+    const phantzPool = poolsWithoutAutoVault.find((pool) => pool.sousId === 3)
     const cakeAutoVault = { ...cakePool, isAutoVault: true }
     const cakeDividendPool = { ...dividendPool, isDividendPool: true }
     const materialStakingPool = { ...materialPool, isMaterialPool: true }
@@ -139,8 +135,9 @@ const Pools: React.FC = () => {
     return [
       cakeDividendPool,
       cakeAutoVault,
-      ...poolsWithoutAutoVault.filter((pool) => pool.sousId !== 1 && pool.sousId !== 2),
+      ...poolsWithoutAutoVault.filter((pool) => pool.sousId !== 1 && pool.sousId !== 2 && pool.sousId !== 3),
       materialStakingPool,
+      stakePhantzPool,
     ]
   }, [poolsWithoutAutoVault])
 

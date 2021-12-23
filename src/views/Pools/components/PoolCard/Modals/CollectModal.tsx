@@ -26,7 +26,7 @@ interface CollectModalProps {
   earningToken: Token
   earningsDollarValue: number
   sousId: number
-  isBnbPool: boolean
+  isBnbPool?: boolean
   isCompoundPool?: boolean
   onDismiss?: () => void
 }

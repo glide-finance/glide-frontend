@@ -176,23 +176,6 @@ export const useFetchDividendPool = () => {
   }, [dispatch, fastRefresh, account])
 }
 
-export const useFetchPhantzPool = () => {
-  const { account } = useWeb3React()
-  const { fastRefresh } = useRefresh()
-  const dispatch = useAppDispatch()
-
-  // const { farms } = useSelector((state: State) => ({
-  //   farms: state.farms.data,
-  // }))
-  // useEffect(() => {
-  //   dispatch(fetchDividendPoolPublicData({ farms }))
-  // }, [dispatch, fastRefresh, farms])
-
-  useEffect(() => {
-    dispatch(fetchPhantzPoolUserData({ account }))
-  }, [dispatch, fastRefresh, account])
-}
-
 export const useDividendPool = () => {
   const {
     totalStaked: totalStakedAsString,
@@ -240,58 +223,6 @@ export const useDividendPool = () => {
       allowance,
       stakingTokenBalance,
       stakedBalance,
-      pendingReward,
-    },
-  }
-}
-
-export const usePhantzPool = () => {
-  const {
-    totalStaked: totalStakedAsString,
-    startBlock,
-    apr,
-    stakingTokenPrice,
-    earningTokenPrice,
-    userData: {
-      isLoading,
-      allowance: allowanceAsString,
-      stakingTokenBalance: stakingTokenBalanceAsString,
-      phantzStakedBalance: phantzStakedBalanceAsString,
-      pendingReward: pendingRewardAsString,
-    },
-  } = useSelector((state: State) => state.pools.phantzPool)
-
-  const totalStaked = useMemo(() => {
-    return new BigNumber(totalStakedAsString)
-  }, [totalStakedAsString])
-
-  const allowance = useMemo(() => {
-    return new BigNumber(allowanceAsString)
-  }, [allowanceAsString])
-
-  const stakingTokenBalance = useMemo(() => {
-    return new BigNumber(stakingTokenBalanceAsString)
-  }, [stakingTokenBalanceAsString])
-
-  const phantzStakedBalance = useMemo(() => {
-    return new BigNumber(phantzStakedBalanceAsString)
-  }, [phantzStakedBalanceAsString])
-
-  const pendingReward = useMemo(() => {
-    return new BigNumber(pendingRewardAsString)
-  }, [pendingRewardAsString])
-
-  return {
-    totalStaked,
-    startBlock,
-    apr,
-    stakingTokenPrice,
-    earningTokenPrice,
-    userData: {
-      isLoading,
-      allowance,
-      stakingTokenBalance,
-      phantzStakedBalance,
       pendingReward,
     },
   }
@@ -362,6 +293,35 @@ export const useMaterialPool = () => {
       allowance,
       stakingTokenBalance,
       materialStakedBalance,
+      pendingReward,
+    },
+  }
+}
+
+export const useFetchPhantzPool = () => {
+  const { account } = useWeb3React()
+  const { fastRefresh } = useRefresh()
+  const dispatch = useAppDispatch()
+
+  useEffect(() => {
+    dispatch(fetchPhantzPoolUserData({ account }))
+  }, [dispatch, fastRefresh, account])
+}
+
+export const usePhantzPool = () => {
+  const {
+    earningTokenPrice,
+    userData: { isLoading, pendingReward: pendingRewardAsString },
+  } = useSelector((state: State) => state.pools.phantzPool)
+
+  const pendingReward = useMemo(() => {
+    return new BigNumber(pendingRewardAsString)
+  }, [pendingRewardAsString])
+
+  return {
+    earningTokenPrice,
+    userData: {
+      isLoading,
       pendingReward,
     },
   }

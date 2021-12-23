@@ -1,31 +1,25 @@
-// import BigNumber from 'bignumber.js'
-// import { getCakeVaultContract } from 'utils/contractHelpers'
-import { getDividendPoolContract, getCakeContract } from 'utils/contractHelpers'
+import BigNumber from 'bignumber.js'
+import { getPhantzPoolContract, getCakeContract } from 'utils/contractHelpers'
 
-// const cakeVaultContract = getCakeVaultContract()
-const dividendPoolContract = getDividendPoolContract()
+const phantzPoolContract = getPhantzPoolContract()
 const glideContract = getCakeContract()
 
 const fetchPhantzPoolUser = async (account: string) => {
   try {
-    const glideAllowance = (await glideContract.allowance(account, dividendPoolContract.address)).toString()
-    const glideBalance = (await glideContract.balanceOf(account)).toString()
-    const glideStaked = (await dividendPoolContract.userInfo(account))[0].toString()
-    const glidePending = (await dividendPoolContract.pendingRewards(account)).toString()
+    // const glideAllowance = (await glideContract.allowance(account, phantzPoolContract.address)).toString()
+    // const glideBalance = (await glideContract.balanceOf(account)).toString()
+    // const glideStaked = (await glideContract.balanceOf(account)).toString()
+    // const glideAllowance = '0'
+    // const glideBalance = '0'
+    const glidePending = (await phantzPoolContract.glideRewards(account)).toString()
 
     return {
       isLoading: false,
-      allowance: glideAllowance,
-      stakingTokenBalance: glideBalance,
-      phantzStakedBalance: glideStaked,
       pendingReward: glidePending,
     }
   } catch (error) {
     return {
       isLoading: true,
-      allowance: null,
-      stakingTokenBalance: null,
-      phantzStakedBalance: null,
       pendingReward: null,
     }
   }
