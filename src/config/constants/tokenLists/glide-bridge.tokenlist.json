@@ -140,7 +140,7 @@
       "decimals": 18,
       "logoURI": "",
       "origin": 1,
-      "minTx": 10000,
+      "minTx": 100000,
       "fee": 2
     }
   ]

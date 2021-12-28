@@ -66,6 +66,7 @@ const useAuth = () => {
       connectorsByName.walletconnect.close()
       connectorsByName.walletconnect.walletConnectProvider = null
     }
+    window.localStorage.removeItem("walletconnect")
   }, [deactivate, dispatch])
 
   return { login, logout }

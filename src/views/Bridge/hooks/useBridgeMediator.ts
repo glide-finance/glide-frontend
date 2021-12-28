@@ -73,7 +73,7 @@ export const coinTransfer = async function(currency: any, request: any, amount: 
 
         const receiptToken = await tokenSourceMediator["relayTokens(address,address,uint256)"](currency.address, recipient, value, {
             from: from,
-            gasPrice: gasPrice,
+            gasPrice: gasPrice
         });
 
         await receiptToken.wait(1);
