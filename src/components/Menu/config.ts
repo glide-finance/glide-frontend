@@ -56,6 +56,13 @@ const config: (t: ContextApi['t']) => ConfigMenuItemsType[] = (t) => [
     showItemsOnMobile: false,
   },
   {
+    label: t('Governance'),
+    icon: 'Vote',
+    href: 'https://snapshot.org/#/glidefinance.eth',
+    showItemsOnMobile: false,
+    showOnMobile: false,
+  },
+  {
     label: '',
     href: '/info',
     icon: 'More',
@@ -75,8 +82,18 @@ const config: (t: ContextApi['t']) => ConfigMenuItemsType[] = (t) => [
         type: DropdownMenuItemType.DIVIDER,
       },
       {
+        label: t('Code'),
+        href: 'https://github.com/glide-finance',
+        type: DropdownMenuItemType.EXTERNAL_LINK,
+      },
+      {
         label: t('Docs & Help'),
         href: 'https://docs.glidefinance.io',
+        type: DropdownMenuItemType.EXTERNAL_LINK,
+      },
+      {
+        label: t('Governance'),
+        href: 'https://snapshot.org/#/glidefinance.eth',
         type: DropdownMenuItemType.EXTERNAL_LINK,
       },
       {
@@ -85,11 +102,6 @@ const config: (t: ContextApi['t']) => ConfigMenuItemsType[] = (t) => [
         href: '/community',
         showItemsOnMobile: false,
       },
-      // {
-      //   label: t('Blog'),
-      //   href: 'https://medium.com/glide-finance',
-      //   type: DropdownMenuItemType.EXTERNAL_LINK,
-      // }
     ],
   },
 ]
