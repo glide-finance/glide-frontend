@@ -31,9 +31,7 @@ export const useCheckMediatorApprovalStatus = (currency, request, amount, revers
       try {
         const response = await tokenContract.allowance(account, mediator)
         const currentAllowance = new BigNumber(response.toString())
-        // console.log(currentAllowance.toString())
         const value = new BigNumber(parseValue(amount, currency.decimals).toString())
-        // console.log(value.toString())
         setNeedsApproval(!currentAllowance.gt(value))
       } catch (error) {
         setNeedsApproval(false)
