@@ -91,6 +91,14 @@ const tokens = {
     decimals: 18,
     projectLink: 'https://material.network',
   },
+  elk: {
+    symbol: 'ELK',
+    address: {
+      20: '0xE1C110E1B1b4A1deD0cAf3E42BfBdbB7b5d7cE1C',
+    },
+    decimals: 18,
+    projectLink: 'https://elk.finance/',
+  },
   // Meme zone
   rinu: {
     symbol: 'RINU',

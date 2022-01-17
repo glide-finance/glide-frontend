@@ -86,6 +86,15 @@ const farms: FarmConfig[] = [
     token: tokens.mtrl,
     quoteToken: tokens.wela,
   },
+  {
+    pid: 9,
+    lpSymbol: 'ELK-GLIDE LP',
+    lpAddresses: {
+      20: '0x707A778354639EaAE03E739d2D5E8Db96CA30bF7',
+    },
+    token: tokens.elk,
+    quoteToken: tokens.glide,
+  },
 ]
 
 export default farms
