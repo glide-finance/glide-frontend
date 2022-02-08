@@ -167,7 +167,15 @@ const PhantzPoolCard: React.FC<PhantzPoolProps> = ({ pool, showStakedOnly }) => 
               tokenIds.slice(0, phantzToShow).map((token) => {
                 return (
                   <Flex key={token.name} flexDirection="column" alignItems="center" justifyContent="center">
-                    <PhantzCutout src={`https://ipfs0.trinity-feeds.app/ipfs/${token.asset.split(':')[2]}`} alt="" />
+                    {/* <PhantzCutout src={`https://ipfs0.trinity-feeds.app/ipfs/${token.asset.split(':')[2]}`} alt="" /> */}
+                    <PhantzCutout
+                      src={
+                        token.version !== '1'
+                          ? `https://ipfs0.trinity-feeds.app/ipfs/${token.data.image.split(':')[2]}`
+                          : `https://ipfs0.trinity-feeds.app/ipfs/${token.asset.split(':')[2]}`
+                      }
+                      alt=""
+                    />
                     <Text>{token.name}</Text>
                   </Flex>
                 )
