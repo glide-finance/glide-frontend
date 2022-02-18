@@ -108,16 +108,19 @@ const IndexMap = {
   0: 'Elastos',
   1: 'Ethereum',
   2: 'Heco',
+  3: 'Binance',
 }
 const ChainMap = {
   0: 20,
   1: 1,
   2: 128,
+  3: 56,
 }
 const SymbolMap = {
   20: 'ELA',
   1: 'ETH',
   128: 'HT',
+  56: 'BNB',
 }
 
 function currencyKey(currency: Currency): string {
@@ -152,6 +155,11 @@ const Bridge: React.FC = () => {
         setDestinationIndex(0)
         setupNetwork(128, library)
         break
+      case 'binance':
+        setOriginIndex(3)
+        setDestinationIndex(0)
+        setupNetwork(56, library)
+        break
       default:
         setOriginIndex(2)
         setDestinationIndex(0)
@@ -174,6 +182,11 @@ const Bridge: React.FC = () => {
         break
       case 'heco':
         setDestinationIndex(2)
+        if (originIndex === 0) return
+        if (originIndex === 1 || originIndex === 2) setOriginIndex(0)
+        break
+      case 'binance':
+        setDestinationIndex(3)
         if (originIndex === 0) return
         if (originIndex === 1 || originIndex === 2) setOriginIndex(0)
         break
@@ -295,7 +308,10 @@ const Bridge: React.FC = () => {
   const bridgeSelected = `${ChainMap[originIndex]}_${ChainMap[destinationIndex]}`
   const bridgeDestinationSelected = `${ChainMap[destinationIndex]}_${ChainMap[originIndex]}`
   const bridgeType = tokenToBridge
-    ? tokenToBridge.symbol === 'ELA' || tokenToBridge.symbol === 'ETH' || tokenToBridge.symbol === 'HT'
+    ? tokenToBridge.symbol === 'ELA' ||
+      tokenToBridge.symbol === 'ETH' ||
+      tokenToBridge.symbol === 'HT' ||
+      tokenToBridge.symbol === 'BNB'
       ? 'native'
       : 'token'
     : undefined // popsicle
@@ -335,6 +351,8 @@ const Bridge: React.FC = () => {
     ChainMap[originIndex],
     ChainMap[destinationIndex],
   )
+
+  // const txLmits = useCheckTxLimits()
 
   let minTransfer = correctParams ? bridgeParams.minTx : '0'
   let feePercent = correctParams ? bridgeParams.fee : '0'
@@ -402,6 +420,10 @@ const Bridge: React.FC = () => {
                               label: 'Heco',
                               value: 'heco',
                             },
+                            // {
+                            //   label: 'Binance',
+                            //   value: 'binance',
+                            // },
                           ]}
                           onChange={handleOriginChange}
                         />
@@ -447,6 +469,10 @@ const Bridge: React.FC = () => {
                               label: 'Heco',
                               value: 'heco',
                             },
+                            // {
+                            //   label: 'Binance',
+                            //   value: 'binance',
+                            // },
                           ]}
                           onChange={handleDestinationChange}
                         />

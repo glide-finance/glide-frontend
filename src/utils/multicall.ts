@@ -24,6 +24,7 @@ const multicall = async <T = any>(abi: any[], calls: Call[]): Promise<T> => {
 
     return res
   } catch (error) {
+    // @ts-ignore
     throw new Error(error)
   }
 }

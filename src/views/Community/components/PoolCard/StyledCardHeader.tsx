@@ -16,7 +16,6 @@ const StyledCardHeader: React.FC<{
   stakingToken: Token
   pairToken?: Token
   isFinished?: boolean
-  isStaking?: boolean
 }> = ({ earningToken, stakingToken, pairToken, isFinished = false }) => {
   const { t } = useTranslation()
   // const background = isStaking ? 'bubblegum' : 'cardHeader'

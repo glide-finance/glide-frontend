@@ -52,10 +52,11 @@ export type TokenAddressMap = Readonly<
  * An empty result, useful as a default.
  */
 const EMPTY_LIST: TokenAddressMap = {
+  [ChainId.ETHEREUM]: {},
   [ChainId.MAINNET]: {},
   [ChainId.TESTNET]: {},
+  [ChainId.BINANCE]: {},
   [ChainId.HECO]: {},
-  [ChainId.ETHEREUM]: {},
 }
 
 const listCache: WeakMap<TokenList, TokenAddressMap> | null =
@@ -106,10 +107,11 @@ export function useAllLists(): {
 
 function combineMaps(map1: TokenAddressMap, map2: TokenAddressMap): TokenAddressMap {
   return {
+    [ChainId.ETHEREUM]: { ...map1[ChainId.ETHEREUM], ...map2[ChainId.ETHEREUM] },
     [ChainId.MAINNET]: { ...map1[ChainId.MAINNET], ...map2[ChainId.MAINNET] },
     [ChainId.TESTNET]: { ...map1[ChainId.TESTNET], ...map2[ChainId.TESTNET] },
+    [ChainId.BINANCE]: { ...map1[ChainId.BINANCE], ...map2[ChainId.BINANCE] },
     [ChainId.HECO]: { ...map1[ChainId.HECO], ...map2[ChainId.HECO] },
-    [ChainId.ETHEREUM]: { ...map1[ChainId.ETHEREUM], ...map2[ChainId.ETHEREUM] },
   }
 }
 
@@ -173,11 +175,14 @@ export function useDefaultTokenList(): TokenAddressMap {
 }
 
 export function useBridgeableTokenList(origin, destination): TokenAddressMap {
-  const allTokens = {...BRIDGE_TOKEN_LIST}
-  const bridgeableSet = allTokens.tokens.filter(token => token.chainId === origin)
-  let destinationMatch = bridgeableSet.filter(token => token.origin === destination || token.origin === token.chainId)
-  if (origin === 20 && destination === 1) { // filter Glide from Ethereum bridge
-    destinationMatch = destinationMatch.filter(token => token.address !== "0xd39eC832FF1CaaFAb2729c76dDeac967ABcA8F27")
+  const allTokens = { ...BRIDGE_TOKEN_LIST }
+  const bridgeableSet = allTokens.tokens.filter((token) => token.chainId === origin)
+  let destinationMatch = bridgeableSet.filter((token) => token.origin === destination || token.origin === token.chainId)
+  if (origin === 20 && (destination === 1 || destination === 56)) {
+    // filter Glide from Ethereum bridge and Binance bridge
+    destinationMatch = destinationMatch.filter(
+      (token) => token.address !== '0xd39eC832FF1CaaFAb2729c76dDeac967ABcA8F27',
+    )
   }
   allTokens.tokens = destinationMatch
   const bridgeableTokens = allTokens

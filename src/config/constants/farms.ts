@@ -95,6 +95,24 @@ const farms: FarmConfig[] = [
     token: tokens.elk,
     quoteToken: tokens.glide,
   },
+  {
+    pid: 10,
+    lpSymbol: 'BUSD-USDC LP',
+    lpAddresses: {
+      20: '0x9ad2439CaE9440427f3dFF53A11A57A5a7211152',
+    },
+    token: tokens.busd,
+    quoteToken: tokens.usdc,
+  },
+  {
+    pid: 11,
+    lpSymbol: 'BNB-ELA LP',
+    lpAddresses: {
+      20: '0x421C1960169a50a963Cd8317d10b96298CaD0dc6',
+    },
+    token: tokens.bnb,
+    quoteToken: tokens.wela,
+  },
 ]
 
 export default farms

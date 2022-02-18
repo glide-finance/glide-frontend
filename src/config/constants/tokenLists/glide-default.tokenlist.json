@@ -19,6 +19,38 @@
       "logoURI": ""
     },
     {
+      "name": "USDC on Elastos",
+      "symbol": "USDC",
+      "address": "0xA06be0F5950781cE28D965E5EFc6996e88a8C141",
+      "chainId": 20,
+      "decimals": 6,
+      "logoURI": ""
+    },
+    {
+      "name": "ETH on Elastos",
+      "symbol": "ETH",
+      "address": "0x802c3e839E4fDb10aF583E3E759239ec7703501e",
+      "chainId": 20,
+      "decimals": 18,
+      "logoURI": ""
+    },
+    {
+      "name": "BNB on Elastos",
+      "symbol": "BNB",
+      "address": "0x51B85F3889c7EA8f6d5EdEBFBadaDA0fDcE236c9",
+      "chainId": 20,
+      "decimals": 18,
+      "logoURI": ""
+    },
+    {
+      "name": "BUSD on Elastos",
+      "symbol": "BUSD",
+      "address": "0x9f1d0Ed4E041C503BD487E5dc9FC935Ab57F9a57",
+      "chainId": 20,
+      "decimals": 18,
+      "logoURI": ""
+    },
+    {
       "name": "HT on Elastos",
       "symbol": "HT",
       "address": "0xeceefC50f9aAcF0795586Ed90a8b9E24f55Ce3F3",
@@ -38,22 +70,6 @@
       "name": "FILDA on Elastos",
       "symbol": "FILDA",
       "address": "0xB9Ae03e3320235D3a8AE537f87FF8529b445B590",
-      "chainId": 20,
-      "decimals": 18,
-      "logoURI": ""
-    },
-    {
-      "name": "USDC on Elastos",
-      "symbol": "USDC",
-      "address": "0xA06be0F5950781cE28D965E5EFc6996e88a8C141",
-      "chainId": 20,
-      "decimals": 6,
-      "logoURI": ""
-    },
-    {
-      "name": "ETH on Elastos",
-      "symbol": "ETH",
-      "address": "0x802c3e839E4fDb10aF583E3E759239ec7703501e",
       "chainId": 20,
       "decimals": 18,
       "logoURI": ""

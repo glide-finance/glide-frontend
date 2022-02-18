@@ -11,8 +11,8 @@ import { useTranslation } from 'contexts/Localization'
 import useToast from 'hooks/useToast'
 import useLastUpdated from 'hooks/useLastUpdated'
 // import { parseValue, fetchGasPrice } from "../utils/txUtils";
-import { parseValue } from "../utils/txUtils";
-import { foreignOrigin } from './useBridgeMediator';
+import { parseValue } from '../utils/txUtils'
+import { foreignOrigin } from './useBridgeMediator'
 
 export const useCheckMediatorApprovalStatus = (currency, request, amount, reverseBridgeParams) => {
   // const [isMediatorApproved, setIsMediatorApproved] = useState(false)
@@ -22,10 +22,16 @@ export const useCheckMediatorApprovalStatus = (currency, request, amount, revers
 
   useEffect(() => {
     const isToken = currency instanceof Token
-    if (!isToken) { setNeedsApproval(false); return }
-    if (request === undefined) { setNeedsApproval(false); return }
+    if (!isToken) {
+      setNeedsApproval(false)
+      return
+    }
+    if (request === undefined) {
+      setNeedsApproval(false)
+      return
+    }
     const tokenContract = getBep20Contract(currency.address, library.getSigner(account))
-    const mediator = foreignOrigin(currency.address, currency.chainId) ? reverseBridgeParams.contract : request.contract;
+    const mediator = foreignOrigin(currency.address, currency.chainId) ? reverseBridgeParams.contract : request.contract
 
     const checkApprovalStatus = async () => {
       try {
@@ -54,34 +60,37 @@ export const useApproveMediator = (currency, request, reverseBridgeParams) => {
 
   const handleApprove = useCallback(async () => {
     const isToken = currency instanceof Token
-    if (!isToken) { setRequestedApproval(false); return }
-    if (request === undefined) { setRequestedApproval(false); return }
+    if (!isToken) {
+      setRequestedApproval(false)
+      return
+    }
+    if (request === undefined) {
+      setRequestedApproval(false)
+      return
+    }
 
-    const mediator = foreignOrigin(currency.address, currency.chainId) ? reverseBridgeParams.contract : request.contract;
+    const mediator = foreignOrigin(currency.address, currency.chainId) ? reverseBridgeParams.contract : request.contract
     const tokenContract = getBep20Contract(currency.address, library.getSigner(account))
     // const response = (await tokenContract.allowance(account, mediator))
     // const allowance = ethersToBigNumber(response)
 
     try {
       // if (!allowance.gt(0)) {
-        setRequestedApproval(true)
-        const tx = await tokenContract.approve(mediator, ethers.constants.MaxUint256)
-        const receipt = await tx.wait()
-        // dispatch(updateUserAllowance(sousId, account))
-        if (receipt.status) {
-          toastSuccess(
-            t('Contract Enabled'),
-            t('You can now bridge your %symbol%!', { symbol: currency.symbol }),
-          )
-          setRequestedApproval(false)
-          setApprovalComplete(true)
-        } else {
-          // user rejected tx or didn't go thru
-          toastError(t('Error'), t('Please try again. Confirm the transaction and make sure you are paying enough gas!'))
-          setRequestedApproval(false)
-        }
+      setRequestedApproval(true)
+      const tx = await tokenContract.approve(mediator, ethers.constants.MaxUint256)
+      const receipt = await tx.wait()
+      // dispatch(updateUserAllowance(sousId, account))
+      if (receipt.status) {
+        toastSuccess(t('Contract Enabled'), t('You can now bridge your %symbol%!', { symbol: currency.symbol }))
+        setRequestedApproval(false)
+        setApprovalComplete(true)
+      } else {
+        // user rejected tx or didn't go thru
+        toastError(t('Error'), t('Please try again. Confirm the transaction and make sure you are paying enough gas!'))
+        setRequestedApproval(false)
+      }
       // } else {
-        // setRequestedApproval(false)
+      // setRequestedApproval(false)
       // }
     } catch (e) {
       setRequestedApproval(false)

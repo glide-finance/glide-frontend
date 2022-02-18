@@ -79,8 +79,8 @@ export default function CurrencyInputPanel({
   hideInput = false,
   otherCurrency,
   id,
-  // showCommonBases,
-}: CurrencyInputPanelProps) {
+}: // showCommonBases,
+CurrencyInputPanelProps) {
   const { account } = useActiveWeb3React()
   const selectedCurrencyBalance = useCurrencyBalance(account ?? undefined, currency ?? undefined)
   const { t } = useTranslation()
@@ -167,6 +167,8 @@ export default function CurrencyInputPanel({
                       ? 'ETH'
                       : chainId === 128 && currency.symbol === 'ELA'
                       ? 'HT'
+                      : chainId === 56 && currency.symbol === 'ELA'
+                      ? 'BNB'
                       : currency.symbol
                     : t('Select a currency')}
                 </Text>

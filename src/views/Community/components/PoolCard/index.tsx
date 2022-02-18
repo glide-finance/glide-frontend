@@ -27,14 +27,13 @@ const PoolCard: React.FC<{ pool: Community; account: string }> = ({ pool, accoun
       ribbon={isFinished && <CardRibbon variantColor="textDisabled" text={t('Finished')} />}
     >
       <StyledCardHeader
-        isStaking={accountHasStakedBalance}
         earningToken={earningToken}
         stakingToken={stakingToken}
         pairToken={pairToken}
         isFinished={isFinished && sousId !== 0}
       />
       <CardBody>
-        <AprRow pool={pool} stakedBalance={stakedBalance} />
+        <AprRow pool={pool} />
         <Flex mt="24px" flexDirection="column">
           {account ? (
             <CardActions pool={pool} stakedBalance={stakedBalance} />

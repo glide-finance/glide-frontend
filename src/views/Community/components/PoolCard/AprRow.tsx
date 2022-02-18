@@ -9,7 +9,6 @@ import { getAddress } from 'utils/addressHelpers'
 
 interface AprRowProps {
   pool: Community
-  stakedBalance?: any
   performanceFee?: number
 }
 

@@ -1,8 +1,8 @@
-import BigNumber from 'bignumber.js'
-import { getPhantzPoolContract, getCakeContract } from 'utils/contractHelpers'
+// import BigNumber from 'bignumber.js'
+import { getPhantzPoolContract } from 'utils/contractHelpers'
 
 const phantzPoolContract = getPhantzPoolContract()
-const glideContract = getCakeContract()
+// const glideContract = getCakeContract()
 
 const fetchPhantzPoolUser = async (account: string) => {
   try {

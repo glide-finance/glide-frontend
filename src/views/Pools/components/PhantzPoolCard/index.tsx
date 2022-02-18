@@ -124,7 +124,7 @@ const PhantzPoolCard: React.FC<PhantzPoolProps> = ({ pool, showStakedOnly }) => 
     userData: { allowance, stakingTokenBalance, phantzStakedBalance, pendingReward },
   }
 
-  const accountHasSharesStaked = phantzStakedBalance && phantzStakedBalance.gt(0)
+  const accountHasSharesStaked = ownsPhantz && totalStaked > 0
   if (showStakedOnly && !accountHasSharesStaked) {
     return null
   }

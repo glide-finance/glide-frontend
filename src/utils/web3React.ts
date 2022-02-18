@@ -12,13 +12,14 @@ signingMethods.push('wallet_addEthereumChain', 'wallet_watchAsset', 'wallet_swit
 // const rpcUrl = getNodeUrl()
 // const chainId = parseInt(process.env.REACT_APP_CHAIN_ID, 10)
 
-const injected = new InjectedConnector({ supportedChainIds: [1, 20, 128] })
+const injected = new InjectedConnector({ supportedChainIds: [1, 20, 56, 128] })
 
 const walletconnect = new WalletConnectConnector({
   // rpc: { [chainId]: rpcUrl },
   rpc: {
     1: `https://mainnet.infura.io/v3/${process.env.REACT_APP_INFURA_KEY}`,
     20: 'https://api.elastos.io/eth',
+    56: 'https://bsc-dataseed1.defibit.io/',
     128: 'https://http-mainnet.hecochain.com',
   },
   bridge: 'https://walletconnect.elastos.net/v2',

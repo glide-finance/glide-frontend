@@ -30,6 +30,15 @@
       "origin": 128
     },
     {
+      "name": "BNB on Elastos",
+      "symbol": "BNB",
+      "address": "0x51B85F3889c7EA8f6d5EdEBFBadaDA0fDcE236c9",
+      "chainId": 20,
+      "decimals": 18,
+      "logoURI": "",
+      "origin": 56
+    },
+    {
       "name": "ELA on Ethereum",
       "symbol": "ELA",
       "address": "0xe6fd75ff38Adca4B97FBCD938c86b98772431867",
@@ -44,6 +53,15 @@
       "symbol": "ELA",
       "address": "0xa1ecFc2beC06E4b43dDd423b94Fef84d0dBc8F5c",
       "chainId": 128,
+      "decimals": 18,
+      "logoURI": "",
+      "origin": 20
+    },
+    {
+      "name": "ELA on BSC",
+      "symbol": "ELA",
+      "address": "0x76393bb8Fd7037962ebDB73f3B30F76DdE5CF718",
+      "chainId": 56,
       "decimals": 18,
       "logoURI": "",
       "origin": 20
@@ -142,6 +160,26 @@
       "origin": 1,
       "minTx": 100000,
       "fee": 2
+    },
+    {
+      "name": "Binance USD",
+      "symbol": "BUSD",
+      "address": "0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "",
+      "origin": 56
+    },
+    {
+      "name": "BUSD on Elastos",
+      "symbol": "BUSD",
+      "address": "0x9f1d0Ed4E041C503BD487E5dc9FC935Ab57F9a57",
+      "chainId": 20,
+      "decimals": 18,
+      "logoURI": "",
+      "origin": 56,
+      "minTx": 500,
+      "fee": 0.1
     }
   ]
 }

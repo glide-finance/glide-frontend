@@ -93,20 +93,31 @@ function CurrencyRow({
       <Column>
         {/* <Text bold>{token ? currency.symbol : currency.symbol === 'ELA' && chainId === 1 ? 'ETH' : currency.symbol === 'ELA' && chainId === 128 ? 'HT' : currency.symbol}</Text> */}
         <Text bold>
-          {token ? currency.symbol : origin === 20 ? 'ELA' : origin === 1 ? 'ETH' : origin === 128 && 'HT'}
+          {token
+            ? currency.symbol
+            : origin === 20
+            ? 'ELA'
+            : origin === 1
+            ? 'ETH'
+            : origin === 128
+            ? 'HT'
+            : origin === 56 && 'BNB'}
         </Text>
         {/* <Text color="textSubtle" small ellipsis maxWidth="200px">
           {!isOnSelectedList && customAdded && 'Added by user •'} {token ? currency.name : currency.symbol === 'ELA' && chainId === 1 ? 'Ethereum' : currency.symbol === 'ELA' && chainId === 128 ? 'Huobi Token' : currency.symbol === 'ELA' && chainId === 20 ? 'Elastos' : currency.name }
         </Text> */}
         <Text color="textSubtle" small ellipsis maxWidth="200px">
-          {!isOnSelectedList && customAdded && t('Added by user')}{'• '}
+          {!isOnSelectedList && customAdded && t('Added by user')}
+          {'• '}
           {token
             ? currency.name
             : origin === 20
             ? 'Elastos'
             : origin === 1
             ? 'Ethereum'
-            : origin === 128 && 'Huobi Token'}
+            : origin === 128
+            ? 'Huobi Token'
+            : origin === 56 && 'Binance Coin'}
         </Text>
       </Column>
       <RowFixed style={{ justifySelf: 'flex-end' }}>

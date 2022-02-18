@@ -29,7 +29,6 @@ import {
   getBunnySpecialPredictionContract,
   getFarmAuctionContract,
 } from 'utils/contractHelpers'
-
 // Imports below migrated from Exchange useContract.ts
 import { Contract } from '@ethersproject/contracts'
 import { ChainId, WETH } from '@glide-finance/sdk'

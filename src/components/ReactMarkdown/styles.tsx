@@ -45,6 +45,7 @@ const markdownComponents: Partial<NormalComponents & SpecialComponents> = {
   h5: Title,
   h6: Title,
   p: (props) => {
+    // @ts-ignore
     return <Text as="p" my="16px" {...props} />
   },
   table: Table,

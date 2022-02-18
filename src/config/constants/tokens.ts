@@ -43,6 +43,7 @@ const tokens = {
     decimals: 18,
     projectLink: 'https://elastos.org/',
   },
+  // ethereum
   eth: {
     symbol: 'ETH',
     address: {
@@ -59,6 +60,32 @@ const tokens = {
     decimals: 6,
     projectLink: 'https://www.circle.com/en/usdc',
   },
+  mtrl: {
+    symbol: 'MTRL',
+    address: {
+      20: '0xe2390b8B08a9Ab68e6f1aaA150B2ddD03900CE25',
+    },
+    decimals: 18,
+    projectLink: 'https://material.network',
+  },
+  // binance
+  bnb: {
+    symbol: 'BNB',
+    address: {
+      20: '0x51B85F3889c7EA8f6d5EdEBFBadaDA0fDcE236c9',
+    },
+    decimals: 18,
+    projectLink: 'https://www.binance.org/en/smartChain',
+  },
+  busd: {
+    symbol: 'BUSD',
+    address: {
+      20: '0x9f1d0Ed4E041C503BD487E5dc9FC935Ab57F9a57',
+    },
+    decimals: 18,
+    projectLink: 'https://paxos.com/busd/',
+  },
+  // heco
   ht: {
     symbol: 'HT',
     address: {
@@ -83,14 +110,7 @@ const tokens = {
     decimals: 18,
     projectLink: 'https://filda.io/',
   },
-  mtrl: {
-    symbol: 'MTRL',
-    address: {
-      20: '0xe2390b8B08a9Ab68e6f1aaA150B2ddD03900CE25',
-    },
-    decimals: 18,
-    projectLink: 'https://material.network',
-  },
+  // multi
   elk: {
     symbol: 'ELK',
     address: {

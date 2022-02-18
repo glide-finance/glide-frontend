@@ -10,10 +10,11 @@ type ChainTokenList = {
 
 // used to construct intermediary pairs for trading
 export const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
+  [ChainId.ETHEREUM]: [],
   [ChainId.MAINNET]: [WETH[ChainId.MAINNET], GLIDE[ChainId.MAINNET], USDC[ChainId.MAINNET]],
   [ChainId.TESTNET]: [WETH[ChainId.TESTNET], GLIDE[ChainId.TESTNET], USDC[ChainId.TESTNET]],
+  [ChainId.BINANCE]: [],
   [ChainId.HECO]: [],
-  [ChainId.ETHEREUM]: []
 }
 
 /**
@@ -35,24 +36,24 @@ export const CUSTOM_BASES: { [chainId in ChainId]?: { [tokenAddress: string]: To
 
 // used for display in the default list when adding liquidity
 export const SUGGESTED_BASES: ChainTokenList = {
+  [ChainId.ETHEREUM]: [],
   [ChainId.MAINNET]: [WETH[ChainId.MAINNET], USDC[ChainId.MAINNET], GLIDE[ChainId.MAINNET]],
   [ChainId.TESTNET]: [WETH[ChainId.TESTNET], GLIDE[ChainId.TESTNET], USDC[ChainId.TESTNET]],
+  [ChainId.BINANCE]: [],
   [ChainId.HECO]: [],
-  [ChainId.ETHEREUM]: []
 }
 
 // used to construct the list of all pairs we consider by default in the frontend
 export const BASES_TO_TRACK_LIQUIDITY_FOR: ChainTokenList = {
+  [ChainId.ETHEREUM]: [],
   [ChainId.MAINNET]: [WETH[ChainId.MAINNET], USDC[ChainId.MAINNET], GLIDE[ChainId.MAINNET]],
   [ChainId.TESTNET]: [WETH[ChainId.TESTNET], GLIDE[ChainId.TESTNET], USDC[ChainId.TESTNET]],
+  [ChainId.BINANCE]: [],
   [ChainId.HECO]: [],
-  [ChainId.ETHEREUM]: []
 }
 
 export const PINNED_PAIRS: { readonly [chainId in ChainId]?: [Token, Token][] } = {
-  [ChainId.MAINNET]: [
-    [GLIDE[ChainId.MAINNET], WELA],
-  ],
+  [ChainId.MAINNET]: [[GLIDE[ChainId.MAINNET], WELA]],
 }
 
 export const NetworkContextName = 'NETWORK'
@@ -86,12 +87,11 @@ export const ONE_HUNDRED_PERCENT = new Percent('1')
 export const VALIDATOR_TIMEOUT = 300000 // Milliseconds
 
 // SDN OFAC addresses
-export const BLOCKED_ADDRESSES: string[] = [
-]
+export const BLOCKED_ADDRESSES: string[] = []
 
 export const APPROVE_BALANCE_ADDRESSES: string[] = [
-  "0xaA9691BcE68ee83De7B518DfCBBfb62C04B1C0BA", // Gold
-  "0x44F57DF34e7873191f5aF7065B8348dD581c34DC" // Beer
+  '0xaA9691BcE68ee83De7B518DfCBBfb62C04B1C0BA', // Gold
+  '0x44F57DF34e7873191f5aF7065B8348dD581c34DC', // Beer
 ]
 
 export { default as farmsConfig } from './farms'

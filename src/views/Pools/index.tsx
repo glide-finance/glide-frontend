@@ -19,6 +19,7 @@ import {
   useDividendPool,
   useMaterialPool,
 } from 'state/pools/hooks'
+import { useGetCollectibles } from 'state/collectibles/hooks'
 // import tokens from 'config/constants/tokens'
 import { usePollFarmsData } from 'state/farms/hooks'
 // import { latinise } from 'utils/latinise'
@@ -120,7 +121,7 @@ const Pools: React.FC = () => {
   const accountHasVaultShares = userShares && userShares.gt(0)
   const accountHasDividendPoolStake = stakedBalance && stakedBalance.gt(0)
   const accountHasMaterialPoolStake = materialStakedBalance && materialStakedBalance.gt(0)
-  const accountHasPhantzPoolStake = true // deal with this
+  const accountHasPhantzPoolStake = true // account status handled down stream by component
   // const performanceFeeAsDecimal = performanceFee && performanceFee / 100
 
   const pools = useMemo(() => {
