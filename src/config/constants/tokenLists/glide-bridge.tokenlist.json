@@ -36,7 +36,9 @@
       "chainId": 20,
       "decimals": 18,
       "logoURI": "",
-      "origin": 56
+      "origin": 56,
+      "minTx": 2,
+      "fee": 0.1
     },
     {
       "name": "ELA on Ethereum",
@@ -64,7 +66,9 @@
       "chainId": 56,
       "decimals": 18,
       "logoURI": "",
-      "origin": 20
+      "origin": 20,
+      "minTx": 0.01,
+      "fee": 0
     },
     {
       "name": "HUSD on Elastos",
@@ -168,7 +172,9 @@
       "chainId": 56,
       "decimals": 18,
       "logoURI": "",
-      "origin": 56
+      "origin": 56,
+      "minTx": 1000,
+      "fee": 0
     },
     {
       "name": "BUSD on Elastos",
@@ -178,7 +184,29 @@
       "decimals": 18,
       "logoURI": "",
       "origin": 56,
-      "minTx": 500,
+      "minTx": 1000,
+      "fee": 0.1
+    },
+    {
+      "name": "Binance BTC",
+      "symbol": "BTCB",
+      "address": "0x7130d2A12B9BCbFAe4f2634d864A1Ee1Ce3Ead9c",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "",
+      "origin": 56,
+      "minTx": 0.025,
+      "fee": 0
+    },
+    {
+      "name": "BTCB on Elastos",
+      "symbol": "BTCB",
+      "address": "0xDF4191Bfe8FAE019fD6aF9433E8ED6bfC4B90CA1",
+      "chainId": 20,
+      "decimals": 18,
+      "logoURI": "",
+      "origin": 56,
+      "minTx": 0.025,
       "fee": 0.1
     }
   ]

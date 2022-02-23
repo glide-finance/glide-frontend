@@ -117,8 +117,11 @@ export const TokenUpdater = (): null => {
     }, [])
   }, [allTokenData])
 
+  // console.log(unfetchedTokenAddresses)
+
   // fetch data for unfetched tokens and update them
   const { error: tokenDataError, data: tokenDatas } = useFetchedTokenDatas(unfetchedTokenAddresses)
+
   useEffect(() => {
     if (tokenDatas && !tokenDataError) {
       updateTokenDatas(Object.values(tokenDatas))

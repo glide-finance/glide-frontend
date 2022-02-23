@@ -51,6 +51,14 @@
       "logoURI": ""
     },
     {
+      "name": "BTCB on Elastos",
+      "symbol": "BTCB",
+      "address": "0xDF4191Bfe8FAE019fD6aF9433E8ED6bfC4B90CA1",
+      "chainId": 20,
+      "decimals": 18,
+      "logoURI": ""
+    },
+    {
       "name": "HT on Elastos",
       "symbol": "HT",
       "address": "0xeceefC50f9aAcF0795586Ed90a8b9E24f55Ce3F3",

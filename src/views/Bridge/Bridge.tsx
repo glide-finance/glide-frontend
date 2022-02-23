@@ -23,6 +23,7 @@ import { usePollBlockNumber } from 'state/block/hooks'
 import BigNumber from 'bignumber.js'
 import { useCheckMediatorApprovalStatus, useApproveMediator } from './hooks/useApprove'
 import { useCheckFaucetStatus } from './hooks/useFaucet'
+import { useCheckFees } from './hooks/useFees'
 import { useBridgeMediator } from './hooks/useBridgeMediator'
 import ConnectWalletButton from '../../components/ConnectWalletButton'
 import useActiveWeb3React from '../../hooks/useActiveWeb3React'
@@ -333,8 +334,8 @@ const Bridge: React.FC = () => {
       : undefined
   const correctParams = bridgeParams !== undefined
   const needsApproval = useCheckMediatorApprovalStatus(tokenToBridge, bridgeParams, amountToBridge, reverseBridgeParams)
-
   const faucetAvailable = useCheckFaucetStatus(tokenToBridge, correctParams, ChainMap[destinationIndex])
+
   const { handleApprove, requestedApproval, approvalComplete } = useApproveMediator(
     tokenToBridge,
     bridgeParams,
@@ -352,7 +353,7 @@ const Bridge: React.FC = () => {
     ChainMap[destinationIndex],
   )
 
-  // const txLmits = useCheckTxLimits()
+  // const minTx = useCheckFees(tokenToBridge, bridgeParams, reverseBridgeParams)
 
   let minTransfer = correctParams ? bridgeParams.minTx : '0'
   let feePercent = correctParams ? bridgeParams.fee : '0'
@@ -420,10 +421,10 @@ const Bridge: React.FC = () => {
                               label: 'Heco',
                               value: 'heco',
                             },
-                            // {
-                            //   label: 'Binance',
-                            //   value: 'binance',
-                            // },
+                            {
+                              label: 'Binance',
+                              value: 'binance',
+                            },
                           ]}
                           onChange={handleOriginChange}
                         />
@@ -469,10 +470,10 @@ const Bridge: React.FC = () => {
                               label: 'Heco',
                               value: 'heco',
                             },
-                            // {
-                            //   label: 'Binance',
-                            //   value: 'binance',
-                            // },
+                            {
+                              label: 'Binance',
+                              value: 'binance',
+                            },
                           ]}
                           onChange={handleDestinationChange}
                         />
