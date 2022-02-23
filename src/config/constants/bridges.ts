@@ -138,13 +138,13 @@ export default {
     token: {
       '20': {
         contract: '0xfBeAFe09cC2C3B9A73A8bFDA46896D1302a90F0c',
-        minTx: 0.5,
+        minTx: 200,
         maxTx: 750000,
         fee: 0.1,
       },
       '56': {
         contract: '0x4Ca8abd60D88a0C35071d535e26E1cB2928fC45C',
-        minTx: 0.5,
+        minTx: 2,
         maxTx: 750000,
         fee: 0.1,
       },
@@ -154,13 +154,13 @@ export default {
     native: {
       '20': {
         contract: '0x680424c82208DB896EdC78DD79a0a352468dd3DF',
-        minTx: 0.01,
+        minTx: 200,
         maxTx: 750000,
         fee: 0.1,
       },
       '56': {
         contract: '0x5a70075aC335c8e99BF8c27760dD1001190A8032',
-        minTx: 0.01,
+        minTx: 2,
         maxTx: 750000,
         fee: 0,
       },
