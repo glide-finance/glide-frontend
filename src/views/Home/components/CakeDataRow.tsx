@@ -3,33 +3,17 @@ import styled from 'styled-components'
 import { useTotalSupply, useBurnedBalance, useDevBalance, useTreasuryBalance } from 'hooks/useTokenBalance'
 import { getCakeAddress } from 'utils/addressHelpers'
 import { getBalanceNumber, formatLocalisedCompactNumber } from 'utils/formatBalance'
-import { useFarms, usePriceCakeUsdc } from 'state/farms/hooks'
+import { usePriceCakeUsdc } from 'state/farms/hooks'
 import { Flex, Text, Skeleton } from '@glide-finance/uikit'
 import { useTranslation } from 'contexts/Localization'
-import { Farm, Pool } from 'state/types'
+import { Pool } from 'state/types'
 import Balance from 'components/Balance'
 import { getGlideCurrentEmissions } from 'utils/calls'
 import { useBlock } from 'state/block/hooks'
 import BigNumber from 'bignumber.js'
-import isArchivedPid from 'utils/farmHelpers'
+// import isArchivedPid from 'utils/farmHelpers'
 import { usePoolsPublicData } from 'state/pools/hooks'
-
-// const StyledColumn = styled(Flex)<{ noMobileBorder?: boolean }>`
-//   flex-direction: column;
-//   ${({ noMobileBorder, theme }) =>
-//     noMobileBorder
-//       ? `${theme.mediaQueries.md} {
-//            padding: 0 16px;
-//            border-left: 1px ${theme.colors.inputSecondary} solid;
-//          }
-//        `
-//       : `border-left: 1px ${theme.colors.inputSecondary} solid;
-//          padding: 0 8px;
-//          ${theme.mediaQueries.sm} {
-//            padding: 0 16px;
-//          }
-//        `}
-// `
+import { useProtocolData } from 'state/info/hooks'
 
 const StyledColumn = styled(Flex)<{ noMobileBorder?: boolean }>`
   flex-direction: column;
@@ -62,17 +46,18 @@ const Grid = styled.div`
 // ${({ theme }) => theme.mediaQueries.sm} {
 //   grid-gap: 16px;
 // }
+
 const CakeDataRow = () => {
-  function calculateTotalLiquidtyFarms(farms: Farm[]) {
-    let totalLiquidity = new BigNumber(0)
-    farms.forEach((farm: Farm) => {
-      if (!farm.lpTotalInQuoteToken || !farm.quoteToken.usdcPrice) {
-        return
-      }
-      totalLiquidity = new BigNumber(farm.lpTotalInQuoteToken).times(farm.quoteToken.usdcPrice).plus(totalLiquidity)
-    })
-    return totalLiquidity
-  }
+  // function calculateTotalLiquidtyFarms(farms: Farm[]) {
+  //   let totalLiquidity = new BigNumber(0)
+  //   farms.forEach((farm: Farm) => {
+  //     if (!farm.lpTotalInQuoteToken || !farm.quoteToken.usdcPrice) {
+  //       return
+  //     }
+  //     totalLiquidity = new BigNumber(farm.lpTotalInQuoteToken).times(farm.quoteToken.usdcPrice).plus(totalLiquidity)
+  //   })
+  //   return totalLiquidity
+  // }
 
   function calculateTotalLiquidtyPools(pools: Pool[]) {
     let totalLiquidity = new BigNumber(0)
@@ -88,8 +73,9 @@ const CakeDataRow = () => {
 
   const { t } = useTranslation()
   const { currentBlock } = useBlock()
-  const { data: farmsLP } = useFarms()
+  // const { data: farmsLP } = useFarms()
   const { pools: poolsPublicData } = usePoolsPublicData()
+  const [protocolData] = useProtocolData()
 
   const totalSupply = useTotalSupply()
   const burnedBalance = getBalanceNumber(useBurnedBalance(getCakeAddress()))
@@ -102,20 +88,24 @@ const CakeDataRow = () => {
   const mcapString = formatLocalisedCompactNumber(mcap.toNumber())
   const emissionsPerBlock = getGlideCurrentEmissions(new BigNumber(currentBlock)).toNumber()
 
-  const activeFarms = farmsLP.filter((farm) => farm.pid !== 0 && farm.multiplier !== '0X' && !isArchivedPid(farm.pid))
-  const inactiveFarms = farmsLP.filter((farm) => farm.pid !== 0 && farm.multiplier === '0X' && !isArchivedPid(farm.pid))
-  const archivedFarms = farmsLP.filter((farm) => isArchivedPid(farm.pid))
+  // const activeFarms = farmsLP.filter((farm) => farm.pid !== 0 && farm.multiplier !== '0X' && !isArchivedPid(farm.pid))
+  // const inactiveFarms = farmsLP.filter((farm) => farm.pid !== 0 && farm.multiplier === '0X' && !isArchivedPid(farm.pid))
+  // const archivedFarms = farmsLP.filter((farm) => isArchivedPid(farm.pid))
 
-  const totalValueLocked = calculateTotalLiquidtyFarms(activeFarms)
-    .plus(calculateTotalLiquidtyFarms(inactiveFarms))
-    .plus(calculateTotalLiquidtyFarms(archivedFarms))
-    .plus(calculateTotalLiquidtyPools(poolsPublicData))
+  // const totalValueLocked = calculateTotalLiquidtyFarms(activeFarms)
+  //   .plus(calculateTotalLiquidtyFarms(inactiveFarms))
+  //   .plus(calculateTotalLiquidtyFarms(archivedFarms))
+  //   .plus(calculateTotalLiquidtyPools(poolsPublicData))
+
+  const liquidityValue = protocolData ? Math.ceil(protocolData.liquidityUSD) : undefined
+  const stakingValue = Math.ceil(calculateTotalLiquidtyPools(poolsPublicData).toNumber())
+  const totalValueLocked = liquidityValue + stakingValue
 
   return (
     <Grid>
       <Flex flexDirection="column">
         {totalValueLocked ? (
-          <Balance decimals={2} prefix="$" fontSize="32px" bold value={totalValueLocked.toNumber()} />
+          <Balance decimals={2} prefix="$" fontSize="32px" bold value={totalValueLocked} />
         ) : (
           <Skeleton height={24} width={126} my="4px" />
         )}
