@@ -1,7 +1,7 @@
 import BigNumber from 'bignumber.js'
 import { BLOCKS_PER_YEAR } from 'config'
 import lpAprs from 'config/constants/lpAprs.json'
-import {getGlidesPerYear} from 'utils/calls'
+import { getGlidesPerYear } from 'utils/calls'
 /**
  * Get the APR value in %
  * @param stakingTokenPrice Token price in the same quote currency
@@ -37,16 +37,17 @@ export const getFarmApr = (
   currentBlock: number,
 ): { glideRewardsApr: number; lpRewardsApr: number } => {
   if (currentBlock > 0) {
-  const glidesPerYear = getGlidesPerYear(new BigNumber(currentBlock)).times(65).times(75).div(10000);
-  const yearlyGlideRewardAllocation = glidesPerYear.times(poolWeight)
-  const glideRewardsApr = yearlyGlideRewardAllocation.times(glidePriceUsd).div(poolLiquidityUsd).times(100)
-  let glideRewardsAprAsNumber = null
-  if (!glideRewardsApr.isNaN() && glideRewardsApr.isFinite()) {
-    glideRewardsAprAsNumber = glideRewardsApr.toNumber()
+    const glidesPerYear = getGlidesPerYear(new BigNumber(currentBlock)).times(65).div(100)
+    const yearlyGlideRewardAllocation = glidesPerYear.times(poolWeight)
+    const glideRewardsApr = yearlyGlideRewardAllocation.times(glidePriceUsd).div(poolLiquidityUsd).times(100)
+    let glideRewardsAprAsNumber = null
+    if (!glideRewardsApr.isNaN() && glideRewardsApr.isFinite()) {
+      glideRewardsAprAsNumber = glideRewardsApr.toNumber()
+    }
+    const lpRewardsApr = lpAprs[farmAddress?.toLocaleLowerCase()] ?? 0
+    return { glideRewardsApr: glideRewardsAprAsNumber, lpRewardsApr }
   }
-  const lpRewardsApr = lpAprs[farmAddress?.toLocaleLowerCase()] ?? 0
-  return { glideRewardsApr: glideRewardsAprAsNumber, lpRewardsApr }
-  } return { glideRewardsApr: 0, lpRewardsApr: 0 }
+  return { glideRewardsApr: 0, lpRewardsApr: 0 }
 }
 
 export default null
