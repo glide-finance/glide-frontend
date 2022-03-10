@@ -102,8 +102,8 @@ const tokens = {
     decimals: 8,
     projectLink: 'https://www.hecochain.com/',
   },
-  filda: {
-    symbol: 'FILDA',
+  htfilda: {
+    symbol: 'htFILDA',
     address: {
       20: '0xB9Ae03e3320235D3a8AE537f87FF8529b445B590',
     },

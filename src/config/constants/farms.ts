@@ -70,11 +70,11 @@ const farms: FarmConfig[] = [
   },
   {
     pid: 6,
-    lpSymbol: 'FILDA-ELA LP',
+    lpSymbol: 'htFILDA-ELA LP',
     lpAddresses: {
       20: '0x5B0Cf7D3b2D6885e1173674f4649B914e7A66B96',
     },
-    token: tokens.filda,
+    token: tokens.htfilda,
     quoteToken: tokens.wela,
   },
   {
