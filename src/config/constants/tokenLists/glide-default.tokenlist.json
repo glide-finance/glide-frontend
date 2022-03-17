@@ -11,6 +11,14 @@
   "keywords": ["glide", "default"],
   "tokens": [
     {
+      "name": "Wrapped Elastos",
+      "symbol": "WELA",
+      "address": "0x517E9e5d46C1EA8aB6f78677d6114Ef47F71f6c4",
+      "chainId": 20,
+      "decimals": 18,
+      "logoURI": ""
+    },
+    {
       "name": "Glide",
       "symbol": "GLIDE",
       "address": "0xd39eC832FF1CaaFAb2729c76dDeac967ABcA8F27",
@@ -75,14 +83,6 @@
       "logoURI": ""
     },
     {
-      "name": "Heco FILDA on Elastos",
-      "symbol": "htFILDA",
-      "address": "0xB9Ae03e3320235D3a8AE537f87FF8529b445B590",
-      "chainId": 20,
-      "decimals": 18,
-      "logoURI": ""
-    },
-    {
       "name": "Material on Elastos",
       "symbol": "MTRL",
       "address": "0xe2390b8B08a9Ab68e6f1aaA150B2ddD03900CE25",
@@ -99,9 +99,17 @@
       "logoURI": ""
     },
     {
-      "name": "Wrapped Elastos",
-      "symbol": "WELA",
-      "address": "0x517E9e5d46C1EA8aB6f78677d6114Ef47F71f6c4",
+      "name": "FilDA on ESC",
+      "symbol": "FILDA",
+      "address": "0x00E71352c91Ff5B820ab4dF08bb47653Db4e32C0",
+      "chainId": 20,
+      "decimals": 18,
+      "logoURI": ""
+    },
+    {
+      "name": "Heco FILDA on Elastos",
+      "symbol": "htFILDA",
+      "address": "0xB9Ae03e3320235D3a8AE537f87FF8529b445B590",
       "chainId": 20,
       "decimals": 18,
       "logoURI": ""
