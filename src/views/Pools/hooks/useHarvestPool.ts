@@ -4,7 +4,7 @@ import { useAppDispatch } from 'state'
 import { updateUserBalance, updateUserPendingReward } from 'state/actions'
 import { harvestFarm } from 'utils/calls'
 import { BIG_ZERO } from 'utils/bigNumber'
-import { useMasterchef, useSousChef, usePhantzPoolContract } from 'hooks/useContract'
+import { useMasterchef, useSousChef, usePhantzPoolContract, usePhantzV2PoolContract } from 'hooks/useContract'
 import { DEFAULT_GAS_LIMIT } from 'config'
 
 const options = {
@@ -35,6 +35,7 @@ const useHarvestPool = (sousId, isUsingBnb = false) => {
   const sousChefContract = useSousChef(sousId)
   const masterChefContract = useMasterchef()
   const phantzPoolContract = usePhantzPoolContract()
+  const phantzV2PoolContract = usePhantzV2PoolContract()
 
   const handleHarvest = useCallback(async () => {
     if (sousId === 0) {
@@ -43,12 +44,23 @@ const useHarvestPool = (sousId, isUsingBnb = false) => {
       await harvestPoolBnb(sousChefContract)
     } else if (sousId === 3) {
       await harvestPhantzPool(phantzPoolContract)
+    } else if (sousId === 4) {
+      await harvestPhantzPool(phantzV2PoolContract)
     } else {
       await harvestPool(sousChefContract)
     }
     dispatch(updateUserPendingReward(sousId, account))
     dispatch(updateUserBalance(sousId, account))
-  }, [account, dispatch, isUsingBnb, masterChefContract, sousChefContract, sousId, phantzPoolContract])
+  }, [
+    account,
+    dispatch,
+    isUsingBnb,
+    masterChefContract,
+    sousChefContract,
+    sousId,
+    phantzPoolContract,
+    phantzV2PoolContract,
+  ])
 
   return { onReward: handleHarvest }
 }
