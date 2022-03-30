@@ -21,6 +21,7 @@ import {
   getCakeVaultAddress,
   getDividendPoolAddress,
   getPhantzPoolAddress,
+  getPhantzV2PoolAddress,
   getMaterialPoolAddress,
   getPredictionsAddress,
   getChainlinkOracleAddress,
@@ -152,6 +153,9 @@ export const getDividendPoolContract = (signer?: ethers.Signer | ethers.provider
 }
 export const getPhantzPoolContract = (signer?: ethers.Signer | ethers.providers.Provider) => {
   return getContract(phantzPoolAbi, getPhantzPoolAddress(), signer)
+}
+export const getPhantzV2PoolContract = (signer?: ethers.Signer | ethers.providers.Provider) => {
+  return getContract(phantzPoolAbi, getPhantzV2PoolAddress(), signer)
 }
 export const getMaterialPoolContract = (signer?: ethers.Signer | ethers.providers.Provider) => {
   return getContract(materialPoolAbi, getMaterialPoolAddress(), signer)

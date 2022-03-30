@@ -9,7 +9,9 @@ import { BIG_ZERO } from 'utils/bigNumber'
 import { getSouschefV2Contract } from 'utils/contractHelpers'
 
 export const fetchPoolsBlockLimits = async () => {
-  const poolsWithEnd = poolsConfig.filter((p) => p.sousId !== 0 && p.sousId !== 1 && p.sousId !== 2 && p.sousId !== 3)
+  const poolsWithEnd = poolsConfig.filter(
+    (p) => p.sousId !== 0 && p.sousId !== 1 && p.sousId !== 2 && p.sousId !== 3 && p.sousId !== 4,
+  )
   const callsStartBlock = poolsWithEnd.map((poolConfig) => {
     return {
       address: getAddress(poolConfig.contractAddress),

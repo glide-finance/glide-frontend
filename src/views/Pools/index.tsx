@@ -15,6 +15,7 @@ import {
   useFetchDividendPool,
   useFetchMaterialPool,
   useFetchPhantzPool,
+  useFetchPhantzV2Pool,
   useCakeVault,
   useDividendPool,
   useMaterialPool,
@@ -122,6 +123,7 @@ const Pools: React.FC = () => {
   const accountHasDividendPoolStake = stakedBalance && stakedBalance.gt(0)
   const accountHasMaterialPoolStake = materialStakedBalance && materialStakedBalance.gt(0)
   const accountHasPhantzPoolStake = true // account status handled down stream by component
+  const accountHasPhantzV2PoolStake = true
   // const performanceFeeAsDecimal = performanceFee && performanceFee / 100
 
   const pools = useMemo(() => {
@@ -129,16 +131,19 @@ const Pools: React.FC = () => {
     const dividendPool = poolsWithoutAutoVault.find((pool) => pool.sousId === 1)
     const materialPool = poolsWithoutAutoVault.find((pool) => pool.sousId === 2)
     const phantzPool = poolsWithoutAutoVault.find((pool) => pool.sousId === 3)
+    const phantzV2Pool = poolsWithoutAutoVault.find((pool) => pool.sousId === 4)
     const cakeAutoVault = { ...cakePool, isAutoVault: true }
     const cakeDividendPool = { ...dividendPool, isDividendPool: true }
     const materialStakingPool = { ...materialPool, isMaterialPool: true }
     const stakePhantzPool = { ...phantzPool, isPhantzPool: true }
+    const stakePhantzV2Pool = { ...phantzV2Pool, isPhantzV2Pool: true }
     return [
       cakeDividendPool,
       cakeAutoVault,
       ...poolsWithoutAutoVault.filter((pool) => pool.sousId !== 1 && pool.sousId !== 2 && pool.sousId !== 3),
       materialStakingPool,
       stakePhantzPool,
+      stakePhantzV2Pool,
     ]
   }, [poolsWithoutAutoVault])
 
@@ -159,6 +164,9 @@ const Pools: React.FC = () => {
         if (pool.isPhantzPool) {
           return accountHasPhantzPoolStake
         }
+        if (pool.isPhantzV2Pool) {
+          return accountHasPhantzV2PoolStake
+        }
         return pool.userData && new BigNumber(pool.userData.stakedBalance).isGreaterThan(0)
       }),
     [
@@ -166,6 +174,7 @@ const Pools: React.FC = () => {
       accountHasVaultShares,
       accountHasDividendPoolStake,
       accountHasPhantzPoolStake,
+      accountHasPhantzV2PoolStake,
       accountHasMaterialPoolStake,
     ],
   )
@@ -184,6 +193,9 @@ const Pools: React.FC = () => {
         if (pool.isPhantzPool) {
           return accountHasPhantzPoolStake
         }
+        if (pool.isPhantzV2Pool) {
+          return accountHasPhantzV2PoolStake
+        }
         return pool.userData && new BigNumber(pool.userData.stakedBalance).isGreaterThan(0)
       }),
     [
@@ -191,6 +203,7 @@ const Pools: React.FC = () => {
       accountHasVaultShares,
       accountHasDividendPoolStake,
       accountHasPhantzPoolStake,
+      accountHasPhantzV2PoolStake,
       accountHasMaterialPoolStake,
     ],
   )
@@ -200,6 +213,7 @@ const Pools: React.FC = () => {
   useFetchDividendPool()
   useFetchMaterialPool()
   useFetchPhantzPool()
+  useFetchPhantzV2Pool()
   useFetchCakeVault()
   useFetchPublicPoolsData()
 
@@ -303,7 +317,9 @@ const Pools: React.FC = () => {
         ) : pool.isMaterialPool ? (
           <MaterialPoolCard key="material-pool" pool={pool} showStakedOnly={stakedOnly} />
         ) : pool.isPhantzPool ? (
-          <PhantzPoolCard key="phantz-pool" pool={pool} showStakedOnly={stakedOnly} />
+          <PhantzPoolCard key="phantz-pool" pool={pool} showStakedOnly={stakedOnly} version="V1" />
+        ) : pool.isPhantzV2Pool ? (
+          <PhantzPoolCard key="phantzV2-pool" pool={pool} showStakedOnly={stakedOnly} version="V2" />
         ) : (
           <PoolCard key={pool.sousId} pool={pool} account={account} />
         ),

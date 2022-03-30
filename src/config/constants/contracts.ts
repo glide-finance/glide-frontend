@@ -14,6 +14,9 @@ export default {
   phantzPool: {
     20: '0xbe080A1Fee90c12fC7F308590DC56929E407aA6E',
   },
+  phantzV2Pool: {
+    20: '0x6be4661405096e1dEEC1eD03250bB9d38aeA0804',
+  },
   sousChef: {
     20: '0x9999999999999999999999999999999999999999',
   },

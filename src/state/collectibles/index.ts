@@ -41,7 +41,26 @@ export const fetchWalletNfts = createAsyncThunk<any, string>('collectibles/fetch
 
   const nftSourceData = await Promise.all(nftSourcePromises)
   const randomSorted = shuffleArray(nftSourceData[0])
-  return randomSorted.flat()
+
+  const payload = {
+    type: 'single',
+    sortby: 'createdAt$desc',
+    filterby: [],
+    address: account,
+    from: 0,
+    count: 999,
+    collectionAddresses: ['0xfdde60866508263e30c769e8592bb0f8c3274ba7'],
+  }
+
+  const elacityCollection = await fetch('https://ela.city/api/nftitems/fetchTokens', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(payload),
+  }).then((response) => response.json())
+
+  return { phantzV1: randomSorted.flat(), phantzV2: shuffleArray(elacityCollection.data.tokens) }
 })
 
 export const collectiblesSlice = createSlice({
@@ -59,87 +78,5 @@ export const collectiblesSlice = createSlice({
     })
   },
 })
-
-// const initialState: CollectiblesState = {
-//   isInitialized: false,
-//   isLoading: true,
-//   data: {},
-// }
-
-// type NftSourceItem = [number, string]
-
-// // Thunks
-// export const fetchWalletNfts = createAsyncThunk<NftSourceItem[], string>(
-//   'collectibles/fetchWalletNfts',
-//   async (account) => {
-//     // For each nft source get nft data
-//     const nftSourcePromises = Object.keys(nftSources).map(async (nftSourceType) => {
-//       const { address: addressObj } = nftSources[nftSourceType as NftType]
-//       const address = getAddress(addressObj)
-//       const contract = getErc721Contract(address)
-
-//       const getTokenIdAndData = async (index: number) => {
-//         try {
-//           const tokenIdBn: ethers.BigNumber = await contract.tokenOfOwnerByIndex(account, index)
-//           const tokenId = tokenIdBn.toNumber()
-
-//           const walletNft = await getNftByTokenId(address, tokenId)
-//           return [tokenId, walletNft.identifier]
-//         } catch (error) {
-//           console.error('getTokenIdAndData', error)
-//           return null
-//         }
-//       }
-
-//       const balanceOfResponse = await contract.balanceOf(account)
-//       const balanceOf = balanceOfResponse.toNumber()
-
-//       if (balanceOf === 0) {
-//         return []
-//       }
-
-//       const nftDataFetchPromises = []
-
-//       // For each index get the tokenId and data associated with it
-//       for (let i = 0; i < balanceOf; i++) {
-//         nftDataFetchPromises.push(getTokenIdAndData(i))
-//       }
-
-//       const nftData = await Promise.all(nftDataFetchPromises)
-//       return nftData
-//     })
-
-//     const nftSourceData = await Promise.all(nftSourcePromises)
-
-//     return nftSourceData.flat()
-//   },
-// )
-
-// export const collectiblesSlice = createSlice({
-//   name: 'collectibles',
-//   initialState,
-//   reducers: {},
-//   extraReducers: (builder) => {
-//     builder.addCase(fetchWalletNfts.pending, (state) => {
-//       state.isLoading = true
-//     })
-//     builder.addCase(fetchWalletNfts.fulfilled, (state, action) => {
-//       state.isLoading = false
-//       state.isInitialized = true
-//       state.data = action.payload.reduce((accum, association) => {
-//         if (!association) {
-//           return accum
-//         }
-
-//         const [tokenId, identifier] = association as NftSourceItem
-
-//         return {
-//           ...accum,
-//           [identifier]: accum[identifier] ? [...accum[identifier], tokenId] : [tokenId],
-//         }
-//       }, {})
-//     })
-//   },
-// })
 
 export default collectiblesSlice.reducer

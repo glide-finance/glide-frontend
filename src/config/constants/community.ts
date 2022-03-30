@@ -2,9 +2,10 @@ import tokens from './tokens'
 import { CommunityConfig, PoolCategory } from './types'
 
 const community: CommunityConfig[] = [
-  { // total 15552000000000 over 1555200 blocks
+  {
+    // total 15552000000000 over 1555200 blocks
     sousId: 1000,
-    farmSymbol: "RINU-ELA LP",
+    farmSymbol: 'RINU-ELA LP',
     stakingToken: tokens.rinuLP,
     earningToken: tokens.rinu,
     pairToken: tokens.wela,
@@ -15,10 +16,12 @@ const community: CommunityConfig[] = [
     harvest: true,
     sortOrder: 999,
     tokenPerBlock: '10000000',
+    isFinished: true,
   },
-  { // total 15552000000000 over 1555200 blocks
+  {
+    // total 15552000000000 over 1555200 blocks
     sousId: 1001,
-    farmSymbol: "FINU-ELA LP",
+    farmSymbol: 'FINU-ELA LP',
     stakingToken: tokens.finuLP,
     earningToken: tokens.finu,
     pairToken: tokens.wela,
@@ -29,10 +32,12 @@ const community: CommunityConfig[] = [
     harvest: true,
     sortOrder: 999,
     tokenPerBlock: '10000000',
+    isFinished: true,
   },
-  { // total 1555200 over 1555200 blocks
+  {
+    // total 1555200 over 1555200 blocks
     sousId: 1002,
-    farmSymbol: "BEER-ELA LP",
+    farmSymbol: 'BEER-ELA LP',
     stakingToken: tokens.beerLP,
     earningToken: tokens.beer,
     pairToken: tokens.wela,
@@ -43,10 +48,12 @@ const community: CommunityConfig[] = [
     harvest: true,
     sortOrder: 999,
     tokenPerBlock: '1',
+    isFinished: true,
   },
-  { // total 20000000000000 over 518400 blocks
+  {
+    // total 20000000000000 over 518400 blocks
     sousId: 1003,
-    farmSymbol: "SLOTH-ELA LP",
+    farmSymbol: 'SLOTH-ELA LP',
     stakingToken: tokens.slothLP,
     earningToken: tokens.sloth,
     pairToken: tokens.wela,
@@ -57,10 +64,12 @@ const community: CommunityConfig[] = [
     harvest: true,
     sortOrder: 999,
     tokenPerBlock: '38580246',
+    isFinished: true,
   },
-  { // total 2100000000000000000000 over 518400 blocks
+  {
+    // total 2100000000000000000000 over 518400 blocks
     sousId: 1004,
-    farmSymbol: "BUN-ELA LP",
+    farmSymbol: 'BUN-ELA LP',
     stakingToken: tokens.bunLP,
     earningToken: tokens.bun,
     pairToken: tokens.wela,
@@ -71,6 +80,22 @@ const community: CommunityConfig[] = [
     harvest: true,
     sortOrder: 999,
     tokenPerBlock: '0.00405',
+    isFinished: true,
+  },
+  {
+    // total 15293910 over 12614400 blocks
+    sousId: 1005,
+    farmSymbol: 'BEER-ELA LP',
+    stakingToken: tokens.beerLP,
+    earningToken: tokens.beer,
+    pairToken: tokens.wela,
+    contractAddress: {
+      20: '0x2bfC0ae3A5bc2958c602e65686FE1f366C71C7f3',
+    },
+    poolCategory: PoolCategory.COMMUNITY,
+    harvest: true,
+    sortOrder: 999,
+    tokenPerBlock: '1',
   },
 ]
 

@@ -57,6 +57,7 @@ const PhantzCutout = styled.img`
 interface PhantzPoolProps {
   pool: Pool
   showStakedOnly: boolean
+  version: string
 }
 
 const BOOSTS = {
@@ -66,7 +67,7 @@ const BOOSTS = {
   3: 0.2822,
 }
 
-const PhantzPoolCard: React.FC<PhantzPoolProps> = ({ pool, showStakedOnly }) => {
+const PhantzPoolCard: React.FC<PhantzPoolProps> = ({ pool, showStakedOnly, version }) => {
   const { account } = useWeb3React()
   const dispatch = useAppDispatch()
   const { t } = useTranslation()
@@ -80,8 +81,14 @@ const PhantzPoolCard: React.FC<PhantzPoolProps> = ({ pool, showStakedOnly }) => 
   const { cakeAsNumberBalance } = convertSharesToCake(userShares, pricePerFullShare)
   const isFinished = false
   const background = 'bubblegum'
-  const ownsPhantz = tokenIds.length > 0
-  const phantzToShow = ownsPhantz ? (tokenIds.length >= 3 ? 3 : tokenIds.length) : 0
+
+  let ownsPhantz = isNftLoading ? 0 : tokenIds.phantzV1.length > 0
+  let phantzToShow = ownsPhantz ? (tokenIds.phantzV1.length >= 3 ? 3 : tokenIds.phantzV1.length) : 0
+  if (version === 'V2') {
+    ownsPhantz = isNftLoading ? 0 : tokenIds.phantzV2.length > 0
+    phantzToShow = ownsPhantz ? (tokenIds.phantzV2.length >= 3 ? 3 : tokenIds.phantzV2.length) : 0
+  }
+
   const boost = BOOSTS[phantzToShow]
 
   const manual = pools.find((stakingPool) => stakingPool.sousId === 0)
@@ -93,7 +100,11 @@ const PhantzPoolCard: React.FC<PhantzPoolProps> = ({ pool, showStakedOnly }) => 
 
   const {
     userData: { isLoading, allowance, stakingTokenBalance, phantzStakedBalance, pendingReward },
-  } = usePhantzPool()
+  } = usePhantzPool(version === 'V2' ? 'phantzV2Pool' : 'phantzPool')
+
+  // const {
+  //   userData: { isLoading, allowance, stakingTokenBalance, phantzStakedBalance, pendingReward },
+  // } = usePhantzV2Pool()
 
   const tooltipContent1 = t(
     `Holding Phantz in your wallet can boost your staking rewards. 1 Phantz = 7%, 2 Phantz = 14%, 3+ Phantz = 28.22%`,
@@ -149,7 +160,7 @@ const PhantzPoolCard: React.FC<PhantzPoolProps> = ({ pool, showStakedOnly }) => 
         <LoadingContainer>
           <Flex alignItems="center" justifyContent="center" mb="8px">
             <Text fontSize="16px" mr="12px">
-              Checking for Phantz
+              {version === 'V2' ? 'Checking for Phantz V1' : 'Checking for Phantz V2'}
             </Text>
             <AutoRenewIcon spin color="currentColor" />
           </Flex>
@@ -159,15 +170,63 @@ const PhantzPoolCard: React.FC<PhantzPoolProps> = ({ pool, showStakedOnly }) => 
         <>
           <Flex alignItems="center" justifyContent="center">
             <Text fontSize="18px" mt="8px">
-              {`My Phantz (${phantzToShow} of ${tokenIds.length})`}
+              {version === 'V2'
+                ? `My Phantz (${phantzToShow} of ${tokenIds.phantzV2.length}) - ela.city`
+                : `My Phantz (${phantzToShow} of ${tokenIds.phantzV1.length}) - Feeds`}
+              {version === 'V1' && phantzToShow > 0 && (
+                <Flex alignItems="center" justifyContent="center">
+                  <LinkExternal fontSize="14px" ml="6px" mr="6px" href="https://master.d3o588u45vsdnd.amplifyapp.com/">
+                    Swap to V2 here!
+                  </LinkExternal>
+                </Flex>
+              )}
             </Text>
           </Flex>
           <PhantzContainer alignItems="center" justifyContent="center">
-            {ownsPhantz ? (
-              tokenIds.slice(0, phantzToShow).map((token) => {
+            {version === 'V2' ? (
+              ownsPhantz ? (
+                tokenIds.phantzV2.slice(0, phantzToShow).map((token) => {
+                  return (
+                    <Flex key={token.name} flexDirection="column" alignItems="center" justifyContent="center">
+                      <PhantzCutout src={token.imageURL} alt="" />
+                      <Text>{token.name}</Text>
+                    </Flex>
+                  )
+                })
+              ) : (
+                <Flex flexDirection="row" alignItems="center" justifyContent="space-around">
+                  <PhantzCutout
+                    src="https://ipfs.ela.city/ipfs/QmeLbZoZpJ1ErerfHNZT8vNtQbwqy8VrEQPpPBBx6VrUQP/Ph-0029.jpg"
+                    alt=""
+                    width="20%"
+                  />
+                  <Flex flexDirection="column" alignItems="flex-start" justifyContent="center">
+                    <Text fontSize="14px" ml="6px" mr="6px">
+                      No Phantz?
+                    </Text>
+                    <LinkExternal
+                      fontSize="14px"
+                      ml="6px"
+                      mr="6px"
+                      href="https://ela.city/marketplace/collections/0xfdde60866508263e30c769e8592bb0f8c3274ba7"
+                    >
+                      ela.city Marketplace
+                    </LinkExternal>
+                    <LinkExternal fontSize="14px" ml="6px" mr="6px" href="https://phantzclub.com/">
+                      phantzclub.com
+                    </LinkExternal>
+                  </Flex>
+                  <PhantzCutout
+                    src="https://ipfs.ela.city/ipfs/QmeLbZoZpJ1ErerfHNZT8vNtQbwqy8VrEQPpPBBx6VrUQP/Ph-0202.jpg"
+                    alt=""
+                    width="20%"
+                  />
+                </Flex>
+              )
+            ) : ownsPhantz ? (
+              tokenIds.phantzV1.slice(0, phantzToShow).map((token) => {
                 return (
                   <Flex key={token.name} flexDirection="column" alignItems="center" justifyContent="center">
-                    {/* <PhantzCutout src={`https://ipfs0.trinity-feeds.app/ipfs/${token.asset.split(':')[2]}`} alt="" /> */}
                     <PhantzCutout
                       src={
                         token.version !== '1'

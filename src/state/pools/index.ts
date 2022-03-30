@@ -31,7 +31,7 @@ import { fetchMaterialPoolData } from './fetchMaterialPoolPublic'
 import fetchVaultUser from './fetchVaultUser'
 import fetchDividendPoolUser from './fetchDividendPoolUser'
 import fetchMaterialPoolUser from './fetchMaterialPoolUser'
-import fetchPhantzPoolUser from './fetchPhantzPoolUser'
+import { fetchPhantzPoolUser, fetchPhantzV2PoolUser } from './fetchPhantzPoolUser'
 import { getTokenPricesFromFarm } from './helpers'
 
 const initialState: PoolsState = {
@@ -86,6 +86,13 @@ const initialState: PoolsState = {
     },
   },
   phantzPool: {
+    earningTokenPrice: null,
+    userData: {
+      isLoading: true,
+      pendingReward: null,
+    },
+  },
+  phantzV2Pool: {
     earningTokenPrice: null,
     userData: {
       isLoading: true,
@@ -260,6 +267,14 @@ export const fetchPhantzPoolUserData = createAsyncThunk<PhantzUser, { account: s
   },
 )
 
+export const fetchPhantzV2PoolUserData = createAsyncThunk<PhantzUser, { account: string }>(
+  'phantzV2Pool/fetchUser',
+  async ({ account }) => {
+    const userData = await fetchPhantzV2PoolUser(account)
+    return userData
+  },
+)
+
 export const PoolsSlice = createSlice({
   name: 'Pools',
   initialState,
@@ -329,6 +344,12 @@ export const PoolsSlice = createSlice({
       const userData = action.payload
       userData.isLoading = false
       state.phantzPool = { ...state.phantzPool, userData }
+    })
+    // Phantz V2 pool user data
+    builder.addCase(fetchPhantzV2PoolUserData.fulfilled, (state, action: PayloadAction<PhantzUser>) => {
+      const userData = action.payload
+      userData.isLoading = false
+      state.phantzV2Pool = { ...state.phantzV2Pool, userData }
     })
   },
 })

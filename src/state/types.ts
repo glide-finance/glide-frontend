@@ -60,6 +60,7 @@ export interface Pool extends PoolConfig {
   isAutoVault?: boolean
   isDividendPool?: boolean
   isPhantzPool?: boolean
+  isPhantzV2Pool?: boolean
   isMaterialPool?: boolean
   userData?: {
     allowance: BigNumber
@@ -213,6 +214,7 @@ export interface PoolsState {
   dividendPool: DividendPool
   materialPool: MaterialPool
   phantzPool: PhantzPool
+  phantzV2Pool: PhantzPool
   userDataLoaded: boolean
 }
 

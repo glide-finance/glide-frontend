@@ -58,7 +58,21 @@ const pools: PoolConfig[] = [
     isFinished: false,
   },
   {
+    // PhantzGlideStakeV2
     sousId: 4,
+    stakingToken: tokens.glide,
+    earningToken: tokens.glide,
+    contractAddress: {
+      20: '0x6be4661405096e1dEEC1eD03250bB9d38aeA0804',
+    },
+    poolCategory: PoolCategory.COMMUNITY,
+    harvest: true,
+    tokenPerBlock: '0',
+    sortOrder: 999,
+    isFinished: false,
+  },
+  {
+    sousId: 5,
     stakingToken: tokens.glide,
     earningToken: tokens.mtrl,
     contractAddress: {
@@ -71,7 +85,7 @@ const pools: PoolConfig[] = [
     isFinished: false,
   },
   {
-    sousId: 5,
+    sousId: 6,
     stakingToken: tokens.glide,
     earningToken: tokens.elk,
     contractAddress: {
@@ -84,7 +98,7 @@ const pools: PoolConfig[] = [
     isFinished: false,
   },
   {
-    sousId: 6,
+    sousId: 7,
     stakingToken: tokens.glide,
     earningToken: tokens.elk,
     contractAddress: {
@@ -97,7 +111,7 @@ const pools: PoolConfig[] = [
     isFinished: false,
   },
   {
-    sousId: 7,
+    sousId: 8,
     stakingToken: tokens.glide,
     earningToken: tokens.mtrl,
     contractAddress: {

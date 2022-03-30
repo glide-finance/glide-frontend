@@ -1,16 +1,11 @@
 // import BigNumber from 'bignumber.js'
-import { getPhantzPoolContract } from 'utils/contractHelpers'
+import { getPhantzPoolContract, getPhantzV2PoolContract } from 'utils/contractHelpers'
 
 const phantzPoolContract = getPhantzPoolContract()
-// const glideContract = getCakeContract()
+const phantzV2PoolContract = getPhantzV2PoolContract()
 
-const fetchPhantzPoolUser = async (account: string) => {
+export const fetchPhantzPoolUser = async (account: string) => {
   try {
-    // const glideAllowance = (await glideContract.allowance(account, phantzPoolContract.address)).toString()
-    // const glideBalance = (await glideContract.balanceOf(account)).toString()
-    // const glideStaked = (await glideContract.balanceOf(account)).toString()
-    // const glideAllowance = '0'
-    // const glideBalance = '0'
     const glidePending = (await phantzPoolContract.glideRewards(account)).toString()
 
     return {
@@ -25,4 +20,18 @@ const fetchPhantzPoolUser = async (account: string) => {
   }
 }
 
-export default fetchPhantzPoolUser
+export const fetchPhantzV2PoolUser = async (account: string) => {
+  try {
+    const glidePending = (await phantzV2PoolContract.glideRewards(account)).toString()
+
+    return {
+      isLoading: false,
+      pendingReward: glidePending,
+    }
+  } catch (error) {
+    return {
+      isLoading: true,
+      pendingReward: null,
+    }
+  }
+}

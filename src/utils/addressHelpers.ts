@@ -59,6 +59,9 @@ export const getDividendPoolAddress = () => {
 export const getPhantzPoolAddress = () => {
   return getAddress(addresses.phantzPool)
 }
+export const getPhantzV2PoolAddress = () => {
+  return getAddress(addresses.phantzV2Pool)
+}
 export const getMaterialPoolAddress = () => {
   return getAddress(addresses.materialChef)
 }

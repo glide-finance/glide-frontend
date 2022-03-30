@@ -18,6 +18,7 @@ import {
   fetchMaterialPoolPublicData,
   fetchMaterialPoolUserData,
   fetchPhantzPoolUserData,
+  fetchPhantzV2PoolUserData,
 } from '.'
 import { State, Pool } from '../types'
 // import { transformPool, getTokenPricesFromFarm } from './helpers'
@@ -308,11 +309,21 @@ export const useFetchPhantzPool = () => {
   }, [dispatch, fastRefresh, account])
 }
 
-export const usePhantzPool = () => {
+export const useFetchPhantzV2Pool = () => {
+  const { account } = useWeb3React()
+  const { fastRefresh } = useRefresh()
+  const dispatch = useAppDispatch()
+
+  useEffect(() => {
+    dispatch(fetchPhantzV2PoolUserData({ account }))
+  }, [dispatch, fastRefresh, account])
+}
+
+export const usePhantzPool = (version) => {
   const {
     earningTokenPrice,
     userData: { isLoading, pendingReward: pendingRewardAsString },
-  } = useSelector((state: State) => state.pools.phantzPool)
+  } = useSelector((state: State) => state.pools[version])
 
   const pendingReward = useMemo(() => {
     return new BigNumber(pendingRewardAsString)
