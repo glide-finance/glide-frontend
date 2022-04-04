@@ -140,7 +140,9 @@ const Pools: React.FC = () => {
     return [
       cakeDividendPool,
       cakeAutoVault,
-      ...poolsWithoutAutoVault.filter((pool) => pool.sousId !== 1 && pool.sousId !== 2 && pool.sousId !== 3),
+      ...poolsWithoutAutoVault.filter(
+        (pool) => pool.sousId !== 1 && pool.sousId !== 2 && pool.sousId !== 3 && pool.sousId !== 4,
+      ),
       materialStakingPool,
       stakePhantzPool,
       stakePhantzV2Pool,
