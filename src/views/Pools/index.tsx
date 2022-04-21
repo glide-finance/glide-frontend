@@ -122,7 +122,7 @@ const Pools: React.FC = () => {
   const accountHasVaultShares = userShares && userShares.gt(0)
   const accountHasDividendPoolStake = stakedBalance && stakedBalance.gt(0)
   const accountHasMaterialPoolStake = materialStakedBalance && materialStakedBalance.gt(0)
-  const accountHasPhantzPoolStake = true // account status handled down stream by component
+  const accountHasPhantzPoolStake = false // account status handled down stream by component
   const accountHasPhantzV2PoolStake = true
   // const performanceFeeAsDecimal = performanceFee && performanceFee / 100
 

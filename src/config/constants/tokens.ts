@@ -111,10 +111,18 @@ const tokens = {
     projectLink: 'https://filda.io/',
   },
   // multi
-  elk: {
+  oelk: {
     symbol: 'ELK',
     address: {
       20: '0xE1C110E1B1b4A1deD0cAf3E42BfBdbB7b5d7cE1C',
+    },
+    decimals: 18,
+    projectLink: 'https://elk.finance/',
+  },
+  elk: {
+    symbol: 'ELK',
+    address: {
+      20: '0xeEeEEb57642040bE42185f49C52F7E9B38f8eeeE',
     },
     decimals: 18,
     projectLink: 'https://elk.finance/',

@@ -91,9 +91,17 @@
       "logoURI": ""
     },
     {
+      "name": "Old Elk",
+      "symbol": "oELK",
+      "address": "0xE1C110E1B1b4A1deD0cAf3E42BfBdbB7b5d7cE1C",
+      "chainId": 20,
+      "decimals": 18,
+      "logoURI": ""
+    },
+    {
       "name": "Elk",
       "symbol": "ELK",
-      "address": "0xE1C110E1B1b4A1deD0cAf3E42BfBdbB7b5d7cE1C",
+      "address": "0xeEeEEb57642040bE42185f49C52F7E9B38f8eeeE",
       "chainId": 20,
       "decimals": 18,
       "logoURI": ""

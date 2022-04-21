@@ -88,11 +88,11 @@ const farms: FarmConfig[] = [
   },
   {
     pid: 9,
-    lpSymbol: 'ELK-GLIDE LP',
+    lpSymbol: 'oELK-GLIDE LP',
     lpAddresses: {
       20: '0x707A778354639EaAE03E739d2D5E8Db96CA30bF7',
     },
-    token: tokens.elk,
+    token: tokens.oelk,
     quoteToken: tokens.glide,
   },
   {
@@ -112,6 +112,15 @@ const farms: FarmConfig[] = [
     },
     token: tokens.bnb,
     quoteToken: tokens.wela,
+  },
+  {
+    pid: 12,
+    lpSymbol: 'ELK-GLIDE LP',
+    lpAddresses: {
+      20: '0x59aDb497691A71831cDC07258ccCAa5294E68996',
+    },
+    token: tokens.elk,
+    quoteToken: tokens.glide,
   },
 ]
 
