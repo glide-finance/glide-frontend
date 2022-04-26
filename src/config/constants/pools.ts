@@ -82,7 +82,7 @@ const pools: PoolConfig[] = [
     harvest: true,
     tokenPerBlock: '0.96450617',
     sortOrder: 999,
-    isFinished: false,
+    isFinished: true,
   },
   {
     sousId: 6,
@@ -95,7 +95,7 @@ const pools: PoolConfig[] = [
     harvest: true,
     tokenPerBlock: '0.00868',
     sortOrder: 999,
-    isFinished: false,
+    isFinished: true,
   },
   {
     sousId: 7,
@@ -108,7 +108,7 @@ const pools: PoolConfig[] = [
     harvest: true,
     tokenPerBlock: '0.00868',
     sortOrder: 999,
-    isFinished: false,
+    isFinished: true,
   },
   {
     sousId: 8,
@@ -133,6 +133,19 @@ const pools: PoolConfig[] = [
     poolCategory: PoolCategory.COMMUNITY,
     harvest: true,
     tokenPerBlock: '0.00635',
+    sortOrder: 999,
+    isFinished: false,
+  },
+  {
+    sousId: 10,
+    stakingToken: tokens.glide,
+    earningToken: tokens.mtrl,
+    contractAddress: {
+      20: '0x4c1f6477cd444d4d78f37af1518548f06289e394',
+    },
+    poolCategory: PoolCategory.COMMUNITY,
+    harvest: true,
+    tokenPerBlock: '0.7716',
     sortOrder: 999,
     isFinished: false,
   },
