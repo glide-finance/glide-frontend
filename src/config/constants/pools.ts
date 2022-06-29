@@ -149,6 +149,19 @@ const pools: PoolConfig[] = [
     sortOrder: 999,
     isFinished: false,
   },
+  {
+    sousId: 11,
+    stakingToken: tokens.glide,
+    earningToken: tokens.mtrl,
+    contractAddress: {
+      20: '0x211c2B77fb7baA412005DBb004AC75e185EceDB3',
+    },
+    poolCategory: PoolCategory.COMMUNITY,
+    harvest: true,
+    tokenPerBlock: '0.41795',
+    sortOrder: 999,
+    isFinished: false,
+  },
 ]
 
 export default pools
