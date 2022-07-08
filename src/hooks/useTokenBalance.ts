@@ -4,6 +4,7 @@ import { useWeb3React } from '@web3-react/core'
 import { getBep20Contract, getCakeContract } from 'utils/contractHelpers'
 import { BIG_ZERO } from 'utils/bigNumber'
 import { simpleRpcProvider } from 'utils/providers'
+import { LOCK_TOKENS } from 'config/constants/tokens'
 import useRefresh from './useRefresh'
 import useLastUpdated from './useLastUpdated'
 
@@ -18,6 +19,7 @@ export enum FetchStatus {
   FAILED = 'failed',
 }
 
+
 const useTokenBalance = (tokenAddress: string) => {
   const { NOT_FETCHED, SUCCESS, FAILED } = FetchStatus
   const [balanceState, setBalanceState] = useState<UseTokenBalanceState>({
@@ -31,8 +33,14 @@ const useTokenBalance = (tokenAddress: string) => {
     const fetchBalance = async () => {
       const contract = getBep20Contract(tokenAddress)
       try {
-        const res = await contract.balanceOf(account)
-        setBalanceState({ balance: new BigNumber(res.toString()), fetchStatus: SUCCESS })
+        if (LOCK_TOKENS.includes(tokenAddress)) {
+          const res = await contract.unlockOf(account)
+          setBalanceState({ balance: new BigNumber(res.toString()), fetchStatus: SUCCESS })
+          console.log("lock token conditional")
+        } else {
+          const res = await contract.balanceOf(account)
+          setBalanceState({ balance: new BigNumber(res.toString()), fetchStatus: SUCCESS })
+        }
       } catch (e) {
         console.error(e)
         setBalanceState((prev) => ({

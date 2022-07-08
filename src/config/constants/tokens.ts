@@ -10,6 +10,8 @@ export const USDC: { [chainId: number]: Token } = {
 
 export const WELA = new Token(ChainId.MAINNET, '0x517E9e5d46C1EA8aB6f78677d6114Ef47F71f6c4', 18, 'WELA', 'Wrapped ELA')
 
+export const LOCK_TOKENS = ["0xc136E6B376a9946B156db1ED3A34b08AFdAeD76d"]
+
 const tokens = {
   glide: {
     symbol: 'GLIDE',
@@ -126,6 +128,14 @@ const tokens = {
     },
     decimals: 18,
     projectLink: 'https://elk.finance/',
+  },
+  creda: {
+    symbol: 'CREDA',
+    address: {
+      20: '0xc136E6B376a9946B156db1ED3A34b08AFdAeD76d',
+    },
+    decimals: 18,
+    projectLink: 'https://creda.app/',
   },
   // Meme zone
   rinu: {

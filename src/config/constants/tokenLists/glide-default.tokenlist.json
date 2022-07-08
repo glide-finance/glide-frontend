@@ -107,14 +107,6 @@
       "logoURI": ""
     },
     {
-      "name": "Heco FILDA on Elastos",
-      "symbol": "htFILDA",
-      "address": "0xB9Ae03e3320235D3a8AE537f87FF8529b445B590",
-      "chainId": 20,
-      "decimals": 18,
-      "logoURI": ""
-    },
-    {
       "name": "CreDA",
       "symbol": "CREDA",
       "address": "0xc136E6B376a9946B156db1ED3A34b08AFdAeD76d",

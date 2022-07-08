@@ -1,10 +1,11 @@
 import { Currency, CurrencyAmount, ETHER, JSBI, Token, TokenAmount } from '@glide-finance/sdk'
 import { useMemo } from 'react'
 import { useWeb3React } from '@web3-react/core'
-import ERC20_INTERFACE from 'config/abi/erc20'
+import ERC20_INTERFACE, { CREDA_INTERFACE } from 'config/abi/erc20'
 import { useAllTokens } from 'hooks/Tokens'
 import { useMulticallContract } from 'hooks/useContract'
 import { isAddress } from 'utils'
+import { LOCK_TOKENS } from 'config/constants/tokens'
 import { useSingleContractMultipleData, useMultipleContractSingleData } from '../multicall/hooks'
 
 /**
@@ -56,7 +57,9 @@ export function useTokenBalancesWithLoadingIndicator(
   )
 
   const validatedTokenAddresses = useMemo(() => validatedTokens.map((vt) => vt.address), [validatedTokens])
-  const balances = useMultipleContractSingleData(validatedTokenAddresses, ERC20_INTERFACE, 'balanceOf', [address])
+  const standardBalances = useMultipleContractSingleData(validatedTokenAddresses.filter((t => !LOCK_TOKENS.includes(t))), ERC20_INTERFACE, 'balanceOf', [address])
+  const lockedBalances = useMultipleContractSingleData(LOCK_TOKENS, CREDA_INTERFACE, 'unlockedOf', [address])
+  const balances = useMemo(() => standardBalances.concat(lockedBalances), [standardBalances, lockedBalances])
 
   const anyLoading: boolean = useMemo(() => balances.some((callState) => callState.loading), [balances])
 
