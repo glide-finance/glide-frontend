@@ -17,6 +17,7 @@ import PageLoader from './components/Loader/PageLoader'
 import history from './routerHistory'
 // Views included in the main bundle
 import Pools from './views/Pools'
+import LiquidStaking from './views/LiquidStaking'
 import Community from './views/Community'
 import Swap from './views/Swap'
 import {
@@ -47,6 +48,7 @@ const NotFound = lazy(() => import('./views/NotFound'))
 // const Proposal = lazy(() => import('./views/Voting/Proposal'))
 // const CreateProposal = lazy(() => import('./views/Voting/CreateProposal'))
 const AddLiquidity = lazy(() => import('./views/AddLiquidity'))
+const stELA = lazy(() => import('./views/LiquidStaking'))
 const Liquidity = lazy(() => import('./views/Pool'))
 const PoolFinder = lazy(() => import('./views/PoolFinder'))
 const RemoveLiquidity = lazy(() => import('./views/RemoveLiquidity'))
@@ -72,7 +74,8 @@ const App: React.FC = () => {
         <SuspenseWithChunkError fallback={<PageLoader />}>
           <Switch>
             <Route path="/" exact>
-              <Home />
+              {/* <Home /> */}
+              <LiquidStaking />
             </Route>
             {/* <Route exact path="/farms/auction">
               <FarmAuction />
@@ -82,6 +85,9 @@ const App: React.FC = () => {
             </Route>
             <Route path="/pools">
               <Pools />
+            </Route>
+            <Route path="/stela">
+              <LiquidStaking />
             </Route>
             <Route path="/community">
               <Community />
@@ -150,6 +156,9 @@ const App: React.FC = () => {
             </Route>
             <Route path="/staking">
               <Redirect to="/pools" />
+            </Route>
+            <Route path="/liquidstaking">
+              <Redirect to="/stela" />
             </Route>
             <Route path="/sugar">
               <Redirect to="/pools" />

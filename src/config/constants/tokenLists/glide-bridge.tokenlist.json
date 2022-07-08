@@ -18,7 +18,8 @@
       "decimals": 18,
       "logoURI": "",
       "origin": 1,
-      "minTx": 1
+      "minTx": 1,
+      "fee": 1
     },
     {
       "name": "HT on Elastos",
