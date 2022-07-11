@@ -107,9 +107,25 @@
       "logoURI": ""
     },
     {
-      "name": "CreDA",
+      "name": "CreDA Protocol Token",
       "symbol": "CREDA",
       "address": "0xc136E6B376a9946B156db1ED3A34b08AFdAeD76d",
+      "chainId": 20,
+      "decimals": 18,
+      "logoURI": ""
+    },
+    {
+      "name": "Bunny",
+      "symbol": "BUNNY",
+      "address": "0x75740FC7058DA148752ef8a9AdFb73966DEb42a8",
+      "chainId": 20,
+      "decimals": 18,
+      "logoURI": ""
+    },
+    {
+      "name": "Elastos Gold",
+      "symbol": "GOLD",
+      "address": "0xaA9691BcE68ee83De7B518DfCBBfb62C04B1C0BA",
       "chainId": 20,
       "decimals": 18,
       "logoURI": ""
