@@ -141,11 +141,11 @@ const TokenPage: React.FC<RouteComponentProps<{ address: string }>> = ({
                 <LinkExternal mr="8px" color="primary" href={getBscScanLink(address, 'address')}>
                   {t('View on explorer')}
                 </LinkExternal>
-                {cmcLink && (
+                {/* {cmcLink && (
                   <StyledCMCLink href={cmcLink} rel="noopener noreferrer nofollow" target="_blank">
                     <Image src="/images/CMC-logo.svg" height={22} width={22} alt={t('View token on CoinMarketCap')} />
                   </StyledCMCLink>
-                )}
+                )} */}
                 <SaveIcon fill={watchlistTokens.includes(address)} onClick={() => addWatchlistToken(address)} />
               </Flex>
             </Flex>

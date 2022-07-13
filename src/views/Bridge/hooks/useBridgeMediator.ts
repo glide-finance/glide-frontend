@@ -115,6 +115,9 @@ export const coinTransfer = async function (
       : destinationParamsOtherSide.contract
 
     const tokenSourceMediator = getNativeSourceMediator(mediator, library.getSigner(account))
+    // const minTx = (await tokenSourceMediator.minPerTx()).toString()
+    // console.log(minTx)
+
     const gasPrice = await fetchGasPrice(library.getSigner(account))
 
     const receiptToken = await tokenSourceMediator['relayTokens(address,address,uint256)'](
@@ -152,6 +155,11 @@ export const coinTransfer = async function (
     const tokenSourceMediator = getErc677Contract(currency.address, library.getSigner(account))
     const gasPrice = await fetchGasPrice(library.getSigner(account))
 
+    // const mediator = foreignOrigin(currency.address, currency.chainId) ? destinationParams.contract : request.contract
+    // const relayer = getNativeSourceMediator(mediator, library.getSigner(account))
+    // const minTx = (await relayer.minPerTx()).toString()
+    // console.log(minTx)
+
     const receiptErc677 = await tokenSourceMediator['transferAndCall(address,uint256,bytes)'](
       destinationParams.contract,
       value,
@@ -184,6 +192,8 @@ export const coinTransfer = async function (
   } else {
     const type = 'relayTokens'
     const nativeSourceMediator = getNativeSourceMediator(request.contract, library.getSigner(account))
+    // const minTx = (await nativeSourceMediator.minPerTx()).toString()
+    // console.log(minTx)
 
     const receiptNative = await nativeSourceMediator['relayTokens(address)'](recipient, {
       from: from,
