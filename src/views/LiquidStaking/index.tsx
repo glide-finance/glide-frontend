@@ -116,7 +116,7 @@ export default function Pool() {
             </LinkExternal>
           </Flex>
         </StatBox>
-        <StatBox>
+        {/* <StatBox>
           <Flex>
             <Text fontSize="16px" mb="8px" color="secondary">
               Validators
@@ -132,7 +132,7 @@ export default function Pool() {
               Methodology
             </LinkExternal>
           </Flex>
-        </StatBox>
+        </StatBox> */}
       </Flex>
       <Flex justifyContent="center" mt="48px">
         <LiquidStakingCard />

@@ -6,7 +6,8 @@ const Body = styled(CardBody)`
   background-color: ${({ theme }) => theme.colors.backgroundAlt};
   justify-content: center;
   border-radius: 16px;
-  min-width: 50%;
+  min-width: 40%;
+  max-width: 60%;
 `
 
 const LiquidStakingCard = () => {
@@ -17,7 +18,7 @@ const LiquidStakingCard = () => {
           Stake Elastos
         </Heading>
         <Text fontSize="16px" color="text" mb="8px">
-          Stake ELA and use stELA while earning rewards
+          Stake ELA on the Elastos Smart Chain & use stELA in DeFi while earning staking rewards
         </Text>
       </Flex>
     </Body>
