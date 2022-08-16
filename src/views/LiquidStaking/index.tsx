@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react'
+import React, { useMemo, useState } from 'react'
 import styled from 'styled-components'
 import { Text, Flex, CardBody, CardFooter, Button, AddIcon, Heading, LinkExternal } from '@glide-finance/uikit'
 import { RowBetween, RowFixed } from 'components/Layout/Row'
@@ -6,7 +6,8 @@ import { useTranslation } from 'contexts/Localization'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import Page from 'components/Layout/Page'
 import { GradientHeader, AppBody } from '../../components/App'
-import LiquidStakingCard from './components/LiquidStakingCard'
+import LiquidStakingWidget from './components/LiquidStakingWidget'
+import FAQ from './components/FAQ'
 
 const Body = styled(CardBody)`
   background-color: ${({ theme }) => theme.colors.backgroundAlt};
@@ -39,14 +40,10 @@ const StatBox = styled(Flex)`
 export default function Pool() {
   const { account, library, chainId } = useActiveWeb3React()
   const { t } = useTranslation()
+  const [liquidStakingTabIndex, setLiquidStakingTabIndex] = useState(0)
 
   return (
     <Page>
-      {/* <AppBody> */}
-      {/* <GradientHeader title={t('Your Liquidity')} subtitle={t('Deconstruct LP tokens')} />
-        <Body>
-            Hello
-        </Body> */}
       <Flex flexWrap="wrap" justifyContent="center">
         <StatBox>
           <Flex>
@@ -116,26 +113,15 @@ export default function Pool() {
             </LinkExternal>
           </Flex>
         </StatBox>
-        {/* <StatBox>
-          <Flex>
-            <Text fontSize="16px" mb="8px" color="secondary">
-              Validators
-            </Text>
-          </Flex>
-          <Flex>
-            <Text fontSize="24px" mb="8px" color="text">
-              17
-            </Text>
-          </Flex>
-          <Flex>
-            <LinkExternal href="https://coke.com" fontSize="14px" color="secondary">
-              Methodology
-            </LinkExternal>
-          </Flex>
-        </StatBox> */}
       </Flex>
       <Flex justifyContent="center" mt="48px">
-        <LiquidStakingCard />
+        <LiquidStakingWidget
+          activeIndex={liquidStakingTabIndex}
+          setActiveIndex={(index) => setLiquidStakingTabIndex(index)}
+        />
+      </Flex>
+      <Flex justifyContent="center" mt="48px">
+        <FAQ />
       </Flex>
       {/* </AppBody> */}
     </Page>

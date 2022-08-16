@@ -17,6 +17,9 @@ export const getMaterialAddress = () => {
 export const getMasterChefAddress = () => {
   return getAddress(addresses.masterChef)
 }
+export const getLiquidStakingAddress = () => {
+  return getAddress(addresses.liquidStaking)
+}
 export const getMulticallAddress = () => {
   return getAddress(addresses.multiCall)
 }

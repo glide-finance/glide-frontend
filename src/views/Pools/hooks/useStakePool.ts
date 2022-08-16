@@ -13,6 +13,8 @@ const options = {
 }
 
 const sousStake = async (sousChefContract, amount, decimals = 18) => {
+  console.log(amount)
+
   const tx = await sousChefContract.deposit(new BigNumber(amount).times(BIG_TEN.pow(decimals)).toString(), options)
   const receipt = await tx.wait()
   return receipt.status

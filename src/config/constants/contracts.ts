@@ -5,6 +5,9 @@ export default {
   swapRewardsChef: {
     20: '0x80f2cF7059336b44a75F00451B81f8d742DD2b94',
   },
+  liquidStaking: {
+    20: '0x67840f4dcBBCB0C51dc56C3998bBfA89DAC87907',
+  },
   cakeVault: {
     20: '0xBe224bb2EFe1aE7437Ab428557d3054E63033dA9',
   },
