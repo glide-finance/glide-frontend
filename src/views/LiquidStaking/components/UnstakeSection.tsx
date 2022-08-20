@@ -1,17 +1,15 @@
 import React, { useEffect, useMemo, useState } from 'react'
 import styled from 'styled-components'
-import { Button, Flex, Text, Box, BalanceInput, MetamaskIcon, useModal } from '@glide-finance/uikit'
+import { Button, Flex, Text, Box, BalanceInput, useModal } from '@glide-finance/uikit'
 import { useTranslation } from 'contexts/Localization'
 import { ETHER } from '@glide-finance/sdk'
 import { CurrencyLogo } from 'components/Logo'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import ConnectWalletButton from 'components/ConnectWalletButton'
-import BigNumber from 'bignumber.js'
-import useTokenBalance, { useGetBnbBalance } from 'hooks/useTokenBalance'
+import useTokenBalance from 'hooks/useTokenBalance'
 import { getStelaAddress } from 'utils/addressHelpers'
 import { getFullDisplayBalance, formatNumber } from 'utils/formatBalance'
-import { registerToken } from 'utils/wallet'
-import useLiquidStake from '../hooks/useLiquidStake'
+import useLiquidUnstake from '../hooks/useLiquidUnstake'
 import { useFetchExchangeRate } from '../hooks/useFetchExchangeRate'
 import StatusModal from './StatusModal'
 
@@ -20,47 +18,56 @@ const StyledBalanceInput = styled(BalanceInput)`
   background: none;
 `
 
+const StyledFlex = styled(Flex)`
+  background-color: ${({ theme }) => theme.colors.background};
+  padding: 8px 24px;
+  margin-top: 12px;
+  border-radius: 12px;
+`
+
 const InputBox = styled(Box)`
   width: 100%;
   padding: 4px 16px;
   border: 1px solid;
   border-radius: 16px;
-  border-color: ${({ theme }) => theme.colors.primary};
+  border-color: ${({ theme }) => theme.colors.tertiary};
   :hover {
     border-width: 2px;
   }
 `
 
-const StakeSection = () => {
+const HighlightText = styled.span`
+  color: ${({ theme }) => theme.colors.secondary};
+`
+
+const UnstakeSection = () => {
   const { t } = useTranslation()
   const { account, chainId, library } = useActiveWeb3React()
-  const [stakeAmount, setStakeAmount] = useState('')
+  const [unstakeAmount, setUnstakeAmount] = useState('')
   const [percent, setPercent] = useState(0)
-  const { balance } = useGetBnbBalance()
-  const { balance: stelaBalance } = useTokenBalance(getStelaAddress())
-  const { userApproved, userDenied, pendingTx, complete, onStake } = useLiquidStake()
+  const { balance } = useTokenBalance(getStelaAddress())
+  const { userApproved, userDenied, pendingTx, complete, onUnstake } = useLiquidUnstake()
   const isMetaMaskInScope = !!window.ethereum?.isMetaMask
   const { exchangeRate } = useFetchExchangeRate()
 
-  const handleStakeInputChange = (input: string) => {
-    setStakeAmount(input)
+  const handleUnstakeInputChange = (input: string) => {
+    setUnstakeAmount(input)
   }
 
   const displayBalance = balance ? getFullDisplayBalance(balance, 18, 6) : '0'
-  const sufficientBalance = Number(stakeAmount) > 0 && Number(stakeAmount) < Number(displayBalance)
+  const sufficientBalance = Number(unstakeAmount) > 0 && Number(unstakeAmount) <= Number(displayBalance)
 
   const setMax = () => {
-    const MIN_ELA = new BigNumber(1e17) // 0.1 ELA remainder for gas
-    const displayMax = getFullDisplayBalance(balance.minus(MIN_ELA), 18, 6)
-    setStakeAmount(displayMax)
+    const displayMax = getFullDisplayBalance(balance, 18, 18)
+    setUnstakeAmount(displayMax)
   }
 
   const RATE_DIVIDER = 10000
   const EXCHANGE_RATE = Number(exchangeRate)
-  const stelaAmount = (Number(stakeAmount) * RATE_DIVIDER) / EXCHANGE_RATE
+  const stelaAmount = (Number(unstakeAmount) * EXCHANGE_RATE) / RATE_DIVIDER
   const [onPresentStatusModal] = useModal(
     <StatusModal
-      type="stake"
+      type="unstake"
       pendingTx={pendingTx}
       userApproved={userApproved}
       userDenied={userDenied}
@@ -75,7 +82,7 @@ const StakeSection = () => {
   const handleConfirmClick = async () => {
     try {
       onPresentStatusModal()
-      await onStake(stakeAmount, 18)
+      await onUnstake(unstakeAmount, 18)
       // toastSuccess(
       //   `${t('Unstaked')}!`,
       //   t('Your %symbol% earnings have also been harvested to your wallet!', {
@@ -93,14 +100,14 @@ const StakeSection = () => {
       <InputBox>
         <Flex alignItems="center" justifyContent="space-between">
           <Flex>
-            <CurrencyLogo currency={ETHER} size="24px" style={{ marginRight: 8 }} />
-            <Text>ELA</Text>
+            <img src="/images/tokens/stela.svg" width="24px" height="24px" alt="stELA" />
+            <Text ml="8px">stELA</Text>
           </Flex>
           <Flex>
             <StyledBalanceInput
-              value={stakeAmount}
-              onUserInput={handleStakeInputChange}
-              // placeholder="Enter ELA Amount"
+              value={unstakeAmount}
+              onUserInput={handleUnstakeInputChange}
+              // placeholder="Enter stELA Amount"
               // currencyValue={stakingTokenPrice !== 0 && `~${usdValueStaked || 0} USD`}
               // isWarning
               decimals={18}
@@ -109,7 +116,7 @@ const StakeSection = () => {
         </Flex>
         <Flex alignItems="center">
           <Text fontSize="11px" color="textSubtle">
-            Balance: {getFullDisplayBalance(balance, 18, 4)} ELA
+            Balance: {getFullDisplayBalance(balance, 18, 4)} stELA
           </Text>
           {Number(displayBalance) > 0 && (
             <Text fontSize="11px" color="primary" onClick={setMax} ml="6px" paddingRight="24px">
@@ -124,8 +131,8 @@ const StakeSection = () => {
         </Text>
         <Flex alignItems="center" justifyContent="space-between">
           <Flex>
-            <img src="/images/tokens/stela.svg" width="24px" height="24px" alt="stELA" />
-            <Text ml="8px">stELA</Text>
+            <CurrencyLogo currency={ETHER} size="24px" style={{ marginRight: 8 }} />
+            <Text ml="8px">ELA</Text>
           </Flex>
           <Flex>
             {stelaAmount > 0 ? (
@@ -139,24 +146,29 @@ const StakeSection = () => {
             )}
           </Flex>
         </Flex>
-        <Flex alignItems="center" justifyContent="space-between">
-          <Text fontSize="11px" color="textSubtle">
-            Balance: {getFullDisplayBalance(stelaBalance, 18, 4)} stELA
-          </Text>
-          {account && isMetaMaskInScope && (
-            <Button p="0 6px" height="auto" onClick={() => registerToken(getStelaAddress(), 'stELA', 18)}>
-              <Text color="text" fontSize="11px">
-                {t('+ Add stELA')}
-              </Text>
-              <MetamaskIcon ml="4px" />
-            </Button>
-          )}
-        </Flex>
       </Flex>
+      <StyledFlex flexDirection="row">
+        <Text fontSize="12px" color="textSubtle">
+          Withdrawing ELA will take up to <HighlightText>10 days</HighlightText> as per Elastos&#39;s minimum stake
+          period. Monitor your ticket using the Withdraw tab.
+        </Text>
+        {/* <Text fontSize="12px" color="textSubtle">Swap on a DEX for instant liquidity and arbitrage opportunities</Text> */}
+      </StyledFlex>
       <Flex mt="24px">
         {!account ? (
           <ConnectWalletButton width="100%" />
         ) : (
+          // ) : !isLiquidStakingApproved && !approvalComplete ? (
+          //   <Button
+          //     width="100%"
+          //     onClick={handleApprove}
+          //     disabled={!sufficientBalance || chainId !== 20}
+          //     isLoading={requestedApproval}
+          //     endIcon={requestedApproval ? <AutoRenewIcon color="currentColor" spin /> : null}
+          //   >
+          //     {requestedApproval ? t('Approving') : t('Enable')}
+          //   </Button>
+          // ) : (
           <Button
             // isLoading={requestedApproval}
             // endIcon={requestedApproval ? <AutoRenewIcon spin color="currentColor" /> : null}
@@ -166,7 +178,7 @@ const StakeSection = () => {
             }}
             width="100%"
           >
-            {t('Stake ELA')}
+            {t('Unstake')}
           </Button>
         )}
       </Flex>
@@ -174,4 +186,4 @@ const StakeSection = () => {
   )
 }
 
-export default StakeSection
+export default UnstakeSection

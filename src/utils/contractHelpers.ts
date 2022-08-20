@@ -11,6 +11,7 @@ import {
   getBunnyFactoryAddress,
   getBunnySpecialAddress,
   getCakeAddress,
+  getStelaAddress,
   getMaterialAddress,
   getLotteryV2Address,
   getMasterChefAddress,
@@ -116,6 +117,9 @@ export const getPointCenterIfoContract = (signer?: ethers.Signer | ethers.provid
 }
 export const getCakeContract = (signer?: ethers.Signer | ethers.providers.Provider) => {
   return getContract(cakeAbi, getCakeAddress(), signer)
+}
+export const getStelaContract = (signer?: ethers.Signer | ethers.providers.Provider) => {
+  return getContract(cakeAbi, getStelaAddress(), signer)
 }
 export const getMaterialContract = (signer?: ethers.Signer | ethers.providers.Provider) => {
   return getContract(cakeAbi, getMaterialAddress(), signer)

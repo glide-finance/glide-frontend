@@ -43,6 +43,14 @@ const tokens = {
     decimals: 18,
     projectLink: 'https://elastos.org/',
   },
+  stela: {
+    symbol: 'stELA',
+    address: {
+      20: '0x30E110119eAA152abF9a073689Bd6aF109c23e67'
+    },
+    decimals: 18,
+    projectLink: 'https://glidefinance.io'
+  },
   // ethereum
   eth: {
     symbol: 'ETH',

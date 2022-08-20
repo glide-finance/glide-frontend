@@ -32,7 +32,7 @@ const config: (t: ContextApi['t']) => ConfigMenuItemsType[] = (t) => [
   {
     label: t('stELA'),
     icon: 'Moon',
-    href: '/liquidstaking',
+    href: '/liquid-staking',
     showItemsOnMobile: false,
     showOnMobile: false,
   },

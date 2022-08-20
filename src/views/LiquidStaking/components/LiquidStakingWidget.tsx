@@ -1,15 +1,20 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Button, Flex, Heading, Text, CardBody, Box, ButtonMenu, ButtonMenuItem } from '@glide-finance/uikit'
-import ConnectWalletButton from 'components/ConnectWalletButton'
+import { Flex, Heading, Text, CardBody, Box, ButtonMenu, ButtonMenuItem } from '@glide-finance/uikit'
 import { useTranslation } from 'contexts/Localization'
 import StakeSection from './StakeSection'
+import UnstakeSection from './UnstakeSection'
+import WithdrawSection from './WithdrawSection'
 
 const Body = styled(CardBody)`
   background-color: ${({ theme }) => theme.colors.backgroundAlt};
   justify-content: center;
   border-radius: 16px;
   min-width: 50%;
+
+  ${({ theme }) => theme.mediaQueries.sm} {
+    width: 500px;
+  }
 `
 
 const CustomButtonMenu = styled(ButtonMenu)`
@@ -39,8 +44,8 @@ const LiquidStakingWidget = ({ setActiveIndex, activeIndex }) => {
       </Box>
       <Flex>
         {activeIndex === 0 && <StakeSection />}
-        {activeIndex === 1 && <Text>Unstake</Text>}
-        {activeIndex === 2 && <Text>Withdraw</Text>}
+        {activeIndex === 1 && <UnstakeSection />}
+        {activeIndex === 2 && <WithdrawSection />}
       </Flex>
     </Body>
   )

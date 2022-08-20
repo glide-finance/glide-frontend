@@ -7,9 +7,11 @@ export const getAddress = (address: Address): string => {
   const chainId = process.env.REACT_APP_CHAIN_ID
   return address[chainId] ? address[chainId] : address[ChainId.MAINNET]
 }
-
 export const getCakeAddress = () => {
   return getAddress(tokens.glide.address)
+}
+export const getStelaAddress = () => {
+  return getAddress(tokens.stela.address)
 }
 export const getMaterialAddress = () => {
   return getAddress(tokens.mtrl.address)

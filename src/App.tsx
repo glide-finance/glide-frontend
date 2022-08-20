@@ -91,7 +91,7 @@ const App: React.FC = () => {
             <Route path="/community">
               <Community />
             </Route>
-            <Route path="/liquidstaking">
+            <Route path="/liquid-staking">
               <LiquidStaking />
             </Route>
             <Route path="/bridge">
@@ -159,7 +159,7 @@ const App: React.FC = () => {
             <Route path="/staking">
               <Redirect to="/pools" />
             </Route>
-            <Route path="/liquidstaking">
+            <Route path="/liquid-staking">
               <Redirect to="/stela" />
             </Route>
             <Route path="/sugar">

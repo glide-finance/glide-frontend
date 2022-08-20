@@ -5,6 +5,11 @@ import { RowBetween, RowFixed } from 'components/Layout/Row'
 import { useTranslation } from 'contexts/Localization'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import Page from 'components/Layout/Page'
+import { usePriceBnbUsdc } from 'state/farms/hooks'
+import { getBalanceAmount, formatNumber } from 'utils/formatBalance'
+import { useStelaTotalSupply } from 'hooks/useTokenBalance'
+import { useFetchClaimStatus, useFetchEpochTimer, EPOCH_TIME } from './hooks/useFetchClaimStatus'
+import { useFetchExchangeRate } from './hooks/useFetchExchangeRate'
 import { GradientHeader, AppBody } from '../../components/App'
 import LiquidStakingWidget from './components/LiquidStakingWidget'
 import FAQ from './components/FAQ'
@@ -41,6 +46,13 @@ export default function Pool() {
   const { account, library, chainId } = useActiveWeb3React()
   const { t } = useTranslation()
   const [liquidStakingTabIndex, setLiquidStakingTabIndex] = useState(0)
+  const totalSupply = useStelaTotalSupply()
+  const { exchangeRate } = useFetchExchangeRate()
+  const elaPriceUsd = usePriceBnbUsdc()
+  const { claimStatusFetched, claimStatus } = useFetchClaimStatus()
+  const { epochTimerFetched, epochTimer, epochMs } = useFetchEpochTimer()
+
+  const epochPercentage = (100 - (epochMs / EPOCH_TIME) * 100).toFixed(0)
 
   return (
     <Page>
@@ -53,12 +65,12 @@ export default function Pool() {
           </Flex>
           <Flex>
             <Text fontSize="24px" mb="8px" color="text">
-              1.0012 ELA
+              {(Number(exchangeRate) / 10000).toFixed(4)} ELA
             </Text>
           </Flex>
           <Flex>
             <Text fontSize="14px" color="textSubtle">
-              ≈ $1.56
+              ≈ ${(elaPriceUsd.toNumber() * (Number(exchangeRate) / 10000)).toFixed(2)}
             </Text>
           </Flex>
         </StatBox>
@@ -70,12 +82,12 @@ export default function Pool() {
           </Flex>
           <Flex>
             <Text fontSize="24px" mb="8px" color="text">
-              95,636 ELA
+              {getBalanceAmount(totalSupply).toNumber().toLocaleString(undefined, { maximumFractionDigits: 2 })} ELA
             </Text>
           </Flex>
           <Flex>
             <Text fontSize="14px" color="textSubtle">
-              ≈ $103k
+              ≈ ${formatNumber(elaPriceUsd.toNumber() * Number(getBalanceAmount(totalSupply)), 0, 0)}
             </Text>
           </Flex>
         </StatBox>
@@ -87,12 +99,12 @@ export default function Pool() {
           </Flex>
           <Flex>
             <Text fontSize="24px" mb="8px" color="text">
-              43%
+              {epochPercentage}%
             </Text>
           </Flex>
           <Flex>
             <Text fontSize="14px" color="textSubtle">
-              ETA: 6d 9h 43m
+              ETA: {epochTimer}
             </Text>
           </Flex>
         </StatBox>
@@ -104,11 +116,11 @@ export default function Pool() {
           </Flex>
           <Flex>
             <Text fontSize="24px" mb="8px" color="text">
-              1.08%
+              ~1.00%
             </Text>
           </Flex>
           <Flex>
-            <LinkExternal href="https://coke.com" fontSize="14px" color="secondary">
+            <LinkExternal href="https://elanodes.com" fontSize="14px" color="secondary">
               See stats
             </LinkExternal>
           </Flex>
@@ -123,7 +135,6 @@ export default function Pool() {
       <Flex justifyContent="center" mt="48px">
         <FAQ />
       </Flex>
-      {/* </AppBody> */}
     </Page>
   )
 }
