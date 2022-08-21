@@ -84,7 +84,7 @@ const WithdrawSection = () => {
       <StyledFlex flexDirection="row">
         <Text fontSize="12px" color="textSubtle">
           You will be able to withdraw your tokens after the withdraw request has been processed. To submit a request
-          visit the Unstake Tab.
+          visit the Unstake tab.
         </Text>
       </StyledFlex>
       {withdrawRequested || withdrawReady || withdrawReadyOnHold ? (

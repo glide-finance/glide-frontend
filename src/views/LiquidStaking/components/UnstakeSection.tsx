@@ -55,7 +55,7 @@ const UnstakeSection = () => {
   }
 
   const displayBalance = balance ? getFullDisplayBalance(balance, 18, 6) : '0'
-  const sufficientBalance = Number(unstakeAmount) > 0 && Number(unstakeAmount) <= Number(displayBalance)
+  const sufficientBalance = Number(unstakeAmount) > 0 && Number(unstakeAmount) <= Number(balance)
 
   const setMax = () => {
     const displayMax = getFullDisplayBalance(balance, 18, 18)

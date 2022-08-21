@@ -22,19 +22,17 @@ const accordionData = [
   {
     id: 2,
     title: 'Can I unstake at any time?',
-    content: `Yes. Marinade allows you to directly swap your stELA back to ELA by using our ‘Unstake now’ option.
-
-    If there is enough liquidity left after you unstake, the fee will be 0.3%. You can learn more about our fee structure here
-    You can also unstake without any fee by using our ‘Delayed unstake’ option.`,
+    content: `Yes. The protocol allows users to unstake without any fee, but it will take up to 10 days for the funds to be available for withdrawal. For an instant option, users can swap on a supported DEX or use our instant swap feature (not yet available) for a fee.`,
   },
   {
     id: 3,
     title: 'Where can I use stELA?',
-    content: `stELA has been integrated by many protocols in the ELAana ecosystem! You can find a non-exhaustive list on our DeFi page. You can also track your stELA on sonar.watch and step.finance.
-
-    stELA opens up new opportunities for you to cook your own DeFi recipes, adapted to your own needs and risk appetite. From single staking your stELA without any added risk to adventurous degen strategies, stELA can be marinated in all your DeFi recipes.
-    
-    Also keep in mind that stELA can be traded at its current value in exchange for any other cryptocurrency on a decentralized exchange without the need to unstake first.`,
+    content: `As of now, stELA is only supported on Glide via the stELA-ELA liquidity pool, allowing users to earn fees and token incentives without risk of impermanent loss. In the future, the hope to expand the use cases for stELA, such as use as collateral on lending protocols to enable more advanced DeFi recipes.`,
+  },
+  {
+    id: 4,
+    title: 'Why is the staking APY so low?',
+    content: `ELA's annual inflation rate is less than 2%, of which only 35% is issued to stakers. In addition, the current DPoS model does not mandate rewards for delegators, but this is expected to change with the rollout of DPoS 2.0 and should result in more predictable yield.`,
   },
 ]
 
@@ -84,7 +82,7 @@ const Accordion = ({ title, content, id, onClick, selectedItem }) => {
   }, [selectedItem, id])
 
   return (
-    <Flex flexDirection="column" flexWrap="wrap">
+    <Flex flexDirection="column" flexWrap="wrap" mb="12px" style={{ display: 'inline', cursor: 'pointer' }}>
       <Box onClick={() => onToggle(id)}>
         <Flex justifyContent="space-between">
           <Text fontSize="18px">{title}</Text>
