@@ -82,7 +82,10 @@ export default function Pool() {
           </Flex>
           <Flex>
             <Text fontSize="24px" mb="8px" color="text">
-              {getBalanceAmount(totalSupply).toNumber().toLocaleString(undefined, { maximumFractionDigits: 2 })} ELA
+              {(getBalanceAmount(totalSupply).toNumber() * (Number(exchangeRate) / 10000)).toLocaleString(undefined, {
+                maximumFractionDigits: 2,
+              })}{' '}
+              ELA
             </Text>
           </Flex>
           <Flex>
