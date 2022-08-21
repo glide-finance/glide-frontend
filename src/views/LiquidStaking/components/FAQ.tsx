@@ -17,12 +17,12 @@ const accordionData = [
   {
     id: 1,
     title: 'How do I get my staking rewards?',
-    content: `mSOL represents both your deposit and the rewards you earn on your SOL each epoch. There is no need to claim your rewards. Instead, mSOL acts as a share of the total pool of staked SOL in Marinade. Since this pool accumulates staking rewards, your share (represented by your mSOL) enables you to withdraw more SOL each epoch, at an APY of approximatively 6.25%.`,
+    content: `stELA represents both your deposit and the rewards you earn on your ELA each epoch. There is no need to claim your rewards. Instead, stELA acts as a share of the total pool of staked ELA. Since this pool accumulates staking rewards, your share (represented by your stELA) enables you to withdraw more ELA each epoch.`,
   },
   {
     id: 2,
     title: 'Can I unstake at any time?',
-    content: `Yes. Marinade allows you to directly swap your mSOL back to SOL by using our ‘Unstake now’ option.
+    content: `Yes. Marinade allows you to directly swap your stELA back to ELA by using our ‘Unstake now’ option.
 
     If there is enough liquidity left after you unstake, the fee will be 0.3%. You can learn more about our fee structure here
     You can also unstake without any fee by using our ‘Delayed unstake’ option.`,
@@ -30,11 +30,11 @@ const accordionData = [
   {
     id: 3,
     title: 'Where can I use stELA?',
-    content: `mSOL has been integrated by many protocols in the Solana ecosystem! You can find a non-exhaustive list on our DeFi page. You can also track your mSOL on sonar.watch and step.finance.
+    content: `stELA has been integrated by many protocols in the ELAana ecosystem! You can find a non-exhaustive list on our DeFi page. You can also track your stELA on sonar.watch and step.finance.
 
-    mSOL opens up new opportunities for you to cook your own DeFi recipes, adapted to your own needs and risk appetite. From single staking your mSOL without any added risk to adventurous degen strategies, mSOL can be marinated in all your DeFi recipes.
+    stELA opens up new opportunities for you to cook your own DeFi recipes, adapted to your own needs and risk appetite. From single staking your stELA without any added risk to adventurous degen strategies, stELA can be marinated in all your DeFi recipes.
     
-    Also keep in mind that mSOL can be traded at its current value in exchange for any other cryptocurrency on a decentralized exchange without the need to unstake first.`,
+    Also keep in mind that stELA can be traded at its current value in exchange for any other cryptocurrency on a decentralized exchange without the need to unstake first.`,
   },
 ]
 
