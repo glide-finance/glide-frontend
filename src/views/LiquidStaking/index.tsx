@@ -127,7 +127,7 @@ export default function Pool() {
               See stats
             </LinkExternal> */}
             <Text fontSize="14px" color="textSubtle">
-              (Before DPoS 2.0)
+              (Pre-DPoS 2.0)
             </Text>
           </Flex>
         </StatBox>

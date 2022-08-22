@@ -37,9 +37,15 @@ const LiquidStakingWidget = ({ setActiveIndex, activeIndex }) => {
       </Flex>
       <Box>
         <CustomButtonMenu activeIndex={activeIndex} onItemClick={setActiveIndex} scale="sm" variant="subtle">
-          <ButtonMenuItem as="button">{t('Stake')}</ButtonMenuItem>
-          <ButtonMenuItem as="button">{t('Unstake')}</ButtonMenuItem>
-          <ButtonMenuItem as="button">{t('Withdraw')}</ButtonMenuItem>
+          <ButtonMenuItem p="0 12px" as="button">
+            {t('Stake')}
+          </ButtonMenuItem>
+          <ButtonMenuItem p="0 12px" as="button">
+            {t('Unstake')}
+          </ButtonMenuItem>
+          <ButtonMenuItem p="0 12px" as="button">
+            {t('Withdraw')}
+          </ButtonMenuItem>
         </CustomButtonMenu>
       </Box>
       <Flex>
