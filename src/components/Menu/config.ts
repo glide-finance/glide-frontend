@@ -30,9 +30,9 @@ const config: (t: ContextApi['t']) => ConfigMenuItemsType[] = (t) => [
     showItemsOnMobile: false,
   },
   {
-    label: t('Community'),
-    icon: 'Community',
-    href: '/community',
+    label: t('stELA'),
+    icon: 'Moon',
+    href: '/liquid-staking',
     showItemsOnMobile: false,
     showOnMobile: false,
   },

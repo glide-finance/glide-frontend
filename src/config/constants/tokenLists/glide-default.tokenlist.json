@@ -27,6 +27,14 @@
       "logoURI": ""
     },
     {
+      "name": "Glide Staked ELA",
+      "symbol": "stELA",
+      "address": "0xef366607eAFb7E2323F5817fFc1af1C3E2deDED6",
+      "chainId": 20,
+      "decimals": 18,
+      "logoURI": ""
+    },
+    {
       "name": "USDC on Elastos",
       "symbol": "USDC",
       "address": "0xA06be0F5950781cE28D965E5EFc6996e88a8C141",
