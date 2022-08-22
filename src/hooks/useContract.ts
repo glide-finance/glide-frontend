@@ -3,6 +3,7 @@ import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import {
   getBep20Contract,
   getCakeContract,
+  getStelaContract,
   getBunnyFactoryContract,
   getBunnySpecialContract,
   getPancakeRabbitContract,
@@ -10,6 +11,7 @@ import {
   getIfoV1Contract,
   getIfoV2Contract,
   getMasterchefContract,
+  getLiquidStakingContract,
   getPointCenterIfoContract,
   getSouschefContract,
   getCommunityContract,
@@ -74,6 +76,11 @@ export const useCake = () => {
   return useMemo(() => getCakeContract(library.getSigner()), [library])
 }
 
+export const useStela = () => {
+  const { library } = useActiveWeb3React()
+  return useMemo(() => getStelaContract(library.getSigner()), [library])
+}
+
 export const useBunnyFactory = () => {
   const { library } = useActiveWeb3React()
   return useMemo(() => getBunnyFactoryContract(library.getSigner()), [library])
@@ -97,6 +104,11 @@ export const useLotteryV2Contract = () => {
 export const useMasterchef = () => {
   const { library } = useActiveWeb3React()
   return useMemo(() => getMasterchefContract(library.getSigner()), [library])
+}
+
+export const useLiquidStaking = () => {
+  const { library } = useActiveWeb3React()
+  return useMemo(() => getLiquidStakingContract(library.getSigner()), [library])
 }
 
 export const useCommunityChef = (id) => {

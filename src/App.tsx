@@ -17,6 +17,7 @@ import PageLoader from './components/Loader/PageLoader'
 import history from './routerHistory'
 // Views included in the main bundle
 import Pools from './views/Pools'
+import LiquidStaking from './views/LiquidStaking'
 import Community from './views/Community'
 import Swap from './views/Swap'
 import {
@@ -47,6 +48,7 @@ const NotFound = lazy(() => import('./views/NotFound'))
 // const Proposal = lazy(() => import('./views/Voting/Proposal'))
 // const CreateProposal = lazy(() => import('./views/Voting/CreateProposal'))
 const AddLiquidity = lazy(() => import('./views/AddLiquidity'))
+const stELA = lazy(() => import('./views/LiquidStaking'))
 const Liquidity = lazy(() => import('./views/Pool'))
 const PoolFinder = lazy(() => import('./views/PoolFinder'))
 const RemoveLiquidity = lazy(() => import('./views/RemoveLiquidity'))
@@ -83,8 +85,14 @@ const App: React.FC = () => {
             <Route path="/pools">
               <Pools />
             </Route>
+            <Route path="/stela">
+              <LiquidStaking />
+            </Route>
             <Route path="/community">
               <Community />
+            </Route>
+            <Route path="/liquid-staking">
+              <LiquidStaking />
             </Route>
             <Route path="/bridge">
               <Bridge />
@@ -150,6 +158,9 @@ const App: React.FC = () => {
             </Route>
             <Route path="/staking">
               <Redirect to="/pools" />
+            </Route>
+            <Route path="/liquid-staking">
+              <Redirect to="/stela" />
             </Route>
             <Route path="/sugar">
               <Redirect to="/pools" />

@@ -11,9 +11,11 @@ import {
   getBunnyFactoryAddress,
   getBunnySpecialAddress,
   getCakeAddress,
+  getStelaAddress,
   getMaterialAddress,
   getLotteryV2Address,
   getMasterChefAddress,
+  getLiquidStakingAddress,
   getPointCenterIfoAddress,
   getClaimRefundAddress,
   getTradingCompetitionAddress,
@@ -48,6 +50,7 @@ import ERC677_ABI from 'config/abi/ERC677_ABI.json'
 import pointCenterIfo from 'config/abi/pointCenterIfo.json'
 import lotteryV2Abi from 'config/abi/lotteryV2.json'
 import masterChef from 'config/abi/masterchef.json'
+import liquidStaking from 'config/abi/liquidStaking.json'
 import sousChef from 'config/abi/sousChef.json'
 import sousChefV2 from 'config/abi/sousChefV2.json'
 import sousChefBnb from 'config/abi/sousChefBnb.json'
@@ -115,6 +118,9 @@ export const getPointCenterIfoContract = (signer?: ethers.Signer | ethers.provid
 export const getCakeContract = (signer?: ethers.Signer | ethers.providers.Provider) => {
   return getContract(cakeAbi, getCakeAddress(), signer)
 }
+export const getStelaContract = (signer?: ethers.Signer | ethers.providers.Provider) => {
+  return getContract(cakeAbi, getStelaAddress(), signer)
+}
 export const getMaterialContract = (signer?: ethers.Signer | ethers.providers.Provider) => {
   return getContract(cakeAbi, getMaterialAddress(), signer)
 }
@@ -135,6 +141,9 @@ export const getLotteryV2Contract = (signer?: ethers.Signer | ethers.providers.P
 }
 export const getMasterchefContract = (signer?: ethers.Signer | ethers.providers.Provider) => {
   return getContract(masterChef, getMasterChefAddress(), signer)
+}
+export const getLiquidStakingContract = (signer?: ethers.Signer | ethers.providers.Provider) => {
+  return getContract(liquidStaking, getLiquidStakingAddress(), signer)
 }
 export const getClaimRefundContract = (signer?: ethers.Signer | ethers.providers.Provider) => {
   return getContract(claimRefundAbi, getClaimRefundAddress(), signer)

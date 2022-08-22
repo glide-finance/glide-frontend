@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import BigNumber from 'bignumber.js'
 import { useWeb3React } from '@web3-react/core'
-import { getBep20Contract, getCakeContract } from 'utils/contractHelpers'
+import { getBep20Contract, getCakeContract, getStelaContract } from 'utils/contractHelpers'
 import { BIG_ZERO } from 'utils/bigNumber'
 import { simpleRpcProvider } from 'utils/providers'
 import { LOCK_TOKENS } from 'config/constants/tokens'
@@ -149,6 +149,23 @@ export const useGetBnbBalance = () => {
   }, [account, lastUpdated, setBalance, setFetchStatus])
 
   return { balance, fetchStatus, refresh: setLastUpdated }
+}
+
+export const useStelaTotalSupply = () => {
+  const { slowRefresh } = useRefresh()
+  const [totalSupply, setTotalSupply] = useState<BigNumber>()
+
+  useEffect(() => {
+    async function fetchTotalSupply() {
+      const stelaContract = getStelaContract()
+      const supply = await stelaContract.totalSupply()
+      setTotalSupply(new BigNumber(supply.toString()))
+    }
+
+    fetchTotalSupply()
+  }, [slowRefresh])
+
+  return totalSupply
 }
 
 export default useTokenBalance

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   viewBox="0 0 224.84 224.84"
+   version="1.1"
+   id="svg133"
+   sodipodi:docname="stela.svg"
+   inkscape:version="1.1.2 (0a00cf5339, 2022-02-04)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview135"
+     pagecolor="#505050"
+     bordercolor="#eeeeee"
+     borderopacity="1"
+     inkscape:pageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="0"
+     showgrid="false"
+     inkscape:zoom="2.6228743"
+     inkscape:cx="97.412217"
+     inkscape:cy="118.57221"
+     inkscape:window-width="1846"
+     inkscape:window-height="1043"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg133" />
+  <defs
+     id="defs123">
+    <style
+       id="style121">.cls-1{fill:#fda95f;}</style>
+  </defs>
+  <g
+     id="Layer_2"
+     data-name="Layer 2">
+    <g
+       id="Layer_1-2"
+       data-name="Layer 1">
+      <circle
+         cx="112.42"
+         cy="112.42"
+         r="112.42"
+         id="circle125" />
+      <polygon
+         class="cls-1"
+         points="180.09 76.02 146.46 95.46 112.43 115.12 78.43 95.49 44.75 76.03 78.8 56.36 112.48 75.82 146.09 56.39 180.09 76.02"
+         id="polygon127" />
+      <polygon
+         class="cls-1"
+         points="180.09 129.38 146.46 148.82 112.43 168.49 78.43 148.85 44.75 129.39 78.8 109.72 112.48 129.18 146.09 109.75 180.09 129.38"
+         id="polygon129" />
+    </g>
+  </g>
+</svg>
