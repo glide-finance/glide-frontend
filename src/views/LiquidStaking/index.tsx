@@ -123,9 +123,12 @@ export default function Pool() {
             </Text>
           </Flex>
           <Flex>
-            <LinkExternal href="https://elanodes.com" fontSize="14px" color="secondary">
+            {/* <LinkExternal href="https://elanodes.com" fontSize="14px" color="secondary">
               See stats
-            </LinkExternal>
+            </LinkExternal> */}
+            <Text fontSize="14px" color="textSubtle">
+              (Before DPoS 2.0)
+            </Text>
           </Flex>
         </StatBox>
       </Flex>

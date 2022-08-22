@@ -101,7 +101,9 @@ const UnstakeSection = () => {
         <Flex alignItems="center" justifyContent="space-between">
           <Flex>
             <img src="/images/tokens/stela.svg" width="24px" height="24px" alt="stELA" />
-            <Text ml="8px">stELA</Text>
+            <Text ml="8px" mr="8px">
+              stELA
+            </Text>
           </Flex>
           <Flex>
             <StyledBalanceInput

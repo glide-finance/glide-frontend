@@ -1,19 +1,29 @@
 import React, { useEffect, useMemo, useState } from 'react'
 import styled from 'styled-components'
-import { Button, Flex, Text, Box, BalanceInput, MetamaskIcon, useModal } from '@glide-finance/uikit'
+import {
+  Button,
+  Flex,
+  Text,
+  Box,
+  BalanceInput,
+  MetamaskIcon,
+  useModal,
+  useMatchBreakpoints,
+} from '@glide-finance/uikit'
 import { useTranslation } from 'contexts/Localization'
 import { ETHER } from '@glide-finance/sdk'
 import { CurrencyLogo } from 'components/Logo'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import ConnectWalletButton from 'components/ConnectWalletButton'
 import BigNumber from 'bignumber.js'
-import useTokenBalance, { useGetBnbBalance } from 'hooks/useTokenBalance'
+import useTokenBalance, { useGetBnbBalance, useStelaTotalSupply } from 'hooks/useTokenBalance'
 import { getStelaAddress } from 'utils/addressHelpers'
-import { getFullDisplayBalance, formatNumber } from 'utils/formatBalance'
+import { getFullDisplayBalance, getBalanceAmount, formatNumber } from 'utils/formatBalance'
 import { registerToken } from 'utils/wallet'
 import useLiquidStake from '../hooks/useLiquidStake'
 import { useFetchExchangeRate } from '../hooks/useFetchExchangeRate'
 import StatusModal from './StatusModal'
+import LimitExplainer from './LimitExplainer'
 
 const StyledBalanceInput = styled(BalanceInput)`
   padding: 0 10px;
@@ -31,13 +41,23 @@ const InputBox = styled(Box)`
   }
 `
 
+const StyledFlex = styled(Flex)`
+  background-color: ${({ theme }) => theme.colors.background};
+  padding: 8px 24px;
+  margin-top: 12px;
+  border-radius: 12px;
+`
+
 const StakeSection = () => {
   const { t } = useTranslation()
   const { account, chainId, library } = useActiveWeb3React()
   const [stakeAmount, setStakeAmount] = useState('')
+  const { isXs, isSm } = useMatchBreakpoints()
+  const isMobile = isXs || isSm
   const [percent, setPercent] = useState(0)
   const { balance } = useGetBnbBalance()
   const { balance: stelaBalance } = useTokenBalance(getStelaAddress())
+  const totalSupply = useStelaTotalSupply()
   const { userApproved, userDenied, pendingTx, complete, onStake } = useLiquidStake()
   const isMetaMaskInScope = !!window.ethereum?.isMetaMask
   const { exchangeRate } = useFetchExchangeRate()
@@ -76,17 +96,15 @@ const StakeSection = () => {
     try {
       onPresentStatusModal()
       await onStake(stakeAmount, 18)
-      // toastSuccess(
-      //   `${t('Unstaked')}!`,
-      //   t('Your %symbol% earnings have also been harvested to your wallet!', {
-      //     symbol: earningToken.symbol,
-      //   }),
-      // )
-      // onDismiss()
     } catch (e) {
       // toastError(t('Error'), t('Please try again. Confirm the transaction and make sure you are paying enough gas!'))
     }
   }
+
+  const stakedTotal = getBalanceAmount(totalSupply).toNumber()
+  const stakedLimit = 100000 // 100k ELA
+  const stakedPercentage =
+    (stakedTotal / stakedLimit) * 100 > 100 ? '100' : ((stakedTotal / stakedLimit) * 100).toFixed(2)
 
   return (
     <Flex flexDirection="column" flexGrow="1">
@@ -153,6 +171,19 @@ const StakeSection = () => {
           )}
         </Flex>
       </Flex>
+      <StyledFlex flexDirection="row" justifyContent="space-between" alignItems="center">
+        <Flex alignItems="center">
+          <Text fontSize="14px" mr="8px">
+            {!isMobile && 'Staking'} Limit
+          </Text>
+          <LimitExplainer />
+        </Flex>
+        <Flex>
+          <Text fontSize="14px" color="text">
+            {(stakedTotal / 1000).toFixed(2)}k / {stakedLimit / 1000}k ELA {!isMobile && `(${stakedPercentage}%)`}
+          </Text>
+        </Flex>
+      </StyledFlex>
       <Flex mt="24px">
         {!account ? (
           <ConnectWalletButton width="100%" />
@@ -160,7 +191,7 @@ const StakeSection = () => {
           <Button
             // isLoading={requestedApproval}
             // endIcon={requestedApproval ? <AutoRenewIcon spin color="currentColor" /> : null}
-            disabled={!sufficientBalance || chainId !== 20}
+            disabled={!sufficientBalance || chainId !== 20 || stakedTotal > stakedLimit}
             onClick={() => {
               handleConfirmClick()
             }}
