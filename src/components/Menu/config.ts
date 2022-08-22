@@ -97,9 +97,9 @@ const config: (t: ContextApi['t']) => ConfigMenuItemsType[] = (t) => [
         type: DropdownMenuItemType.EXTERNAL_LINK,
       },
       {
-        label: t('Community'),
-        icon: 'Pool',
-        href: '/community',
+        label: t('stELA'),
+        icon: 'Moon',
+        href: '/liquid-staking',
         showItemsOnMobile: false,
       },
     ],
