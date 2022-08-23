@@ -33,11 +33,12 @@ const StyledBalanceInput = styled(BalanceInput)`
 const InputBox = styled(Box)`
   width: 100%;
   padding: 4px 16px;
-  border: 1px solid;
+  border: 1px solid ${({ theme }) => theme.colors.primary};
   border-radius: 16px;
-  border-color: ${({ theme }) => theme.colors.primary};
+
   :hover {
-    border-width: 2px;
+    border: 2px solid ${({ theme }) => theme.colors.primary};
+    margin: -1px;
   }
 `
 
@@ -104,7 +105,11 @@ const StakeSection = () => {
   const stakedTotal = getBalanceAmount(totalSupply).toNumber()
   const stakedLimit = 100000 // 100k ELA
   const stakedPercentage =
-    (stakedTotal / stakedLimit) * 100 > 100 ? '100' : ((stakedTotal / stakedLimit) * 100).toFixed(2)
+    stakedTotal > 0
+      ? (stakedTotal / stakedLimit) * 100 > 100
+        ? '100'
+        : ((stakedTotal / stakedLimit) * 100).toFixed(2)
+      : '0'
 
   return (
     <Flex flexDirection="column" flexGrow="1">
@@ -130,7 +135,14 @@ const StakeSection = () => {
             Balance: {getFullDisplayBalance(balance, 18, 4)} ELA
           </Text>
           {Number(displayBalance) > 0 && (
-            <Text fontSize="11px" color="primary" onClick={setMax} ml="6px" paddingRight="24px">
+            <Text
+              fontSize="11px"
+              color="primary"
+              onClick={setMax}
+              ml="6px"
+              paddingRight="24px"
+              style={{ display: 'inline', cursor: 'pointer' }}
+            >
               (Max)
             </Text>
           )}
@@ -180,7 +192,8 @@ const StakeSection = () => {
         </Flex>
         <Flex>
           <Text fontSize="14px" color="text">
-            {(stakedTotal / 1000).toFixed(2)}k / {stakedLimit / 1000}k ELA {!isMobile && `(${stakedPercentage}%)`}
+            {stakedTotal > 0 ? `${(stakedTotal / 1000).toFixed(2)}k` : `0.00k`} / {stakedLimit / 1000}k ELA{' '}
+            {!isMobile && `(${stakedPercentage}%)`}
           </Text>
         </Flex>
       </StyledFlex>

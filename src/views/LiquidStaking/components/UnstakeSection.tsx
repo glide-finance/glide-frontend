@@ -28,11 +28,12 @@ const StyledFlex = styled(Flex)`
 const InputBox = styled(Box)`
   width: 100%;
   padding: 4px 16px;
-  border: 1px solid;
+  border: 1px solid ${({ theme }) => theme.colors.primary};
   border-radius: 16px;
-  border-color: ${({ theme }) => theme.colors.tertiary};
+
   :hover {
-    border-width: 2px;
+    border: 2px solid ${({ theme }) => theme.colors.primary};
+    margin: -1px;
   }
 `
 
@@ -121,7 +122,14 @@ const UnstakeSection = () => {
             Balance: {getFullDisplayBalance(balance, 18, 4)} stELA
           </Text>
           {Number(displayBalance) > 0 && (
-            <Text fontSize="11px" color="primary" onClick={setMax} ml="6px" paddingRight="24px">
+            <Text
+              fontSize="11px"
+              color="primary"
+              onClick={setMax}
+              ml="6px"
+              paddingRight="24px"
+              style={{ display: 'inline', cursor: 'pointer' }}
+            >
               (Max)
             </Text>
           )}
