@@ -1,10 +1,13 @@
 import { useEffect, useState } from 'react'
-import { useLiquidStaking } from 'hooks/useContract'
+import { getLiquidStakingContract } from 'utils/contractHelpers'
+import useRefresh from 'hooks/useRefresh'
+
 
 export const useFetchExchangeRate = () => {
-  const [exchangeRate, setExchangeRate] = useState('')
+  const { slowRefresh } = useRefresh()
+  const [exchangeRate, setExchangeRate] = useState('10000')
   const [exchangeRateFetched, setExchangeRateFetched] = useState(false)
-  const liquidStakingContract = useLiquidStaking()
+  const liquidStakingContract = getLiquidStakingContract()
 
   useEffect(() => {
     const fetchExchangeRate = async () => {
@@ -18,7 +21,7 @@ export const useFetchExchangeRate = () => {
     }
 
     fetchExchangeRate()
-  }, [liquidStakingContract])
+  }, [liquidStakingContract, slowRefresh])
 
   return { exchangeRateFetched, exchangeRate }
 }

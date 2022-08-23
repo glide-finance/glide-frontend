@@ -55,6 +55,7 @@ export default function Pool() {
   const epochPercentage = (100 - (epochMs / EPOCH_TIME) * 100).toFixed(0)
 
   const stelaTotal = getBalanceAmount(totalSupply).toNumber() > 0 ? getBalanceAmount(totalSupply).toNumber() : 0
+  const elaPrice = elaPriceUsd.toNumber() > 0 ? elaPriceUsd.toNumber() : 0
 
   return (
     <Page>
@@ -72,7 +73,7 @@ export default function Pool() {
           </Flex>
           <Flex>
             <Text fontSize="14px" color="textSubtle">
-              ≈ ${stelaTotal > 0 ? (elaPriceUsd.toNumber() * (Number(exchangeRate) / 10000)).toFixed(2) : `0.00`}
+              ≈ ${stelaTotal > 0 ? (elaPrice * (Number(exchangeRate) / 10000)).toFixed(2) : `0.00`}
             </Text>
           </Flex>
         </StatBox>
@@ -85,19 +86,16 @@ export default function Pool() {
           <Flex>
             <Text fontSize="24px" mb="8px" color="text">
               {stelaTotal > 0
-                ? (stelaTotal * (Number(exchangeRate) / 10000)).toLocaleString(undefined, {
+                ? `${((stelaTotal / 1000) * (Number(exchangeRate) / 10000)).toLocaleString(undefined, {
                     maximumFractionDigits: 2,
-                  })
+                  })}k`
                 : `0.00`}{' '}
               ELA
             </Text>
           </Flex>
           <Flex>
             <Text fontSize="14px" color="textSubtle">
-              ≈ $
-              {stelaTotal > 0
-                ? formatNumber(elaPriceUsd.toNumber() * Number(getBalanceAmount(totalSupply)), 0, 0)
-                : `0.00`}
+              ≈ ${stelaTotal > 0 ? formatNumber(elaPrice * Number(getBalanceAmount(totalSupply)), 0, 0) : `0.00`}
             </Text>
           </Flex>
         </StatBox>
