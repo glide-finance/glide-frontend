@@ -552,7 +552,7 @@ const Bridge: React.FC = () => {
               {correctParams && chainId === 1 && tokenToBridge.name !== 'ELA on Ethereum' && (
                 <Warning>
                   <Text color="primary" mb="4px">
-                    {t(`Warning! Bridging assets back to Ethereum includes a fee (1-2%) to cover gas.`)}
+                    {t(`Warning! Bridging assets back to Ethereum includes a fee (1%) to cover gas.`)}
                   </Text>
                 </Warning>
               )}

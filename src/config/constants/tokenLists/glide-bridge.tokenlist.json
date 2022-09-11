@@ -49,7 +49,8 @@
       "decimals": 18,
       "logoURI": "",
       "origin": 20,
-      "minTx": 1
+      "minTx": 1,
+      "fee": 1
     },
     {
       "name": "ELA on Heco",
