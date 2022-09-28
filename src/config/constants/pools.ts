@@ -41,7 +41,7 @@ const pools: PoolConfig[] = [
     harvest: true,
     tokenPerBlock: '0',
     sortOrder: 999,
-    isFinished: false,
+    isFinished: true,
   },
   {
     // PhantzGlideStake

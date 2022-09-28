@@ -103,7 +103,7 @@ const StakeSection = () => {
   }
 
   const stakedTotal = getBalanceAmount(totalSupply).toNumber()
-  const stakedLimit = 100000 // 100k ELA
+  const stakedLimit = 200000 // 200k ELA
   const stakedPercentage =
     stakedTotal > 0
       ? (stakedTotal / stakedLimit) * 100 > 100

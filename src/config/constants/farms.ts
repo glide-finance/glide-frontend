@@ -33,6 +33,15 @@ const farms: FarmConfig[] = [
     quoteToken: tokens.usdc,
   },
   {
+    pid: 13,
+    lpSymbol: 'stELA-ELA LP',
+    lpAddresses: {
+      20: '0xE1349b31D91C1E00175343df9E60a1981086787A',
+    },
+    token: tokens.stela,
+    quoteToken: tokens.wela,
+  },
+  {
     pid: 2,
     lpSymbol: 'USDC-ELA LP',
     lpAddresses: {
@@ -121,7 +130,7 @@ const farms: FarmConfig[] = [
     },
     token: tokens.elk,
     quoteToken: tokens.glide,
-  },
+  }
 ]
 
 export default farms
