@@ -31,15 +31,11 @@ const WithdrawSection = () => {
   const onHold = claimStatus.onHold
   const epoch = claimStatus.currentEpoch.toString()
   const withdrawRequestedEpoch = claimStatusFetched ? claimStatus.requestedEpoch.toString() : '0'
-  const withdrawRequestedAmount = claimStatusFetched
-    ? withdrawRequestedEpoch < epoch
-      ? '0'
-      : getFullDisplayBalance(claimStatus.requestedAmount, 18, 4)
-    : '0'
+  const withdrawRequestedAmount = claimStatusFetched ? getFullDisplayBalance(claimStatus.requestedAmount, 18, 4) : '0'
   const withdrawRequested = Number(withdrawRequestedAmount) > 0
   const withdrawReadyOnHoldAmount = claimStatusFetched
     ? onHold
-      ? withdrawRequestedEpoch < epoch
+      ? parseInt(withdrawRequestedEpoch) < parseInt(epoch)
         ? getFullDisplayBalance(claimStatus.readyOnHoldAmount.plus(claimStatus.requestedAmount), 18, 4)
         : getFullDisplayBalance(claimStatus.readyOnHoldAmount, 18, 4)
       : '0'
@@ -47,7 +43,7 @@ const WithdrawSection = () => {
   const withdrawReadyExactAmount = claimStatusFetched
     ? onHold
       ? claimStatus.readyAmount
-      : withdrawRequestedEpoch < epoch
+      : parseInt(withdrawRequestedEpoch) < parseInt(epoch)
       ? claimStatus.readyAmount.plus(claimStatus.readyOnHoldAmount).plus(claimStatus.requestedAmount)
       : claimStatus.readyAmount.plus(claimStatus.readyOnHoldAmount)
     : new BigNumber(0)
