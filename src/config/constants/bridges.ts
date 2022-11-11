@@ -162,7 +162,7 @@ export default {
         contract: '0x5a70075aC335c8e99BF8c27760dD1001190A8032',
         minTx: 2,
         maxTx: 750000,
-        fee: 0,
+        fee: 0.1,
       },
     },
     token: {
