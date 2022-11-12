@@ -31,7 +31,11 @@ const WithdrawSection = () => {
   const onHold = claimStatus.onHold
   const epoch = claimStatus.currentEpoch.toString()
   const withdrawRequestedEpoch = claimStatusFetched ? claimStatus.requestedEpoch.toString() : '0'
-  const withdrawRequestedAmount = claimStatusFetched ? getFullDisplayBalance(claimStatus.requestedAmount, 18, 4) : '0'
+  const withdrawRequestedAmount = claimStatusFetched
+    ? parseInt(withdrawRequestedEpoch) < parseInt(epoch)
+      ? '0'
+      : getFullDisplayBalance(claimStatus.requestedAmount, 18, 4)
+    : '0'
   const withdrawRequested = Number(withdrawRequestedAmount) > 0
   const withdrawReadyOnHoldAmount = claimStatusFetched
     ? onHold
