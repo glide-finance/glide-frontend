@@ -134,7 +134,7 @@ const CakeDataRow = () => {
         </Text>
       </StyledColumn>
       <StyledColumn>
-        <Text fontSize="32px">{t('%cakeEmissions%/block', { cakeEmissions: emissionsPerBlock })}</Text>
+        <Text fontSize="32px">{t('%cakeEmissions%/block', { cakeEmissions: emissionsPerBlock.toFixed(3) })}</Text>
         <Text fontSize="20px" color="textSubtle">
           {t('Emission rate')}
         </Text>

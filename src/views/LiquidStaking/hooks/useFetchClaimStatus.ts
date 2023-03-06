@@ -67,7 +67,7 @@ export const useFetchEpochTimer = () => {
     const fetchClaimStatus = async () => {
       try {
         // check previous ~22 days event logs for epoch updates
-        const fetchEpochs = await fetch(`https://esc.elastos.io/api?module=logs&action=getLogs&fromBlock=${currentBlock-1900800}&toBlock=latest&address=${getLiquidStakingAddress()}&topic0=0x27d6c6200f2a93b4e2eb544130a14df1a48054c8ca67317d8a7ed5d03e2efe37`, {
+        const fetchEpochs = await fetch(`https://esc.elastos.io/api?module=logs&action=getLogs&fromBlock=${currentBlock-380160}&toBlock=${currentBlock-60}&address=${getLiquidStakingAddress()}&topic0=0x27d6c6200f2a93b4e2eb544130a14df1a48054c8ca67317d8a7ed5d03e2efe37`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
