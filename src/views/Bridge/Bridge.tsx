@@ -96,7 +96,7 @@ const ArrowContainer = styled.div`
 `
 
 const ElkNotice = styled(Flex)`
-  border: 1px solid ${({ theme }) => theme.colors.primary};
+  border: 1px solid ${({ theme }) => theme.colors.failure};
   border-radius: 16px;
   margin-bottom: 20px;
   padding: 16px;
@@ -379,7 +379,7 @@ const Bridge: React.FC = () => {
       <BridgePage>
         <ElkNotice>
           <AutoRow justify="center">
-            <Text bold color="primary" mb="8px">
+            {/* <Text bold color="primary" mb="8px">
               {t(`Not the chains you're looking for? Check out Elk and bridge to Elastos from 14 different networks!`)}
             </Text>
             <Image src="/images/tokens/elk.svg" width={36} height={36} mr="16px" mt="0px" />
@@ -388,6 +388,13 @@ const Bridge: React.FC = () => {
               href="https://app.elk.finance/?utm_source=glide&utm_medium=banner&utm_campaign=elknet&utm_id=projectpromo#/elknet"
             >
               {t('Elk Finance')}
+            </LinkExternal> */}
+            <Text bold color="text" mb="8px">
+              The bridge is currently paused due to the FilDA incident. Funds are safe, but transfers may not finalize
+              until the bridge has been resumed.
+            </Text>
+            <LinkExternal color="failure" href="https://twitter.com/FilDAFinance/status/1650115574314291200">
+              Follow for Updates
             </LinkExternal>
           </AutoRow>
         </ElkNotice>

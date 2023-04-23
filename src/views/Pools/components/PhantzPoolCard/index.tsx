@@ -160,7 +160,7 @@ const PhantzPoolCard: React.FC<PhantzPoolProps> = ({ pool, showStakedOnly, versi
         <LoadingContainer>
           <Flex alignItems="center" justifyContent="center" mb="8px">
             <Text fontSize="16px" mr="12px">
-              {version === 'V2' ? 'Checking for Phantz V1' : 'Checking for Phantz V2'}
+              {version === 'V2' ? 'Checking for Phantz V2' : 'Checking for Phantz V1'}
             </Text>
             <AutoRenewIcon spin color="currentColor" />
           </Flex>
