@@ -374,21 +374,24 @@ const Bridge: React.FC = () => {
   const isBridgeable =
     correctParams && amountToBridge >= minTransfer && amountToBridge <= bridgeParams.maxTx && !exceedsMax
 
+  {
+    /* <Text bold color="primary" mb="8px">
+      {t(`Not the chains you're looking for? Check out Elk and bridge to Elastos from 14 different networks!`)}
+    </Text>
+    <Image src="/images/tokens/elk.svg" width={36} height={36} mr="16px" mt="0px" />
+    <LinkExternal
+      color="text"
+      href="https://app.elk.finance/?utm_source=glide&utm_medium=banner&utm_campaign=elknet&utm_id=projectpromo#/elknet"
+    >
+      {t('Elk Finance')}
+    </LinkExternal> */
+  }
+
   return (
     <>
       <BridgePage>
-        <ElkNotice>
+        {/* <ElkNotice>
           <AutoRow justify="center">
-            {/* <Text bold color="primary" mb="8px">
-              {t(`Not the chains you're looking for? Check out Elk and bridge to Elastos from 14 different networks!`)}
-            </Text>
-            <Image src="/images/tokens/elk.svg" width={36} height={36} mr="16px" mt="0px" />
-            <LinkExternal
-              color="text"
-              href="https://app.elk.finance/?utm_source=glide&utm_medium=banner&utm_campaign=elknet&utm_id=projectpromo#/elknet"
-            >
-              {t('Elk Finance')}
-            </LinkExternal> */}
             <Text bold color="text" mb="8px">
               The bridge is currently paused due to the FilDA incident. Funds are safe, but transfers may not finalize
               until the bridge has been resumed.
@@ -397,7 +400,7 @@ const Bridge: React.FC = () => {
               Follow for Updates
             </LinkExternal>
           </AutoRow>
-        </ElkNotice>
+        </ElkNotice> */}
         <Body>
           <GradientHeader title={t('Bridge')} subtitle={t('Map tokens to and from the Elastos Smart Chain')} noConfig />
           <Wrapper id="bridge-page">
