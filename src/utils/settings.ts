@@ -10,8 +10,8 @@ export const VERSION = 1.01
 
 export const GAS_SETTINGS = {
   default: DEFAULT_GAS_PRICE,
-  fast: 2,
-  reallyfast: 3,
+  fast: 3,
+  reallyfast: 4,
 }
 
 export const getGasPriceInWei = (amountInGwei: number) => {

@@ -2,7 +2,7 @@ import { ChainId } from '@glide-finance/sdk'
 
 const NETWORK_URLS: { [chainId in ChainId]: string } = {
   [ChainId.ETHEREUM]: `https://mainnet.infura.io/v3/${process.env.REACT_APP_INFURA_KEY}`,
-  [ChainId.MAINNET]: 'https://escrpc.elaphant.app', // https://api.elastos.io/eth
+  [ChainId.MAINNET]: 'https://api.elastos.io/esc',
   [ChainId.TESTNET]: 'https://api-testnet.elastos.io/eth',
   [ChainId.BINANCE]: 'https://bsc-dataseed1.ninicoin.io/',
   [ChainId.HECO]: 'https://http-mainnet.hecochain.com',
@@ -17,7 +17,7 @@ export const BRIDGE_NETWORKS = {
       symbol: 'ela',
       decimals: 18,
     },
-    rpcUrls: ['https://escrpc.elaphant.app', 'https://api.elastos.io/eth', 'https://api.trinity-tech.cn/eth'],
+    rpcUrls: ['https://api.elastos.io/esc', 'https://rpc.glidefinance.io/', 'https://api.trinity-tech.cn/esc', 'https://api.trinity-tech.io/esc', ],
     blockExplorerUrls: ['https://esc.elastios.io'],
   },
   1: {
