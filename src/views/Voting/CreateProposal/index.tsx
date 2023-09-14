@@ -180,14 +180,14 @@ const CreateProposal = () => {
               <Text color="textSubtle" mb="8px">
                 {t('Tip: write in Markdown!')}
               </Text>
-              <EasyMde
+              {/* <EasyMde
                 id="body"
                 name="body"
                 onTextChange={handleEasyMdeChange}
                 value={body}
                 options={options}
                 required
-              />
+              /> */}
               {formErrors.body && fieldsState.body && <FormErrors errors={formErrors.body} />}
             </Box>
             {body && (

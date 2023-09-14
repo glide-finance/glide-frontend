@@ -20,7 +20,7 @@ function phase(blockNumber: BigNumber) {
   //     .plus(new BigNumber(2))
   //     .toNumber()
   // }
-  return 4
+  return 5
 }
 
 // Get Glide token reward per block

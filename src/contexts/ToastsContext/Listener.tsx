@@ -1,12 +1,11 @@
+/* eslint-disable import/no-cycle */
 import React from 'react'
 import { ToastContainer } from '@glide-finance/uikit'
 import useToast from 'hooks/useToast'
 
 const ToastListener = () => {
   const { toasts, remove } = useToast()
-
   const handleRemove = (id: string) => remove(id)
-
   return <ToastContainer toasts={toasts} onRemove={handleRemove} />
 }
 

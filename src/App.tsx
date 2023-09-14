@@ -11,7 +11,7 @@ import { DatePickerPortal } from 'components/DatePicker'
 import GlobalStyle from './style/Global'
 import Menu from './components/Menu'
 import SuspenseWithChunkError from './components/SuspenseWithChunkError'
-import { ToastListener } from './contexts/ToastsContext'
+import { ToastListener, ToastsContext, ToastsProvider } from './contexts/ToastsContext'
 import PageLoader from './components/Loader/PageLoader'
 // import EasterEgg from './components/EasterEgg'
 import history from './routerHistory'
@@ -174,7 +174,6 @@ const App: React.FC = () => {
           </Switch>
         </SuspenseWithChunkError>
       </Menu>
-      {/* <EasterEgg iterations={2} /> */}
       <ToastListener />
       <DatePickerPortal />
     </Router>
