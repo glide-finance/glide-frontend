@@ -131,7 +131,7 @@ function currencyKey(currency: Currency): string {
 const Bridge: React.FC = () => {
   const { t } = useTranslation()
   const [originIndex, setOriginIndex] = useState(0)
-  const [destinationIndex, setDestinationIndex] = useState(2)
+  const [destinationIndex, setDestinationIndex] = useState(1)
   const { account, chainId, library } = useActiveWeb3React()
   const correctChain = ChainMap[originIndex] === chainId
   usePollBlockNumber()
