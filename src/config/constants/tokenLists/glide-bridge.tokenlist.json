@@ -175,7 +175,7 @@
       "decimals": 18,
       "logoURI": "",
       "origin": 56,
-      "minTx": 1000,
+      "minTx": 1,
       "fee": 0
     },
     {
@@ -186,7 +186,7 @@
       "decimals": 18,
       "logoURI": "",
       "origin": 56,
-      "minTx": 1000,
+      "minTx": 1,
       "fee": 0.1
     },
     {
