@@ -190,6 +190,28 @@
       "fee": 0.1
     },
     {
+      "name": "Binance USDT",
+      "symbol": "USDT",
+      "address": "0x55d398326f99059fF775485246999027B3197955",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "",
+      "origin": 56,
+      "minTx": 1000,
+      "fee": 0
+    },
+    {
+      "name": "Binance USDT on Elastos",
+      "symbol": "USDT",
+      "address": "0x0daddd286487f3a03Ea9A1b693585fD46cdCcF9F",
+      "chainId": 20,
+      "decimals": 18,
+      "logoURI": "",
+      "origin": 56,
+      "minTx": 1000,
+      "fee": 0.1
+    },
+    {
       "name": "Binance BTC",
       "symbol": "BTCB",
       "address": "0x7130d2A12B9BCbFAe4f2634d864A1Ee1Ce3Ead9c",

@@ -59,12 +59,12 @@
       "logoURI": "https://glidefinance.io/images/tokens/0x51B85F3889c7EA8f6d5EdEBFBadaDA0fDcE236c9.png"
     },
     {
-      "name": "BUSD on Elastos",
-      "symbol": "BUSD",
-      "address": "0x9f1d0Ed4E041C503BD487E5dc9FC935Ab57F9a57",
+      "name": "Binance USDT on Elastos",
+      "symbol": "USDT",
+      "address": "0x0daddd286487f3a03Ea9A1b693585fD46cdCcF9F",
       "chainId": 20,
       "decimals": 18,
-      "logoURI": "https://glidefinance.io/images/tokens/0x9f1d0Ed4E041C503BD487E5dc9FC935Ab57F9a57.png"
+      "logoURI": "https://glidefinance.io/images/tokens/0x0daddd286487f3a03Ea9A1b693585fD46cdCcF9F.png"
     },
     {
       "name": "BTCB on Elastos",
