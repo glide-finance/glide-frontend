@@ -137,6 +137,14 @@
       "chainId": 20,
       "decimals": 18,
       "logoURI": "https://glidefinance.io/images/tokens/0xaA9691BcE68ee83De7B518DfCBBfb62C04B1C0BA.png"
+    },
+    {
+      "name": "ElaWings",
+      "symbol": "WINGS",
+      "address": "0x1814dDE844554e649EE295C767C7A652845A1c0A",
+      "chainId": 20,
+      "decimals": 18,
+      "logoURI": "https://glidefinance.io/images/tokens/0x1814dDE844554e649EE295C767C7A652845A1c0A.png"
     }
   ]
 }
