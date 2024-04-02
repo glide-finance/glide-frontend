@@ -145,6 +145,14 @@
       "chainId": 20,
       "decimals": 18,
       "logoURI": "https://glidefinance.io/images/tokens/0x1814dDE844554e649EE295C767C7A652845A1c0A.png"
+    },
+    {
+      "name": "BTCvm",
+      "symbol": "BTCvm",
+      "address": "0x57edC1C1748B904D61016935708fBA364b60C7E0",
+      "chainId": 20,
+      "decimals": 18,
+      "logoURI": "https://glidefinance.io/images/tokens/0x57edC1C1748B904D61016935708fBA364b60C7E0.png"
     }
   ]
 }
