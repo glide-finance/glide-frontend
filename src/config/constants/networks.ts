@@ -7,7 +7,7 @@ const NETWORK_URLS: { [chainId in ChainId]: string } = {
   [ChainId.BINANCE]: 'https://bsc-dataseed1.ninicoin.io/',
   [ChainId.HECO]: 'https://http-mainnet.hecochain.com',
 }
-
+//
 export const BRIDGE_NETWORKS = {
   20: {
     chainId: `0x14`,
