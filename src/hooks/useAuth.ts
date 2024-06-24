@@ -20,7 +20,7 @@ import { useTranslation } from 'contexts/Localization'
 const useAuth = () => {
   const { t } = useTranslation()
   const dispatch = useAppDispatch()
-  const { activate, deactivate } = useWeb3React()
+  const { activate, deactivate, library } = useWeb3React()
   const { toastError } = useToast()
 
   const login = useCallback(
@@ -48,7 +48,8 @@ const useAuth = () => {
               toastError(t('Authorization Error'), t('Please authorize to access your account'))
             } else {
               // toastError(error.name, error.message)
-              toastError(t('Network Error'), t('Please connect to the correct network'))
+              toastError(t('Network Error'), t('Prompting switching to Elastos. Please try again.'))
+              setupNetwork(20, library)
             }
           }
         })
@@ -56,7 +57,7 @@ const useAuth = () => {
         toastError(t('Unable to find connector'), t('The connector config is wrong'))
       }
     },
-    [t, activate, toastError],
+    [t, activate, toastError, library],
   )
 
   const logout = useCallback(() => {
