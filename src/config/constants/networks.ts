@@ -17,7 +17,7 @@ export const BRIDGE_NETWORKS = {
       symbol: 'ela',
       decimals: 18,
     },
-    rpcUrls: ['https://api.elastos.io/esc', 'https://rpc.glidefinance.io/'],
+    rpcUrls: ['https://rpc.glidefinance.io/', 'https://api.elastos.io/esc'],
     blockExplorerUrls: ['https://esc.elastios.io'],
   },
   1: {

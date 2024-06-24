@@ -12,27 +12,43 @@ import { Web3Provider } from '@ethersproject/providers'
 export const setupNetwork = async (chainId: number, library?: Web3Provider) => {
   const provider = library ? library.provider : window.ethereum
   if (provider) {
-    // const chainId = parseInt(process.env.REACT_APP_CHAIN_ID, 10)
     const params = BRIDGE_NETWORKS[chainId]
     try {
-      if (chainId === 1) {
-        await provider.request({
-          method: 'wallet_switchEthereumChain',
-          params: [{ chainId: '0x1' }],
-        })
-      } else {
-        await provider.request({
-          method: 'wallet_addEthereumChain',
-          params: [params],
-        })
-      }
+      // Switch to the network if it's already added
+      await provider.request({
+        method: 'wallet_switchEthereumChain',
+        params: [{ chainId: params.chainId }],
+      })
       return true
-    } catch (error) {
-      console.error('Failed to setup the network in Metamask:', error)
-      return false
+    } catch (switchError) {
+      // This error code indicates that the chain has not been added to MetaMask
+      if (switchError.code === 4902) {
+        try {
+          // Add the network to MetaMask
+          await provider.request({
+            method: 'wallet_addEthereumChain',
+            params: [
+              {
+                chainId: params.chainId,
+                chainName: params.chainName,
+                nativeCurrency: params.nativeCurrency,
+                rpcUrls: params.rpcUrls,
+                blockExplorerUrls: params.blockExplorerUrls,
+              },
+            ],
+          })
+          return true
+        } catch (addError) {
+          console.error('Failed to add the network to MetaMask:', addError)
+          return false
+        }
+      } else {
+        console.error('Failed to switch the network in MetaMask:', switchError)
+        return false
+      }
     }
   } else {
-    console.error("Can't setup the network on metamask because window.ethereum is undefined")
+    console.error("Can't setup the network on MetaMask because window.ethereum is undefined")
     return false
   }
 }

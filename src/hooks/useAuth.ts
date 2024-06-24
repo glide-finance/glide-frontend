@@ -47,7 +47,8 @@ const useAuth = () => {
               }
               toastError(t('Authorization Error'), t('Please authorize to access your account'))
             } else {
-              toastError(error.name, error.message)
+              // toastError(error.name, error.message)
+              toastError(t('Network Error'), t('Please connect to the correct network'))
             }
           }
         })
@@ -66,7 +67,7 @@ const useAuth = () => {
       connectorsByName.walletconnect.close()
       connectorsByName.walletconnect.walletConnectProvider = null
     }
-    window.localStorage.removeItem("walletconnect")
+    window.localStorage.removeItem('walletconnect')
   }, [deactivate, dispatch])
 
   return { login, logout }
