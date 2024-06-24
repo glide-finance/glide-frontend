@@ -48,7 +48,7 @@ const useAuth = () => {
               toastError(t('Authorization Error'), t('Please authorize to access your account'))
             } else {
               // toastError(error.name, error.message)
-              toastError(t('Network Error'), t('Prompting switching to Elastos. Please try again.'))
+              toastError(t('Network Error'), t('Please switch your network to ESC before connecting your wallet'))
               setupNetwork(20, library)
             }
           }
