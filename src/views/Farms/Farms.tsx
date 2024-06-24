@@ -495,7 +495,7 @@ const Farms: React.FC = () => {
                 setupNetwork(20, library)
               }}
             >
-              {t('Connect to the Elastos network to begin')}
+              {t('Switch to the Elastos network to begin')}
             </Button>
           </ConnectContainer>
         )}

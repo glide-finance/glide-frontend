@@ -108,7 +108,7 @@ export default function Pool() {
                 setupNetwork(20, library)
               }}
             >
-              {t('Connect to the Elastos network to begin')}
+              {t('Switch to the Elastos network to begin')}
             </Button>
           ) : (
             <Button id="join-pool-button" as={Link} to="/add" width="100%" startIcon={<AddIcon color="white" />}>

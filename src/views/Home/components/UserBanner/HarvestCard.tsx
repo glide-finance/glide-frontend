@@ -106,7 +106,7 @@ const HarvestCard = () => {
                     setupNetwork(20, library)
                   }}
                 >
-                  {t('Connect to Elastos')}
+                  {t('Switch to Elastos')}
                 </Button>
               ) : (
                 <Button
