@@ -4,15 +4,15 @@ export default {
     native: {
       '1': {
         contract: '0xf127003ea39878EFeEE89aA4E22248CC6cb7728E',
-        minTx: 1,
+        minTx: 0.1,
         maxTx: 1500000, // 1500000000000000000000000
-        fee: 0,
+        fee: 0.1,
       },
       '20': {
         contract: '0x314dfec1Fb4de1e0Be70F260d0a065E497f7E2eB', // 0x88723077663F9e24091D2c30c2a2cE213d9080C6',
-        minTx: 1000, // 1000000000000000000
+        minTx: 100, // 100000000000000000000
         maxTx: 750000, // 750000000000000000000000
-        fee: 0,
+        fee: 0.1,
       },
     },
     token: {
@@ -34,15 +34,15 @@ export default {
     native: {
       '1': {
         contract: '0x88723077663F9e24091D2c30c2a2cE213d9080C6', // 0x314dfec1Fb4de1e0Be70F260d0a065E497f7E2eB',
-        minTx: 1, // 0.5, // 500000000000000000
+        minTx: 0.1, // 0.1 ETH
         maxTx: 750000, // 750000000000000000000000
-        fee: 1,
+        fee: 0.1,
       },
       '20': {
         contract: '0xE235CbC85e26824E4D855d4d0ac80f3A85A520E4',
-        minTx: 1000, // 1000000000000000000
+        minTx: 100, // 100 ELA
         maxTx: 1500000, // 1500000000000000000000000
-        fee: 0,
+        fee: 0.1,
       },
     },
     token: {

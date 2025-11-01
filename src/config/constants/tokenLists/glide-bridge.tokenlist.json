@@ -18,8 +18,8 @@
       "decimals": 18,
       "logoURI": "",
       "origin": 1,
-      "minTx": 1,
-      "fee": 1
+      "minTx": 0.1,
+      "fee": 0.1
     },
     {
       "name": "HT on Elastos",
@@ -49,8 +49,8 @@
       "decimals": 18,
       "logoURI": "",
       "origin": 20,
-      "minTx": 1,
-      "fee": 1
+      "minTx": 100,
+      "fee": 0.1
     },
     {
       "name": "ELA on Heco",
@@ -116,7 +116,8 @@
       "decimals": 6,
       "logoURI": "",
       "origin": 1,
-      "minTx": 5000
+      "minTx": 500,
+      "fee": 0.1
     },
     {
       "name": "USDC on Elastos",
@@ -126,7 +127,8 @@
       "decimals": 6,
       "logoURI": "",
       "origin": 1,
-      "minTx": 5000
+      "minTx": 500,
+      "fee": 0.1
     },
     {
       "name": "Glide",
