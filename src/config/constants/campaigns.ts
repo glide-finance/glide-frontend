@@ -15,7 +15,7 @@ const campaigns: Campaign[] = [
     type: 'ifo',
     title: 'Berry',
     badge: 'ifo-bry.svg',
-  }
+  },
 ]
 
 /**

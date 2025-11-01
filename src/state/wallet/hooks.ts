@@ -57,7 +57,12 @@ export function useTokenBalancesWithLoadingIndicator(
   )
 
   const validatedTokenAddresses = useMemo(() => validatedTokens.map((vt) => vt.address), [validatedTokens])
-  const standardBalances = useMultipleContractSingleData(validatedTokenAddresses.filter((t => !LOCK_TOKENS.includes(t))), ERC20_INTERFACE, 'balanceOf', [address])
+  const standardBalances = useMultipleContractSingleData(
+    validatedTokenAddresses.filter((t) => !LOCK_TOKENS.includes(t)),
+    ERC20_INTERFACE,
+    'balanceOf',
+    [address],
+  )
   const lockedBalances = useMultipleContractSingleData(LOCK_TOKENS, CREDA_INTERFACE, 'unlockedOf', [address])
   const balances = useMemo(() => standardBalances.concat(lockedBalances), [standardBalances, lockedBalances])
 

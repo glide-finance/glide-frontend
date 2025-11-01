@@ -7,7 +7,7 @@ import { useLiquidStaking } from 'hooks/useContract'
 export const liquidStake = async (liquidStakingContract, amount, decimals = 18) => {
   const payloadFee = (await liquidStakingContract.receivePayloadFee()).toString()
   // payloadFee added on top of user input. Revisit after exchangeRate update
-  const value = (new BigNumber(amount).times(BIG_TEN.pow(decimals))).plus(new BigNumber(payloadFee)).toString()
+  const value = new BigNumber(amount).times(BIG_TEN.pow(decimals)).plus(new BigNumber(payloadFee)).toString()
   const tx = await liquidStakingContract.deposit({ gasLimit: DEFAULT_GAS_LIMIT, value })
   return tx
 }
@@ -22,16 +22,16 @@ const useLiquidStake = () => {
 
   const liquidStakingContract = useLiquidStaking()
 
-  const handleStake = useCallback(    
+  const handleStake = useCallback(
     async (amount: string, decimals: number) => {
       try {
-      setPendingTx(true)
-      const tx = await liquidStake(liquidStakingContract, amount, 18)
-      setUserApproved(true)
-      const receipt = await tx.wait()
-      setPendingTx(false)
-      setComplete(true)
-      } catch(error: any) {
+        setPendingTx(true)
+        const tx = await liquidStake(liquidStakingContract, amount, 18)
+        setUserApproved(true)
+        const receipt = await tx.wait()
+        setPendingTx(false)
+        setComplete(true)
+      } catch (error: any) {
         if (error?.code === 4001) {
           setUserDenied(true)
           setUserDenied(false)

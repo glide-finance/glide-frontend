@@ -31,7 +31,7 @@ export const ChartCardsContainer = styled(Flex)`
 
   ${({ theme }) => theme.mediaQueries.md} {
     flex-direction: row;
-  } ;
+  }
 `
 
 const Overview: React.FC = () => {

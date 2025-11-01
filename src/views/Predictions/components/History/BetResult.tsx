@@ -1,6 +1,16 @@
 import React from 'react'
 import { useWeb3React } from '@web3-react/core'
-import { Box, Flex, Heading, Text, PrizeIcon, BlockIcon, LinkExternal, useTooltip, InfoIcon } from '@glide-finance/uikit'
+import {
+  Box,
+  Flex,
+  Heading,
+  Text,
+  PrizeIcon,
+  BlockIcon,
+  LinkExternal,
+  useTooltip,
+  InfoIcon,
+} from '@glide-finance/uikit'
 import { useAppDispatch } from 'state'
 import { useTranslation } from 'contexts/Localization'
 import { useGetRewardRate } from 'state/predictions/hooks'

@@ -1,13 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import {
-  Card,
-  CardBody,
-  Text,
-  Flex,
-  Heading,
-  Skeleton,
-} from '@glide-finance/uikit'
+import { Card, CardBody, Text, Flex, Heading, Skeleton } from '@glide-finance/uikit'
 import { ESC_BLOCK_TIME } from 'config'
 import { useTranslation } from 'contexts/Localization'
 
@@ -39,8 +32,8 @@ const CountdownCard: React.FC<CountdownCardProps> = ({ currentBlock, targetBlock
 
   const days = Math.floor(timeRemaining / (60 * 60 * 24))
   const hours = Math.floor((timeRemaining % (60 * 60 * 24)) / (60 * 60))
-  const minutes = Math.floor((timeRemaining % (60 * 60)) / (60))
-  const seconds = Math.floor((timeRemaining % (60)))
+  const minutes = Math.floor((timeRemaining % (60 * 60)) / 60)
+  const seconds = Math.floor(timeRemaining % 60)
 
   return (
     <>
@@ -58,13 +51,17 @@ const CountdownCard: React.FC<CountdownCardProps> = ({ currentBlock, targetBlock
               <Heading>
                 {currentBlock ? (
                   <>
-                    <Text fontSize="18px">{blocksToGo} {t('blocks')}</Text>
-                    <Text fontSize="18px">{days}d, {hours}h, {minutes}m, {seconds}s</Text>
+                    <Text fontSize="18px">
+                      {blocksToGo} {t('blocks')}
+                    </Text>
+                    <Text fontSize="18px">
+                      {days}d, {hours}h, {minutes}m, {seconds}s
+                    </Text>
                   </>
                 ) : (
                   <Skeleton height={18} width={96} mb="2px" />
                 )}
-                
+
                 {/* { blocksToGo > 0 ? (
                   <Balance fontSize="20px" bold value={targetBlock} decimals={0} />
                 ) : (

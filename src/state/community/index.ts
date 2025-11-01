@@ -52,7 +52,7 @@ const initialState: CommunityState = {
       allowance: null,
       stakingTokenBalance: null,
       stakedBalance: null,
-      pendingReward: null
+      pendingReward: null,
     },
   },
 }
@@ -210,7 +210,7 @@ export const CommunitySlice = createSlice({
         state.data[index] = { ...state.data[index], userData: { ...state.data[index].userData, [field]: value } }
       }
     },
-  }
+  },
 })
 
 // Actions

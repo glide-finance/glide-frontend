@@ -77,7 +77,7 @@ const ChartCard: React.FC<ChartCardProps> = ({ variant, chartData, tokenData, to
   return (
     <Card>
       <TabToggleGroup>
-       {variant === 'token' && (
+        {variant === 'token' && (
           <TabToggle isActive={view === ChartView.PRICE} onClick={() => setView(ChartView.PRICE)}>
             <Text>{t('Price')}</Text>
           </TabToggle>
@@ -88,7 +88,6 @@ const ChartCard: React.FC<ChartCardProps> = ({ variant, chartData, tokenData, to
         <TabToggle isActive={view === ChartView.LIQUIDITY} onClick={() => setView(ChartView.LIQUIDITY)}>
           <Text>{t('Liquidity')}</Text>
         </TabToggle>
-       
       </TabToggleGroup>
 
       <Flex flexDirection="column" px="24px" pt="24px">

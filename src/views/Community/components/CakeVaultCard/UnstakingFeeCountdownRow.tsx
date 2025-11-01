@@ -6,7 +6,6 @@ import useWithdrawalFeeTimer from 'views/Pools/hooks/useWithdrawalFeeTimer'
 import { useCakeVault } from 'state/pools/hooks'
 import WithdrawalFeeTimer from './WithdrawalFeeTimer'
 
-
 interface UnstakingFeeCountdownRowProps {
   isTableVariant?: boolean
 }

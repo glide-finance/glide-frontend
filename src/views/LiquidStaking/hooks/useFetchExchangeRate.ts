@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react'
 import { getLiquidStakingContract } from 'utils/contractHelpers'
 import useRefresh from 'hooks/useRefresh'
 
-
 export const useFetchExchangeRate = () => {
   const { slowRefresh } = useRefresh()
   const [exchangeRate, setExchangeRate] = useState('10000')

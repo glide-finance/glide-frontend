@@ -91,16 +91,16 @@ export default function SwapModalHeader({
             {t(`Output is estimated. You will receive at least`)}{' '}
             <b>
               {slippageAdjustedAmounts[Field.OUTPUT]?.toSignificant(6)} {trade.outputAmount.currency.symbol}
-            </b>
-            {' '}{t('or the transaction will revert.')}
+            </b>{' '}
+            {t('or the transaction will revert.')}
           </Text>
         ) : (
           <Text small color="textSubtle" textAlign="left" style={{ width: '100%' }}>
             {t(`Input is estimated. You will sell at most`)}{' '}
             <b>
               {slippageAdjustedAmounts[Field.INPUT]?.toSignificant(6)} {trade.inputAmount.currency.symbol}
-            </b>
-            {' '}{t('or the transaction will revert.')}
+            </b>{' '}
+            {t('or the transaction will revert.')}
           </Text>
         )}
       </AutoColumn>

@@ -23,7 +23,7 @@ const priceHelperLps: FarmConfig[] = [
     pid: null,
     lpSymbol: 'RINU-ELA LP',
     lpAddresses: {
-      20: '0x411DA456D450111648310c5Ec3D188755727b92c'
+      20: '0x411DA456D450111648310c5Ec3D188755727b92c',
     },
     token: tokens.rinu,
     quoteToken: tokens.wela,
@@ -32,7 +32,7 @@ const priceHelperLps: FarmConfig[] = [
     pid: null,
     lpSymbol: 'FINU-ELA LP',
     lpAddresses: {
-      20: '0xe8134F4e731Bb9a70Ddc0013755994B4906d480f'
+      20: '0xe8134F4e731Bb9a70Ddc0013755994B4906d480f',
     },
     token: tokens.finu,
     quoteToken: tokens.wela,
@@ -41,7 +41,7 @@ const priceHelperLps: FarmConfig[] = [
     pid: null,
     lpSymbol: 'BEER-ELA LP',
     lpAddresses: {
-      20: '0xbcA320f6b57b422a7Bf98A5bFaf8635923998d41'
+      20: '0xbcA320f6b57b422a7Bf98A5bFaf8635923998d41',
     },
     token: tokens.beer,
     quoteToken: tokens.wela,
@@ -50,7 +50,7 @@ const priceHelperLps: FarmConfig[] = [
     pid: null,
     lpSymbol: 'SLOTH-ELA LP',
     lpAddresses: {
-      20: '0x3DCe3e9C2DBe687ab1794E89e48ad0947c4ae48F'
+      20: '0x3DCe3e9C2DBe687ab1794E89e48ad0947c4ae48F',
     },
     token: tokens.sloth,
     quoteToken: tokens.wela,
@@ -59,7 +59,7 @@ const priceHelperLps: FarmConfig[] = [
     pid: null,
     lpSymbol: 'BUN-ELA LP',
     lpAddresses: {
-      20: '0xb454FC9F6681dCa0D7C3b7a170A89B8bD7bdA71A'
+      20: '0xb454FC9F6681dCa0D7C3b7a170A89B8bD7bdA71A',
     },
     token: tokens.bun,
     quoteToken: tokens.wela,

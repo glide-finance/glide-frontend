@@ -1,5 +1,14 @@
 import React from 'react'
-import { Card, CardBody, Flex, ButterflyLoader, WaitIcon, TooltipText, useTooltip, InfoIcon } from '@glide-finance/uikit'
+import {
+  Card,
+  CardBody,
+  Flex,
+  ButterflyLoader,
+  WaitIcon,
+  TooltipText,
+  useTooltip,
+  InfoIcon,
+} from '@glide-finance/uikit'
 import { useTranslation } from 'contexts/Localization'
 import { NodeRound, BetPosition } from 'state/types'
 import { useGetTotalIntervalBlocks } from 'state/predictions/hooks'

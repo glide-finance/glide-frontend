@@ -18,16 +18,16 @@ const useLiquidUnstake = () => {
 
   const liquidStakingContract = useLiquidStaking()
 
-  const handleUnstake = useCallback(    
+  const handleUnstake = useCallback(
     async (amount: string, decimals: number) => {
       try {
-      setPendingTx(true)
-      const tx = await liquidUnstake(liquidStakingContract, amount, 18)
-      setUserApproved(true)
-      const receipt = await tx.wait()
-      setPendingTx(false)
-      setComplete(true)
-      } catch(error: any) {
+        setPendingTx(true)
+        const tx = await liquidUnstake(liquidStakingContract, amount, 18)
+        setUserApproved(true)
+        const receipt = await tx.wait()
+        setPendingTx(false)
+        setComplete(true)
+      } catch (error: any) {
         if (error?.code === 4001) {
           setUserDenied(true)
           setUserDenied(false)

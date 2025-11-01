@@ -33,7 +33,7 @@ const Nfts: Nft[] = [
     identifier: 'phantz',
     type: NftType.PHANTZ,
     variationId: 1,
-  }
+  },
 ]
 
 export default Nfts

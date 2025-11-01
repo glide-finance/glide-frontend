@@ -10,7 +10,7 @@ export const USDC: { [chainId: number]: Token } = {
 
 export const WELA = new Token(ChainId.MAINNET, '0x517E9e5d46C1EA8aB6f78677d6114Ef47F71f6c4', 18, 'WELA', 'Wrapped ELA')
 
-export const LOCK_TOKENS = ["0xc136E6B376a9946B156db1ED3A34b08AFdAeD76d"]
+export const LOCK_TOKENS = ['0xc136E6B376a9946B156db1ED3A34b08AFdAeD76d']
 
 const tokens = {
   glide: {
@@ -48,10 +48,10 @@ const tokens = {
   stela: {
     symbol: 'stELA',
     address: {
-      20: '0xef366607eAFb7E2323F5817fFc1af1C3E2deDED6'
+      20: '0xef366607eAFb7E2323F5817fFc1af1C3E2deDED6',
     },
     decimals: 18,
-    projectLink: 'https://glidefinance.io'
+    projectLink: 'https://glidefinance.io',
   },
   // ethereum
   eth: {

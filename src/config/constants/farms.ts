@@ -130,7 +130,7 @@ const farms: FarmConfig[] = [
     },
     token: tokens.elk,
     quoteToken: tokens.glide,
-  }
+  },
 ]
 
 export default farms

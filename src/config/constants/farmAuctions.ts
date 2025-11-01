@@ -17,7 +17,6 @@ export const whitelistedBidders: FarmAuctionBidderConfig[] = [
   //   tokenName: 'Navcoin',
   //   projectSite: 'https://navcoin.org/en',
   // },
-  
 ].map((bidderConfig) => ({
   ...bidderConfig,
   lpAddress: getLpAddress(bidderConfig.tokenAddress, bidderConfig.quoteToken),

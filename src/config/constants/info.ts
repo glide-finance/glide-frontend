@@ -15,4 +15,4 @@ export const ITEMS_PER_INFO_TABLE_PAGE = 10
 
 // These tokens are either incorrectly priced or have some other issues that spoil the query data
 // None of them present any interest as they have almost 0 daily trade volume
-export const TOKEN_BLACKLIST = ["0x"]
+export const TOKEN_BLACKLIST = ['0x']

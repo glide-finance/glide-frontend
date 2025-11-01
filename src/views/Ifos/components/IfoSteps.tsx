@@ -1,7 +1,18 @@
 import React from 'react'
 import styled from 'styled-components'
 import every from 'lodash/every'
-import { Stepper, Step, StepStatus, Card, CardBody, Heading, Text, Button, Link, OpenNewIcon } from '@glide-finance/uikit'
+import {
+  Stepper,
+  Step,
+  StepStatus,
+  Card,
+  CardBody,
+  Heading,
+  Text,
+  Button,
+  Link,
+  OpenNewIcon,
+} from '@glide-finance/uikit'
 import { BASE_ADD_LIQUIDITY_URL } from 'config'
 import { Ifo } from 'config/constants/types'
 import { WalletIfoData } from 'views/Ifos/types'

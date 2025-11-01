@@ -53,7 +53,7 @@ interface PositionCardProps extends CardProps {
 export function MinimalPositionCard({ pair, showUnwrapped = false }: PositionCardProps) {
   const { account } = useActiveWeb3React()
   const { t } = useTranslation()
-  
+
   const currency0 = showUnwrapped ? pair.token0 : unwrappedToken(pair.token0)
   const currency1 = showUnwrapped ? pair.token1 : unwrappedToken(pair.token1)
 
@@ -152,7 +152,7 @@ export function MinimalPositionCard({ pair, showUnwrapped = false }: PositionCar
 }
 
 export default function FullPositionCard({ ...props }: PositionCardProps) {
-  const { pair } = props;
+  const { pair } = props
   const { account } = useActiveWeb3React()
   const { t } = useTranslation()
   const currency0 = unwrappedToken(pair.token0)

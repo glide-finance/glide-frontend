@@ -10,7 +10,7 @@ import {
   useUnsupportedTokenList,
   useCombinedActiveList,
   useCombinedInactiveList,
-  useBridgeableTokenList
+  useBridgeableTokenList,
 } from '../state/lists/hooks'
 
 import { NEVER_RELOAD, useSingleCallResult } from '../state/multicall/hooks'

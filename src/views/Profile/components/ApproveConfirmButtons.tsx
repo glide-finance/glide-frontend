@@ -1,6 +1,13 @@
 import React from 'react'
 import styled from 'styled-components'
-import { ChevronRightIcon, Button as UIKitButton, AutoRenewIcon, ChevronDownIcon, Box, Flex } from '@glide-finance/uikit'
+import {
+  ChevronRightIcon,
+  Button as UIKitButton,
+  AutoRenewIcon,
+  ChevronDownIcon,
+  Box,
+  Flex,
+} from '@glide-finance/uikit'
 import { useTranslation } from 'contexts/Localization'
 
 export enum ButtonArrangement {

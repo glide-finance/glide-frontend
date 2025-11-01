@@ -64,7 +64,6 @@ const GliderWrapper = styled.div`
   padding-bottom: 20px;
 
   ${({ theme }) => theme.mediaQueries.sm} {
-  
   }
 
   animation: ${flyingAnim2} 4s ease-in-out infinite;
@@ -87,7 +86,7 @@ const DetailsSection = () => {
         <InnerWrapper>{theme.isDark ? <SlideSvgDark width="100%" /> : <SlideSvgLight width="100%" />}</InnerWrapper>
       </BgWrapper> */}
       <GliderWrapper>
-         <Glider src={`${imagePath}glider2.png`} srcSet={getSrcSet(imagePath, 'glider2')} alt={t('Glider')} />
+        <Glider src={`${imagePath}glider2.png`} srcSet={getSrcSet(imagePath, 'glider2')} alt={t('Glider')} />
       </GliderWrapper>
       <Flex justifyContent="center" alignItems="center" flexDirection="column">
         <GradientHeading textAlign="center" scale="xl" color="glide" mb="48px">

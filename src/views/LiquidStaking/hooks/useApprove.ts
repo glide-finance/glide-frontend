@@ -21,7 +21,10 @@ export const useLiquidStakingApprove = () => {
     setRequestedApproval(true)
     const receipt = await tx.wait()
     if (receipt.status) {
-      toastSuccess(t('Contract Enabled'), t('You can now return %symbol% to the liquid staking contract.', { symbol: 'stELA' }))
+      toastSuccess(
+        t('Contract Enabled'),
+        t('You can now return %symbol% to the liquid staking contract.', { symbol: 'stELA' }),
+      )
       setRequestedApproval(false)
       setApprovalComplete(true)
     } else {

@@ -21,15 +21,15 @@ const Stats = () => {
   const { theme } = useTheme()
 
   const TradeCardData: GraphicCardData = {
-    icon: <img src="/images/home/pitch/trade.png"  alt={t('Trade')} />,
+    icon: <img src="/images/home/pitch/trade.png" alt={t('Trade')} />,
   }
 
   const LiquidityCardData: GraphicCardData = {
-    icon: <img src="/images/home/pitch/wallet.png"  alt={t('Trade')} />,
+    icon: <img src="/images/home/pitch/wallet.png" alt={t('Trade')} />,
   }
 
   const EarnCardData: GraphicCardData = {
-    icon: <img src="/images/home/pitch/percent.png"  alt={t('Trade')} />,
+    icon: <img src="/images/home/pitch/percent.png" alt={t('Trade')} />,
   }
 
   return (

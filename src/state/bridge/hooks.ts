@@ -86,8 +86,7 @@ export function tryParseAmount(value?: string, currency?: Currency): CurrencyAmo
   return undefined
 }
 
-const BAD_RECIPIENT_ADDRESSES: string[] = [
-]
+const BAD_RECIPIENT_ADDRESSES: string[] = []
 
 /**
  * Returns true if any of the pairs or tokens in a trade have the given checksummed address

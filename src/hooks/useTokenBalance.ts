@@ -19,7 +19,6 @@ export enum FetchStatus {
   FAILED = 'failed',
 }
 
-
 const useTokenBalance = (tokenAddress: string) => {
   const { NOT_FETCHED, SUCCESS, FAILED } = FetchStatus
   const [balanceState, setBalanceState] = useState<UseTokenBalanceState>({
@@ -36,7 +35,7 @@ const useTokenBalance = (tokenAddress: string) => {
         if (LOCK_TOKENS.includes(tokenAddress)) {
           const res = await contract.unlockOf(account)
           setBalanceState({ balance: new BigNumber(res.toString()), fetchStatus: SUCCESS })
-          console.log("lock token conditional")
+          console.log('lock token conditional')
         } else {
           const res = await contract.balanceOf(account)
           setBalanceState({ balance: new BigNumber(res.toString()), fetchStatus: SUCCESS })
