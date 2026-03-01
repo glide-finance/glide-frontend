@@ -1,26 +1,20 @@
 import BigNumber from 'bignumber.js'
 import { BLOCKS_PER_YEAR, GLIDE_START_BLOCK, GLIDE_BONUS_PERIOD, GLIDE_REDUCTION_PERIOD, GLIDE_PER_BLOCK } from 'config'
 
-// Calculate phase
 function phase(blockNumber: BigNumber) {
-  // Issue here if connected to another chain with a different block height. Calculates based on that height. Hardcoded for now.
-
-  // if (blockNumber.gte(GLIDE_START_BLOCK)) {
-  //   // Calculate block number from start block
-  //   const blockNumberFromStart = blockNumber.minus(GLIDE_START_BLOCK)
-  //   // If blockNumberFromStart less then block for reduction period, then we are in one phase
-  //   if (blockNumberFromStart.lte(GLIDE_BONUS_PERIOD)) {
-  //     return 1
-  //   }
-  //   // Calculate phase and add 1, because, will be start from one, and one phase is bonus phase
-  //   return blockNumberFromStart
-  //     .minus(GLIDE_BONUS_PERIOD)
-  //     .minus(new BigNumber(1))
-  //     .idiv(GLIDE_REDUCTION_PERIOD)
-  //     .plus(new BigNumber(2))
-  //     .toNumber()
-  // }
-  return 7
+  if (blockNumber.gte(GLIDE_START_BLOCK)) {
+    const blockNumberFromStart = blockNumber.minus(GLIDE_START_BLOCK)
+    if (blockNumberFromStart.lte(GLIDE_BONUS_PERIOD)) {
+      return 1
+    }
+    return blockNumberFromStart
+      .minus(GLIDE_BONUS_PERIOD)
+      .minus(new BigNumber(1))
+      .idiv(GLIDE_REDUCTION_PERIOD)
+      .plus(new BigNumber(2))
+      .toNumber()
+  }
+  return 0
 }
 
 // Get Glide token reward per block
