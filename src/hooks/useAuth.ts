@@ -5,11 +5,8 @@ import {
   NoEthereumProviderError,
   UserRejectedRequestError as UserRejectedRequestErrorInjected,
 } from '@web3-react/injected-connector'
-import {
-  UserRejectedRequestError as UserRejectedRequestErrorWalletConnect,
-  WalletConnectConnector,
-} from '@web3-react/walletconnect-connector'
 import { ConnectorNames, connectorLocalStorageKey } from '@glide-finance/uikit'
+import { WalletConnectV2Connector } from 'utils/WalletConnectV2Connector'
 import { connectorsByName } from 'utils/web3React'
 import { setupNetwork } from 'utils/wallet'
 import useToast from 'hooks/useToast'
@@ -29,7 +26,7 @@ const useAuth = () => {
       if (connector) {
         activate(connector, async (error: Error) => {
           if (error instanceof UnsupportedChainIdError) {
-            const hasSetup = await setupNetwork(20) // specify network to switch to
+            const hasSetup = await setupNetwork(20)
             if (hasSetup) {
               activate(connector)
             }
@@ -37,17 +34,11 @@ const useAuth = () => {
             window.localStorage.removeItem(connectorLocalStorageKey)
             if (error instanceof NoEthereumProviderError || error instanceof NoBscProviderError) {
               toastError(t('Provider Error'), t('No provider was found'))
-            } else if (
-              error instanceof UserRejectedRequestErrorInjected ||
-              error instanceof UserRejectedRequestErrorWalletConnect
-            ) {
-              if (connector instanceof WalletConnectConnector) {
-                const walletConnector = connector as WalletConnectConnector
-                walletConnector.walletConnectProvider = null
-              }
+            } else if (error instanceof UserRejectedRequestErrorInjected) {
+              toastError(t('Authorization Error'), t('Please authorize to access your account'))
+            } else if (error.message?.includes('User rejected') || error.message?.includes('rejected')) {
               toastError(t('Authorization Error'), t('Please authorize to access your account'))
             } else {
-              // toastError(error.name, error.message)
               toastError(t('Network Error'), t('Please switch your network to ESC before connecting your wallet'))
               setupNetwork(20, library)
             }
@@ -63,12 +54,15 @@ const useAuth = () => {
   const logout = useCallback(() => {
     dispatch(profileClear())
     deactivate()
-    // This localStorage key is set by @web3-react/walletconnect-connector
-    if (window.localStorage.getItem('walletconnect')) {
-      connectorsByName.walletconnect.close()
-      connectorsByName.walletconnect.walletConnectProvider = null
+
+    const wcConnector = connectorsByName.walletconnect
+    if (wcConnector instanceof WalletConnectV2Connector) {
+      wcConnector.close()
     }
+
     window.localStorage.removeItem('walletconnect')
+    window.localStorage.removeItem('wc@2:ethereum_provider:session')
+    window.localStorage.removeItem('wc@2:client:0.3//session')
   }, [deactivate, dispatch])
 
   return { login, logout }
